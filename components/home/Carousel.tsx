@@ -3,42 +3,46 @@
 import { useEffect } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { ChevronUp, ChevronDown } from "lucide-react"
+import Image from "next/image"
 
 export default function VerticalCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     axis: "y",
-    loop: true // importante pro autoplay ficar contínuo
+    loop: true
   })
 
-  // autoplay
   useEffect(() => {
     if (!emblaApi) return
 
     const interval = setInterval(() => {
       emblaApi.scrollNext()
-    }, 3000) // 3 segundos
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [emblaApi])
 
   return (
-    <div className="relative h-[300px]">
+    <div className="relative h-[200px] sm:h-[200px] md:h-[400px]">
 
-      {/* carousel */}
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex flex-col h-full">
 
-          <div className="min-h-full bg-red-400 flex items-center justify-center">
-            Notícia 1
-          </div>
+          {[ 
+            "/cegseguros.png",
+            "/drogaria_geral.png",
+            "/suplementlins.png"
+          ].map((src, i) => (
+            <div key={i} className="min-h-full relative bg-white">
 
-          <div className="min-h-full bg-blue-400 flex items-center justify-center">
-            Notícia 2
-          </div>
+              <Image
+                src={src}
+                alt="banner"
+                fill
+                className="object-fill md:object-cover bg-white md:bg-transparent p-2 md:p-0"
+              />
 
-          <div className="min-h-full bg-green-400 flex items-center justify-center">
-            Notícia 3
-          </div>
+            </div>
+          ))}
 
         </div>
       </div>
@@ -49,7 +53,7 @@ export default function VerticalCarousel() {
         <button
           onClick={() => emblaApi?.scrollPrev()}
           className="w-10 h-10 flex items-center justify-center rounded-full 
-                     bg-white/80 backdrop-blur shadow hover:bg-white transition"
+                     bg-white/80 backdrop-blur shadow"
         >
           <ChevronUp size={20} />
         </button>
@@ -57,7 +61,7 @@ export default function VerticalCarousel() {
         <button
           onClick={() => emblaApi?.scrollNext()}
           className="w-10 h-10 flex items-center justify-center rounded-full 
-                     bg-white/80 backdrop-blur shadow hover:bg-white transition"
+                     bg-white/80 backdrop-blur shadow"
         >
           <ChevronDown size={20} />
         </button>

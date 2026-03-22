@@ -2,58 +2,69 @@ import NewsSection from "@/components/home/NewsSection"
 import AdsSidebar from "@/components/home/AdsSidebar"
 import Championships from "@/components/home/Championships"
 import Clubs from "@/components/home/Clubs"
-import NextMatches from "@/components/home/NextMatches"
-import BannerCarousel from "@/components/home/BannerCarousel"
+import LoopBanner from "@/components/home/LoopBanner"
+import NextChampionships from "@/components/home/NextChampionships"
+import AdsRightClubs from "@/components/home/AdsRightClubs"
+import Newlestter from "@/components/home/Newlestter"
 
 export default function Home() {
   return (
-    <div className="space-y-10 max-w-6xl mx-auto px-4">
+    <div className="space-y-4 max-w-7xl mx-auto px-4">
 
       {/* topo */}
-      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <section className="w-full grid grid-cols-1 lg:grid-cols-[80%_20%] gap-6">
 
-        {/* noticias */}
-        <div className="lg:col-span-2">
+        <div>
           <NewsSection />
         </div>
 
         <div>
-          <BannerCarousel />
+          <NextChampionships />
         </div>
 
       </section>
 
- <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* banner */}
+      <section>
 
-  <div className="lg:col-span-2">
-    {/* algum conteúdo aqui (ex: lista de notícias, feed, etc) */}
-  </div>
+        {/* faixa título */}
+        <div className="w-full bg-black py-3 mb-2">
+          <h2 className="text-center text-white font-semibold text-sm md:text-base tracking-wide">
+            Empresas que apoiam o futebol de várzea
+          </h2>
+        </div>
 
-</section>
+        <LoopBanner />
 
-<section className="col-span-full">
-  <div className="max-w-4xl mx-auto">
-    <AdsSidebar />
-  </div>
-</section>
+      </section>
 
-    <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+      {/* ads topo */}
+      <section className="col-span-full">
+        <div className="max-w-6xl mx-auto">
+          <AdsSidebar />
+        </div>
+      </section>
 
-  <div className="lg:col-span-1">
-    <Championships />
-  </div>
+      {/* campeonatos + clubes */}
+      <section className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] gap-6 items-start">
 
-  <div className="lg:col-span-2">
-    <h2 className="font-bold text-lg">
-        Clubes
-      </h2>
-    <Clubs />
-  </div>
+        <div>
+          <Championships />
+        </div>
 
-</section>
+        <div>
+          <Clubs />
+        </div>
 
-      {/* proximos jogos */}
-      <NextMatches />
+        {/* ads direita */}
+        <div className="rounded-xl p-2">
+          <AdsRightClubs />
+        </div>
+
+      </section>
+
+      {/* próximos jogos */}
+      <Newlestter />
 
     </div>
   )
