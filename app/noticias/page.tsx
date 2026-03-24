@@ -10,19 +10,19 @@ export default function Noticias() {
       title: "Amigos do Futebol vence campeonato 50+",
       image: "/noticias/amigosdofutebol/foto_taca.png",
       slug: "amigos-do-futebol-vence-campeonato",
-      resumo: "Partida intensa com virada no segundo tempo e destaque para o artilheiro."
+      resumo: "Partida intensa, mas time vence o campeonato e conquista troféu."
     },
     {
       title: "Time ADC agora aposta na categoria livre, e faz primeiro amistoso",
       image: "/noticias/renukaadc/amistoso_livre.png",
       slug: "adc-aposta-na-categoria-livre",
-      resumo: "Gol decisivo saiu aos 48 minutos do segundo tempo."
+      resumo: "Time novo faz seu primeiro amistoso e termina com vitória"
     },
     {
       title: "Amigos do futebol comemora campeonato com samba no clube ADC",
       image: "/noticias/amigosdofutebol/festa_do_campeao.png",
       slug: "festa-do-campeao",
-      resumo: "Equipe mostrou superioridade do início ao fim."
+      resumo: "Equipe mostrou que manda bem na quadra e na festa."
     },
   ]
 
