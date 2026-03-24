@@ -15,8 +15,8 @@ export default function AdsSidebar() {
 
         <div className="relative bg-white h-28 md:h-32 rounded-xl shadow overflow-hidden">
           <Image
-            src="/promi.png"
-            alt="logo promicake gourmet"
+            src="/paraisocentroautomotivo.png"
+            alt="logo paraiso"
             fill
             className="object-fill md:object-cover p-2 md:p-0"
           />
