@@ -6,6 +6,7 @@ import LoopBanner from "@/components/home/LoopBanner"
 import NextChampionships from "@/components/home/NextChampionships"
 import AdsRightClubs from "@/components/home/AdsRightClubs"
 import Newlestter from "@/components/home/Newlestter"
+import FederacoesCTA from "@/components/home/FederacoesCTA"
 
 export default function Home() {
   return (
@@ -60,10 +61,14 @@ export default function Home() {
         <div className="rounded-xl p-2">
           <AdsRightClubs />
         </div>
+        {/* 🔗 federações */}
+<section className="max-w-6xl mx-auto">
+  <FederacoesCTA />
+</section>
 
       </section>
 
-      {/* próximos jogos */}
+      {/* noticias */}
       <Newlestter />
 
     </div>
