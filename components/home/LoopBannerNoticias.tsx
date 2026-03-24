@@ -22,11 +22,12 @@ export default function LoopBanner() {
 
   const banners = [
     "/paraisocentroautomotivo.png",
-    "/flmarmitaria.png",
     "/cegseguros.png",
     "/drogaria_geral.png",
     "/roma_gelateria.png",
     "/suplementlins.png",
+    "/flmarmitaria.png",
+    "/cegseguros.png",
   ]
 
   return (

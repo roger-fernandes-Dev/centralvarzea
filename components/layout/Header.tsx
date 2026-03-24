@@ -23,6 +23,7 @@ export default function Header() {
 
         {/* menu desktop */}
         <nav className="hidden md:flex gap-6 text-sm">
+          <a href="/">Ínicio</a>
           <a href="/noticias">Notícias</a>
           <a href="/campeonatos">Campeonatos</a>
           <a href="/clubes">Clubes</a>
