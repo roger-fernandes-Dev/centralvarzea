@@ -1,5 +1,6 @@
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
+import Script from "next/script"
 import "./globals.css"
 
 export default function RootLayout({
@@ -10,6 +11,20 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className="bg-gray-100 text-gray-900">
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-865MZRBBEC"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-865MZRBBEC');
+          `}
+        </Script>
 
         <Header />
 
