@@ -30,7 +30,7 @@ export default function LoopCarousel() {
     },
     {
       image: "/festa_do_campeao.png",
-      title: "Comemoração no Domingo do time 40+",
+      title: "Comemoração no Domingo do time 50+",
       description: "Grande comemoração com direito a samba",
       link: "/noticia/festa_do_campeao"
     },
