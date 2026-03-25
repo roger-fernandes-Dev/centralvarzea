@@ -47,6 +47,7 @@ export default function Header() {
 
           <nav className="flex flex-col p-4 gap-4 text-sm">
 
+            <a href="/" onClick={() => setOpen(false)}>Ínicio</a>
             <a href="/noticias" onClick={() => setOpen(false)}>Notícias</a>
             <a href="/campeonatos" onClick={() => setOpen(false)}>Campeonatos</a>
             <a href="/clubes" onClick={() => setOpen(false)}>Clubes</a>
