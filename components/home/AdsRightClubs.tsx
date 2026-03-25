@@ -15,7 +15,7 @@ export default function AdsRightClubs(){
 
       <div className="relative h-32 rounded-xl overflow-hidden">
         <Image
-          src="/roma_gelateria.png"
+          src="/gelateria_roma.png"
           alt="logo roma gelateria"
           fill
           className="object-cover"

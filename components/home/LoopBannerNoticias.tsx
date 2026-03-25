@@ -24,7 +24,7 @@ export default function LoopBanner() {
     "/paraisocentroautomotivo.png",
     "/cegseguros.png",
     "/drogaria_geral.png",
-    "/roma_gelateria.png",
+    "/gelateria_roma.png",
     "/suplementlins.png",
     "/flmarmitaria.png",
     "/cegseguros.png",

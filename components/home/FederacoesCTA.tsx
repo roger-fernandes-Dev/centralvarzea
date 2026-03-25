@@ -7,7 +7,7 @@ export default function FederacoesCTA() {
       {/* texto */}
       <div className="text-center md:text-left">
         <h2 className="text-white text-xl md:text-2xl font-bold">
-          Conheça as Federações
+          Feredações/arbitros
         </h2>
 
         <p className="text-gray-300 text-sm md:text-base mt-2">
@@ -18,7 +18,7 @@ export default function FederacoesCTA() {
       {/* botão */}
       <Link href="/arbitros">
         <button className="bg-white text-black font-semibold px-5 py-2 rounded-lg hover:bg-gray-200 transition">
-          Ver Federações
+          visualizar
         </button>
       </Link>
 

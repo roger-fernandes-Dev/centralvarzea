@@ -100,8 +100,8 @@ export default function Page() {
           </div>
           <div className="relative bg-gray-200 h-32 flex items-center justify-center">
             <Image
-              src="/roma_gelateria.png"
-              alt="drogaria geral"
+              src="/gelateria_roma.png"
+              alt="gelateria roma"
               fill
               className="object-fill"
             />
