@@ -7,7 +7,7 @@ export default function FederacoesCTA() {
       {/* texto */}
       <div className="text-center md:text-left">
         <h2 className="text-white text-xl md:text-2xl font-bold">
-          Feredações/arbitros
+          Federações/arbitros
         </h2>
 
         <p className="text-gray-300 text-sm md:text-base mt-2">

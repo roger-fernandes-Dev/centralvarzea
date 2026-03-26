@@ -10,67 +10,61 @@ import FederacoesCTA from "@/components/home/FederacoesCTA"
 
 export default function Home() {
   return (
-    <div className="space-y-4 max-w-7xl mx-auto px-4">
+    <>
+      {/* CONTEÚDO LIMITADO */}
+      <div className="space-y-4 max-w-7xl mx-auto px-4">
 
-      {/* topo */}
-      <section className="w-full grid grid-cols-1 lg:grid-cols-[80%_20%] gap-6">
+        {/* topo */}
+        <section className="w-full grid grid-cols-1 lg:grid-cols-[80%_20%] gap-6">
+          <div>
+            <NewsSection />
+          </div>
+          <div>
+            <NextChampionships />
+          </div>
+        </section>
 
-        <div>
-          <NewsSection />
-        </div>
+        {/* banner */}
+        <section>
+          <div className="w-full bg-black py-3 mb-2">
+            <h2 className="text-center text-white font-semibold text-sm md:text-base tracking-wide">
+              Empresas que apoiam o futebol de várzea
+            </h2>
+          </div>
+          <LoopBanner />
+        </section>
 
-        <div>
-          <NextChampionships />
-        </div>
+        {/* ads topo */}
+        <section className="col-span-full">
+          <div className="max-w-6xl mx-auto">
+            <AdsSidebar />
+          </div>
+        </section>
 
-      </section>
+        {/* campeonatos + clubes */}
+        <section className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] gap-6 items-start">
+          <div>
+            <Championships />
+          </div>
 
-      {/* banner */}
-      <section>
+          <div>
+            <Clubs />
+          </div>
 
-        {/* faixa título */}
-        <div className="w-full bg-black py-3 mb-2">
-          <h2 className="text-center text-white font-semibold text-sm md:text-base tracking-wide">
-            Empresas que apoiam o futebol de várzea
-          </h2>
-        </div>
+          <div className="rounded-xl p-2">
+            <AdsRightClubs />
+          </div>
+        </section>
 
-        <LoopBanner />
+        {/* newsletter */}
+        <Newlestter />
 
-      </section>
+      </div>
 
-      {/* ads topo */}
-      <section className="col-span-full">
-        <div className="max-w-6xl mx-auto">
-          <AdsSidebar />
-        </div>
-      </section>
-
-      {/* campeonatos + clubes */}
-      <section className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] gap-6 items-start">
-
-        <div>
-          <Championships />
-        </div>
-
-        <div>
-          <Clubs />
-        </div>
-
-        {/* ads direita */}
-        <div className="rounded-xl p-2">
-          <AdsRightClubs />
-        </div>
-        {/* 🔗 federações */}
-<section className="max-w-6xl mx-auto">
-  <FederacoesCTA />
-</section>
-
-      </section>
-
-      {/* noticias */}
-      <Newlestter />
-
-    </div>
+      {/* 🔥 FULL WIDTH (fora do container) */}
+      <div className="w-full px-4 md:px-8 mt-6">
+        <FederacoesCTA />
+      </div>
+    </>
   )
 }

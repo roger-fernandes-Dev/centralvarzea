@@ -26,8 +26,10 @@ export default function Header() {
           <a href="/">Ínicio</a>
           <a href="/noticias">Notícias</a>
           <a href="/campeonatos">Campeonatos</a>
-          <a href="/clubes">Clubes</a>
+          <a href="/times">Clubes</a>
           <a href="/jogos">Jogos</a>
+          <a href="/contato">Contato</a>
+
         </nav>
 
         {/* botão hamburguer */}
@@ -50,8 +52,9 @@ export default function Header() {
             <a href="/" onClick={() => setOpen(false)}>Ínicio</a>
             <a href="/noticias" onClick={() => setOpen(false)}>Notícias</a>
             <a href="/campeonatos" onClick={() => setOpen(false)}>Campeonatos</a>
-            <a href="/clubes" onClick={() => setOpen(false)}>Clubes</a>
+            <a href="/times" onClick={() => setOpen(false)}>Clubes</a>
             <a href="/jogos" onClick={() => setOpen(false)}>Jogos</a>
+            <a href="/contato" onClick={() => setOpen(false)}>Contato</a>
 
           </nav>
 
