@@ -7,7 +7,7 @@ export default function TimesPage() {
       cidade: "Promissão",
       times: [
         { name: "Amigos do Futebol", logo: "/times/amigos_do_futebol40+.png" },
-        { name: "Bahea", logo: "/times/Bahea.png" },
+        { name: "Bahea", logo: "/times/bahea.png" },
         { name: "Bengala FC", logo: "/times/bengala.png" },
         { name: "Bulldogs", logo: "/times/bulldogs.png" },
         { name: "falcoes", logo: "/times/falcoes.png" },
