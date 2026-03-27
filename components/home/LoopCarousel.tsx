@@ -24,8 +24,8 @@ export default function LoopCarousel() {
   const slides = [
     {
       image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
-      title: "Junior e vini fecham com o time livre da ADC",
-      description: "Junior e vini fecham com o time livre da ADC, time ADC vem montando um grande elenco para 2026",
+      title: "Julio e vini fecham com o time livre da ADC",
+      description: "Julio e vini fecham com o time livre da ADC, time ADC vem montando um grande elenco para 2026",
       link: "/noticias"
     },
     {
