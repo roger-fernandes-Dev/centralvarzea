@@ -6,7 +6,7 @@ const noticias = [
       id:1,
       imagem: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
       categoria: "Novas Contratações",
-      titulo: "Junior e vini fecham com ADC",
+      titulo: "Julio e vini fecham com ADC",
   },
   {
     id: 2,

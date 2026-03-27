@@ -17,7 +17,7 @@ export default function NewsCarousel() {
       slug: "amigos-do-futebol-vence-campeonato",
     },
     {
-      title: "Junior e vini fecham com o time livre da ADC",
+      title: "Julio e vini fecham com o time livre da ADC",
       image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
       slug: "adc-aposta-na-categoria-livre",
     },
