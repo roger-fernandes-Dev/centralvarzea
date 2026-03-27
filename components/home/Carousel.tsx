@@ -22,12 +22,17 @@ export default function VerticalCarousel() {
   }, [emblaApi])
 
   return (
-    <div className="relative h-[200px] sm:h-[200px] md:h-[400px]">
+    <div className="
+      relative h-[200px] md:h-[400px]
+
+      /* quebra o padding do container (ex: px-4) */
+      -mx-4 md:mx-0
+    ">
 
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex flex-col h-full">
 
-          {[ 
+          {[
             "/cegseguros.png",
             "/pe_direito.png",
             "/suplementlins.png"
@@ -38,7 +43,7 @@ export default function VerticalCarousel() {
                 src={src}
                 alt="banner"
                 fill
-                className="object-fill md:object-cover bg-white md:bg-transparent p-2 md:p-0"
+                className="object-cover bg-white md:bg-transparent"
               />
 
             </div>
@@ -47,8 +52,8 @@ export default function VerticalCarousel() {
         </div>
       </div>
 
-      {/* botões */}
-      <div className="absolute right-3 top-1/2 -translate-y-1/2 flex flex-col gap-3">
+      {/* botões (somem no mobile) */}
+      <div className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 flex-col gap-3">
 
         <button
           onClick={() => emblaApi?.scrollPrev()}

@@ -1,92 +1,66 @@
 "use client"
 
-import { useState } from "react"
+import Image from "next/image"
 
 export default function ContatoPage() {
-  const [form, setForm] = useState({
-    nome: "",
-    email: "",
-    mensagem: "",
-  })
-
-  const [loading, setLoading] = useState(false)
-  const [status, setStatus] = useState("")
-
-  const handleChange = (e: any) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    setLoading(true)
-    setStatus("")
-
-    const res = await fetch("/api/contato", {
-      method: "POST",
-      body: JSON.stringify(form),
-    })
-
-    const data = await res.json()
-
-    setLoading(false)
-    setStatus(data.message)
-
-    if (res.ok) {
-      setForm({ nome: "", email: "", mensagem: "" })
-    }
-  }
-
   return (
-    <div className="max-w-3xl mx-auto py-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        Fale Conosco
+    <div className="max-w-3xl mx-auto py-12 px-4 text-center">
+
+      {/* Logo */}
+      <div className="flex justify-center mb-6">
+        <div className="relative w-24 h-24">
+          <Image
+            src="/central_varzea.png" // troca pela sua logo
+            alt="Logo central varzea"
+            fill
+            className="object-contain"
+          />
+        </div>
+      </div>
+
+      {/* Título */}
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+        Fale com a gente
       </h1>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-xl rounded-2xl p-6 space-y-4"
-      >
-        <input
-          type="text"
-          name="nome"
-          placeholder="Seu nome"
-          value={form.nome}
-          onChange={handleChange}
-          className="w-full border p-3 rounded-lg"
-          required
-        />
+      <p className="text-gray-500 mb-8">
+        Estamos sempre abertos a novas conexões
+      </p>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Seu email"
-          value={form.email}
-          onChange={handleChange}
-          className="w-full border p-3 rounded-lg"
-          required
-        />
+      {/* Card de contato */}
+      <div className="bg-white shadow-xl rounded-2xl p-6 space-y-6">
 
-        <textarea
-          name="mensagem"
-          placeholder="Sua mensagem"
-          value={form.mensagem}
-          onChange={handleChange}
-          className="w-full border p-3 rounded-lg h-32"
-          required
-        />
+        {/* Instagram */}
+        <div>
+          <p className="text-sm text-gray-500">Instagram</p>
+          <a
+            href="https://instagram.com/centralvarzea.of/"
+            target="_blank"
+            className="text-lg font-semibold text-black hover:underline"
+          >
+            @centralvarzea.of
+          </a>
+        </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-black text-white py-3 rounded-lg hover:opacity-80 transition"
-        >
-          {loading ? "Enviando..." : "Enviar mensagem"}
-        </button>
+        {/* Email */}
+        <div>
+          <p className="text-sm text-gray-500">Email</p>
+          <p className="text-lg font-semibold text-black">
+            centralvarzea2025@gmail.com
+          </p>
+        </div>
 
-        {status && (
-          <p className="text-center text-sm mt-2">{status}</p>
-        )}
-      </form>
+      </div>
+
+      {/* Frase final */}
+      <div className="mt-10">
+        <p className="text-gray-600 leading-relaxed">
+          Nosso compromisso é fortalecer o futebol de várzea e criar conexões reais
+          dentro e fora de campo. Times, empresas e parceiros são sempre bem-vindos
+          para fazer parte desse projeto e crescer junto com a gente.
+        </p>
+      </div>
+
     </div>
   )
 }
