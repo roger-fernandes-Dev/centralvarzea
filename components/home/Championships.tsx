@@ -48,66 +48,67 @@ export default function Championships() {
       date: "08/03",
       time: "08:30"
     },
-    
   ]
 
   return (
-   <section className="bg-black rounded-xl shadow p-3">
+    <section className="bg-black rounded-xl shadow p-3">
 
-  <h2 className="font-bold text-lg mb-4 text-white">
-    Jogos Finalizados
-  </h2>
+      <h2 className="font-bold text-lg mb-4 text-white">
+        Jogos Finalizados
+      </h2>
 
-  {/* container com scroll */}
-  <div className="flex flex-col divide-y divide-gray-800 max-h-[400px] overflow-y-auto pr-1">
+      {/* scroll com estilo */}
+      <div className="flex flex-col divide-y divide-gray-800 max-h-[400px] overflow-y-auto pr-1 custom-scroll">
 
-    {matches.map((match, i) => (
-      <div
-        key={i}
-        className="py-3 px-2 hover:bg-gray-900 rounded text-white"
-      >
+        {matches.map((match, i) => (
+          <div
+            key={i}
+            className="py-3 px-2 hover:bg-gray-900 rounded text-white"
+          >
 
-        <span className="text-xs text-gray-400">
-          {match.type}
-        </span>
+            <span className="text-xs text-gray-400">
+              {match.type}
+            </span>
 
-        <div className="text-xs text-gray-300 mt-1 flex flex-wrap gap-2">
-          <span>📍 {match.local}</span>
-          <span>• {match.date}</span>
-          <span>• {match.time}</span>
-        </div>
+            <div className="text-xs text-gray-300 mt-1 flex flex-wrap gap-2">
+              <span>📍 {match.local}</span>
+              <span>• {match.date}</span>
+              <span>• {match.time}</span>
+            </div>
 
-        <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center justify-between mt-2">
 
-          <div className="relative w-12 h-12">
-            <Image
-              src={match.home}
-              alt="time casa"
-              fill
-              className="object-contain"
-            />
+              {/* Time da casa */}
+              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700">
+                <Image
+                  src={match.home}
+                  alt="time casa"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <span className="font-semibold text-base">
+                {match.score}
+              </span>
+
+              {/* Time visitante */}
+              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700">
+                <Image
+                  src={match.away}
+                  alt="time visitante"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+            </div>
+
           </div>
-
-          <span className="font-semibold text-base">
-            {match.score}
-          </span>
-
-          <div className="relative w-12 h-12">
-            <Image
-              src={match.away}
-              alt="time visitante"
-              fill
-              className="object-contain"
-            />
-          </div>
-
-        </div>
+        ))}
 
       </div>
-    ))}
 
-  </div>
-
-</section>
+    </section>
   )
 }

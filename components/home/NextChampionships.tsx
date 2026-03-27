@@ -65,18 +65,10 @@ export default function NextChampionships() {
 
             <div className="flex items-center justify-between mt-2">
 
-              {/* Time da casa */}
               <div className="relative group">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700">
-                  <Image
-                    src={match.home}
-                    alt={match.homeName}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={match.home} alt={match.homeName} fill className="object-cover" />
                 </div>
-
-                {/* tooltip */}
                 <div className="absolute -top-7 left-1/2 -translate-x-1/2 
                   bg-black text-white text-[10px] px-2 py-1 rounded 
                   opacity-0 group-hover:opacity-100 transition whitespace-nowrap pointer-events-none">
@@ -88,18 +80,10 @@ export default function NextChampionships() {
                 {match.score}
               </span>
 
-              {/* Time visitante */}
               <div className="relative group">
                 <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700">
-                  <Image
-                    src={match.away}
-                    alt={match.awayName}
-                    fill
-                    className="object-cover"
-                  />
+                  <Image src={match.away} alt={match.awayName} fill className="object-cover" />
                 </div>
-
-                {/* tooltip */}
                 <div className="absolute -top-7 left-1/2 -translate-x-1/2 
                   bg-black text-white text-[10px] px-2 py-1 rounded 
                   opacity-0 group-hover:opacity-100 transition whitespace-nowrap pointer-events-none">
