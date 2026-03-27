@@ -6,8 +6,8 @@ export default function AdsRightClubs(){
 
       <div className="relative h-32 rounded-xl overflow-hidden">
         <Image
-          src="/suplementlins.png"
-          alt="logo suplementlins"
+          src="/clinica_amop.png"
+          alt="clinica juliano marcato"
           fill
           className="object-cover"
         />
@@ -17,6 +17,14 @@ export default function AdsRightClubs(){
         <Image
           src="/gelateria_roma.png"
           alt="logo roma gelateria"
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="relative h-32 rounded-xl overflow-hidden">
+        <Image
+          src="/maireneclimacerto.png"
+          alt="logo mairene clima certo"
           fill
           className="object-cover"
         />

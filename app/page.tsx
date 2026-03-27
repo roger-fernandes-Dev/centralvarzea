@@ -11,17 +11,13 @@ import FederacoesCTA from "@/components/home/FederacoesCTA"
 export default function Home() {
   return (
     <>
-      {/* CONTEÚDO LIMITADO */}
-      <div className="space-y-4 max-w-7xl mx-auto px-4">
+      {/* CONTAINER PADRÃO */}
+      <div className="max-w-7xl mx-auto px-4 space-y-6">
 
         {/* topo */}
-        <section className="w-full grid grid-cols-1 lg:grid-cols-[80%_20%] gap-6">
-          <div>
-            <NewsSection />
-          </div>
-          <div>
-            <NextChampionships />
-          </div>
+        <section className="grid grid-cols-1 lg:grid-cols-[80%_20%] gap-6">
+          <NewsSection />
+          <NextChampionships />
         </section>
 
         {/* banner */}
@@ -34,23 +30,15 @@ export default function Home() {
           <LoopBanner />
         </section>
 
-        {/* ads topo */}
-        <section className="col-span-full">
-          <div className="max-w-6xl mx-auto">
-            <AdsSidebar />
-          </div>
+        {/* ads topo (CORRIGIDO - removido max-w-6xl) */}
+        <section>
+          <AdsSidebar />
         </section>
 
         {/* campeonatos + clubes */}
         <section className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] gap-6 items-start">
-          <div>
-            <Championships />
-          </div>
-
-          <div>
-            <Clubs />
-          </div>
-
+          <Championships />
+          <Clubs />
           <div className="rounded-xl p-2">
             <AdsRightClubs />
           </div>
@@ -61,10 +49,12 @@ export default function Home() {
 
       </div>
 
-      {/* 🔥 FULL WIDTH (fora do container) */}
-      <div className="w-full px-4 md:px-8 mt-6">
-        <FederacoesCTA />
-      </div>
+      {/* FULL WIDTH CONTROLADO */}
+      <section className="mt-8">
+        <div className="max-w-7xl mx-auto px-4">
+          <FederacoesCTA />
+        </div>
+      </section>
     </>
   )
 }

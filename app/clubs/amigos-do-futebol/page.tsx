@@ -1,4 +1,4 @@
-import LoopBanner from "@/components/home/LoopBanner"
+import LoopBanner from "@/components/amigosdofutebol/LoopBanner"
 import Image from "next/image"
 
 export default function Page() {
@@ -42,8 +42,16 @@ export default function Page() {
 
           <div className="relative bg-gray-200 h-32 flex items-center justify-center">
             <Image
-              src="/drogaria_geral.png"
-              alt="drogaria geral"
+              src="/maireneclimacerto.png"
+              alt="mairene clima certo"
+              fill
+              className="object-fill"
+            />
+          </div>
+          <div className="relative bg-gray-200 h-32 flex items-center justify-center">
+            <Image
+              src="/clinica_amop.png"
+              alt="clinica juliano marcato"
               fill
               className="object-fill"
             />

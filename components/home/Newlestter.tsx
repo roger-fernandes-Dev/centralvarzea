@@ -1,46 +1,77 @@
 import Image from "next/image"
+import Link from "next/link"
 
-export default function Newlestter() {
+const noticias = [
+  {   
+      id:1,
+      imagem: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
+      categoria: "Novas Contratações",
+      titulo: "Junior e vini fecham com ADC",
+  },
+  {
+    id: 2,
+    imagem: "/amistoso_livre.png",
+    categoria: "fase se iniciando",
+    titulo: "Time aposta com idade livre e inicia temporada com vitória",
+  },
+  {
+    id: 3,
+    imagem: "/clubs/amigosdofutebol/amigosfutebol.png",
+    categoria: "final 50+",
+    titulo: "Equipe conquista título em decisão emocionante",
+  }
+]
+
+export default function Noticias() {
   return (
-     <section className="w-full max-w-7xl mx-auto border-b border-gray-300 pb-6">
+    <section className="w-full max-w-7xl mx-auto py-8">
 
-      {/* título da seção */}
-      <h1 className="text-xl md:text-2xl font-bold mb-4 text-black">
+      {/* título */}
+      <h1 className="text-2xl md:text-3xl font-bold mb-6 text-black">
         Notícias
       </h1>
 
-      <div className="flex flex-col md:flex-row gap-4">
+      {/* grid estilo portal */}
+      <div className="grid md:grid-cols-2 gap-6">
 
-        {/* imagem */}
-        <div className="relative w-full md:w-1/2 h-56 md:h-64 rounded overflow-hidden">
-          <Image
-            src="/amistoso_livre.png" // troca pela sua imagem
-            alt="amistoso"
-            fill
-            className="object-cover"
-          />
-        </div>
+        {noticias.map((noticia) => (
+          <div
+            key={noticia.id}
+            className="relative h-64 md:h-80 rounded-xl overflow-hidden group cursor-pointer"
+          >
+            {/* imagem */}
+            <Image
+              src={noticia.imagem}
+              alt={noticia.titulo}
+              fill
+              className="object-cover group-hover:scale-105 transition duration-300"
+            />
 
-        {/* conteúdo */}
-        <div className="flex flex-col justify-between w-full md:w-1/2">
+            {/* overlay escuro */}
+            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition" />
 
-          <div>
-            <span className="text-sm text-gray-500">
-              fase se iniciando
-            </span>
+            {/* conteúdo em cima */}
+            <div className="absolute bottom-0 p-4 text-white">
+              <span className="text-sm text-yellow-400">
+                {noticia.categoria}
+              </span>
 
-            <h2 className="text-xl md:text-2xl font-bold mt-2 text-yellow-600 leading-snug">
-              Time aposta com idade livre, fazendo o primeiro amistoso
-            </h2>
-
-            <ul className="mt-3 text-sm text-gray-700 space-y-1 list-disc list-inside">
-              <li>O ano começando ja disputado</li>
-              <li>Mesmo com desfalque, time vence amistoso</li>
-            </ul>
+              <h2 className="text-lg md:text-xl font-bold leading-snug mt-1">
+                {noticia.titulo}
+              </h2>
+            </div>
           </div>
+        ))}
 
-        </div>
+      </div>
 
+      {/* botão embaixo */}
+      <div className="flex justify-center mt-8">
+        <Link href="/noticias">
+          <button className="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 rounded-lg transition">
+            Leia todas
+          </button>
+        </Link>
       </div>
 
     </section>

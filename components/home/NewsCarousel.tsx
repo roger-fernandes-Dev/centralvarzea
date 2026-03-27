@@ -17,8 +17,8 @@ export default function NewsCarousel() {
       slug: "amigos-do-futebol-vence-campeonato",
     },
     {
-      title: "Time ADC agora aposta na categoria livre, e faz primeiro amistoso",
-      image: "/noticias/renukaadc/amistoso_livre.png",
+      title: "Junior e vini fecham com o time livre da ADC",
+      image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
       slug: "adc-aposta-na-categoria-livre",
     },
     {

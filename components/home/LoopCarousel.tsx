@@ -23,28 +23,33 @@ export default function LoopCarousel() {
 
   const slides = [
     {
+      image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
+      title: "Junior e vini fecham com o time livre da ADC",
+      description: "Junior e vini fecham com o time livre da ADC, time ADC vem montando um grande elenco para 2026",
+      link: "/noticias"
+    },
+    {
       image: "/foto_taca.png",
       title: "Final emocionante no futebol de várzea",
       description: "Equipe vence, após jogo muito disputado.",
-      link: "/noticia/taça_do_titulo"
+      link: "/noticias"
     },
     {
       image: "/festa_do_campeao.png",
       title: "Comemoração no Domingo do time 50+",
       description: "Grande comemoração com direito a samba",
-      link: "/noticia/festa_do_campeao"
+      link: "/noticias"
     },
     {
       image: "/amistoso_livre.png",
       title: "Time aposta com idade livre, fazendo o primeiro amistoso",
       description: "O ano começando ja disputado",
-      link: "/noticia/amistoso_livre"
+      link: "/noticias"
     }
   ]
 
   return (
     <div className="overflow-hidden w-full h-full" ref={emblaRef}>
-      
       <div className="flex h-full px-10">
 
         {slides.map((item, i) => (
@@ -53,32 +58,36 @@ export default function LoopCarousel() {
             key={i}
             className="flex-[0_0_70%] mx-2 h-full relative rounded-xl overflow-hidden group"
           >
-
             {/* imagem */}
             <Image
               src={item.image}
               alt={item.title}
               fill
-              className="object-cover"
+              className="object-cover group-hover:scale-105 transition duration-500"
             />
 
-            {/* overlay escuro */}
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition" />
+            {/* overlay gradiente */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-            {/* título (topo) */}
-            <div className="absolute top-0 left-0 w-full p-3">
-              <h2 className="text-white text-sm md:text-lg font-bold leading-tight">
+            {/* conteúdo */}
+            <div className="absolute bottom-0 left-0 w-full p-4">
+
+              {/* categoria */}
+              <span className="text-[10px] md:text-xs uppercase tracking-wider text-yellow-400 font-semibold">
+                Futebol de Várzea
+              </span>
+
+              {/* título */}
+              <h2 className="text-white text-base md:text-xl font-extrabold leading-snug mt-1">
                 {item.title}
               </h2>
-            </div>
 
-            {/* descrição (baixo) */}
-            <div className="absolute bottom-0 left-0 w-full p-3">
-              <p className="text-white text-xs md:text-sm">
+              {/* descrição */}
+              <p className="text-gray-200 text-xs md:text-sm mt-1 line-clamp-2">
                 {item.description}
               </p>
-            </div>
 
+            </div>
           </Link>
         ))}
 

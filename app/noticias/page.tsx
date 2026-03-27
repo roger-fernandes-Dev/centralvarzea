@@ -7,6 +7,12 @@ export default function Noticias() {
 
   const noticias = [
     {
+      title: "Junior e vini fecham com ADC",
+      image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
+      slug: "vini-e-junior-fecham-com-a-adc",
+      resumo: "Junior e vini fecham com o time livre da ADC, time ADC vem montando um grande elenco para 2026 "
+    },
+    {
       title: "Amigos do Futebol vence campeonato 50+",
       image: "/noticias/amigosdofutebol/foto_taca.png",
       slug: "amigos-do-futebol-vence-campeonato",
