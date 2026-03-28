@@ -36,24 +36,24 @@ export default function Page() {
               src="/cegseguros.png"
               alt="ceg seguros"
               fill
-              className="object-fill"
+              className="object-contain"
             />
           </div>
 
-          <div className="relative bg-gray-200 h-32 flex items-center justify-center">
+          <div className="relative h-32 flex items-center justify-center">
             <Image
-              src="/maireneclimacerto.png"
+              src="/widemairene.png"
               alt="mairene clima certo"
               fill
-              className="object-fill"
+              className="object-contain"
             />
           </div>
-          <div className="relative bg-gray-200 h-32 flex items-center justify-center">
+          <div className="relative h-32 flex items-center justify-center">
             <Image
-              src="/clinica_amop.png"
+              src="/wideamop.png"
               alt="clinica juliano marcato"
               fill
-              className="object-fill"
+              className="object-contain"
             />
           </div>
         </div>
@@ -98,32 +98,27 @@ export default function Page() {
 
         {/* 🔵 Lado direito (patrocínio) */}
         <div className="hidden md:flex flex-col gap-4">
-          <div className="relative bg-gray-200 h-32 flex items-center justify-center">
+          <div className="relative h-32 flex items-center justify-center">
             <Image
-              src="/flmarmitaria.png"
+              src="/wideflmarmitaria.png"
               alt="drogaria geral"
               fill
-              className="object-fill"
+              className="object-contain"
             />
           </div>
-          <div className="relative bg-gray-200 h-32 flex items-center justify-center">
+          <div className="relative h-32 flex items-center justify-center">
             <Image
-              src="/gelateria_roma.png"
+              src="/wideroma.png"
               alt="gelateria roma"
               fill
-              className="object-fill"
+              className="object-contain"
             />
           </div>
         </div>
 
       </div>
 
-      {/* 🔻 Patrocínio inferior */}
-      <div className="max-w-6xl mx-auto px-4 pb-10">
-        <div className="bg-gray-200 h-24 flex items-center justify-center">
-         <LoopBanner />
-        </div>
-      </div>
+      
 
     </div>
   )

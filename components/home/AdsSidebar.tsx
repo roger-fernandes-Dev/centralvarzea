@@ -24,7 +24,7 @@ export default function AdsSidebar() {
 
         <div className="relative bg-white h-28 md:h-32 rounded-xl shadow overflow-hidden">
           <Image
-            src="/gelateria_roma.png"
+            src="/wideroma.png"
             alt="logo roma gelateria"
             fill
             className="object-fill md:object-cover p-2 md:p-0"
