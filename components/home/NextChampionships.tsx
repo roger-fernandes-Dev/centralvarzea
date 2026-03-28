@@ -4,6 +4,17 @@ export default function NextChampionships() {
 
   const matches = [
     {
+      home: "/times/magos.png",
+      homeName: "magos",
+      away: "/times/sporting-guaicarafc.png",
+      awayName: "sporting guaiçara",
+      score: "X",
+      type: "Amistoso",
+      local: "Arena ADC",
+      date: "28/03",
+      time: "16:00"
+    },
+    {
       home: "/times/amigos_da_bola.png",
       homeName: "Amigos da Bola",
       away: "/times/falcoes.png",
