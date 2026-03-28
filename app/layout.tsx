@@ -5,26 +5,35 @@ import "./globals.css"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Central Várzea - Notícias, Jogos e Federações",
+  metadataBase: new URL("https://www.centralvarzea.com.br"),
+
+  title: "Central Várzea - Futebol de Várzea, Jogos e Campeonatos",
   description:
-    "Acompanhe notícias, jogos, árbitros, federações e campeonatos do futebol de várzea da sua região.",
+    "Portal completo de futebol de várzea com notícias, jogos, campeonatos, times, árbitros e federações da sua região.",
+
   keywords: [
     "futebol várzea",
     "varzea",
-    "time varzea",
-    "time de varzea",
-    "campeonato de varzea",
-    "jogadores de varzea",
-    "jogos amadores",
-    "campeonatos",
-    "árbitros",
-    "federações",
-    "notícias futebol",
+    "times de várzea",
+    "campeonatos de várzea",
+    "jogos de várzea",
+    "futebol amador",
+    "times amadores",
+    "árbitros futebol",
+    "federações futebol",
+    "notícias futebol várzea",
   ],
-  authors: [{ name: "Central Várzea" }],
-  robots: "index, follow",
 
-  // ✅ favicon adicionado aqui
+  authors: [{ name: "Central Várzea" }],
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  alternates: {
+    canonical: "/",
+  },
+
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -32,9 +41,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Central Várzea",
+    title: "Central Várzea - Futebol de Várzea",
     description:
-      "Tudo sobre futebol de várzea: notícias, jogos, árbitros e campeonatos, times.",
+      "Acompanhe tudo sobre futebol de várzea: jogos, campeonatos, times, árbitros e notícias atualizadas.",
     url: "https://www.centralvarzea.com.br",
     siteName: "Central Várzea",
     locale: "pt_BR",
