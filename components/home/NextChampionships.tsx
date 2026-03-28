@@ -4,17 +4,6 @@ export default function NextChampionships() {
 
   const matches = [
     {
-      home: "/times/unidosanchieta.png",
-      homeName: "Unidos Anchieta",
-      away: "/times/juventudefc.png",
-      awayName: "Juventude FC",
-      score: "X",
-      type: "Amistoso",
-      local: "Campo Santa Rita",
-      date: "28/03",
-      time: "09:30"
-    },
-    {
       home: "/times/amigos_da_bola.png",
       homeName: "Amigos da Bola",
       away: "/times/falcoes.png",

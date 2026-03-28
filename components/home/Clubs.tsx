@@ -4,20 +4,21 @@ import Link from "next/link"
 export default function Clubs() {
 
   const clubs = [
-    { name: "Time 0", logo: "/times/amigos_do_futebol40+.png", slug: "amigos-do-futebol" },
-    { name: "Time 1", logo: "/times/aguias_de_Deus.png", slug: "aguias-de-deus" },
-    { name: "Time 2", logo: "/times/arsenal.png", slug: "arsenal" },
-    { name: "Time 3", logo: "/times/bahea.png", slug: "bahea" },
-    { name: "Time 4", logo: "/times/bengala.png", slug: "bengala" },
-    { name: "Time 5", logo: "/times/bulldogs.png", slug: "bulldogs" },
-    { name: "Time 6", logo: "/times/falcoes.png", slug: "falcoes" },
-    { name: "Time 7", logo: "/times/meninos_da_vila.png", slug: "meninos-da-vila" },
-    { name: "Time 8", logo: "/times/niltinho.png", slug: "niltinho" },
-    { name: "Time 9", logo: "/times/os_paraibas.png", slug: "os-paraibas" },
-    { name: "Time 10", logo: "/times/point.png", slug: "point" },
-    { name: "Time 11", logo: "/times/promi_informatica.png", slug: "promi-informatica" },
-    { name: "Time 12", logo: "/times/the_best.png", slug: "the-best" },
-    { name: "Time 13", logo: "/times/unidos_sao_joao.png", slug: "unidos-sao-joao" },
+    { name: "Amigos do Futebol", logo: "/times/amigos_do_futebol40+.png", slug: "amigos-do-futebol" },
+    { name: "Águias de Deus", logo: "/times/aguias_de_Deus.png", slug: "aguias-de-deus" },
+    { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" },
+    { name: "Bahea", logo: "/times/bahea.png", slug: "bahea" },
+    { name: "Bengala", logo: "/times/bengala.png", slug: "bengala" },
+    { name: "BullDogs", logo: "/times/bulldogs.png", slug: "bulldogs" },
+    { name: "Falcões", logo: "/times/falcoes.png", slug: "falcoes" },
+    { name: "Meninos da Vila", logo: "/times/meninos_da_vila.png", slug: "meninos-da-vila" },
+    { name: "Niltinho", logo: "/times/niltinho.png", slug: "niltinho" },
+    { name: "Os Paraíbas", logo: "/times/os_paraibas.png", slug: "os-paraibas" },
+    { name: "Point", logo: "/times/point.png", slug: "point" },
+    { name: "Promi Informática", logo: "/times/promi_informatica.png", slug: "promi-informatica" },
+    { name: "The Best", logo: "/times/the_best.png", slug: "the-best" },
+    { name: "Unidos São João", logo: "/times/unidos_sao_joao.png", slug: "unidos-sao-joao" },
+    { name: "Quebrada FC", logo: "/times/quebrada-fc.png", slug: "quebrada-fc" },
   ]
 
   return (
@@ -54,6 +55,7 @@ export default function Clubs() {
           {clubs.map((club, i) => (
             <Link key={i} href={`/clubs/${club.slug}`}>
               <div
+                title={club.name}
                 className="relative w-16 h-16 bg-yellow-400 rounded-full overflow-hidden 
                            shadow-sm hover:scale-105 transition cursor-pointer"
               >

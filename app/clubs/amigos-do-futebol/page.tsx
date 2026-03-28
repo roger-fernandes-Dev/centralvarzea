@@ -1,4 +1,3 @@
-import LoopBanner from "@/components/amigosdofutebol/LoopBanner"
 import Image from "next/image"
 
 export default function Page() {

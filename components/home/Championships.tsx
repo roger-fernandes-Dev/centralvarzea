@@ -4,8 +4,21 @@ export default function Championships() {
 
   const matches = [
     {
+      home: "/times/unidosanchieta.png",
+      homeName: "Unidos Anchieta",
+      away: "/times/juventudefc.png",
+      awayName: "Juventude FC",
+      score: "4 x 5",
+      type: "Amistoso",
+      local: "Campo Santa Rita",
+      date: "28/03",
+      time: "09:30"
+    },
+    {
       home: "/times/amigos_da_bola.png",
+      homeName: "Amigos da Bola",
       away: "/times/bahea.png",
+      awayName: "Bahea",
       score: "10 x 3",
       type: "Amistoso",
       local: "Avanhandava",
@@ -14,7 +27,9 @@ export default function Championships() {
     },
     {
       home: "/times/renukaadc.png",
+      homeName: "Renuka ADC",
       away: "/times/meninos_da_vila.png",
+      awayName: "Meninos da Vila",
       score: "3 x 5",
       type: "Amistoso",
       local: "Arena ADC",
@@ -23,7 +38,9 @@ export default function Championships() {
     },
     {
       home: "/times/bengala.png",
+      homeName: "Bengala",
       away: "/times/the_best.png",
+      awayName: "The Best",
       score: "6 x 9",
       type: "Amistoso",
       local: "Promissão",
@@ -32,7 +49,9 @@ export default function Championships() {
     },
     {
       home: "/times/renukaadc.png",
+      homeName: "Renuka ADC",
       away: "/times/bulldogs.png",
+      awayName: "Bulldogs",
       score: "9 x 3",
       type: "Amistoso",
       local: "Arena ADC",
@@ -41,7 +60,9 @@ export default function Championships() {
     },
     {
       home: "/times/renukaadc.png",
+      homeName: "Renuka ADC",
       away: "/times/the_best.png",
+      awayName: "The Best",
       score: "5 x 2",
       type: "Amistoso",
       local: "Arena ADC",
@@ -57,7 +78,6 @@ export default function Championships() {
         Jogos Finalizados
       </h2>
 
-      {/* scroll com estilo */}
       <div className="flex flex-col divide-y divide-gray-800 max-h-[400px] overflow-y-auto pr-1 custom-scroll">
 
         {matches.map((match, i) => (
@@ -79,7 +99,10 @@ export default function Championships() {
             <div className="flex items-center justify-between mt-2">
 
               {/* Time da casa */}
-              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700">
+              <div
+                className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700"
+                title={match.homeName}
+              >
                 <Image
                   src={match.home}
                   alt="time casa"
@@ -93,7 +116,10 @@ export default function Championships() {
               </span>
 
               {/* Time visitante */}
-              <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700">
+              <div
+                className="relative w-12 h-12 rounded-full overflow-hidden bg-white border border-gray-700"
+                title={match.awayName}
+              >
                 <Image
                   src={match.away}
                   alt="time visitante"
