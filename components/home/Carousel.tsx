@@ -24,8 +24,6 @@ export default function VerticalCarousel() {
   return (
     <div className="
       relative h-[200px] md:h-[400px]
-
-      /* quebra o padding do container (ex: px-4) */
       -mx-4 md:mx-0
     ">
 
@@ -37,13 +35,13 @@ export default function VerticalCarousel() {
             "/pe_direito.png",
             "/suplementlins.png"
           ].map((src, i) => (
-            <div key={i} className="min-h-full relative bg-white">
+            <div key={i} className="h-full min-h-full relative bg-gray-100">
 
               <Image
                 src={src}
                 alt="banner"
                 fill
-                className="object-cover bg-white md:bg-transparent"
+                className="object-cover bg-gray-100"
               />
 
             </div>
