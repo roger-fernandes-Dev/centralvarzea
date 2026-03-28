@@ -8,8 +8,8 @@ export default function PopupAd() {
   const [index, setIndex] = useState(0)
 
   const images = [
-    "/ads/propagandaTime.png",
-    "/ads/propaganda-empresa.png"
+    "/Ads/propaganda-para-times.png",
+    "/Ads/propaganda-para-empresas.png"
   ]
 
   useEffect(() => {
