@@ -7,10 +7,13 @@ import NextChampionships from "@/components/home/NextChampionships"
 import AdsRightClubs from "@/components/home/AdsRightClubs"
 import Newlestter from "@/components/home/Newlestter"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
+import PopupAd from "@/components/PopupAd"
 
 export default function Home() {
   return (
     <>
+    {/*popupad - popup de anuncio*/}
+    <PopupAd />
       {/* CONTAINER PADRÃO */}
       <div className="max-w-7xl mx-auto px-4 space-y-6">
 
