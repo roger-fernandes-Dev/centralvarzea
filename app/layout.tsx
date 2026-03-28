@@ -24,11 +24,18 @@ export const metadata: Metadata = {
   authors: [{ name: "Central Várzea" }],
   robots: "index, follow",
 
+  // ✅ favicon adicionado aqui
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.png",
+  },
+
   openGraph: {
     title: "Central Várzea",
     description:
       "Tudo sobre futebol de várzea: notícias, jogos, árbitros e campeonatos, times.",
-    url: "https://seudominio.com", // ⚠️ troca pelo seu domínio real
+    url: "https://www.centralvarzea.com.br",
     siteName: "Central Várzea",
     locale: "pt_BR",
     type: "website",
