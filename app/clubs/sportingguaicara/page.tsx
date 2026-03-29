@@ -53,7 +53,7 @@ export default function SportingGuaicaraPage() {
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Sporting Guaicara
+              Sporting Guaiçara
             </h1>
           </div>
 
