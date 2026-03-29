@@ -1,124 +1,137 @@
 import Image from "next/image"
-
+export const metadata = {
+  title: "Amigos do Futebol em Promissão | Futebol de Várzea e Time Amador",
+  description:
+    "O Amigos do Futebol é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Amigos do Futebol Promissão",
+    "futebol de várzea Promissão",
+    "time amador Promissão",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Promissão",
+    "equipe Amigos do Futebol",
+    "futebol local Promissão",
+    "tradição no futebol de várzea",
+    "time de bairro Promissão",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Amigos do Futebol | Time de Várzea em Promissão",
+    description:
+      "Conheça o Amigos do Futebol, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/amigos-do-futebol",
+    siteName: "Central Várzea",
+    images: [
+      {
+        url: "/noticias/amigosdofutebol/foto_taca.png",
+        width: 1200,
+        height: 630,
+        alt: "Time Amigos do Futebol de Promissão"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 export default function Page() {
   return (
-    <div className="relative w-full">
+    <div className="relative w-full min-h-screen overflow-hidden">
 
-      {/* 🟩 Fundo da página (quadra) */}
-      <Image
-        src="/clubs/amigosdofutebol/amigosdofutebol3.png"
-        alt="quadra"
-        fill
-        className="object-cover opacity-50 -z-10"
-      />
-
-      {/* 🔳 camada branca para melhorar leitura */}
-      <div className="absolute inset-0 bg-white/80 -z-10" />
-
-      {/* 🔝 Banner topo */}
-      <div className="relative w-full h-[300px] md:h-[400px]">
+      {/* 🟣 Marca d'água */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-5 -z-10">
         <Image
-          src="/clubs/amigosdofutebol/amigosfutebol.png"
-          alt="Time completo"
-          fill
-          className="object-contain"
+          src="/times/amigos_do_futebol40.png"
+          alt="Logo Amigos do Futebol"
+          width={800}
+          height={800}
+          className="object-cover"
         />
       </div>
 
-      {/* 📦 Conteúdo principal */}
-      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-6">
+      {/* 🔳 camada branca */}
+      <div className="absolute inset-0 bg-white/90 -z-10" />
 
-        {/* 🟡 Lado esquerdo (patrocínio) */}
-        <div className="hidden md:flex flex-col gap-4">
-          <div className="relative bg-gray-200 h-32 flex items-center justify-center">
-            <Image
-              src="/cegseguros.png"
-              alt="ceg seguros"
-              fill
-              className="object-contain"
-            />
-          </div>
+      {/* 🔝 Banner topo */}
+      <div className="relative w-full h-[250px] md:h-[350px]">
+        <Image
+          src="/noticias/amigosdofutebol/foto_taca.png"
+          alt="Time Amigos do Futebol"
+          fill
+          className="object-cover"
+        />
+      </div>
 
-          <div className="relative h-32 flex items-center justify-center">
-            <Image
-              src="/widemairene.png"
-              alt="mairene clima certo"
-              fill
-              className="object-contain"
-            />
+      {/* 📦 Conteúdo */}
+      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+
+        {/* 🟡 ESQUERDA */}
+        <div className="hidden md:flex flex-col items-center gap-6">
+          <div className="relative w-[160px] h-[250px] overflow-hidden rounded">
+            <Image src="/cegsegurosad/cegsegurosad.png" alt="Patrocinador" fill className="object-contain" />
           </div>
-          <div className="relative h-32 flex items-center justify-center">
-            <Image
-              src="/wideamop.png"
-              alt="clinica juliano marcato"
-              fill
-              className="object-contain"
-            />
+          <div className="relative w-[160px] h-[250px] overflow-hidden rounded">
+            <Image src="/mairenead/mairenead.png" alt="Patrocinador" fill className="object-cover" />
           </div>
         </div>
 
-        {/* 🟢 Conteúdo central */}
-        <div className="md:col-span-2">
+        {/* 🟢 CENTRO */}
+        <div className="md:col-span-2 text-center">
 
-          <h1 className="text-2xl font-bold mb-4 text-center">
-            Amigos do Futebol
-          </h1>
-
-          <p className="text-gray-700 leading-relaxed text-justify">
-            O time Amigos do Futebol nasceu da união de jogadores apaixonados
-            pelo esporte, com o objetivo de fortalecer a amizade e a competição
-            saudável dentro de campo. Ao longo dos anos, o time construiu sua
-            história baseada em dedicação, respeito e muita vontade de vencer.
-          </p>
-
-          {/* 🖼️ imagem no meio do texto */}
-          <div className="float-left mr-4 my-4 w-60 h-48 relative">
+          <div className="flex items-center justify-center gap-3 mb-6">
             <Image
-              src="/clubs/amigosdofutebol/amigosdofutebol2.png"
-              alt="Comemoração"
-              fill
-              className="object-contain rounded"
+              src="/times/amigos_do_futebol40.png"
+              alt="Escudo Amigos do Futebol"
+              width={50}
+              height={50}
             />
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+              Amigos do Futebol
+            </h1>
           </div>
 
-          <p className="text-gray-700 leading-relaxed text-justify">
-            Com participações marcantes em campeonatos locais, o grupo se destaca
-            não apenas pelos resultados, mas também pela união dentro e fora de
-            campo. Cada vitória é celebrada como uma conquista coletiva, reforçando
-            o espírito de equipe.
-          </p>
+          <div className="text-gray-800 leading-relaxed text-[15px] md:text-base max-w-2xl mx-auto text-justify">
 
-          <p className="text-gray-700 leading-relaxed text-justify mt-4 clear-both">
-            O time continua evoluindo, sempre buscando novos desafios e mantendo
-            viva a paixão pelo futebol que une todos os seus integrantes.
-          </p>
+            <p>
+              O <strong>Amigos do Futebol</strong> é um dos times mais tradicionais do futebol de várzea em Promissão,
+              conhecido pela sua dedicação dentro de campo e pelo espírito de união entre seus atletas.
+              Fundado com o objetivo de promover o esporte amador, o clube rapidamente se destacou nas competições locais.
+            </p>
 
+            <div className="relative w-full h-64 my-6">
+              <Image
+                src="/noticias/amigosdofutebol/foto_taca.png"
+                alt="Amigos do Futebol comemoração"
+                fill
+                className="object-cover rounded-lg"
+              />
+            </div>
+
+            <p>
+              Ao longo dos anos, o time construiu uma trajetória sólida no futebol amador, participando de diversos campeonatos
+              de várzea e conquistando reconhecimento pela sua organização, competitidade e respeito aos adversários.
+              A equipe representa com orgulho a comunidade local e mantém viva a paixão pelo futebol.
+            </p>
+
+            <p className="mt-4">
+              Com uma base forte de jogadores e apoio da torcida, o Amigos do Futebol segue em constante evolução,
+              buscando novos títulos e consolidando seu nome como referência no futebol de várzea regional.
+            </p>
+
+          </div>
         </div>
 
-        {/* 🔵 Lado direito (patrocínio) */}
-        <div className="hidden md:flex flex-col gap-4">
-          <div className="relative h-32 flex items-center justify-center">
-            <Image
-              src="/wideflmarmitaria.png"
-              alt="drogaria geral"
-              fill
-              className="object-contain"
-            />
+        {/* 🔵 DIREITA */}
+        <div className="hidden md:flex flex-col items-center gap-6">
+          <div className="relative w-[160px] h-[250px] overflow-hidden rounded">
+            <Image src="/flmarmitariaad/flmarmitariaad.png" alt="Patrocinador" fill className="object-cover" />
           </div>
-          <div className="relative h-32 flex items-center justify-center">
-            <Image
-              src="/wideroma.png"
-              alt="gelateria roma"
-              fill
-              className="object-contain"
-            />
+          <div className="relative w-[160px] h-[250px] overflow-hidden rounded">
+            <Image src="/romaad/romaad.png" alt="Patrocinador" fill className="object-cover" />
           </div>
         </div>
 
       </div>
-
-      
-
     </div>
   )
 }

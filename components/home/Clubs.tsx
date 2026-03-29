@@ -4,7 +4,7 @@ import Link from "next/link"
 export default function Clubs() {
 
   const clubs = [
-    { name: "Amigos do Futebol", logo: "/times/amigos_do_futebol40+.png", slug: "amigos-do-futebol" },
+    { name: "Amigos do Futebol", logo: "/times/amigos_do_futebol40.png", slug: "amigos-do-futebol" },
     { name: "Águias de Deus", logo: "/times/aguias_de_Deus.png", slug: "aguias-de-deus" },
     { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" },
     { name: "Bahea", logo: "/times/bahea.png", slug: "bahea" },
