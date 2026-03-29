@@ -4,19 +4,18 @@ export default function SportingGuaicaraPage() {
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
 
-      {/* 🟣 Marca d'água */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-5 -z-10">
+      {/* 🔳 camada branca (fundo) */}
+      <div className="absolute inset-0 bg-white/90 -z-20" />
+
+      {/* 🟣 Marca d'água full screen */}
+      <div className="absolute inset-0 -z-10">
         <Image
           src="/times/sporting_guaicara_logo.png"
           alt="Logo Sporting Guaicara"
-          width={800}
-          height={800}
-          className="object-cover"
+          fill
+          className="object-contain opacity-5"
         />
       </div>
-
-      {/* 🔳 camada branca */}
-      <div className="absolute inset-0 bg-white/90 -z-10" />
 
       {/* 🔝 Banner topo */}
       <div className="relative w-full h-[250px] md:h-[350px]">
@@ -43,8 +42,6 @@ export default function SportingGuaicaraPage() {
 
         {/* 🟢 CENTRO */}
         <div className="md:col-span-2 text-center">
-
-          {/* 🏆 Título com brasão */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <Image
               src="/times/sporting-guaicarafc.png"
@@ -55,11 +52,6 @@ export default function SportingGuaicaraPage() {
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
               Sporting Guaiçara
             </h1>
-          </div>
-
-          {/* 📖 Espaço para texto futuro */}
-          <div className="text-gray-800 leading-relaxed text-[15px] md:text-base max-w-2xl mx-auto text-justify">
-            {/* Texto do time será inserido aqui depois */}
           </div>
         </div>
 
@@ -74,7 +66,7 @@ export default function SportingGuaicaraPage() {
         </div>
       </div>
 
-      {/* 📱 Ads mobile (2x2 grid no celular) com proporção */}
+      {/* 📱 Ads mobile (2x2 grid) */}
       <div className="md:hidden max-w-4xl mx-auto px-4 py-6 grid grid-cols-2 gap-4">
         <div className="relative w-full aspect-[160/250]">
           <Image src="/cegsegurosad/cegsegurosad.png" alt="Patrocinador" fill className="object-contain" />

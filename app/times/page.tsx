@@ -8,7 +8,7 @@ export default function TimesPage() {
       times: [
         { name: "Amigos do Futebol", logo: "/times/amigos_do_futebol40.png", slug: "amigos-do-futebol" },
         { name: "Bahea", logo: "/times/bahea.png", slug: "bahea" },
-        { name: "Bengala FC", logo: "/times/bengala.png", slug: "bengala-fc" },
+        { name: "Bengala FC", logo: "/times/bengala.png", slug: "bengala" },
         { name: "Bulldogs", logo: "/times/bulldogs.png", slug: "bulldogs" },
         { name: "Falcões", logo: "/times/falcoes.png", slug: "falcoes" },
         { name: "Meninos da Vila", logo: "/times/meninos_da_vila.png", slug: "meninos-da-vila" },

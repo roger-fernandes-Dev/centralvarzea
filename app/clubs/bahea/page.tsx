@@ -18,16 +18,14 @@ export default function Bahea() {
       {/* 🔳 camada branca */}
       <div className="absolute inset-0 bg-white/90 -z-10" />
 
-      {/* 🔝 Banner topo
-      
-      <Image
-          src="/clubs/falcoes/timefalcoes.png"
-          alt="Time Falcões"
+      {/* 🔝 Banner topo*/}
+      <div className="relative w-full h-[250px] md:h-[350px]">
+        <Image
+          src="/clubs/bahea/timebahea.png"
+          alt="Time Bahea"
           fill
           className="object-contain"
-        />*/}
-      <div className="relative w-full h-[250px] md:h-[350px]">
-        
+        />
       </div>
 
       {/* 📦 Conteúdo */}
