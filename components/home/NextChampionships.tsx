@@ -6,7 +6,7 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
-      homeLogo: "/times/amigos_do_futebol40+.png",
+      homeLogo: "/times/amigos_do_futebol40.png",
       home: "Amigos do futebol",
       awayLogo: "/times/amigos_da_bola.png",
       away: "Amigos da bola",
