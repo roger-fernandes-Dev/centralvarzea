@@ -19,7 +19,7 @@ A partir da metade do primeiro tempo, o Sporting já mostrava outra postura. Com
 
 Na segunda etapa, o cenário ficou ainda mais claro: só dava Sporting. A equipe voltou mais agressiva, pressionando desde a saída de bola e criando boas oportunidades. O empate parecia questão de tempo — e veio. Após uma jogada bem trabalhada, o gol saiu para coroar a insistência e a entrega dos jogadores.
 
-Depois de igualar o placar, o Sporting ainda seguiu em busca da virada, mostrando ambição e confiança até o apito final. Apesar de não conseguir o segundo gol, a atuação deixou uma mensagem forte: o time tem força, união e espírito de luta.
+Depois de igualar o placar, o Sporting ainda seguiu em busca da virada, mostrando ambição e confiança até o apito final. Apesar de não conseguir a vitória, a atuação deixou uma mensagem forte: o time tem força, união e espírito de luta.
 
 O empate pode até não refletir totalmente o domínio apresentado em boa parte do jogo, mas evidencia algo ainda mais importante — a capacidade de reação. E, no futebol de várzea, isso vale muito.
 
