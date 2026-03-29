@@ -1,11 +1,26 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import NewsCarousel from "@/components/home/NewsCarousel"
 import LoopBanner from "@/components/home/LoopBannerNoticias"
 
+type Noticia = {
+  title: string
+  image: string
+  slug: string
+  resumo: string
+}
+
 export default function Noticias() {
 
-  const noticias = [
+  const noticias: Noticia[] = [
+    {
+      title: "Poder de reaçao: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
+      image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
+      slug: "sporting-guaicara-empata-com-magos",
+      resumo: "O Sporting Guaiçara mostrou poder de reação ao buscar o empate após sair atrás no placar. Com raça e determinação, a equipe não desistiu e foi premiada pela luta até o fim"
+    },
     {
       title: "Julio e vini fecham com ADC",
       image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
@@ -48,30 +63,29 @@ export default function Noticias() {
           <div className="md:col-span-2 space-y-4">
 
             {noticias.map((n, i) => (
-              <Link key={i} href={`/noticias/${n.slug}`}>
-                <div className="flex gap-3 cursor-pointer hover:bg-gray-100 p-2 rounded-lg transition">
+              <Link
+                key={i}
+                href={`/noticias/${n.slug}`}
+                className="flex gap-3 cursor-pointer hover:bg-gray-100 p-2 rounded-lg transition"
+              >
+                {/* imagem */}
+                <div className="relative w-24 h-20 md:w-32 md:h-24 flex-shrink-0">
+                  <Image
+                    src={n.image}
+                    alt={n.title}
+                    fill
+                    className="object-cover rounded"
+                  />
+                </div>
 
-                  {/* imagem menor no mobile */}
-                  <div className="relative w-24 h-20 md:w-32 md:h-24 flex-shrink-0">
-                    <Image
-                      src={n.image}
-                      alt={n.title}
-                      fill
-                      className="object-cover rounded"
-                    />
-                  </div>
-
-                  {/* texto */}
-                  <div className="flex flex-col justify-center">
-                    <h3 className="font-semibold text-base md:text-lg leading-tight">
-                      {n.title}
-                    </h3>
-
-                    <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
-                      {n.resumo}
-                    </p>
-                  </div>
-
+                {/* texto */}
+                <div className="flex flex-col justify-center">
+                  <h3 className="font-semibold text-base md:text-lg leading-tight">
+                    {n.title}
+                  </h3>
+                  <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
+                    {n.resumo}
+                  </p>
                 </div>
               </Link>
             ))}

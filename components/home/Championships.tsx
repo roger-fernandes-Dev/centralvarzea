@@ -6,6 +6,17 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/magos.png",
+      home: "Magos",
+      awayLogo: "/times/sporting-guaicarafc.png",
+      away: "Sporting Guaicara",
+      score: "3 x 3",
+      type: "Amistoso",
+      date: "28/03",
+      time: "16:00",
+      local: "Arena ADC"
+    },
+    {
       homeLogo: "/times/unidosanchieta.png",
       home: "Unidos Anchieta",
       awayLogo: "/times/juventudefc.png",

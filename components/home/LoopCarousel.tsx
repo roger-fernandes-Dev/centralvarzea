@@ -16,12 +16,18 @@ export default function LoopCarousel() {
 
     const interval = setInterval(() => {
       emblaApi.scrollNext()
-    }, 5000)
+    }, 1500)
 
     return () => clearInterval(interval)
   }, [emblaApi])
 
   const slides = [
+    {
+      image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
+      title: "Poder de reaçao: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
+      description: "O Sporting Guaiçara mostrou poder de reação ao buscar o empate após sair atrás no placar. Com raça e determinação, a equipe não desistiu e foi premiada pela luta até o fim",
+      link: "/noticias"
+    },
     {
       image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
       title: "Julio e vini fecham com o time livre da ADC",
@@ -40,12 +46,6 @@ export default function LoopCarousel() {
       description: "Grande comemoração com direito a samba",
       link: "/noticias"
     },
-    {
-      image: "/amistoso_livre.png",
-      title: "Time aposta com idade livre, fazendo o primeiro amistoso",
-      description: "O ano começando ja disputado",
-      link: "/noticias"
-    }
   ]
 
   return (

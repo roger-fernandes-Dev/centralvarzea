@@ -6,16 +6,6 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
-      homeLogo: "/times/magos.png",
-      home: "magos",
-      awayLogo: "/times/sporting-guaicarafc.png",
-      away: "sporting guaiçara",
-      date: "28/03",
-      time: "16:00",
-      local: "Arena ADC",
-      type: "Amistoso"
-    },
-    {
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da bola",
       awayLogo: "/times/falcoes.png",
@@ -23,6 +13,16 @@ export default function NextChampionships({ matches = [] }: any) {
       date: "29/03",
       time: "08:15",
       local: "Chacara do Danilo",
+      type: "Amistoso"
+    },
+    {
+      homeLogo: "/times/aguias_de_deus.png",
+      home: "Águias de Deus",
+      awayLogo: "/times/the_best.png",
+      away: "The Best",
+      date: "29/03",
+      time: "08:30",
+      local: "Renuka ADC - Campo B",
       type: "Amistoso"
     },
     {

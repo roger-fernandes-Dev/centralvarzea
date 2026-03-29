@@ -20,6 +20,8 @@ export default function Clubs() {
     { name: "Unidos São João", logo: "/times/unidos_sao_joao.png", slug: "unidos-sao-joao" },
     { name: "Quebrada FC", logo: "/times/quebrada-fc.png", slug: "quebrada-fc" },
     { name: "MEC", logo: "/times/mec.png", slug: "mec" },
+    { name: "Sporting Guaicara", logo: "/times/sporting-guaicarafc.png", slug: "sportingguaicara" },
+    { name: "Guerreiros FC", logo: "/times/guerreirosfc.png", slug: "guerreirosfc" },
   ]
 
   return (
