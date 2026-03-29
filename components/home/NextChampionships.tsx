@@ -16,7 +16,7 @@ export default function NextChampionships({ matches = [] }: any) {
       type: "Amistoso"
     },
     {
-      homeLogo: "/times/aguias_de_deus.png",
+      homeLogo: "/times/aguias_de_Deus.png",
       home: "Águias de Deus",
       awayLogo: "/times/the_best.png",
       away: "The Best",
