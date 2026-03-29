@@ -78,9 +78,11 @@ export default async function Page({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+
   const noticia = noticiasData[slug as Slug]
 
-  if (!noticia) return notFound()
+  // 🔥 ajuste seguro (evita bug de undefined)
+  if (!slug || !noticia) return notFound()
 
   const relacionadas = Object.entries(noticiasData)
     .filter(([key]) => key !== slug)
