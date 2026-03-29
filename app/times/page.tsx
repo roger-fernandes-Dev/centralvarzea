@@ -19,7 +19,10 @@ export default function TimesPage() {
         { name: "Promi Informática", logo: "/times/promi_informatica.png", slug: "promi-informatica" },
         { name: "The Best", logo: "/times/the_best.png", slug: "the-best" },
         { name: "Unidos São João", logo: "/times/unidos_sao_joao.png", slug: "unidos-sao-joao" },
-        { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" }
+        { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" },
+        { name: "Sporting Guaiçara", logo: "/times/sporting-guaicarafc.png", slug: "sportingguaicara" },
+        { name: "Águias de Deus", logo: "/times/aguias_de_Deus.png", slug: "aguias-de-deus" },
+        { name: "MEC", logo: "/times/mec.png", slug: "mec" },
       ]
     }
   ]
