@@ -21,7 +21,7 @@ export default function TheBest() {
       {/* 🔝 Banner topo*/}
       <div className="relative w-full h-[250px] md:h-[350px]">
         <Image
-          src="/clubs/thebest/timesthebest.png"
+          src="/clubs/thebest/timethebest.png"
           alt="Time The Best"
           fill
           className="object-contain"
