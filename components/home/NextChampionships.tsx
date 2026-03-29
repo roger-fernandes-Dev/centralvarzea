@@ -6,36 +6,6 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
-      homeLogo: "/times/amigos_da_bola.png",
-      home: "Amigos da bola",
-      awayLogo: "/times/falcoes.png",
-      away: "Falcões",
-      date: "29/03",
-      time: "08:15",
-      local: "Chacara do Danilo",
-      type: "Amistoso"
-    },
-    {
-      homeLogo: "/times/aguias_de_Deus.png",
-      home: "Águias de Deus",
-      awayLogo: "/times/the_best.png",
-      away: "The Best",
-      date: "29/03",
-      time: "08:30",
-      local: "Renuka ADC - Campo B",
-      type: "Amistoso"
-    },
-    {
-      homeLogo: "/times/renukaadc.png",
-      home: "Renuka ADC",
-      awayLogo: "/times/mec.png",
-      away: "MEC",
-      date: "29/03",
-      time: "08:30",
-      local: "Arena ADC",
-      type: "Amistoso"
-    },
-    {
       homeLogo: "/times/amigos_do_futebol40+.png",
       home: "Amigos do futebol",
       awayLogo: "/times/amigos_da_bola.png",

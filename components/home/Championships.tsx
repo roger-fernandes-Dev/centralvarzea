@@ -6,6 +6,39 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/amigos_da_bola.png",
+      home: "Amigos da bola",
+      awayLogo: "/times/falcoes.png",
+      away: "Falcões",
+      score: "4 x 3",
+      type: "Amistoso",
+      date: "29/03",
+      time: "08:15",
+      local: "Chacara do Danilo"
+    },
+    {
+      homeLogo: "/times/renukaadc.png",
+      home: "Renuka ADC",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      score: "2 x 2",
+      type: "Amistoso",
+      date: "29/03",
+      time: "08:30",
+      local: "Arena ADC"
+    },
+    {
+      homeLogo: "/times/the_best.png",
+      home: "The Best",
+      awayLogo: "/times/aguias_de_Deus.png",
+      away: "Águias de Deus",
+      score: "4 x 2",
+      type: "Amistoso",
+      date: "29/03",
+      time: "08:30",
+      local: "Arena ADC - Campo B"
+    },
+    {
       homeLogo: "/times/magos.png",
       home: "Magos",
       awayLogo: "/times/sporting-guaicarafc.png",
