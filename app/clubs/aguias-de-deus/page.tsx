@@ -1,4 +1,39 @@
 import Image from "next/image"
+export const metadata = {
+  title: "Aguias de deus em Promissão | Futebol de Várzea e Time Amador",
+  description:
+    "O Aguias de deus é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Aguias de deus Promissão",
+    "futebol de várzea Promissão",
+    "time amador Promissão",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Promissão",
+    "equipe Aguias de deus",
+    "futebol local Promissão",
+    "tradição no futebol de várzea",
+    "time de bairro Promissão",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Aguias de deus | Time de Várzea em Promissão",
+    description:
+      "Conheça o Aguias de deus, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/aguias-de-deus",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/aguias_de_deus.png",
+        width: 1200,
+        height: 630,
+        alt: "Time Aguias de deus de Promissão"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 
 export default function AguiasDeDeus() {
   return (

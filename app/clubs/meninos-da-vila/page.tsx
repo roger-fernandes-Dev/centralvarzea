@@ -1,4 +1,39 @@
 import Image from "next/image"
+export const metadata = {
+  title: "Meninos da vila em Promissão | Futebol de Várzea e Time Amador",
+  description:
+    "O Meninos da vila é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "RMeninos da vila Promissão",
+    "futebol de várzea Promissão",
+    "time amador Promissão",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Promissão",
+    "equipe Meninos da vila",
+    "futebol local Promissão",
+    "tradição no futebol de várzea",
+    "time de bairro Promissão",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Meninos da vila | Time de Várzea em Promissão",
+    description:
+      "Conheça o Meninos da vila, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/meninos-da-vila",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/meninos_da_vila.png",
+        width: 1200,
+        height: 630,
+        alt: "Time Meninos da vila de Promissão"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 
 export default function MeninonsDaVila() {
   return (

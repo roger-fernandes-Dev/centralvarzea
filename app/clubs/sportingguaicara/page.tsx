@@ -1,4 +1,39 @@
 import Image from "next/image"
+export const metadata = {
+  title: "Sporting Guaiçara em Guaiçara | Futebol de Várzea e Time Amador",
+  description:
+    "O Sporting Guaiçara é um dos times mais tradicionais do futebol de várzea em Guaiçara, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Sporting Guaiçara Guaiçara",
+    "futebol de várzea Guaiçara",
+    "time amador Guaiçara",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Guaiçara",
+    "equipe Sporting Guaiçara",
+    "futebol local Guaiçara",
+    "tradição no futebol de várzea",
+    "time de bairro Guaiçara",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Sporting Guaiçara | Time de Várzea em Promissão",
+    description:
+      "Conheça o Sporting Guaiçara, equipe tradicional do futebol de várzea em Guaiçara, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/sportingguaicara",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/sportingguaicara.png",
+        width: 1200,
+        height: 630,
+        alt: "Time Sporting Guaiçara de Guaiçara"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 
 export default function SportingGuaicaraPage() {
   return (

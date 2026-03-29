@@ -1,4 +1,39 @@
 import Image from "next/image"
+export const metadata = {
+  title: "Bengala em Promissão | Futebol de Várzea e Time Amador",
+  description:
+    "O Bengala é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Bengala Promissão",
+    "futebol de várzea Promissão",
+    "time amador Promissão",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Promissão",
+    "equipe Bengala",
+    "futebol local Promissão",
+    "tradição no futebol de várzea",
+    "time de bairro Promissão",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Bengala | Time de Várzea em Promissão",
+    description:
+      "Conheça o Bengala, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/bengala",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/bengala.png",
+        width: 1200,
+        height: 630,
+        alt: "Time Bengala de Promissão"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 
 export default function Bengala() {
   return (

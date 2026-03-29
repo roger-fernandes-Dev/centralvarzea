@@ -1,4 +1,39 @@
 import Image from "next/image"
+export const metadata = {
+  title: "Arsenal em Promissão | Futebol de Várzea e Time Amador",
+  description:
+    "O Arsenal é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Arsenal Promissão",
+    "futebol de várzea Promissão",
+    "time amador Promissão",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Promissão",
+    "equipe Arsenal",
+    "futebol local Promissão",
+    "tradição no futebol de várzea",
+    "time de bairro Promissão",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Arsenal | Time de Várzea em Promissão",
+    description:
+      "Conheça o Arsenal, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/arsenal",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/arsenal.png",
+        width: 1200,
+        height: 630,
+        alt: "Time Arsenal de Promissão"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 
 export default function Arsenal() {
   return (

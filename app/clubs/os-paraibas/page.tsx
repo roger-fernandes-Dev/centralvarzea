@@ -1,4 +1,39 @@
 import Image from "next/image"
+export const metadata = {
+  title: "Os Paraíbas em Promissão | Futebol de Várzea e Time Amador",
+  description:
+    "O Os Paraíbas é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Os Paraíbas Promissão",
+    "futebol de várzea Promissão",
+    "time amador Promissão",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol Promissão",
+    "equipe Os Paraíbas",
+    "futebol local Promissão",
+    "tradição no futebol de várzea",
+    "time de bairro Promissão",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Os Paraíbas | Time de Várzea em Promissão",
+    description:
+      "Conheça o Os Paraíbas, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/os-paraibas",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/os_paraibas.png",
+        width: 1200,
+        height: 630,
+        alt: "TimeOs Paraíbas de Promissão"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
 
 export default function OsParaibas() {
   return (
