@@ -82,13 +82,13 @@ export default function OsParaibas() {
           {/* 🏆 Título com brasão */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <Image
-              src="/times/osparaibas.png"
+              src="/times/os_paraibas.png"
               alt="Escudo Os Paraibas"
               width={100}
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Niltinho
+              Os Paraíbas
             </h1>
           </div>
 

@@ -88,7 +88,7 @@ export default function PromiInformatica() {
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Point
+              Promi Informática
             </h1>
           </div>
 
