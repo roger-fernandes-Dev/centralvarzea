@@ -40,13 +40,21 @@ export default function Home() {
         </section>
 
         {/* campeonatos + clubes */}
-        <section className="grid grid-cols-1 lg:grid-cols-[20%_50%_30%] gap-6 items-start">
-  <Championships />
-  <Clubs />
-  <div className="rounded-xl p-2">
-    <AdsRightClubs />
-  </div>
-</section>
+        <section className="grid grid-cols-1 lg:grid-cols-[20%_50%_30%] gap-6 items-stretch">
+
+          <div className="min-h-[320px]">
+            <Championships />
+          </div>
+
+          <div className="min-h-[320px]">
+            <Clubs />
+          </div>
+
+          <div className="rounded-xl p-2 min-h-[320px]">
+            <AdsRightClubs />
+          </div>
+
+        </section>
 
         {/* newsletter */}
         <Newlestter />

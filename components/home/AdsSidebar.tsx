@@ -18,7 +18,7 @@ export default function AdsSidebar() {
       src="/bormioesilva.png"
       alt="logo bormio advogado"
       fill
-      className="object-cover md:object-cover p-2 md:p-0"
+      className="object-cover md:object-cover md:p-0"
     />
   </div>
 
@@ -27,7 +27,7 @@ export default function AdsSidebar() {
       src="/widealameda.png"
       alt="logo alameda tintas"
       fill
-      className="object-cover p-2 md:p-0"
+      className="object-cover md:p-0"
     />
   </div>
 
@@ -36,7 +36,7 @@ export default function AdsSidebar() {
       src="/paraisocentroautomotivo.png"
       alt="logo paraiso"
       fill
-      className="object-cover p-2 md:p-0"
+      className="object-cover md:p-0"
     />
   </div>
 
@@ -45,7 +45,7 @@ export default function AdsSidebar() {
       src="/wideroma.png"
       alt="logo roma gelateria"
       fill
-      className="object-cover p-2 md:p-0"
+      className="object-cover md:p-0"
     />
   </div>
 

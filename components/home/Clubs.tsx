@@ -19,7 +19,7 @@ export default function Clubs() {
   ]
 
   return (
-    <section className="relative rounded-xl shadow overflow-hidden w-full">
+    <section className="relative rounded-xl shadow overflow-hidden w-full h-full">
 
       <Image
         src="/fundo_clubs.png"
@@ -28,8 +28,9 @@ export default function Clubs() {
         className="object-cover opacity-20"
       />
 
-      <div className="relative p-6">
+      <div className="relative p-6 flex flex-col h-full">
 
+        {/* topo */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-black">
             Clubes
@@ -43,31 +44,40 @@ export default function Clubs() {
           </Link>
         </div>
 
-        <div className="overflow-x-auto custom-scroll">
-          <div className="grid grid-rows-2 grid-flow-col auto-cols-[calc((100%-2rem)/3)] gap-4">
+        {/* centro */}
+        <div className="flex-1 flex items-center">
 
-            {clubs.map((club, i) => (
-              <Link key={i} href={`/clubs/${club.slug}`}>
-                <div className="flex items-center justify-center">
-                  
-                  <div
-                    title={club.name}
-                    className="relative w-16 h-16 bg-yellow-400 rounded-full overflow-hidden 
-                               shadow-sm hover:scale-105 transition cursor-pointer"
-                  >
-                    <Image
-                      src={club.logo}
-                      alt={club.name}
-                      fill
-                      className="object-contain p-1"
-                    />
+          <div className="overflow-x-auto custom-scroll w-full">
+            <div className="grid grid-rows-2 grid-flow-col auto-cols-[calc((100%-2rem)/3)] 
+                            gap-6 md:gap-x-6 md:gap-y-12">
+
+              {clubs.map((club, i) => (
+                <Link key={i} href={`/clubs/${club.slug}`}>
+                  <div className="flex items-center justify-center">
+
+                    <div
+                      title={club.name}
+                      className="relative 
+                        w-16 h-16 
+                        md:w-20 md:h-20
+                        bg-yellow-400 rounded-full overflow-hidden 
+                        shadow-sm hover:scale-105 transition cursor-pointer"
+                    >
+                      <Image
+                        src={club.logo}
+                        alt={club.name}
+                        fill
+                        className="object-contain p-1"
+                      />
+                    </div>
+
                   </div>
+                </Link>
+              ))}
 
-                </div>
-              </Link>
-            ))}
-
+            </div>
           </div>
+
         </div>
 
       </div>

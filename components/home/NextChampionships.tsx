@@ -6,13 +6,13 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
-      homeLogo: "/times/amigos_do_futebol40.png",
-      home: "Amigos do futebol",
-      awayLogo: "/times/amigos_da_bola.png",
-      away: "Amigos da bola",
-      date: "01/04",
-      time: "19:15",
-      local: "Arena Cajú",
+      homeLogo: "/times/renukaadc.png",
+      home: "Renuka ADC",
+      awayLogo: "/times/casinhafc.png",
+      away: "casinha fc",
+      date: "12:04",
+      time: "08:30",
+      local: "Arena ADC",
       type: "Amistoso"
     }
   ]
@@ -20,7 +20,7 @@ export default function NextChampionships({ matches = [] }: any) {
   const data = matches.length ? matches : fallback
 
   return (
-    <section className="bg-black rounded-xl shadow p-3">
+    <section className="bg-black rounded-xl shadow p-3 h-full">
 
       <div className="flex flex-col divide-y divide-gray-800 max-h-[400px] overflow-y-auto pr-1 custom-scroll">
 
