@@ -22,6 +22,12 @@ export default function LoopCarousel() {
   }, [emblaApi])
 
   const slides = [
+    {
+      image: "/noticias/amigosdofutebol/jogocancelado.png",
+      title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
+      description: "A partida em Avanhandava foi cancelada devido às fortes chuvas que deixaram o campo sem condições de jogo.",
+      link: "/noticias/jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola"
+    },
     
     {
       image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
