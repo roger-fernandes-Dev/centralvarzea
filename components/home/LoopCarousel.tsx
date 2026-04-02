@@ -22,6 +22,7 @@ export default function LoopCarousel() {
   }, [emblaApi])
 
   const slides = [
+    
     {
       image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
       title: "Poder de reaçao: Sporting Guaiçara sai atrás, mas luta até o fim e empata",

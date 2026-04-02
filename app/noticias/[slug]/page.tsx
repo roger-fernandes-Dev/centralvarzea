@@ -3,6 +3,22 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 const noticiasData = {
+  "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola": {
+  title: "JOGO CANCELADO: AMIGOS DO FUTEBOL X AMIGOS DA BOLA NÃO ACONTECE DEVIDO À CHUVA",
+  resumo: "A partida em Avanhandava foi cancelada após fortes chuvas deixarem o campo sem condições de jogo.",
+  image: "/noticias/amigosdofutebol/jogocancelado.png",
+  team: {
+    name: "Amigos do Futebol",
+    logo: "/times/amigos_do_futebol40.png",
+  },
+  content: `A partida entre Amigos do Futebol e Amigos da Bola, que aconteceria em Avanhandava, acabou sendo cancelada devido às fortes chuvas que atingiram a cidade.
+
+As condições do campo ficaram comprometidas, impossibilitando a realização do jogo com segurança para os atletas. Com o gramado encharcado e sem condições adequadas, a decisão pelo cancelamento foi tomada pela organização pouco antes do início da partida.
+
+O confronto era aguardado com expectativa, mas acabou não acontecendo por conta do clima adverso.
+
+Até o momento, uma nova data para a realização do jogo ainda não foi definida.`
+},
   "sporting-guaicara-empata-com-magos": {
     title: "REAÇÃO DE GIGANTE: SPORTING GUAIÇARA BUSCA EMPATE NA RAÇA APÓS SAIR ATRÁS",
     resumo: "O Sporting Guaíçara mostrou poder de reação ao buscar o empate após sair atrás no placar.",

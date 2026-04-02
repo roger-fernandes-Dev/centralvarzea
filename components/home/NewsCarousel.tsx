@@ -12,6 +12,11 @@ export default function NewsCarousel() {
 
   const noticias = [
     {
+      title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
+      image: "/noticias/amigosdofutebol/jogocancelado.png",
+      slug: "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
+    },
+    {
       title: "Amigos do Futebol vence campeonato 50+",
       image: "/noticias/amigosdofutebol/foto_taca.png",
       slug: "amigos-do-futebol-vence-campeonato",

@@ -6,11 +6,21 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/the_best.png",
+      home: "The Best",
+      awayLogo: "/times/quebrada-fc.png",
+      away: "Quebrada fc",
+      date: "05/04",
+      time: "08:00",
+      local: "Arena Golden Ball - Guaiçara",
+      type: "Amistoso"
+    },
+    {
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/casinhafc.png",
       away: "casinha fc",
-      date: "12:04",
+      date: "12/04",
       time: "08:30",
       local: "Arena ADC",
       type: "Amistoso"

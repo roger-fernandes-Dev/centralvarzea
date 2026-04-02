@@ -16,6 +16,12 @@ export default function Noticias() {
 
   const noticias: Noticia[] = [
     {
+      title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
+      image: "/noticias/amigosdofutebol/jogocancelado.png",
+      slug: "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
+      resumo: "A partida em Avanhandava foi cancelada devido às fortes chuvas que deixaram o campo sem condições de jogo."
+    },
+    {
       title: "Poder de reaçao: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
       image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
       slug: "sporting-guaicara-empata-com-magos",

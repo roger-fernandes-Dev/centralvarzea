@@ -5,7 +5,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-8 text-center space-y-3">
 
         <p>
-          siga no instagram @centralvarzea.of
+          <a
+            href="https://www.instagram.com/centralvarzea.of"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:underline"
+          >
+            siga no instagram @centralvarzea.of
+          </a>
         </p>
 
         <p className="text-sm opacity-70">
