@@ -22,11 +22,12 @@ export default function LoopBanner() {
 
   const banners = [
     "/wideparaiso.png",
-    "/wideflmarmitaria.png",
+    "/wideh6.png",
     "/wideamop.png",
     "/cegseguros.png",
     "/wideroma.png",
     "/suplementlins.png",
+    "/widealameda.png"
   ]
 
   return (
@@ -37,13 +38,13 @@ export default function LoopBanner() {
           <div
             key={i}
             className="flex-[0_0_70%] sm:flex-[0_0_40%] md:flex-[0_0_25%] lg:flex-[0_0_20%] 
-                       h-20 md:h-24 relative rounded-xl overflow-hidden bg-white md:bg-transparent"
+                       h-20 md:h-24 relative rounded-xl overflow-hidden md:bg-transparent"
           >
             <Image
               src={src}
               alt={`banner ${i}`}
               fill
-              className="object-fill md:object-cover p-2 md:p-0"
+              className="object-cover md:object-cover p-2 md:p-0"
             />
           </div>
         ))}

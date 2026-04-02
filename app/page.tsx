@@ -12,8 +12,9 @@ import PopupAd from "@/components/PopupAd"
 export default function Home() {
   return (
     <>
-    {/*popupad - popup de anuncio*/}
-    <PopupAd />
+    {/*popupad - popup de anuncio
+    <PopupAd />*/}
+    
       {/* CONTAINER PADRÃO */}
       <div className="max-w-7xl mx-auto px-4 space-y-6">
 
@@ -39,13 +40,13 @@ export default function Home() {
         </section>
 
         {/* campeonatos + clubes */}
-        <section className="grid grid-cols-1 lg:grid-cols-[20%_60%_20%] gap-6 items-start">
-          <Championships />
-          <Clubs />
-          <div className="rounded-xl p-2">
-            <AdsRightClubs />
-          </div>
-        </section>
+        <section className="grid grid-cols-1 lg:grid-cols-[20%_50%_30%] gap-6 items-start">
+  <Championships />
+  <Clubs />
+  <div className="rounded-xl p-2">
+    <AdsRightClubs />
+  </div>
+</section>
 
         {/* newsletter */}
         <Newlestter />
