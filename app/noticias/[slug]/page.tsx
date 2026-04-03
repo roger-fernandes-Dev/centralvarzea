@@ -24,6 +24,18 @@ Mais informações e atualizações estarão disponíveis na plataforma Central 
 Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
 Instagram: https://instagram.com/centralvarzea.of`
 },
+"jogo-cancelado-renuka-boleiros": {
+  title: "JOGO CANCELADO: RENUKA ADC X BOLEIROS NÃO ACONTECE EM RESPEITO À PÁSCOA",
+  resumo: "A partida marcada para o dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa.",
+  image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+  team: {
+    name: "Renuka ADC",
+    logo: "/times/renukaadc.png",
+  },
+  content: `O confronto entre Renuka ADC e Boleiros, que seria realizado no próximo dia 05 de abril, na Arena ADC, foi oficialmente cancelado. A decisão foi tomada em razão do Domingo de Páscoa, uma das datas mais importantes do calendário, tradicionalmente marcada por momentos de reflexão, fé e, principalmente, pela reunião entre familiares. A organização optou por não realizar a partida em respeito ao significado da data, valorizando o tempo de convivência dos atletas, comissão técnica e torcedores junto às suas famílias. Apesar do cancelamento, a expectativa pelo duelo segue alta, e uma possível nova data para o confronto poderá ser definida e divulgada em breve pelos responsáveis. O futebol de várzea, além da competitividade dentro de campo, também carrega valores que vão além das quatro linhas — e, neste caso, o respeito às tradições falou mais alto.
+Instagram: https://instagram.com/centralvarzea.of`
+},
+
   "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola": {
   title: "JOGO CANCELADO: AMIGOS DO FUTEBOL X AMIGOS DA BOLA NÃO ACONTECE DEVIDO À CHUVA",
   resumo: "A partida em Avanhandava foi cancelada após fortes chuvas deixarem o campo sem condições de jogo.",
