@@ -23,11 +23,19 @@ export default function UpcomingChampionships() {
       status: "soon"
     },
     {
-      name: "Super Master Guaicara",
+      name: "Super Master Guaiçara",
       logo: "/campeonato/supermaster-guaicara.png",
       registrationEnd: "15/04/2026",
       startDate: "25/04/2026",
       slug: "supermaster-guaicara",
+      status: "running"
+    },
+    {
+      name: "Segunda Copa ADC",
+      logo: "/campeonato/campeonatoadc.png",
+      registrationEnd: "15/04/2026",
+      startDate: "25/04/2026",
+      slug: "campeonato-adc",
       status: "running"
     },
   ]

@@ -3,15 +3,15 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 const noticiasData = {
-"minicampo-promissao-inscricoes": {
-  title: "CAMPEONATO DE MINI CAMPO EM PROMISSÃO ABRE INSCRIÇÕES",
-  resumo: "Equipes já podem se inscrever entre os dias 30/03 e 07/04 para disputar a competição que promete movimentar o futebol de várzea na cidade.",
-  image: "/noticias/campeonatos/minicampopromissao.png",
-  team: {
-    name: "Mini Campo Promissão",
-    logo: "/campeonato/selt-minicampo.png",
-  },
-  content: `Promissão se prepara para receber mais uma importante competição do futebol de várzea. Estão oficialmente abertas as inscrições para o campeonato de mini campo, que promete reunir equipes da cidade em disputas marcadas por organização, competitividade e valorização do esporte local.
+  "minicampo-promissao-inscricoes": {
+    title: "CAMPEONATO DE MINI CAMPO EM PROMISSÃO ABRE INSCRIÇÕES",
+    resumo: "Equipes já podem se inscrever entre os dias 30/03 e 07/04 para disputar a competição que promete movimentar o futebol de várzea na cidade.",
+    image: "/noticias/campeonatos/minicampopromissao.png",
+    team: {
+      name: "Mini Campo Promissão",
+      logo: "/campeonato/selt-minicampo.png",
+    },
+    content: `Promissão se prepara para receber mais uma importante competição do futebol de várzea. Estão oficialmente abertas as inscrições para o campeonato de mini campo, que promete reunir equipes da cidade em disputas marcadas por organização, competitividade e valorização do esporte local.
 
 O período de inscrição vai de 30 de março até 07 de abril, prazo em que dirigentes e responsáveis devem garantir a participação de suas equipes. A expectativa é de um torneio com alto nível técnico, incentivando a integração entre atletas e fortalecendo ainda mais a tradição do futebol amador.
 
@@ -21,30 +21,38 @@ Equipes interessadas devem se organizar com antecedência, já que a tendência 
 
 Mais informações e atualizações estarão disponíveis na plataforma Central Várzea.
 
-Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
-Instagram: https://instagram.com/centralvarzea.of`
-},
-"jogo-cancelado-renuka-boleiros": {
-  title: "JOGO CANCELADO: RENUKA ADC X BOLEIROS NÃO ACONTECE EM RESPEITO À PÁSCOA",
-  resumo: "A partida marcada para o dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa.",
-  image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
-  team: {
-    name: "Renuka ADC",
-    logo: "/times/renukaadc.png",
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
   },
-  content: `O confronto entre Renuka ADC e Boleiros, que seria realizado no próximo dia 05 de abril, na Arena ADC, foi oficialmente cancelado. A decisão foi tomada em razão do Domingo de Páscoa, uma das datas mais importantes do calendário, tradicionalmente marcada por momentos de reflexão, fé e, principalmente, pela reunião entre familiares. A organização optou por não realizar a partida em respeito ao significado da data, valorizando o tempo de convivência dos atletas, comissão técnica e torcedores junto às suas famílias. Apesar do cancelamento, a expectativa pelo duelo segue alta, e uma possível nova data para o confronto poderá ser definida e divulgada em breve pelos responsáveis. O futebol de várzea, além da competitividade dentro de campo, também carrega valores que vão além das quatro linhas — e, neste caso, o respeito às tradições falou mais alto.
-Instagram: https://instagram.com/centralvarzea.of`
-},
+  "jogo-cancelado-renuka-boleiros": {
+    title: "JOGO CANCELADO: RENUKA ADC X BOLEIROS NÃO ACONTECE EM RESPEITO À PÁSCOA",
+    resumo: "A partida marcada para o dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa.",
+    image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+    team: {
+      name: "Renuka ADC",
+      logo: "/times/renukaadc.png",
+    },
+    content: `O confronto entre Renuka ADC e Boleiros, que seria realizado no próximo dia 05 de abril, na Arena ADC, foi oficialmente cancelado. A decisão foi tomada em razão do Domingo de Páscoa, uma das datas mais importantes do calendário, tradicionalmente marcada por momentos de reflexão, fé e, principalmente, pela reunião entre familiares. A organização optou por não realizar a partida em respeito ao significado da data, valorizando o tempo de convivência dos atletas, comissão técnica e torcedores junto às suas famílias. Apesar do cancelamento, a expectativa pelo duelo segue alta, e uma possível nova data para o confronto poderá ser definida e divulgada em breve pelos responsáveis. O futebol de várzea, além da competitividade dentro de campo, também carrega valores que vão além das quatro linhas — e, neste caso, o respeito às tradições falou mais alto.
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao    `
+  },
 
   "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola": {
-  title: "JOGO CANCELADO: AMIGOS DO FUTEBOL X AMIGOS DA BOLA NÃO ACONTECE DEVIDO À CHUVA",
-  resumo: "A partida em Avanhandava foi cancelada após fortes chuvas deixarem o campo sem condições de jogo.",
-  image: "/noticias/amigosdofutebol/jogocancelado.png",
-  team: {
-    name: "Amigos do Futebol",
-    logo: "/times/amigos_do_futebol40.png",
-  },
-  content: `A partida entre Amigos do Futebol e Amigos da Bola, que aconteceria em Avanhandava, acabou sendo cancelada devido às fortes chuvas que atingiram a cidade.
+    title: "JOGO CANCELADO: AMIGOS DO FUTEBOL X AMIGOS DA BOLA NÃO ACONTECE DEVIDO À CHUVA",
+    resumo: "A partida em Avanhandava foi cancelada após fortes chuvas deixarem o campo sem condições de jogo.",
+    image: "/noticias/amigosdofutebol/jogocancelado.png",
+    team: {
+      name: "Amigos do Futebol",
+      logo: "/times/amigos_do_futebol40.png",
+    },
+    content: `A partida entre Amigos do Futebol e Amigos da Bola, que aconteceria em Avanhandava, acabou sendo cancelada devido às fortes chuvas que atingiram a cidade.
 
 As condições do campo ficaram comprometidas, impossibilitando a realização do jogo com segurança para os atletas. Com o gramado encharcado e sem condições adequadas, a decisão pelo cancelamento foi tomada pela organização pouco antes do início da partida.
 
@@ -52,9 +60,14 @@ O confronto era aguardado com expectativa, mas acabou não acontecendo por conta
 
 Até o momento, uma nova data para a realização do jogo ainda não foi definida.
 Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
-Instagram: https://instagram.com/centralvarzea.of`
 
-},
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
+
+  },
   "sporting-guaicara-empata-com-magos": {
     title: "REAÇÃO DE GIGANTE: SPORTING GUAIÇARA BUSCA EMPATE NA RAÇA APÓS SAIR ATRÁS",
     resumo: "O Sporting Guaíçara mostrou poder de reação ao buscar o empate após sair atrás no placar.",
@@ -76,7 +89,12 @@ Depois de igualar o placar, o Sporting ainda seguiu em busca da virada, mostrand
 O empate pode até não refletir totalmente o domínio apresentado em boa parte do jogo, mas evidencia algo ainda mais importante — a capacidade de reação. E, no futebol de várzea, isso vale muito.
 
 O Sporting Guaíçara sai de campo com moral elevada, reforçando sua identidade competitiva e mostrando que, independentemente das circunstâncias, sempre vai lutar até o fim.Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
-Instagram: https://instagram.com/centralvarzea.of`
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
   },
   "amigos-do-futebol-vence-campeonato": {
     title: "Amigos do Futebol vence campeonato 50+",
@@ -97,7 +115,12 @@ Na segunda etapa, o cenário exigiu maturidade. O adversário voltou mais agress
 Mesmo diante das investidas finais, o sistema defensivo se manteve firme, garantindo a vantagem até o apito final. Quando o árbitro encerrou a partida, a comemoração tomou conta do campo — jogadores, comissão e torcida celebraram juntos uma conquista construída com dedicação ao longo de toda a competição.
 
 O título do campeonato 50+ reforça a força do Amigos do Futebol, que mais uma vez prova que o futebol vai muito além da idade. Com talento, disciplina e paixão pelo jogo, a equipe escreve mais um capítulo importante em sua história.Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
-Instagram: https://instagram.com/centralvarzea.of`
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
   }
 
 } as const
@@ -192,18 +215,18 @@ export default async function Page({
 
                     {/* MOBILE ADS 2x2 */}
                     <div className="grid grid-cols-2 gap-2 w-full max-w-xs lg:hidden">
-                    <div className="w-full aspect-[160/250] relative bg-white">
+                      <div className="w-full aspect-[160/250] relative bg-white">
                         <Image src="/pedireitoad/pedireitoad.png" alt="" fill className="object-contain rounded-md" />
-                    </div>
-                    <div className="w-full aspect-[160/250] relative bg-white">
+                      </div>
+                      <div className="w-full aspect-[160/250] relative bg-white">
                         <Image src="/amopad/amopad.png" alt="" fill className="object-contain rounded-md" />
-                    </div>
-                    <div className="w-full aspect-[160/250] relative bg-white">
+                      </div>
+                      <div className="w-full aspect-[160/250] relative bg-white">
                         <Image src="/cegsegurosad/cegsegurosad.png" alt="" fill className="object-contain rounded-md" />
-                    </div>
-                    <div className="w-full aspect-[160/250] relative bg-white">
+                      </div>
+                      <div className="w-full aspect-[160/250] relative bg-white">
                         <Image src="/suplementelinsad/suplementelinsad.png" alt="" fill className="object-contain rounded-md" />
-                    </div>
+                      </div>
                     </div>
 
                   </div>
@@ -235,34 +258,34 @@ export default async function Page({
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-  
-  {relacionadas.map(([key, item]) => (
-    <Link
-      key={key}
-      href={`/noticias/${key}`}
-      className="group block"
-    >
-      <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover object-center transition duration-500 group-hover:scale-105"
-        />
+              {relacionadas.map(([key, item]) => (
+                <Link
+                  key={key}
+                  href={`/noticias/${key}`}
+                  className="group block"
+                >
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-        {/* overlay mais leve */}
-        <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/0"></div>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover object-center transition duration-500 group-hover:scale-105"
+                    />
 
-      </div>
+                    {/* overlay mais leve */}
+                    <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/0"></div>
 
-      <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">
-        {item.title}
-      </h3>
-    </Link>
-  ))}
+                  </div>
 
-</div>
+                  <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">
+                    {item.title}
+                  </h3>
+                </Link>
+              ))}
+
+            </div>
           </div>
         </section>
       )}
