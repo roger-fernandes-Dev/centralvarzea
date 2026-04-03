@@ -46,6 +46,12 @@ export default function LoopCarousel() {
       description: "Equipe vence após jogo muito disputado.",
       link: "/noticias"
     },
+    {
+      image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+      title: "Partida entre Renuka ADC e Boleiros é cancelada devido ao Domingo de Páscoa",
+      description: "O confronto que seria realizado no dia 05/04, na Arena ADC, entre Renuka ADC e Boleiros, foi oficialmente cancelado em respeito ao Domingo de Páscoa.",
+      link: "/noticias/jogo-cancelado-renuka-boleiros"
+    },
   ]
 
   return (
@@ -53,20 +59,31 @@ export default function LoopCarousel() {
       className="overflow-hidden w-full h-[220px] md:h-[420px] lg:h-[480px]"
       ref={emblaRef}
     >
-      <div className="flex h-full px-4 md:px-10">
+      <div className="flex h-full px-2 md:px-6 lg:px-10">
 
         {slides.map((item, i) => (
           <Link
             href={item.link}
             key={i}
-            className="flex-[0_0_85%] md:flex-[0_0_70%] mx-2 h-full relative rounded-xl overflow-hidden group"
+            className="
+              relative h-full rounded-xl overflow-hidden group mx-2
+
+              /* mobile */
+              flex-[0_0_85%]
+
+              /* tablet */
+              md:flex-[0_0_70%]
+
+              /* desktop - 3 slides + preview lateral */
+              lg:flex-[0_0_30%]
+            "
           >
             <Image
               src={item.image}
               alt={item.title}
               fill
               className="object-cover object-center group-hover:scale-105 transition duration-500"
-              sizes="(max-width: 768px) 85vw, 70vw"
+              sizes="(max-width: 768px) 85vw, (max-width: 1024px) 70vw, 30vw"
               priority={i === 0}
             />
 
@@ -80,7 +97,7 @@ export default function LoopCarousel() {
                 Futebol de Várzea
               </span>
 
-              <h2 className="text-white text-sm md:text-xl font-extrabold leading-snug mt-1 line-clamp-2">
+              <h2 className="text-white text-sm md:text-lg lg:text-base font-extrabold leading-snug mt-1 line-clamp-2">
                 {item.title}
               </h2>
 

@@ -5,7 +5,7 @@ import Clubs from "@/components/home/Clubs"
 import LoopBanner from "@/components/home/LoopBanner"
 import NextChampionships from "@/components/home/NextChampionships"
 import AdsRightClubs from "@/components/home/AdsRightClubs"
-import Newlestter from "@/components/home/Newlestter"
+import UpcomingChampionships from "@/components/home/UpCommingChampionships"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
 
 export default function Home() {
@@ -56,7 +56,7 @@ export default function Home() {
         </section>
 
         {/* newsletter */}
-        <Newlestter />
+        <UpcomingChampionships />
 
       </div>
 
