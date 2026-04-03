@@ -22,11 +22,6 @@ export default function NewsCarousel() {
       slug: "amigos-do-futebol-vence-campeonato",
     },
     {
-      title: "Julio e vini fecham com o time livre da ADC",
-      image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
-      slug: "adc-aposta-na-categoria-livre",
-    },
-    {
       title: "Amigos do futebol comemora campeonato com samba no clube ADC",
       image: "/noticias/amigosdofutebol/festa_do_campeao.png",
       slug: "festa-do-campeao",

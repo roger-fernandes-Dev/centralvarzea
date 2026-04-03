@@ -16,22 +16,22 @@ export default function Noticias() {
 
   const noticias: Noticia[] = [
     {
+      title: "Jogo entre Renuka ADC e Boleiros é cancelado devido ao Domingo de Páscoa",
+      image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+      slug: "jogo-cancelado-renuka-boleiros",
+      resumo: "A partida que seria realizada no dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa, data importante de celebração e reunião familiar."
+    },
+    {
       title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
       image: "/noticias/amigosdofutebol/jogocancelado.png",
       slug: "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
       resumo: "A partida em Avanhandava foi cancelada devido às fortes chuvas que deixaram o campo sem condições de jogo."
     },
     {
-      title: "Poder de reaçao: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
+      title: "Poder de reação: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
       image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
       slug: "sporting-guaicara-empata-com-magos",
       resumo: "O Sporting Guaiçara mostrou poder de reação..."
-    },
-    {
-      title: "Julio e vini fecham com ADC",
-      image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
-      slug: "vini-e-junior-fecham-com-a-adc",
-      resumo: "Julio e vini fecham com o time livre da ADC"
     },
     {
       title: "Amigos do Futebol vence campeonato 50+",
@@ -51,14 +51,27 @@ export default function Noticias() {
 
         <div className="space-y-4">
           {noticias.map((n, i) => (
-            <Link key={i} href={`/noticias/${n.slug}`} className="flex gap-3">
-              <div className="relative w-28 h-20">
-                <Image src={n.image} alt={n.title} fill className="object-cover" />
+            <Link
+              key={i}
+              href={`/noticias/${n.slug}`}
+              className="flex gap-3 items-start"
+            >
+              {/* IMAGEM PADRONIZADA */}
+              <div className="relative w-28 aspect-video overflow-hidden rounded-md flex-shrink-0">
+                <Image
+                  src={n.image}
+                  alt={n.title}
+                  fill
+                  className="object-cover object-center"
+                />
               </div>
 
+              {/* TEXTO */}
               <div>
-                <h3 className="font-semibold">{n.title}</h3>
-                <p className="text-sm text-gray-600">{n.resumo}</p>
+                <h3 className="font-semibold leading-snug">{n.title}</h3>
+                <p className="text-sm text-gray-600 line-clamp-2">
+                  {n.resumo}
+                </p>
               </div>
             </Link>
           ))}

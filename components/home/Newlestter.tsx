@@ -2,17 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 
 const noticias = [
-  {   
-      id:1,
-      imagem: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
-      categoria: "Novas Contratações",
-      titulo: "Julio e vini fecham com ADC",
-  },
   {
     id: 2,
-    imagem: "/amistoso_livre.png",
-    categoria: "fase se iniciando",
-    titulo: "Time aposta com idade livre e inicia temporada com vitória",
+    imagem: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+    categoria: "comunicado oficial",
+    titulo: "Jogo entre Renuka ADC e Boleiros é cancelado em respeito ao Domingo de Páscoa",
   },
   {
     id: 3,

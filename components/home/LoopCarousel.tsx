@@ -16,81 +16,75 @@ export default function LoopCarousel() {
 
     const interval = setInterval(() => {
       emblaApi.scrollNext()
-    }, 1500)
+    }, 4000)
 
     return () => clearInterval(interval)
   }, [emblaApi])
 
   const slides = [
     {
+      image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+      title: "Partida entre Renuka ADC e Boleiros é cancelada devido ao Domingo de Páscoa",
+      description: "O confronto que seria realizado no dia 05/04, na Arena ADC, entre Renuka ADC e Boleiros, foi oficialmente cancelado em respeito ao Domingo de Páscoa.",
+      link: "/noticias/jogo-cancelado-renuka-boleiros"
+    },
+    {
       image: "/noticias/amigosdofutebol/jogocancelado.png",
       title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
-      description: "A partida em Avanhandava foi cancelada devido às fortes chuvas que deixaram o campo sem condições de jogo.",
+      description: "A partida em Avanhandava foi cancelada devido às fortes chuvas.",
       link: "/noticias/jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola"
     },
-    
     {
       image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
-      title: "Poder de reaçao: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
-      description: "O Sporting Guaiçara mostrou poder de reação ao buscar o empate após sair atrás no placar. Com raça e determinação, a equipe não desistiu e foi premiada pela luta até o fim",
-      link: "/noticias"
-    },
-    {
-      image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
-      title: "Julio e vini fecham com o time livre da ADC",
-      description: "Julio e vini fecham com o time livre da ADC, time ADC vem montando um grande elenco para 2026",
+      title: "Poder de reação: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
+      description: "O Sporting Guaiçara mostrou poder de reação ao buscar o empate após sair atrás no placar.",
       link: "/noticias"
     },
     {
       image: "/foto_taca.png",
       title: "Final emocionante no futebol de várzea",
-      description: "Equipe vence, após jogo muito disputado.",
-      link: "/noticias"
-    },
-    {
-      image: "/festa_do_campeao.png",
-      title: "Comemoração no Domingo do time 50+",
-      description: "Grande comemoração com direito a samba",
+      description: "Equipe vence após jogo muito disputado.",
       link: "/noticias"
     },
   ]
 
   return (
-    <div className="overflow-hidden w-full h-full" ref={emblaRef}>
-      <div className="flex h-full px-10">
+    <div
+      className="overflow-hidden w-full h-[220px] md:h-[420px] lg:h-[480px]"
+      ref={emblaRef}
+    >
+      <div className="flex h-full px-4 md:px-10">
 
         {slides.map((item, i) => (
           <Link
             href={item.link}
             key={i}
-            className="flex-[0_0_70%] mx-2 h-full relative rounded-xl overflow-hidden group"
+            className="flex-[0_0_85%] md:flex-[0_0_70%] mx-2 h-full relative rounded-xl overflow-hidden group"
           >
-            {/* imagem */}
             <Image
               src={item.image}
               alt={item.title}
               fill
-              className="object-cover group-hover:scale-105 transition duration-500"
+              className="object-cover object-center group-hover:scale-105 transition duration-500"
+              sizes="(max-width: 768px) 85vw, 70vw"
+              priority={i === 0}
             />
 
-            {/* overlay gradiente */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            {/* overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-b from-black/80 via-black/30 to-transparent" />
 
             {/* conteúdo */}
-            <div className="absolute bottom-0 left-0 w-full p-4">
+            <div className="absolute bottom-0 md:top-0 md:bottom-auto left-0 w-full p-3 md:p-5">
 
-              {/* categoria */}
               <span className="text-[10px] md:text-xs uppercase tracking-wider text-yellow-400 font-semibold">
                 Futebol de Várzea
               </span>
 
-              {/* título */}
-              <h2 className="text-white text-base md:text-xl font-extrabold leading-snug mt-1">
+              <h2 className="text-white text-sm md:text-xl font-extrabold leading-snug mt-1 line-clamp-2">
                 {item.title}
               </h2>
 
-              {/* descrição */}
-              <p className="text-gray-200 text-xs md:text-sm mt-1 line-clamp-2">
+              <p className="text-gray-200 text-[11px] md:text-sm mt-2 line-clamp-2">
                 {item.description}
               </p>
 

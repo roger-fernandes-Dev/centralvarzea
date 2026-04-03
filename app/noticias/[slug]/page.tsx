@@ -3,6 +3,24 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 const noticiasData = {
+  "jogo-cancelado-renuka-boleiros": {
+  title: "JOGO CANCELADO: RENUKA ADC X BOLEIROS NÃO ACONTECE EM RESPEITO À PÁSCOA",
+  resumo: "A partida marcada para o dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa.",
+  image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+  team: {
+    name: "Renuka ADC",
+    logo: "/times/renukaadc.png",
+  },
+  content: `O confronto entre Renuka ADC e Boleiros, que seria realizado no próximo dia 05 de abril, na Arena ADC, foi oficialmente cancelado.
+
+A decisão foi tomada em razão do Domingo de Páscoa, uma das datas mais importantes do calendário, tradicionalmente marcada por momentos de reflexão, fé e, principalmente, pela reunião entre familiares.
+
+A organização optou por não realizar a partida em respeito ao significado da data, valorizando o tempo de convivência dos atletas, comissão técnica e torcedores junto às suas famílias.
+
+Apesar do cancelamento, a expectativa pelo duelo segue alta, e uma possível nova data para o confronto poderá ser definida e divulgada em breve pelos responsáveis.
+
+O futebol de várzea, além da competitividade dentro de campo, também carrega valores que vão além das quatro linhas — e, neste caso, o respeito às tradições falou mais alto.`
+},
   "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola": {
   title: "JOGO CANCELADO: AMIGOS DO FUTEBOL X AMIGOS DA BOLA NÃO ACONTECE DEVIDO À CHUVA",
   resumo: "A partida em Avanhandava foi cancelada após fortes chuvas deixarem o campo sem condições de jogo.",
@@ -41,28 +59,6 @@ O empate pode até não refletir totalmente o domínio apresentado em boa parte 
 
 O Sporting Guaíçara sai de campo com moral elevada, reforçando sua identidade competitiva e mostrando que, independentemente das circunstâncias, sempre vai lutar até o fim.`
   },
-
-  "vini-e-junior-fecham-com-a-adc": {
-    title: "Julio e vini fecham com ADC",
-    resumo: "Julio e vini fecham com o time livre da ADC",
-    image: "/noticias/amigosdofutebol/contratacao_julio_vini.png",
-    team: {
-      name: "renuka adc",
-      logo: "/times/renukaadc.png",
-    },
-    content: `A ADC segue se movimentando forte nos bastidores e confirmou duas contratações que já começam a gerar expectativa: Vini e Júnior agora fazem parte do elenco para a próxima temporada. A dupla chega com a missão de elevar o nível da equipe e fortalecer o grupo que vem sendo montado com ambição.
-
-Conhecidos no cenário local, os dois jogadores carregam experiência e qualidade técnica, características que chamaram a atenção da diretoria. A chegada deles não é por acaso — faz parte de um planejamento claro de montar um time competitivo e preparado para brigar por títulos.
-
-Vini é visto como um atleta versátil, capaz de contribuir tanto na criação quanto no apoio ofensivo, trazendo dinamismo ao time. Já Júnior chega com perfil mais decisivo, sendo reconhecido por sua presença em momentos importantes e capacidade de definição.
-
-A diretoria da ADC vem trabalhando de forma estratégica, buscando peças que se encaixem no estilo de jogo da equipe. As contratações indicam que o clube não pretende apenas participar das competições, mas sim disputar em alto nível.
-
-Nos bastidores, o clima é de confiança. A expectativa é que, com a base sendo reforçada por nomes de peso, a equipe consiga apresentar um futebol mais consistente e competitivo ao longo da temporada.
-
-A chegada de Vini e Júnior marca mais um passo importante na construção do elenco. Agora, a torcida aguarda para ver, dentro de campo, o impacto dessas contratações e até onde a ADC pode chegar.`
-  },
-
   "amigos-do-futebol-vence-campeonato": {
     title: "Amigos do Futebol vence campeonato 50+",
     resumo: "Partida intensa",
@@ -205,34 +201,34 @@ export default async function Page({
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              
-              {relacionadas.map(([key, item]) => (
-                <Link
-                  key={key}
-                  href={`/noticias/${key}`}
-                  className="group block"
-                >
-                  <div className="relative w-full h-40 rounded-lg overflow-hidden">
+  
+  {relacionadas.map(([key, item]) => (
+    <Link
+      key={key}
+      href={`/noticias/${key}`}
+      className="group block"
+    >
+      <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover object-center transition duration-500 group-hover:scale-105"
+        />
 
-                    <div className="absolute inset-0 bg-black/60 transition duration-500 group-hover:bg-black/0"></div>
+        {/* overlay mais leve */}
+        <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/0"></div>
 
-                  </div>
+      </div>
 
-                  <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">
-                    {item.title}
-                  </h3>
-                </Link>
-              ))}
+      <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">
+        {item.title}
+      </h3>
+    </Link>
+  ))}
 
-            </div>
-
+</div>
           </div>
         </section>
       )}

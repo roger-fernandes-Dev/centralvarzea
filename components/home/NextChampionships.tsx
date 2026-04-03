@@ -6,6 +6,16 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/renukaadc.png",
+      home: "Renuka ADC",
+      awayLogo: "/times/ousadiafc.png",
+      away: "Ousadia FC",
+      date: "05/04",
+      time: "08:30",
+      local: "Arena ADC",
+      type: "Amistoso"
+    },
+    {
       homeLogo: "/times/the_best.png",
       home: "The Best",
       awayLogo: "/times/quebrada-fc.png",
