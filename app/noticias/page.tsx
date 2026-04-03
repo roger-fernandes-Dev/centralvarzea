@@ -16,6 +16,12 @@ export default function Noticias() {
 
   const noticias: Noticia[] = [
     {
+      title: "Campeonato de Mini Campo em Promissão abre inscrições",
+      image: "/noticias/campeonatos/minicampopromissao.png",
+      slug: "minicampo-promissao-inscricoes",
+      resumo: "Estão abertas, de 30/03 até 07/04, as inscrições para o campeonato de mini campo em Promissão, que deve reunir equipes da cidade e região em uma competição organizada e de alto nível."
+    },
+    {
       title: "Jogo entre Renuka ADC e Boleiros é cancelado devido ao Domingo de Páscoa",
       image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
       slug: "jogo-cancelado-renuka-boleiros",
@@ -46,7 +52,7 @@ export default function Noticias() {
       <main className="max-w-6xl mx-auto px-4">
 
         <div className="mb-8">
-          <NewsCarousel />
+          <NewsCarousel noticias={noticias} />
         </div>
 
         <div className="space-y-4">
@@ -54,21 +60,24 @@ export default function Noticias() {
             <Link
               key={i}
               href={`/noticias/${n.slug}`}
-              className="flex gap-3 items-start"
+              className="group flex gap-3 items-start transition-all duration-300 hover:-translate-y-[2px]"
             >
-              {/* IMAGEM PADRONIZADA */}
+              {/* IMAGEM */}
               <div className="relative w-28 aspect-video overflow-hidden rounded-md flex-shrink-0">
                 <Image
                   src={n.image}
                   alt={n.title}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 
               {/* TEXTO */}
               <div>
-                <h3 className="font-semibold leading-snug">{n.title}</h3>
+                <h3 className="font-semibold leading-snug transition-colors duration-300 group-hover:text-yellow-600">
+                  {n.title}
+                </h3>
+
                 <p className="text-sm text-gray-600 line-clamp-2">
                   {n.resumo}
                 </p>

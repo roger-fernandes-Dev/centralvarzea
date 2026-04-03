@@ -8,25 +8,19 @@ import "swiper/css/navigation"
 import Image from "next/image"
 import Link from "next/link"
 
-export default function NewsCarousel() {
+type Noticia = {
+  title: string
+  image: string
+  slug: string
+}
 
-  const noticias = [
-    {
-      title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
-      image: "/noticias/amigosdofutebol/jogocancelado.png",
-      slug: "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
-    },
-    {
-      title: "Amigos do Futebol vence campeonato 50+",
-      image: "/noticias/amigosdofutebol/foto_taca.png",
-      slug: "amigos-do-futebol-vence-campeonato",
-    },
-    {
-      title: "Amigos do futebol comemora campeonato com samba no clube ADC",
-      image: "/noticias/amigosdofutebol/festa_do_campeao.png",
-      slug: "festa-do-campeao",
-    },
-  ]
+interface NewsCarouselProps {
+  noticias: Noticia[]
+}
+
+export default function NewsCarousel({ noticias }: NewsCarouselProps) {
+  // pega sempre as 3 primeiras notícias
+  const topNoticias = noticias.slice(0, 3)
 
   return (
     <div className="relative w-screen left-1/2 -translate-x-1/2">
@@ -38,11 +32,10 @@ export default function NewsCarousel() {
         loop
         className="w-full h-[300px] md:h-[400px] overflow-hidden"
       >
-        {noticias.map((n, i) => (
+        {topNoticias.map((n, i) => (
           <SwiperSlide key={i}>
             <Link href={`/noticias/${n.slug}`}>
               <div className="relative w-full h-full cursor-pointer">
-
                 {/* 🖼️ imagem */}
                 <Image
                   src={n.image}
@@ -60,7 +53,6 @@ export default function NewsCarousel() {
                     {n.title}
                   </h2>
                 </div>
-
               </div>
             </Link>
           </SwiperSlide>

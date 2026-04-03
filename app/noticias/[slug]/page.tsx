@@ -3,23 +3,26 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 const noticiasData = {
-  "jogo-cancelado-renuka-boleiros": {
-  title: "JOGO CANCELADO: RENUKA ADC X BOLEIROS NÃO ACONTECE EM RESPEITO À PÁSCOA",
-  resumo: "A partida marcada para o dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa.",
-  image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
+"minicampo-promissao-inscricoes": {
+  title: "CAMPEONATO DE MINI CAMPO EM PROMISSÃO ABRE INSCRIÇÕES",
+  resumo: "Equipes já podem se inscrever entre os dias 30/03 e 07/04 para disputar a competição que promete movimentar o futebol de várzea na cidade.",
+  image: "/noticias/campeonatos/minicampopromissao.png",
   team: {
-    name: "Renuka ADC",
-    logo: "/times/renukaadc.png",
+    name: "Mini Campo Promissão",
+    logo: "/campeonato/selt-minicampo.png",
   },
-  content: `O confronto entre Renuka ADC e Boleiros, que seria realizado no próximo dia 05 de abril, na Arena ADC, foi oficialmente cancelado.
+  content: `Promissão se prepara para receber mais uma importante competição do futebol de várzea. Estão oficialmente abertas as inscrições para o campeonato de mini campo, que promete reunir equipes da cidade e região em disputas marcadas por organização, competitividade e valorização do esporte local.
 
-A decisão foi tomada em razão do Domingo de Páscoa, uma das datas mais importantes do calendário, tradicionalmente marcada por momentos de reflexão, fé e, principalmente, pela reunião entre familiares.
+O período de inscrição vai de 30 de março até 07 de abril, prazo em que dirigentes e responsáveis devem garantir a participação de suas equipes. A expectativa é de um torneio com alto nível técnico, incentivando a integração entre atletas e fortalecendo ainda mais a tradição do futebol amador.
 
-A organização optou por não realizar a partida em respeito ao significado da data, valorizando o tempo de convivência dos atletas, comissão técnica e torcedores junto às suas famílias.
+A competição surge como uma oportunidade para que novos talentos se destaquem, ao mesmo tempo em que movimenta a comunidade esportiva e atrai o interesse de torcedores.
 
-Apesar do cancelamento, a expectativa pelo duelo segue alta, e uma possível nova data para o confronto poderá ser definida e divulgada em breve pelos responsáveis.
+Equipes interessadas devem se organizar com antecedência, já que a tendência é de alta procura por vagas.
 
-O futebol de várzea, além da competitividade dentro de campo, também carrega valores que vão além das quatro linhas — e, neste caso, o respeito às tradições falou mais alto.`
+Mais informações e atualizações estarão disponíveis na plataforma Central Várzea.
+
+Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
+Instagram: https://instagram.com/centralvarzea.of`
 },
   "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola": {
   title: "JOGO CANCELADO: AMIGOS DO FUTEBOL X AMIGOS DA BOLA NÃO ACONTECE DEVIDO À CHUVA",
@@ -138,7 +141,21 @@ export default async function Page({
           <div className="max-w-2xl mx-auto text-[17px] leading-8 text-gray-800 space-y-6">
             {noticia.content.split("\n").map((p, i) => (
               <div key={i}>
-                <p className="text-justify">{p}</p>
+                {p.includes("https://") ? (
+                  <p className="text-justify">
+                    {p.split("https://")[0]}
+                    <a
+                      href={`https://${p.split("https://")[1]}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline hover:text-blue-800"
+                    >
+                      {`https://${p.split("https://")[1]}`}
+                    </a>
+                  </p>
+                ) : (
+                  <p className="text-justify">{p}</p>
+                )}
 
                 {i === 1 && (
                   <div className="flex flex-col items-center my-8 gap-4">

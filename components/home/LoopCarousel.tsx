@@ -23,10 +23,10 @@ export default function LoopCarousel() {
 
   const slides = [
     {
-      image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
-      title: "Partida entre Renuka ADC e Boleiros é cancelada devido ao Domingo de Páscoa",
-      description: "O confronto que seria realizado no dia 05/04, na Arena ADC, entre Renuka ADC e Boleiros, foi oficialmente cancelado em respeito ao Domingo de Páscoa.",
-      link: "/noticias/jogo-cancelado-renuka-boleiros"
+      image: "/noticias/campeonatos/minicampopromissao.png",
+      title: "Campeonato de Mini Campo em Promissão abre inscrições",
+      description: "Estão abertas, de 30/03 até 07/04, as inscrições para o campeonato de mini campo em Promissão, que promete reunir equipes da cidade e região em uma competição organizada e de alto nível.",
+      link: "/noticias/minicampo-promissao-inscricoes"
     },
     {
       image: "/noticias/amigosdofutebol/jogocancelado.png",
