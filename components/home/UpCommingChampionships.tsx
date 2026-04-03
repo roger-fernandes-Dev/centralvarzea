@@ -37,9 +37,9 @@ export default function UpcomingChampionships() {
 
       {/* título */}
       <div className="mb-6">
-        <h2 className="text-xl md:text-2xl font-bold">
+        <p className="text-xl md:text-2xl font-bold">
           Próximos Campeonatos
-        </h2>
+        </p>
         <p className="text-sm text-gray-500">
           Competições abertas e que irão começar em breve ou em andamento
         </p>
