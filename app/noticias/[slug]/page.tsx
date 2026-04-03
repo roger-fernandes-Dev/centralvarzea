@@ -38,7 +38,10 @@ As condições do campo ficaram comprometidas, impossibilitando a realização d
 
 O confronto era aguardado com expectativa, mas acabou não acontecendo por conta do clima adverso.
 
-Até o momento, uma nova data para a realização do jogo ainda não foi definida.`
+Até o momento, uma nova data para a realização do jogo ainda não foi definida.
+Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
+Instagram: https://instagram.com/centralvarzea.of`
+
 },
   "sporting-guaicara-empata-com-magos": {
     title: "REAÇÃO DE GIGANTE: SPORTING GUAIÇARA BUSCA EMPATE NA RAÇA APÓS SAIR ATRÁS",
@@ -60,7 +63,8 @@ Depois de igualar o placar, o Sporting ainda seguiu em busca da virada, mostrand
 
 O empate pode até não refletir totalmente o domínio apresentado em boa parte do jogo, mas evidencia algo ainda mais importante — a capacidade de reação. E, no futebol de várzea, isso vale muito.
 
-O Sporting Guaíçara sai de campo com moral elevada, reforçando sua identidade competitiva e mostrando que, independentemente das circunstâncias, sempre vai lutar até o fim.`
+O Sporting Guaíçara sai de campo com moral elevada, reforçando sua identidade competitiva e mostrando que, independentemente das circunstâncias, sempre vai lutar até o fim.Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
+Instagram: https://instagram.com/centralvarzea.of`
   },
   "amigos-do-futebol-vence-campeonato": {
     title: "Amigos do Futebol vence campeonato 50+",
@@ -80,7 +84,8 @@ Na segunda etapa, o cenário exigiu maturidade. O adversário voltou mais agress
 
 Mesmo diante das investidas finais, o sistema defensivo se manteve firme, garantindo a vantagem até o apito final. Quando o árbitro encerrou a partida, a comemoração tomou conta do campo — jogadores, comissão e torcida celebraram juntos uma conquista construída com dedicação ao longo de toda a competição.
 
-O título do campeonato 50+ reforça a força do Amigos do Futebol, que mais uma vez prova que o futebol vai muito além da idade. Com talento, disciplina e paixão pelo jogo, a equipe escreve mais um capítulo importante em sua história.`
+O título do campeonato 50+ reforça a força do Amigos do Futebol, que mais uma vez prova que o futebol vai muito além da idade. Com talento, disciplina e paixão pelo jogo, a equipe escreve mais um capítulo importante em sua história.Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
+Instagram: https://instagram.com/centralvarzea.of`
   }
 
 } as const
