@@ -15,7 +15,7 @@ type Championship = {
 export default function UpcomingChampionships() {
   const championships: Championship[] = [
     {
-      name: "Selt Mini Campo 2026",
+      name: "Mini Campo Promissão 2026",
       logo: "/campeonato/selt-minicampo.png",
       registrationEnd: "30/03/2026",
       startDate: "07/04/2026",
