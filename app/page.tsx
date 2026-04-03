@@ -7,7 +7,6 @@ import NextChampionships from "@/components/home/NextChampionships"
 import AdsRightClubs from "@/components/home/AdsRightClubs"
 import Newlestter from "@/components/home/Newlestter"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
-import PopupAd from "@/components/PopupAd"
 
 export default function Home() {
   return (
@@ -28,7 +27,7 @@ export default function Home() {
         <section>
           <div className="w-full bg-black py-3 mb-2">
             <h2 className="text-center text-white font-semibold text-sm md:text-base tracking-wide">
-              Empresas que apoiam o futebol de várzea
+              A casa do futebol amador - Futebol de Várzea, Jogos e Campeonatos
             </h2>
           </div>
           <LoopBanner />
