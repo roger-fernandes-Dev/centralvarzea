@@ -41,7 +41,7 @@ export default function UpcomingChampionships() {
           Próximos Campeonatos
         </h2>
         <p className="text-sm text-gray-500">
-          Competições abertas e que irão começar em breve
+          Competições abertas e que irão começar em breve ou em andamento
         </p>
       </div>
 
