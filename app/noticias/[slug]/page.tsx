@@ -11,7 +11,7 @@ const noticiasData = {
     name: "Mini Campo Promissão",
     logo: "/campeonato/selt-minicampo.png",
   },
-  content: `Promissão se prepara para receber mais uma importante competição do futebol de várzea. Estão oficialmente abertas as inscrições para o campeonato de mini campo, que promete reunir equipes da cidade e região em disputas marcadas por organização, competitividade e valorização do esporte local.
+  content: `Promissão se prepara para receber mais uma importante competição do futebol de várzea. Estão oficialmente abertas as inscrições para o campeonato de mini campo, que promete reunir equipes da cidade em disputas marcadas por organização, competitividade e valorização do esporte local.
 
 O período de inscrição vai de 30 de março até 07 de abril, prazo em que dirigentes e responsáveis devem garantir a participação de suas equipes. A expectativa é de um torneio com alto nível técnico, incentivando a integração entre atletas e fortalecendo ainda mais a tradição do futebol amador.
 
