@@ -120,7 +120,7 @@ export default function Championships({ matches }: any) {
   const data = matches && matches.length ? matches : fallback
 
   return (
-    <section className="bg-white rounded-xl shadow">
+    <section className="rounded-xl shadow">
 
       <div className="flex flex-col divide-y divide-gray-200 max-h-[420px] overflow-y-auto">
 

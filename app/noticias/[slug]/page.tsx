@@ -1,6 +1,7 @@
+import { Metadata } from "next"
+import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { notFound } from "next/navigation"
 
 const noticiasData = {
   "minicampo-promissao-inscricoes": {
@@ -127,16 +128,59 @@ Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
 
 type Slug = keyof typeof noticiasData
 
+const SITE_URL = "https://www.centralvarzea.com.br" // ⚠️ TROCA ISSO
+
+// ✅ META PARA WHATSAPP
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const noticia = noticiasData[params.slug as Slug]
+
+  if (!noticia) return {}
+
+  const imageUrl = noticia.image.startsWith("http")
+    ? noticia.image
+    : `${SITE_URL}${noticia.image}`
+
+  return {
+    title: noticia.title,
+    description: noticia.resumo,
+
+    openGraph: {
+      title: noticia.title,
+      description: noticia.resumo,
+      url: `${SITE_URL}/noticias/${params.slug}`,
+      type: "article",
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: noticia.title,
+      description: noticia.resumo,
+      images: [imageUrl],
+    },
+  }
+}
+
+// ✅ PAGE CORRIGIDA
 export default async function Page({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: { slug: string }
 }) {
-  const { slug } = await params
+  const { slug } = params
 
   const noticia = noticiasData[slug as Slug]
 
-  // 🔥 ajuste seguro (evita bug de undefined)
   if (!slug || !noticia) return notFound()
 
   const relacionadas = Object.entries(noticiasData)
@@ -213,7 +257,6 @@ export default async function Page({
                       </span>
                     </div>
 
-                    {/* MOBILE ADS 2x2 */}
                     <div className="grid grid-cols-2 gap-2 w-full max-w-xs lg:hidden">
                       <div className="w-full aspect-[160/250] relative bg-white">
                         <Image src="/pedireitoad/pedireitoad.png" alt="" fill className="object-contain rounded-md" />
@@ -266,7 +309,6 @@ export default async function Page({
                   className="group block"
                 >
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -274,9 +316,7 @@ export default async function Page({
                       className="object-cover object-center transition duration-500 group-hover:scale-105"
                     />
 
-                    {/* overlay mais leve */}
                     <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/0"></div>
-
                   </div>
 
                   <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">

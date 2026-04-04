@@ -19,10 +19,10 @@ export default function Clubs() {
   ]
 
   return (
-    <section className="relative rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden w-full h-full">
+    <section className="relative rounded-xl border border-gray-200 shadow-sm overflow-hidden w-full h-full">
 
       {/* fundo leve */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 opacity-80" />
 
       <div className="relative p-5 flex flex-col h-full">
 
@@ -66,7 +66,7 @@ export default function Clubs() {
                       <div
                         className="
                           w-14 h-14 md:w-16 md:h-16
-                          bg-white rounded-full 
+                          rounded-full 
                           border border-gray-200
                           shadow-sm
                           flex items-center justify-center
