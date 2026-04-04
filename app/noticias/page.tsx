@@ -11,7 +11,27 @@ type Noticia = {
   slug: string
   resumo: string
   categoria?: string
-  data?: string
+  data?: Date // agora é Date
+}
+
+// função para calcular tempo "há x"
+function timeAgo(date: Date) {
+  const now = new Date()
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+
+  if (seconds < 60) return `há ${seconds} segundos`
+  const minutes = Math.floor(seconds / 60)
+  if (minutes < 60) return `há ${minutes} minutos`
+  const hours = Math.floor(minutes / 60)
+  if (hours < 24) return `há ${hours} horas`
+  const days = Math.floor(hours / 24)
+  if (days < 7) return `há ${days} dias`
+  const weeks = Math.floor(days / 7)
+  if (weeks < 4) return `há ${weeks} semanas`
+  const months = Math.floor(days / 30)
+  if (months < 12) return `há ${months} meses`
+  const years = Math.floor(days / 365)
+  return `há ${years} anos`
 }
 
 export default function Noticias() {
@@ -23,7 +43,7 @@ export default function Noticias() {
       slug: "minicampo-promissao-inscricoes",
       resumo: "Estão abertas, de 30/03 até 07/04...",
       categoria: "Campeonato",
-      data: "há 2h"
+      data: new Date("2026-04-04T06:00:00")
     },
     {
       title: "Jogo entre Renuka ADC e Boleiros é cancelado devido ao Domingo de Páscoa",
@@ -31,7 +51,7 @@ export default function Noticias() {
       slug: "jogo-cancelado-renuka-boleiros",
       resumo: "A partida que seria realizada no dia 05/04...",
       categoria: "Comunicado",
-      data: "há 5h"
+      data: new Date("2026-04-03T01:00:00")
     },
     {
       title: "Jogo cancelado por chuva em Avanhandava",
@@ -39,7 +59,7 @@ export default function Noticias() {
       slug: "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
       resumo: "O campo ficou sem condições de jogo...",
       categoria: "Clima",
-      data: "há 1 dia"
+      data: new Date("2026-04-01T07:00:00")
     },
     {
       title: "Sporting Guaiçara mostra reação e empata",
@@ -47,7 +67,7 @@ export default function Noticias() {
       slug: "sporting-guaicara-empata-com-magos",
       resumo: "Equipe buscou empate na raça...",
       categoria: "Jogo",
-      data: "há 1 dia"
+      data: new Date("2026-03-29T08:00:00")
     },
     {
       title: "Amigos do Futebol vence campeonato 50+",
@@ -55,7 +75,7 @@ export default function Noticias() {
       slug: "amigos-do-futebol-vence-campeonato",
       resumo: "Título veio após partida intensa...",
       categoria: "Título",
-      data: "há 2 dias"
+      data: new Date("2026-03-15T10:00:00")
     }
   ]
 
@@ -97,7 +117,7 @@ export default function Noticias() {
                     {n.categoria}
                   </span>
                   <span>•</span>
-                  <span>{n.data}</span>
+                  <span>{n.data ? timeAgo(n.data) : ""}</span>
                 </div>
 
                 {/* TÍTULO */}
