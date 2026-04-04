@@ -13,37 +13,40 @@ export default function Home() {
   return (
     <>
     <Head>
-        {/* Título da página */}
-        <title>Central Várzea - Futebol de Várzea, Jogos e Campeonatos</title>
+      {/* Título da página */}
+      <title>Central Várzea - Futebol de Várzea, Jogos e Campeonatos</title>
 
-        {/* Meta description */}
-        <meta
-          name="description"
-          content="Portal completo de futebol de várzea com notícias, jogos e campeonatos. Acompanhe resultados, tabela de times e destaques do futebol amador."
-        />
+      {/* Meta description */}
+      <meta
+        name="description"
+        content="Portal completo de futebol de várzea com notícias, jogos e campeonatos. Acompanhe resultados, tabela de times e destaques do futebol amador."
+      />
 
-        {/* Meta keywords (opcional, mas pode ajudar) */}
-        <meta name="keywords" content="futebol, várzea, campeonato, times, jogos, resultados" />
+      {/* Meta keywords */}
+      <meta name="keywords" content="futebol, várzea, campeonato, times, jogos, resultados" />
 
-        {/* Controle de indexação */}
-        <meta name="robots" content="index, follow" />
+      {/* Controle de indexação */}
+      <meta name="robots" content="index, follow" />
 
-        {/* Open Graph para Facebook, LinkedIn etc */}
-        <meta property="og:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
-        <meta property="og:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
-        <meta property="og:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
-        <meta property="og:url" content="https://www.centralvarzea.com.br/" />
-        <meta property="og:type" content="website" />
+      {/* Canonical */}
+      <link rel="canonical" href="https://www.centralvarzea.com.br/" />
 
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
-        <meta name="twitter:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
-        <meta name="twitter:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
+      {/* Open Graph */}
+      <meta property="og:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
+      <meta property="og:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
+      <meta property="og:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
+      <meta property="og:url" content="https://www.centralvarzea.com.br/" />
+      <meta property="og:type" content="website" />
 
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
+      <meta name="twitter:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
+      <meta name="twitter:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
+
+      {/* Favicon */}
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
       <div className="max-w-7xl mx-auto px-4 space-y-6">
 
         {/* topo */}
