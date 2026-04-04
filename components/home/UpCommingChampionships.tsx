@@ -23,6 +23,38 @@ export default function UpcomingChampionships() {
       status: "soon"
     },
     {
+      name: "Super Copa Taquarituba 2026",
+      logo: "/campeonato/copataquarituba.png",
+      registrationEnd: "18/07/2026",
+      startDate: "24/07/2026",
+      slug: "super-copa-taquarituba",
+      status: "soon"
+    },
+    {
+      name: "Copa Talentos Lins 2026",
+      logo: "/campeonato/copatalentoslins.png",
+      registrationEnd: "18/07/2026",
+      startDate: "24/07/2026",
+      slug: "super-copa-taquarituba",
+      status: "running"
+    },
+    {
+      name: "Copa futsal Bariri 2026",
+      logo: "/campeonato/copabariri.png",
+      registrationEnd: "18/07/2026",
+      startDate: "24/07/2026",
+      slug: "super-bariri",
+      status: "running"
+    },
+    {
+      name: "Copa Ferradura 2026",
+      logo: "/campeonato/copaferradura.png",
+      registrationEnd: "18/07/2026",
+      startDate: "24/07/2026",
+      slug: "copa-ferradura",
+      status: "running"
+    },
+    {
       name: "Super Master Guaiçara",
       logo: "/campeonato/supermaster-guaicara.png",
       registrationEnd: "15/04/2026",
