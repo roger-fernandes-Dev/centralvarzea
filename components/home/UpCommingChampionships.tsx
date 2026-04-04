@@ -23,6 +23,7 @@ export default function UpcomingChampionships() {
     { name: "Copa futsal Bariri 2026", logo: "/campeonato/copabariri.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-bariri", status: "running" },
     { name: "Copa Ferradura 2026", logo: "/campeonato/copaferradura.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "copa-ferradura", status: "running" },
     { name: "Super Master Guaiçara", logo: "/campeonato/supermaster-guaicara.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "supermaster-guaicara", status: "running" },
+    { name: "Copa Guararapes", logo: "/campeonato/copa-guararapes.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "soon" },
     
   ]
 
@@ -129,10 +130,10 @@ function ChampionshipCard({ item }: { item: Championship }) {
       {(item.status === "open" || item.status === "soon") && (
         <div className="mt-2 text-xs md:text-sm text-gray-600 leading-tight">
           <div>
-            <span className="text-gray-400">Inscrições:</span> <strong>{item.registrationEnd}</strong>
+            <span className="text-gray-400">Ínicio inscrições:</span> <strong>{item.registrationEnd}</strong>
           </div>
           <div>
-            <span className="text-gray-400">Início:</span> <strong>{item.startDate}</strong>
+            <span className="text-gray-400">Final Inscrições:</span> <strong>{item.startDate}</strong>
           </div>
         </div>
       )}
