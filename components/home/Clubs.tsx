@@ -19,69 +19,104 @@ export default function Clubs() {
   ]
 
   return (
-    <section className="relative rounded-xl shadow overflow-hidden w-full h-full">
+    <section className="relative rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden w-full h-full">
 
-      <Image
-        src="/fundo_clubs.png"
-        alt="fundo clubes"
-        fill
-        className="object-cover opacity-20"
-      />
+      {/* fundo leve */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-80" />
 
-      <div className="relative p-6 flex flex-col h-full">
+      <div className="relative p-5 flex flex-col h-full">
 
         {/* topo */}
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-black">
+          <h2 className="text-base md:text-lg font-semibold text-gray-800">
             Clubes
           </h2>
 
           <Link
             href="/times"
-            className="bg-yellow-500 text-black px-4 py-2 rounded font-semibold hover:bg-yellow-400 transition"
+            className="text-sm font-semibold text-yellow-600 hover:text-yellow-500 transition"
           >
-            Ver todos
+            Ver todos →
           </Link>
         </div>
 
-        {/* centro */}
+        {/* lista */}
         <div className="flex-1 flex items-center">
 
-          <div className="overflow-x-auto custom-scroll w-full">
-            <div className="grid grid-rows-2 grid-flow-col auto-cols-[calc((100%-2rem)/3)] 
-                            gap-6 md:gap-x-6 md:gap-y-12">
+          <div className="
+            overflow-x-auto w-full
+            snap-x snap-mandatory
+            scroll-smooth
+            scrollbar-thin scrollbar-thumb-gray-300
+          ">
+
+            <div className="
+              grid grid-rows-2 grid-flow-col 
+              auto-cols-[90px]
+              gap-x-4 gap-y-8
+            ">
 
               {clubs.map((club, i) => (
                 <Link key={i} href={`/clubs/${club.slug}`}>
-                  <div className="flex items-center justify-center">
+                  <div className="flex flex-col items-center group snap-start cursor-pointer">
 
-                    <div
-                      title={club.name}
-                      className="relative 
-                        w-16 h-16 
-                        md:w-20 md:h-20
-                        bg-yellow-400 rounded-full overflow-hidden 
-                        shadow-sm hover:scale-105 transition cursor-pointer"
-                    >
-                      <Image
-                        src={club.logo}
-                        alt={club.name}
-                        fill
-                        className="object-contain p-1"
-                      />
+                    {/* ESCUDO */}
+                    <div className="relative">
+
+                      <div
+                        className="
+                          w-14 h-14 md:w-16 md:h-16
+                          bg-white rounded-full 
+                          border border-gray-200
+                          shadow-sm
+                          flex items-center justify-center
+                          transition-all duration-200
+                          group-hover:shadow-md group-hover:-translate-y-0.5
+                        "
+                      >
+                        <Image
+                          src={club.logo}
+                          alt={club.name}
+                          width={40}
+                          height={40}
+                          className="object-contain"
+                        />
+                      </div>
+
+                      {/* TOOLTIP */}
+                      <div className="
+                        absolute -top-8 left-1/2 -translate-x-1/2
+                        bg-black/80 backdrop-blur-sm
+                        text-white text-[10px]
+                        px-2 py-1 rounded
+                        opacity-0 group-hover:opacity-100
+                        transition whitespace-nowrap
+                      ">
+                        {club.name}
+                      </div>
+
                     </div>
+
+                    {/* NOME CURTO */}
+                    <span className="
+                      mt-2 text-[11px] text-gray-600
+                      text-center leading-tight
+                      line-clamp-2
+                    ">
+                      {club.name}
+                    </span>
 
                   </div>
                 </Link>
               ))}
 
             </div>
+
           </div>
 
         </div>
 
       </div>
-
     </section>
   )
 }

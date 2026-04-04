@@ -11,14 +11,10 @@ import FederacoesCTA from "@/components/home/FederacoesCTA"
 export default function Home() {
   return (
     <>
-    {/*popupad - popup de anuncio
-    <PopupAd />*/}
-    
-      {/* CONTAINER PADRÃO */}
       <div className="max-w-7xl mx-auto px-4 space-y-6">
 
         {/* topo */}
-        <section className="grid grid-cols-1 lg:grid-cols-[80%_20%] gap-6">
+        <section className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-6">
           <NewsSection />
           <NextChampionships />
         </section>
@@ -33,18 +29,20 @@ export default function Home() {
           <LoopBanner />
         </section>
 
-        {/* ads topo (CORRIGIDO - removido max-w-6xl) */}
+        {/* ads */}
         <section>
           <AdsSidebar />
         </section>
 
         {/* campeonatos + clubes */}
-        <section className="grid grid-cols-1 lg:grid-cols-[20%_50%_30%] gap-6 items-stretch">
+        <section className="grid grid-cols-1 lg:grid-cols-[30%_45%_25%] gap-6 items-stretch">
 
+          {/* agora tem mais espaço */}
           <div className="min-h-[320px]">
             <Championships />
           </div>
 
+          {/* clubs menor */}
           <div className="min-h-[320px]">
             <Clubs />
           </div>
@@ -55,12 +53,10 @@ export default function Home() {
 
         </section>
 
-        {/* newsletter */}
         <UpcomingChampionships />
 
       </div>
 
-      {/* FULL WIDTH CONTROLADO */}
       <section className="mt-8">
         <div className="max-w-7xl mx-auto px-4">
           <FederacoesCTA />

@@ -36,7 +36,7 @@ export default function Championships({ matches }: any) {
       type: "Amistoso",
       date: "29/03",
       time: "08:30",
-      local: "Arena ADC - Campo B"
+      local: "Arena ADC"
     },
     {
       homeLogo: "/times/magos.png",
@@ -120,31 +120,55 @@ export default function Championships({ matches }: any) {
   const data = matches && matches.length ? matches : fallback
 
   return (
-    <section className="bg-black rounded-xl shadow p-3">
+    <section className="bg-white rounded-xl shadow">
 
-      <div className="flex flex-col divide-y divide-gray-800 max-h-[400px] overflow-y-auto pr-1 custom-scroll">
+      <div className="flex flex-col divide-y divide-gray-200 max-h-[420px] overflow-y-auto">
 
         {data.map((match: any, i: number) => (
-          <div key={i} className="py-3 px-2 hover:bg-gray-900 rounded text-white">
+          <div
+            key={i}
+            className="flex items-center px-2 py-3 hover:bg-yellow-50 transition"
+          >
 
-            <span className="text-xs text-gray-400">
-              {match.type}
-            </span>
+            {/* ESQUERDA */}
+            <div className="
+              w-[95px] min-w-[95px] 
+              lg:w-[100px] lg:min-w-[100px]
+              flex flex-col text-[11px] text-gray-500
+            ">
+              
+              <span className="font-semibold text-yellow-700 truncate">
+                {match.type}
+              </span>
 
-            {/* INFO */}
-            <div className="text-xs text-gray-300 mt-1 flex flex-wrap gap-2">
-              <span>📍 {match.local}</span>
-              <span>• {match.date}</span>
-              <span>• {match.time}</span>
+              <span className="truncate">
+                {match.local}
+              </span>
+
+              <span>
+                {match.date} • {match.time}
+              </span>
             </div>
 
-            <div className="flex items-center justify-between mt-2">
+            {/* MEIO */}
+            <div className="
+              flex-1 flex items-center justify-center 
+              gap-2 lg:gap-3
+            ">
 
               {/* CASA */}
-              <div className="relative group">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white">
-                  <Image src={match.homeLogo} alt={match.home} fill className="object-cover" />
-                </div>
+              <div className="flex items-center gap-1 group relative">
+                <Image
+                  src={match.homeLogo}
+                  alt={match.home}
+                  width={24}
+                  height={24}
+                  className="rounded-full"
+                />
+
+                <span className="text-xs lg:text-sm font-medium text-gray-800">
+                  {match.home.slice(0, 3).toUpperCase()}
+                </span>
 
                 <div className="absolute -top-7 left-1/2 -translate-x-1/2 
                   bg-black text-white text-[10px] px-2 py-1 rounded 
@@ -154,15 +178,26 @@ export default function Championships({ matches }: any) {
               </div>
 
               {/* PLACAR */}
-              <span className="font-semibold text-base">
+              <span className="
+                text-xs lg:text-sm font-bold text-gray-700 
+                whitespace-nowrap min-w-[45px] text-center
+              ">
                 {match.score ?? "-"}
               </span>
 
               {/* FORA */}
-              <div className="relative group">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden bg-white">
-                  <Image src={match.awayLogo} alt={match.away} fill className="object-cover" />
-                </div>
+              <div className="flex items-center gap-1 group relative">
+                <span className="text-xs lg:text-sm font-medium text-gray-800">
+                  {match.away.slice(0, 3).toUpperCase()}
+                </span>
+
+                <Image
+                  src={match.awayLogo}
+                  alt={match.away}
+                  width={24}
+                  height={24}
+                  className="rounded-full"
+                />
 
                 <div className="absolute -top-7 left-1/2 -translate-x-1/2 
                   bg-black text-white text-[10px] px-2 py-1 rounded 
