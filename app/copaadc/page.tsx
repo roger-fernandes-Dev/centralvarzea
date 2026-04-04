@@ -20,7 +20,7 @@ const groups: Group[] = [
   {
     name: "Grupo A",
     teams: [
-      { name: "Águias de Deus", short: "ADF", logo: "/times/aguias_de_deus.png", pts: 0, pj: 0, sg: 0 },
+      { name: "Águias de Deus", short: "ADF", logo: "/times/aguias_de_Deus.png", pts: 0, pj: 0, sg: 0 },
       { name: "Max Elite", short: "MXE", logo: "/times/maxelite.png", pts: 0, pj: 0, sg: 0 },
       { name: "MEC", short: "MEC", logo: "/times/mec.png", pts: 0, pj: 0, sg: 0 },
       { name: "A Firma", short: "AFA", logo: "/times/afirma.png", pts: 0, pj: 0, sg: 0 },
