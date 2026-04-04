@@ -15,6 +15,7 @@ type Championship = {
 
 export default function UpcomingChampionships() {
   const championships: Championship[] = [
+    { name: "Segunda Copa ADC", logo: "/campeonato/campeonatoadc.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "campeonato-adc", status: "running" },
     { name: "Mini Campo Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copa-selt-mini-campo", status: "soon" },
     { name: "Super Copa Taquarituba 2026", logo: "/campeonato/copataquarituba.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-copa-taquarituba", status: "soon" },
     { name: "Copa Talentos Lins 2026", logo: "/campeonato/copatalentoslins.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-copa-taquarituba", status: "running" },
@@ -22,7 +23,7 @@ export default function UpcomingChampionships() {
     { name: "Copa futsal Bariri 2026", logo: "/campeonato/copabariri.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-bariri", status: "running" },
     { name: "Copa Ferradura 2026", logo: "/campeonato/copaferradura.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "copa-ferradura", status: "running" },
     { name: "Super Master Guaiçara", logo: "/campeonato/supermaster-guaicara.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "supermaster-guaicara", status: "running" },
-    { name: "Segunda Copa ADC", logo: "/campeonato/campeonatoadc.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "campeonato-adc", status: "running" },
+    
   ]
 
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -30,20 +31,27 @@ export default function UpcomingChampionships() {
   useEffect(() => {
     if (scrollRef.current && window.innerWidth < 768) {
       const container = scrollRef.current
-      // esperar render completo
       const adjustScroll = () => {
         const cards = Array.from(container.children[0].children) as HTMLElement[]
         if (cards.length >= 3) {
           const thirdCard = cards[2]
-          const offset = thirdCard.offsetLeft - 16 // 16 = gap entre os cards
+          const offset = thirdCard.offsetLeft - 16
           container.scrollLeft = offset
         }
       }
-      // rodar depois do layout
       requestAnimationFrame(adjustScroll)
-      setTimeout(adjustScroll, 50) // fallback
+      setTimeout(adjustScroll, 50)
     }
   }, [])
+
+  const getHref = (item: Championship) => {
+    if (item.name === "Segunda Copa ADC") return "/copaadc"
+    return `/campeonatos/${item.slug}`
+  }
+
+  const isClickable = (item: Championship) => {
+    return item.name === "Segunda Copa ADC"
+  }
 
   return (
     <section className="w-full">
@@ -54,23 +62,37 @@ export default function UpcomingChampionships() {
         </p>
       </div>
 
-      {/* grid desktop */}
+      {/* desktop */}
       <div className="hidden md:grid grid-cols-4 lg:grid-cols-5 gap-5">
         {championships.map((item, i) => (
-          <Link key={i} href={`/campeonatos/${item.slug}`} onClick={(e) => e.preventDefault()} className="group cursor-pointer">
+          <Link
+            key={i}
+            href={getHref(item)}
+            onClick={(e) => {
+              if (!isClickable(item)) e.preventDefault()
+            }}
+            className="group cursor-pointer"
+          >
             <ChampionshipCard item={item} />
           </Link>
         ))}
       </div>
 
-      {/* scroll mobile */}
+      {/* mobile */}
       <div
         ref={scrollRef}
         className="md:hidden overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
       >
         <div className="flex gap-4 w-max px-1">
           {championships.map((item, i) => (
-            <Link key={i} href={`/campeonatos/${item.slug}`} onClick={(e) => e.preventDefault()} className="group cursor-pointer min-w-[120px]">
+            <Link
+              key={i}
+              href={getHref(item)}
+              onClick={(e) => {
+                if (!isClickable(item)) e.preventDefault()
+              }}
+              className="group cursor-pointer min-w-[120px]"
+            >
               <ChampionshipCard item={item} />
             </Link>
           ))}
@@ -86,7 +108,11 @@ function ChampionshipCard({ item }: { item: Championship }) {
       <div className="relative w-16 h-16 md:w-20 md:h-20 mb-2 rounded-full overflow-hidden border border-gray-200">
         <Image src={item.logo} alt={item.name} fill className="object-cover" />
       </div>
-      <h3 className="text-xs md:text-sm font-semibold leading-tight line-clamp-2">{item.name}</h3>
+
+      <h3 className="text-xs md:text-sm font-semibold leading-tight line-clamp-2">
+        {item.name}
+      </h3>
+
       <span
         className={`mt-1 text-[11px] font-semibold
         ${item.status === "open" && "text-green-600"}
@@ -110,6 +136,7 @@ function ChampionshipCard({ item }: { item: Championship }) {
           </div>
         </div>
       )}
+
       {item.status === "closed" && (
         <div className="mt-2 text-xs md:text-sm text-gray-600">
           <span className="text-gray-400">Início:</span> <strong>{item.startDate}</strong>
