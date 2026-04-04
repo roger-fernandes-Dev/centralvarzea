@@ -21,11 +21,29 @@ export default function Home() {
 
         {/* banner */}
         <section>
-          <div className="w-full bg-black py-3 mb-2">
-            <h2 className="text-center text-white font-semibold text-sm md:text-base tracking-wide">
-              A casa do futebol amador - Futebol de Várzea, Jogos e Campeonatos
-            </h2>
-          </div>
+          <div className="w-full mb-3">
+
+  <div className="bg-gray-100 rounded-lg px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 border border-gray-200 shadow-md">
+
+    {/* título principal */}
+    <h2
+      className="font-bold text-sm md:text-lg tracking-wide text-gray-900"
+      style={{ textShadow: "0 1px 2px rgba(0,0,0,0.25)" }}
+    >
+      A CASA DO FUTEBOL AMADOR
+    </h2>
+
+    {/* subtítulo */}
+    <p
+      className="text-[11px] md:text-sm text-gray-600"
+      style={{ textShadow: "0 1px 1px rgba(0,0,0,0.15)" }}
+    >
+      Futebol de várzea • Jogos • Campeonatos
+    </p>
+
+  </div>
+
+</div>
           <LoopBanner />
         </section>
 

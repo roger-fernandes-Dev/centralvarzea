@@ -17,58 +17,86 @@ export default function TimesPage() {
         { name: "Promi Informática", logo: "/times/promi_informatica.png", slug: "promi-informatica" },
         { name: "Unidos São João", logo: "/times/unidos_sao_joao.png", slug: "unidos-sao-joao" },
         { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" },
-        { name: "Sporting Guaiçara", logo: "/times/sporting-guaicarafc.png", slug: "sportingguaicara" },
         { name: "MEC", logo: "/times/mec.png", slug: "mec" },
+      ]
+    },
+    {
+      cidade: "Guaiçara",
+      times: [
+        { name: "Sporting Guaiçara", logo: "/times/sporting-guaicarafc.png", slug: "sportingguaicara" },
+        { name: "Magos", logo: "/times/magos.png", slug: "magos" },
       ]
     }
   ]
 
   return (
-    <div className="relative min-h-screen">
-      {/* FUNDO */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/fundo_clubs.png')" }}
-      />
-      <div className="absolute inset-0 bg-black/70" />
+    <div className="min-h-screen bg-gray-100">
 
-      {/* CONTEÚDO */}
-      <div className="relative z-10 p-4">
+      <div className="max-w-7xl mx-auto px-4 py-10">
 
         {/* HEADER */}
-        <header className="flex justify-between items-center mb-8 bg-black/60 backdrop-blur-sm p-4 rounded">
-          <h1 className="text-white text-xl font-bold">Times de Várzea</h1>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10 gap-4">
+
+          <div>
+            <h1 className="text-2xl md:text-4xl font-extrabold text-gray-900 uppercase tracking-wide">
+              Clubes de Várzea
+            </h1>
+            <p className="text-gray-500 text-sm">
+              Explore os times e suas histórias
+            </p>
+          </div>
+
           <Link
             href="/contato"
-            className="bg-yellow-500 text-black px-4 py-2 rounded font-semibold hover:bg-yellow-400 transition"
+            className="bg-black text-white px-5 py-2 rounded-md font-semibold hover:bg-gray-800 transition shadow"
           >
-            Inserir meu time
+            + Inserir meu time
           </Link>
-        </header>
 
-        {/* LISTA DE TIMES */}
+        </div>
+
+        {/* LISTA */}
         {dados.map((grupo, i) => (
-          <section key={i} className="mb-8">
-            <h2 className="text-white text-2xl font-bold mb-4">{grupo.cidade}</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <section key={i} className="mb-12">
+
+            {/* cidade */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-6 bg-black rounded"></div>
+              <h2 className="text-xl md:text-2xl font-bold text-gray-800">
+                {grupo.cidade}
+              </h2>
+            </div>
+
+            {/* grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5">
+
               {grupo.times.map((time, idx) => (
                 <Link
                   key={idx}
                   href={`/clubs/${time.slug}`}
-                  className="flex flex-col items-center bg-black/40 p-2 rounded hover:bg-black/60 transition"
+                  className="group bg-white rounded-xl p-4 flex flex-col items-center justify-center shadow hover:shadow-lg transition duration-300 border border-gray-100 hover:-translate-y-1"
                 >
-                  <div className="w-20 h-20 relative mb-2">
+
+                  {/* logo */}
+                  <div className="w-16 h-16 relative mb-3">
                     <Image
                       src={time.logo}
                       alt={time.name}
                       fill
-                      className="object-contain"
+                      className="object-contain group-hover:scale-110 transition"
                     />
                   </div>
-                  <span className="text-white text-center text-sm">{time.name}</span>
+
+                  {/* nome */}
+                  <span className="text-gray-800 text-sm text-center font-medium group-hover:text-black">
+                    {time.name}
+                  </span>
+
                 </Link>
               ))}
+
             </div>
+
           </section>
         ))}
 
