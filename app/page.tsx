@@ -7,10 +7,43 @@ import NextChampionships from "@/components/home/NextChampionships"
 import AdsRightClubs from "@/components/home/AdsRightClubs"
 import UpcomingChampionships from "@/components/home/UpCommingChampionships"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
+import Head from "next/head"
 
 export default function Home() {
   return (
     <>
+    <Head>
+        {/* Título da página */}
+        <title>Central Várzea - Futebol de Várzea, Jogos e Campeonatos</title>
+
+        {/* Meta description */}
+        <meta
+          name="description"
+          content="Portal completo de futebol de várzea com notícias, jogos e campeonatos. Acompanhe resultados, tabela de times e destaques do futebol amador."
+        />
+
+        {/* Meta keywords (opcional, mas pode ajudar) */}
+        <meta name="keywords" content="futebol, várzea, campeonato, times, jogos, resultados" />
+
+        {/* Controle de indexação */}
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph para Facebook, LinkedIn etc */}
+        <meta property="og:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
+        <meta property="og:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
+        <meta property="og:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
+        <meta property="og:url" content="https://www.centralvarzea.com.br/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
+        <meta name="twitter:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
+        <meta name="twitter:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className="max-w-7xl mx-auto px-4 space-y-6">
 
         {/* topo */}
@@ -26,12 +59,12 @@ export default function Home() {
   <div className="bg-gray-100 rounded-lg px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 border border-gray-200 shadow-md">
 
     {/* título principal */}
-    <h2
+    <h1
       className="font-bold text-sm md:text-lg tracking-wide text-gray-900"
       style={{ textShadow: "0 1px 2px rgba(0,0,0,0.25)" }}
     >
       A CASA DO FUTEBOL AMADOR
-    </h2>
+    </h1>
 
     {/* subtítulo */}
     <p
