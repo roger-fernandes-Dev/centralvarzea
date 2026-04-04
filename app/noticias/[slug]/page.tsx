@@ -3,30 +3,24 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 const noticiasData = {
-  "minicampo-promissao-inscricoes": {
-    title: "CAMPEONATO DE MINI CAMPO EM PROMISSÃO ABRE INSCRIÇÕES",
-    resumo: "Equipes já podem se inscrever entre os dias 30/03 e 07/04 para disputar a competição que promete movimentar o futebol de várzea na cidade.",
-    image: "/noticias/campeonatos/minicampopromissao.png",
-    team: {
-      name: "Mini Campo Promissão",
-      logo: "/campeonato/selt-minicampo.png",
-    },
-    content: `Promissão se prepara para receber mais uma importante competição do futebol de várzea. Estão oficialmente abertas as inscrições para o campeonato de mini campo, que promete reunir equipes da cidade em disputas marcadas por organização, competitividade e valorização do esporte local.
+  "goleiro-san-renova-amigos-do-futebol": {
+  title: "Goleiro SAN mantém legado e renova com Amigos do Futebol Clube",
+  resumo: "Destaque histórico da equipe, SAN seguirá defendendo o clube na próxima temporada, reforçando sua importância no elenco.",
+  image: "/noticias/amigosdofutebol/goleirosan.png",
+  team: {
+    name: "Amigos do Futebol Clube",
+    logo: "/times/amigos_do_futebol40.png",
+  },
+  content: `O goleiro SAN, destaque histórico da família Amigos do Futebol Clube, renovou seu vínculo com a equipe e seguirá defendendo o time na próxima temporada. Com trajetória marcada por defesas decisivas e liderança dentro da quadra, SAN se mantém como peça fundamental no elenco, reforçando a tradição de talentos formados pelo clube.
 
-O período de inscrição vai de 30 de março até 07 de abril, prazo em que dirigentes e responsáveis devem garantir a participação de suas equipes. A expectativa é de um torneio com alto nível técnico, incentivando a integração entre atletas e fortalecendo ainda mais a tradição do futebol amador.
+“É uma honra continuar vestindo a camisa do Amigos do Futebol. Aqui é a minha casa e quero ajudar o time a conquistar cada vez mais”, afirmou o goleiro.
 
-A competição surge como uma oportunidade para que novos talentos se destaquem, ao mesmo tempo em que movimenta a comunidade esportiva e atrai o interesse de torcedores.
-
-Equipes interessadas devem se organizar com antecedência, já que a tendência é de alta procura por vagas.
-
-Mais informações e atualizações estarão disponíveis na plataforma Central Várzea.
-
+A renovação confirma a confiança da diretoria no atleta, que segue como referência para os jovens e para os torcedores que acompanham o clube há anos. Com SAN entre os titulares, o Amigos do Futebol Clube mira novos desafios e mantém a expectativa de brigar por títulos.
 Nos siga agora no instagram: https://instagram.com/centralvarzea.of
-
 Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
 - Instagram: https://www.instagram.com/noticiaspromissao
 - Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
-  },
+},
   "jogo-cancelado-renuka-boleiros": {
     title: "JOGO CANCELADO: RENUKA ADC X BOLEIROS NÃO ACONTECE EM RESPEITO À PÁSCOA",
     resumo: "A partida marcada para o dia 05/04, na Arena ADC, foi cancelada em respeito ao Domingo de Páscoa.",

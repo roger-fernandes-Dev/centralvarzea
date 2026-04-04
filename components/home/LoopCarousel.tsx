@@ -23,6 +23,12 @@ export default function LoopCarousel() {
 
   const slides = [
     {
+      image: "/noticias/amigosdofutebol/goleirosan.png",
+      title: "Goleiro SAN renova com Amigos do Futebol Clube",
+      description: "Destaque histórico do clube, SAN seguirá defendendo a equipe na próxima temporada, reforçando seu legado e importância no elenco.",
+      link: "/noticias/goleiro-san-renova-amigos-do-futebol"
+    },
+    {
       image: "/noticias/campeonatos/minicampopromissao.png",
       title: "Campeonato de Mini Campo em Promissão abre inscrições",
       description: "Estão abertas, de 30/03 até 07/04, as inscrições para o campeonato de mini campo em Promissão, que promete reunir equipes da cidade e região em uma competição organizada e de alto nível.",
@@ -33,12 +39,6 @@ export default function LoopCarousel() {
       title: "Jogo entre Amigos do Futebol e Amigos da Bola é cancelado por chuva",
       description: "A partida em Avanhandava foi cancelada devido às fortes chuvas.",
       link: "/noticias/jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola"
-    },
-    {
-      image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
-      title: "Poder de reação: Sporting Guaiçara sai atrás, mas luta até o fim e empata",
-      description: "O Sporting Guaiçara mostrou poder de reação ao buscar o empate após sair atrás no placar.",
-      link: "/noticias"
     },
     {
       image: "/foto_taca.png",

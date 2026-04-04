@@ -38,6 +38,14 @@ export default function Noticias() {
 
   const noticias: Noticia[] = [
     {
+      title: "Goleiro SAN mantém legado e renova com Amigos do Futebol Clube",
+      image: "/noticias/amigosdofutebol/goleirosan.png",
+      slug: "goleiro-san-renova-amigos-do-futebol",
+      resumo: "Destaque histórico da equipe, SAN seguirá defendendo o clube na próxima temporada, reforçando sua importância no elenco.",
+      categoria: "Notícia",
+      data: new Date("2026-04-04T01:00:00")
+    },
+    {
       title: "Campeonato de Mini Campo em Promissão abre inscrições",
       image: "/noticias/campeonatos/minicampopromissao.png",
       slug: "minicampo-promissao-inscricoes",
@@ -60,14 +68,6 @@ export default function Noticias() {
       resumo: "O campo ficou sem condições de jogo...",
       categoria: "Clima",
       data: new Date("2026-04-01T07:00:00")
-    },
-    {
-      title: "Sporting Guaiçara mostra reação e empata",
-      image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
-      slug: "sporting-guaicara-empata-com-magos",
-      resumo: "Equipe buscou empate na raça...",
-      categoria: "Jogo",
-      data: new Date("2026-03-29T08:00:00")
     },
     {
       title: "Amigos do Futebol vence campeonato 50+",

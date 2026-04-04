@@ -42,24 +42,26 @@ export default function SportingGuaicaraPage() {
       {/* 🔳 camada branca (fundo) */}
       <div className="absolute inset-0 bg-white/90 -z-20" />
 
-      {/* 🟣 Marca d'água full screen */}
-      <div className="absolute inset-0 -z-10">
-        <Image
+      {/* 🟣 Marca d'água full screen
+      <Image
           src="/times/sporting_guaicara_logo.png"
           alt="Logo Sporting Guaicara"
           fill
           className="object-contain opacity-5"
-        />
+        /> */}
+      <div className="absolute inset-0 -z-10">
+        
       </div>
 
-      {/* 🔝 Banner topo */}
-      <div className="relative w-full h-[250px] md:h-[350px]">
-        <Image
+      {/* 🔝 Banner topo
+      <Image
           src="/clubs/sportingguaicara/timesportingguaicara.png"
           alt="Time Sporting Guaicara"
           fill
           className="object-contain"
-        />
+        /> */}
+      <div className="relative w-full h-[250px] md:h-[350px]">
+        
       </div>
 
       {/* 📦 Conteúdo */}
@@ -85,7 +87,6 @@ export default function SportingGuaicaraPage() {
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Sporting Guaiçara
             </h1>
           </div>
         </div>
