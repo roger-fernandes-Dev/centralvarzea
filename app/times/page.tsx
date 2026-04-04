@@ -26,6 +26,18 @@ export default function TimesPage() {
         { name: "Sporting Guaiçara", logo: "/times/sporting-guaicarafc.png", slug: "sportingguaicara" },
         { name: "Magos", logo: "/times/magos.png", slug: "magos" },
       ]
+    },
+    {
+      cidade: "Lins",
+      times: [
+        { name: "Max Elite", logo: "/times/maxelite.png", slug: "maxelite" },
+      ]
+    },
+    {
+      cidade: "Sabino",
+      times: [
+        { name: "Afirma", logo: "/times/afirma.png", slug: "Afirma" },
+      ]
     }
   ]
 
