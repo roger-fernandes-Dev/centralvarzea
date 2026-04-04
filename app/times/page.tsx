@@ -38,6 +38,18 @@ export default function TimesPage() {
       times: [
         { name: "Afirma", logo: "/times/afirma.png", slug: "Afirma" },
       ]
+    },
+    {
+      cidade: "Penápolis",
+      times: [
+        { name: "Cruzeiro do Salla", logo: "/times/cruzeirodosalla.png", slug: "cruzeirodosalla" },
+      ]
+    },
+    {
+      cidade: "Barbosa",
+      times: [
+        { name: "Amigos da Vila", logo: "/times/amigosdavila.png", slug: "amigosdavila" },
+      ]
     }
   ]
 

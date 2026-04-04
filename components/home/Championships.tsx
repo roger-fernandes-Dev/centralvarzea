@@ -6,6 +6,17 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/amigosdavila.png",
+      home: "Amigos da Vila",
+      awayLogo: "/times/cruzeirodosalla.png",
+      away: "Cruzeiro do Salla",
+      score: "15 x 6",
+      type: "Amistoso",
+      date: "04/04",
+      time: "16:00",
+      local: "Centro de lazer(barbosa)"
+    },
+    {
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da bola",
       awayLogo: "/times/falcoes.png",
