@@ -27,7 +27,8 @@ export default function LoopBanner() {
     "/cegseguros.png",
     "/wideroma.png",
     "/suplementlins.png",
-    "/widealameda.png"
+    "/widealameda.png",
+    "/bormioesilva.png"
   ]
 
   return (
