@@ -81,6 +81,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body className="bg-gray-100 text-gray-900">
         <script
           type="application/ld+json"
