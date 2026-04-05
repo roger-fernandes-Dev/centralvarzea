@@ -3,6 +3,29 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 const noticiasData = {
+  "renuka-adc-amistoso-ousadia-evolucao": {
+  title: "Renuka ADC utiliza amistoso como teste e foca na evolução da equipe",
+  resumo: "Em partida realizada na Arena ADC, a equipe enfrentou o Ousadia em um amistoso de preparação e utilizou o confronto para ajustes e ganho de ritmo.",
+  image: "/noticias/renukaadc/renuka_ousadia.png",
+  team: {
+    name: "Renuka ADC",
+    logo: "/times/renukaadc.png",
+  },
+  content: `Em um amistoso realizado na Arena ADC, na manhã deste domingo, o Renuka ADC entrou em campo para mais um importante teste de preparação, enfrentando a equipe do Ousadia. A partida, que teve início após as 9h devido a um pequeno atraso, serviu como oportunidade para ajustes e observações visando a sequência da temporada.
+
+Mesmo diante de um placar adverso, o confronto foi tratado internamente como um treino de alto nível, permitindo à comissão técnica avaliar o comportamento do time em diferentes situações de jogo. A equipe buscou manter sua proposta em campo e não deixou de competir, demonstrando entrega durante toda a partida.
+
+Os gols marcados pelo Renuka ADC reforçam o potencial ofensivo do grupo, que segue trabalhando para aprimorar o entrosamento e a consistência ao longo dos jogos. Em compromissos preparatórios como este, o resultado acaba ficando em segundo plano, enquanto o foco principal está no desenvolvimento coletivo e individual dos atletas.
+
+A comissão técnica destacou a importância de enfrentar adversários qualificados neste momento, entendendo que jogos assim contribuem diretamente para a evolução da equipe. A expectativa é de que o grupo siga crescendo, corrigindo detalhes e ganhando ritmo para os desafios que virão ao longo da temporada.
+
+Com a sequência de treinamentos e amistosos, o Renuka ADC mantém o foco no aprimoramento, utilizando cada partida como um passo importante na construção de um time mais competitivo.
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
+},
   "goleiro-san-renova-amigos-do-futebol": {
   title: "Goleiro SAN mantém legado e renova com Amigos do Futebol Clube",
   resumo: "Destaque histórico da equipe, SAN seguirá defendendo o clube na próxima temporada, reforçando sua importância no elenco.",
@@ -60,36 +83,7 @@ Nos siga agora no instagram: https://instagram.com/centralvarzea.of
 Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
 - Instagram: https://www.instagram.com/noticiaspromissao
 - Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
-
-  },
-  "sporting-guaicara-empata-com-magos": {
-    title: "REAÇÃO DE GIGANTE: SPORTING GUAIÇARA BUSCA EMPATE NA RAÇA APÓS SAIR ATRÁS",
-    resumo: "O Sporting Guaíçara mostrou poder de reação ao buscar o empate após sair atrás no placar.",
-    image: "/noticias/sportingguaicara/spotingguaicaraempatecontramagos.png",
-    team: {
-      name: "Sporting Guaíçara",
-      logo: "/times/sporting-guaicarafc.png",
-    },
-    content: `Em uma partida marcada por intensidade, superação e muita emoção, o Sporting Guaíçara mostrou que não desiste fácil. Mesmo começando o jogo em desvantagem, a equipe demonstrou personalidade dentro de campo e arrancou um empate que teve gosto de vitória para quem acompanhou de perto.
-
-Logo nos primeiros minutos, o adversário aproveitou uma falha defensiva e abriu o placar, colocando pressão sobre o Sporting. O gol sofrido poderia ter abalado qualquer equipe, mas não foi o caso. O time de Guaíçara manteve a calma, reorganizou suas linhas e começou a crescer no jogo, buscando espaços e tentando impor seu ritmo.
-
-A partir da metade do primeiro tempo, o Sporting já mostrava outra postura. Com mais posse de bola e presença ofensiva, passou a levar perigo constante, obrigando o adversário a recuar. A torcida, sempre presente, começou a empurrar o time, criando um clima de apoio que fez a diferença.
-
-Na segunda etapa, o cenário ficou ainda mais claro: só dava Sporting. A equipe voltou mais agressiva, pressionando desde a saída de bola e criando boas oportunidades. O empate parecia questão de tempo — e veio. Após uma jogada bem trabalhada, o gol saiu para coroar a insistência e a entrega dos jogadores.
-
-Depois de igualar o placar, o Sporting ainda seguiu em busca da virada, mostrando ambição e confiança até o apito final. Apesar de não conseguir a vitória, a atuação deixou uma mensagem forte: o time tem força, união e espírito de luta.
-
-O empate pode até não refletir totalmente o domínio apresentado em boa parte do jogo, mas evidencia algo ainda mais importante — a capacidade de reação. E, no futebol de várzea, isso vale muito.
-
-O Sporting Guaíçara sai de campo com moral elevada, reforçando sua identidade competitiva e mostrando que, independentemente das circunstâncias, sempre vai lutar até o fim.Você também pode acompanhar todas as novidades e conteúdos através das nossas redes sociais:
-
-Nos siga agora no instagram: https://instagram.com/centralvarzea.of
-
-Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
-- Instagram: https://www.instagram.com/noticiaspromissao
-- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
-  },
+},
   "amigos-do-futebol-vence-campeonato": {
     title: "Amigos do Futebol vence campeonato 50+",
     resumo: "Partida intensa",

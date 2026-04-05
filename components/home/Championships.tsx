@@ -6,6 +6,28 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/bemamigos.png",
+      home: "Bem Amigos",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      score: "4 x 8",
+      type: "Amistoso",
+      date: "04/04",
+      time: "16:30",
+      local: "Arena ADC"
+    },
+    {
+      homeLogo: "/times/meninos_da_vila.png",
+      home: "meninos da vila",
+      awayLogo: "/times/aguias_de_Deus.png",
+      away: "Águias de Deus",
+      score: "7 x 4",
+      type: "Amistoso",
+      date: "0/04",
+      time: "08:30",
+      local: "Arena ADC"
+    },
+    {
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/ousadiafc.png",
@@ -15,6 +37,17 @@ export default function Championships({ matches }: any) {
       date: "05/04",
       time: "08:30",
       local: "Arena ADC"
+    },
+    {
+      homeLogo: "/times/the_best.png",
+      home: "The best",
+      awayLogo: "/times/quebrada_fc.png",
+      away: "Quebrada FC",
+      score: "9 x 7",
+      type: "Amistoso",
+      date: "05/04",
+      time: "08:00",
+      local: "Golden Ball - Guaiçara"
     },
     {
       homeLogo: "/times/amigosdavila.png",

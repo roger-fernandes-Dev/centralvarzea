@@ -23,6 +23,12 @@ export default function LoopCarousel() {
 
   const slides = [
     {
+      image: "/noticias/renukaadc/renuka_ousadia.png",
+      title: "Renuka ADC aposta em aprendizado após amistoso contra o Ousadia",
+      description: "Em jogo realizado na Arena ADC, equipe utilizou o amistoso como preparação, reforçando o foco no desenvolvimento e na evolução ao longo da temporada.",
+      link: "/noticias/renuka-adc-amistoso-ousadia-evolucao"
+    },
+    {
       image: "/noticias/amigosdofutebol/goleirosan.png",
       title: "Goleiro SAN renova com Amigos do Futebol Clube",
       description: "Destaque histórico do clube, SAN seguirá defendendo a equipe na próxima temporada, reforçando seu legado e importância no elenco.",
