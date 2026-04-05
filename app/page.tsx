@@ -7,46 +7,14 @@ import NextChampionships from "@/components/home/NextChampionships"
 import AdsRightClubs from "@/components/home/AdsRightClubs"
 import UpcomingChampionships from "@/components/home/UpCommingChampionships"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
-import Head from "next/head"
+import SEOHead from "@/components/SeoHead"
 
 export default function Home() {
   return (
     <>
-    <Head>
-      {/* Título da página */}
-      <title>Central Várzea - Futebol de Várzea, Jogos e Campeonatos</title>
 
-      {/* Meta description */}
-      <meta
-        name="description"
-        content="Portal completo de futebol de várzea com notícias, jogos e campeonatos. Acompanhe resultados, tabela de times e destaques do futebol amador."
-      />
-
-      {/* Meta keywords */}
-      <meta name="keywords" content="futebol, várzea, campeonato, times, jogos, resultados" />
-
-      {/* Controle de indexação */}
-      <meta name="robots" content="index, follow" />
-
-      {/* Canonical */}
-      <link rel="canonical" href="https://www.centralvarzea.com.br/" />
-
-      {/* Open Graph */}
-      <meta property="og:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
-      <meta property="og:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
-      <meta property="og:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
-      <meta property="og:url" content="https://www.centralvarzea.com.br/" />
-      <meta property="og:type" content="website" />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Central Várzea - Futebol de Várzea, Jogos e Campeonatos" />
-      <meta name="twitter:description" content="Portal completo de futebol de várzea com notícias, jogos e campeonatos." />
-      <meta name="twitter:image" content="https://www.centralvarzea.com.br/central_varzea.png" />
-
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <SEOHead />
+    
       <div className="max-w-7xl mx-auto px-4 space-y-6">
 
         {/* topo */}
