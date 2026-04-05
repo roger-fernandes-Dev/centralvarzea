@@ -43,7 +43,7 @@ export default function Noticias() {
       slug: "renuka-adc-amistoso-ousadia-evolucao",
       resumo: "Em partida realizada na Arena ADC, equipe enfrentou o Ousadia em um amistoso de preparação e utilizou o confronto para ajustes e ganho de ritmo.",
       categoria: "Notícia",
-      data: new Date("2026-04-05T09:30:00")
+      data: new Date("2026-04-05T12:00:00")
     },
     {
       title: "Goleiro SAN mantém legado e renova com Amigos do Futebol Clube",
