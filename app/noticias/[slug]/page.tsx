@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { Metadata } from "next"
 
 const noticiasData = {
   "renuka-adc-amistoso-ousadia-evolucao": {
@@ -115,8 +116,6 @@ Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
 
 type Slug = keyof typeof noticiasData
 
-import { Metadata } from "next"
-
 export async function generateMetadata({
   params,
 }: {
@@ -132,7 +131,11 @@ export async function generateMetadata({
   }
 
   const url = `https://www.centralvarzea.com.br/noticias/${params.slug}`
-  const imageUrl = `https://www.centralvarzea.com.br${noticia.image}`
+
+  // garante que a imagem é absoluta
+  const imageUrl = noticia.image.startsWith("http")
+    ? noticia.image
+    : `https://www.centralvarzea.com.br${noticia.image}`
 
   return {
     title: noticia.title,
@@ -143,15 +146,14 @@ export async function generateMetadata({
       description: noticia.resumo,
       url: url,
       siteName: "Central Várzea",
-
       type: "article",
-      authors: ["Central Várzea"],
 
       images: [
         {
           url: imageUrl,
           width: 1200,
           height: 630,
+          alt: noticia.title,
         },
       ],
     },
