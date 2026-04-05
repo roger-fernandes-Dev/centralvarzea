@@ -24,6 +24,7 @@ export default function UpcomingChampionships() {
     { name: "Copa Ferradura 2026", logo: "/campeonato/copaferradura.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "copa-ferradura", status: "running" },
     { name: "Super Master Guaiçara", logo: "/campeonato/supermaster-guaicara.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "supermaster-guaicara", status: "running" },
     { name: "Copa Guararapes", logo: "/campeonato/copa-guararapes.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "soon" },
+    { name: "Copa Futsal infantil ourinhos", logo: "/campeonato/copafutsalinfantilourinhos.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "running" },
     
   ]
 

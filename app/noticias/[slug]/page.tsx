@@ -115,6 +115,51 @@ Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
 
 type Slug = keyof typeof noticiasData
 
+import { Metadata } from "next"
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+
+  const noticia = noticiasData[params.slug as Slug]
+
+  if (!noticia) {
+    return {
+      title: "Notícia não encontrada",
+    }
+  }
+
+  const url = `https://www.centralvarzea.com.br/noticias/${params.slug}`
+
+  return {
+    title: noticia.title,
+    description: noticia.resumo,
+
+    openGraph: {
+      title: noticia.title,
+      description: noticia.resumo,
+      url: url,
+      siteName: "Central Várzea",
+      images: [
+        {
+          url: `https://www.centralvarzea.com.br${noticia.image}`, // 🔥 importante
+          width: 1200,
+          height: 630,
+        },
+      ],
+      type: "article",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: noticia.title,
+      description: noticia.resumo,
+      images: [`https://www.centralvarzea.com.br${noticia.image}`],
+    },
+  }
+}
 
 export default async function Page({
   params,
