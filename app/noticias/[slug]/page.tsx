@@ -91,7 +91,7 @@ Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
     image: "/noticias/amigosdofutebol/foto_taca.png",
     team: {
       name: "amigos do futebol",
-      logo: "/times/amigos_do_futebol40+.png"
+      logo: "/times/amigos_do_futebol40.png"
     },
     content: `Em uma final digna de aplausos, o Amigos do Futebol mostrou que experiência e qualidade ainda fazem toda a diferença dentro de campo. A equipe entrou determinada e conquistou o título do campeonato 50+ após uma atuação sólida, marcada por inteligência tática, união e muita entrega.
 
@@ -119,10 +119,12 @@ type Slug = keyof typeof noticiasData
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }): Promise<Metadata> {
 
-  const noticia = noticiasData[params.slug as Slug]
+  const { slug } = await params
+
+  const noticia = noticiasData[slug as Slug]
 
   if (!noticia) {
     return {
@@ -130,9 +132,8 @@ export async function generateMetadata({
     }
   }
 
-  const url = `https://www.centralvarzea.com.br/noticias/${params.slug}`
+  const url = `https://www.centralvarzea.com.br/noticias/${slug}`
 
-  // garante que a imagem é absoluta
   const imageUrl = noticia.image.startsWith("http")
     ? noticia.image
     : `https://www.centralvarzea.com.br${noticia.image}`
@@ -144,10 +145,9 @@ export async function generateMetadata({
     openGraph: {
       title: noticia.title,
       description: noticia.resumo,
-      url: url,
+      url,
       siteName: "Central Várzea",
       type: "article",
-
       images: [
         {
           url: imageUrl,
@@ -176,7 +176,6 @@ export default async function Page({
 
   const noticia = noticiasData[slug as Slug]
 
-  // 🔥 ajuste seguro (evita bug de undefined)
   if (!slug || !noticia) return notFound()
 
   const relacionadas = Object.entries(noticiasData)
@@ -201,11 +200,18 @@ export default async function Page({
       </div>
 
       <div className="relative w-full h-64 md:h-96 mt-6 rounded-lg overflow-hidden">
-        <Image src={noticia.image} alt={noticia.title} fill className="object-cover" />
+        <Image
+          src={noticia.image}
+          alt={noticia.title}
+          fill
+          className="object-cover"
+          priority
+        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-8 mt-10">
 
+        {/* LEFT ADS */}
         <aside className="hidden lg:flex flex-col items-center">
           <div className="sticky top-24 flex flex-col gap-24">
             <div className="w-[160px] h-[250px] relative">
@@ -217,65 +223,70 @@ export default async function Page({
           </div>
         </aside>
 
+        {/* ARTICLE */}
         <article>
           <div className="max-w-2xl mx-auto text-[17px] leading-8 text-gray-800 space-y-6">
-            {noticia.content.split("\n").map((p, i) => (
-              <div key={i}>
-                {p.includes("https://") ? (
-                  <p className="text-justify">
-                    {p.split("https://")[0]}
-                    <a
-                      href={`https://${p.split("https://")[1]}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 underline hover:text-blue-800"
-                    >
-                      {`https://${p.split("https://")[1]}`}
-                    </a>
-                  </p>
-                ) : (
-                  <p className="text-justify">{p}</p>
-                )}
+            {noticia.content.split("\n").map((p, i) => {
 
-                {i === 1 && (
-                  <div className="flex flex-col items-center my-8 gap-4">
+              const urlMatch = p.match(/https?:\/\/\S+/)
 
-                    <div className="flex flex-col items-center gap-2">
-                      <Image
-                        src={noticia.team?.logo || "/logos/default.png"}
-                        alt={noticia.team?.name}
-                        width={120}
-                        height={120}
-                        className="rounded-full shadow-md"
-                      />
-                      <span className="text-sm text-gray-500">
-                        {noticia.team?.name}
-                      </span>
+              return (
+                <div key={i}>
+                  {urlMatch ? (
+                    <p className="text-justify">
+                      {p.replace(urlMatch[0], "")}
+                      <a
+                        href={urlMatch[0]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline hover:text-blue-800"
+                      >
+                        {urlMatch[0]}
+                      </a>
+                    </p>
+                  ) : (
+                    <p className="text-justify">{p}</p>
+                  )}
+
+                  {i === 1 && (
+                    <div className="flex flex-col items-center my-8 gap-4">
+
+                      <div className="flex flex-col items-center gap-2">
+                        <Image
+                          src={noticia.team?.logo || "/logos/default.png"}
+                          alt={noticia.team?.name}
+                          width={120}
+                          height={120}
+                          className="rounded-full shadow-md"
+                        />
+                        <span className="text-sm text-gray-500">
+                          {noticia.team?.name}
+                        </span>
+                      </div>
+
+                      {/* MOBILE ADS */}
+                      <div className="grid grid-cols-2 gap-2 w-full max-w-xs lg:hidden">
+                        {[
+                          "/pedireitoad/pedireitoad.png",
+                          "/amopad/amopad.png",
+                          "/cegsegurosad/cegsegurosad.png",
+                          "/suplementelinsad/suplementelinsad.png",
+                        ].map((src, idx) => (
+                          <div key={idx} className="w-full aspect-[160/250] relative bg-white">
+                            <Image src={src} alt="" fill className="object-contain rounded-md" />
+                          </div>
+                        ))}
+                      </div>
+
                     </div>
-
-                    {/* MOBILE ADS 2x2 */}
-                    <div className="grid grid-cols-2 gap-2 w-full max-w-xs lg:hidden">
-                      <div className="w-full aspect-[160/250] relative bg-white">
-                        <Image src="/pedireitoad/pedireitoad.png" alt="" fill className="object-contain rounded-md" />
-                      </div>
-                      <div className="w-full aspect-[160/250] relative bg-white">
-                        <Image src="/amopad/amopad.png" alt="" fill className="object-contain rounded-md" />
-                      </div>
-                      <div className="w-full aspect-[160/250] relative bg-white">
-                        <Image src="/cegsegurosad/cegsegurosad.png" alt="" fill className="object-contain rounded-md" />
-                      </div>
-                      <div className="w-full aspect-[160/250] relative bg-white">
-                        <Image src="/suplementelinsad/suplementelinsad.png" alt="" fill className="object-contain rounded-md" />
-                      </div>
-                    </div>
-
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              )
+            })}
           </div>
         </article>
 
+        {/* RIGHT ADS */}
         <aside className="hidden lg:flex flex-col items-center">
           <div className="sticky top-24 flex flex-col gap-24">
             <div className="w-[160px] h-[250px] relative">
@@ -289,6 +300,7 @@ export default async function Page({
 
       </div>
 
+      {/* RELACIONADAS */}
       {relacionadas.length > 0 && (
         <section className="mt-16">
           <div className="max-w-6xl mx-auto">
@@ -300,28 +312,22 @@ export default async function Page({
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
               {relacionadas.map(([key, item]) => (
-                <Link
-                  key={key}
-                  href={`/noticias/${key}`}
-                  className="group block"
-                >
-                  <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+                <Link key={key} href={`/noticias/${key}`} className="group block">
 
+                  <div className="relative w-full aspect-video rounded-lg overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
                       className="object-cover object-center transition duration-500 group-hover:scale-105"
                     />
-
-                    {/* overlay mais leve */}
                     <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/0"></div>
-
                   </div>
 
                   <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">
                     {item.title}
                   </h3>
+
                 </Link>
               ))}
 

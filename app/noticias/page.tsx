@@ -51,14 +51,6 @@ export default function Noticias() {
       slug: "goleiro-san-renova-amigos-do-futebol",
       resumo: "Destaque histórico da equipe, SAN seguirá defendendo o clube na próxima temporada, reforçando sua importância no elenco.",
       categoria: "Notícia",
-      data: new Date("2026-04-05T08:00:00")
-    },
-    {
-      title: "Goleiro SAN mantém legado e renova com Amigos do Futebol Clube",
-      image: "/noticias/amigosdofutebol/goleirosan.png",
-      slug: "goleiro-san-renova-amigos-do-futebol",
-      resumo: "Destaque histórico da equipe, SAN seguirá defendendo o clube na próxima temporada, reforçando sua importância no elenco.",
-      categoria: "Notícia",
       data: new Date("2026-04-04T01:00:00")
     },
     {
