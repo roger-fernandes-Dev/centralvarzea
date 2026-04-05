@@ -7,21 +7,22 @@ import type { Metadata } from "next"
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.centralvarzea.com.br"),
 
-  title: "Central Várzea - Futebol de Várzea, Jogos e Campeonatos",
+  title: {
+    default: "A CASA DO FUTEBOL AMADOR | Central Várzea",
+    template: "%s | Central Várzea",
+  },
+
   description:
-    "Portal completo de futebol de várzea com notícias, jogos, campeonatos, times, árbitros e federações da sua região.",
+    "A casa do futebol amador. Notícias, jogos, campeonatos e tudo sobre a várzea.",
+
+  applicationName: "Central Várzea",
 
   keywords: [
     "futebol várzea",
-    "varzea",
-    "times de várzea",
-    "campeonatos de várzea",
-    "jogos de várzea",
     "futebol amador",
-    "times amadores",
-    "árbitros futebol",
-    "federações futebol",
-    "notícias futebol várzea",
+    "campeonatos de várzea",
+    "times de várzea",
+    "notícias várzea",
   ],
 
   authors: [{ name: "Central Várzea" }],
@@ -29,10 +30,14 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 
   alternates: {
-    canonical: "/",
+    canonical: "https://www.centralvarzea.com.br",
   },
 
   icons: {
@@ -42,9 +47,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Central Várzea - Futebol de Várzea",
+    title: "A CASA DO FUTEBOL AMADOR | Central Várzea",
     description:
-      "Acompanhe tudo sobre futebol de várzea: jogos, campeonatos, times, árbitros e notícias atualizadas.",
+      "Acompanhe tudo sobre futebol de várzea: jogos, campeonatos e notícias atualizadas.",
     url: "https://www.centralvarzea.com.br",
     siteName: "Central Várzea",
     locale: "pt_BR",
@@ -52,7 +57,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: "/og-image.jpg", // 👈 coloca uma imagem padrão aqui
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Central Várzea",
@@ -62,7 +67,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.jpg"],
+    title: "A CASA DO FUTEBOL AMADOR",
+    description: "Tudo sobre futebol de várzea",
+    images: ["/og-image.png"],
   },
 }
 
@@ -74,6 +81,18 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className="bg-gray-100 text-gray-900">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Central Várzea",
+              alternateName: "A CASA DO FUTEBOL AMADOR",
+              url: "https://www.centralvarzea.com.br",
+            }),
+          }}
+        />
 
         {/* Google Analytics */}
         <Script
