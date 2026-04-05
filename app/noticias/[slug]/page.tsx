@@ -132,6 +132,7 @@ export async function generateMetadata({
   }
 
   const url = `https://www.centralvarzea.com.br/noticias/${params.slug}`
+  const imageUrl = `https://www.centralvarzea.com.br${noticia.image}`
 
   return {
     title: noticia.title,
@@ -142,21 +143,24 @@ export async function generateMetadata({
       description: noticia.resumo,
       url: url,
       siteName: "Central Várzea",
+
+      type: "article",
+      authors: ["Central Várzea"],
+
       images: [
         {
-          url: `https://www.centralvarzea.com.br${noticia.image}`, // 🔥 importante
+          url: imageUrl,
           width: 1200,
           height: 630,
         },
       ],
-      type: "article",
     },
 
     twitter: {
       card: "summary_large_image",
       title: noticia.title,
       description: noticia.resumo,
-      images: [`https://www.centralvarzea.com.br${noticia.image}`],
+      images: [imageUrl],
     },
   }
 }
