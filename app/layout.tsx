@@ -5,6 +5,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
+
   metadataBase: new URL("https://www.centralvarzea.com.br"),
 
   title: {
@@ -41,9 +42,10 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
   },
 
   openGraph: {
@@ -72,7 +74,6 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
 }
-
 export default function RootLayout({
   children,
 }: {
