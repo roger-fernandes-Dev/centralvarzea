@@ -6,6 +6,36 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/juventus.png",
+      home: "Juventus",
+      awayLogo: "/times/claudineimotos.png",
+      away: "Claudinei Motos",
+      date: "11/04",
+      time: "16:00",
+      local: "Arena Del Rey",
+      type: "Amistoso"
+    },
+    {
+      homeLogo: "/times/mec.png",
+      home: "MEC",
+      awayLogo: "/times/afirma.png",
+      away: "FIRMA",
+      date: "12/04",
+      time: "07:30",
+      local: "Arena ADC",
+      type: "Amistoso"
+    },
+    {
+      homeLogo: "/times/mancheslins.png",
+      home: "Manches Lins",
+      awayLogo: "/times/molecada.png",
+      away: "Molecada",
+      date: "12/04",
+      time: "10:00",
+      local: "Psetto Stadium",
+      type: "Copa Bá"
+    },
+    {
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/casinhafc.png",
