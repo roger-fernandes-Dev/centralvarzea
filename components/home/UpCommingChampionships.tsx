@@ -25,6 +25,7 @@ export default function UpcomingChampionships() {
     { name: "Super Master Guaiçara", logo: "/campeonato/supermaster-guaicara.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "supermaster-guaicara", status: "running" },
     { name: "Copa Guararapes", logo: "/campeonato/copa-guararapes.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "soon" },
     { name: "Copa Futsal infantil ourinhos", logo: "/campeonato/copafutsalinfantilourinhos.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "running" },
+    { name: "Copa Bá", logo: "/campeonato/copaba.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-ba", status: "running" },
     
   ]
 
