@@ -61,9 +61,49 @@ export default function NextChampionships({ matches = [] }: any) {
       awayLogo: "/times/afirma.png",
       away: "FIRMA",
       date: "12/04",
-      time: "07:30",
+      time: "08:00",
+      local: "Arena ADC - Campo A",
+      type: "Copa ADC"
+    },
+    {
+      homeLogo: "/times/amigos_da_bola.png",
+      home: "Amigos da Bola",
+      awayLogo: "/times/amigos_do_futebol40.png",
+      away: "Amigos do Futebol",
+      date: "12/04",
+      time: "08:20",
       local: "Arena ADC",
       type: "Amistoso"
+    },
+    {
+      homeLogo: "/times/aguias_de_Deus.png",
+      home: "Aguias de Deus",
+      awayLogo: "/times/maxelite.png",
+      away: "Max Elite",
+      date: "12/04",
+      time: "08:00",
+      local: "Arena ADC - Campo A",
+      type: "Copa ADC"
+    },
+    {
+      homeLogo: "/times/renukaadc.png",
+      home: "Renuka ADC",
+      awayLogo: "/times/napoli.png",
+      away: "Napoli",
+      date: "12/04",
+      time: "08:00",
+      local: "Arena ADC - Campo B",
+      type: "Copa ADC"
+    },
+    {
+      homeLogo: "/times/casinhafc.png",
+      home: "Casinha FC",
+      awayLogo: "/times/unidos_sao_joao.png",
+      away: "Unidos São João",
+      date: "12/04",
+      time: "08:00",
+      local: "Arena ADC - Campo B",
+      type: "Copa ADC"
     },
     {
       homeLogo: "/times/mancheslins.png",
@@ -72,7 +112,7 @@ export default function NextChampionships({ matches = [] }: any) {
       away: "Molecada",
       date: "12/04",
       time: "10:00",
-      local: "Psetto Stadium",
+      local: "Pasetto Stadium",
       type: "Copa Bá"
     },
     {
@@ -94,6 +134,46 @@ export default function NextChampionships({ matches = [] }: any) {
       time: "19:15",
       local: "Lago Azul - Penápolis",
       type: "Minicampo veteranos"
+    },
+    {
+      homeLogo: "/times/nova_alianca.png",
+      home: "Nova Aliança",
+      awayLogo: "/times/point.png",
+      away: "Point",
+      date: "19/04",
+      time: "08:00",
+      local: "Arena ADC - Campo A",
+      type: "Copa ADC"
+    },
+    {
+      homeLogo: "/times/boleirosfc.png",
+      home: "Boleiros",
+      awayLogo: "/times/os_paraibas.png",
+      away: "Os Paraíbas",
+      date: "19/04",
+      time: "08:00",
+      local: "Arena ADC - Campo A",
+      type: "Copa ADC"
+    },
+    {
+      homeLogo: "/times/sporting-guaicarafc.png",
+      home: "Sporting Guaiçara",
+      awayLogo: "/times/the_best.png",
+      away: "The Best",
+      date: "19/04",
+      time: "08:00",
+      local: "Arena ADC - Campo B",
+      type: "Copa ADC"
+    },
+    {
+      homeLogo: "/times/magos.png",
+      home: "Magos",
+      awayLogo: "/times/raiz_esportiva.png",
+      away: "Raiz Esportiva",
+      date: "19/04",
+      time: "08:00",
+      local: "Arena ADC - Campo B",
+      type: "Copa ADC"
     },
   ]
 
