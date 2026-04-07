@@ -16,6 +16,46 @@ export default function NextChampionships({ matches = [] }: any) {
       type: "Amistoso"
     },
     {
+      homeLogo: "/times/mexico.png",
+      home: "México",
+      awayLogo: "/times/novazelandia.png",
+      away: "Nova Zelandias",
+      date: "07/04",
+      time: "20:30",
+      local: "Lago Azul",
+      type: "Minicampo veteranos"
+    },
+    {
+      homeLogo: "/times/alemanha.png",
+      home: "Alemanha",
+      awayLogo: "/times/colombia.png",
+      away: "Colombia",
+      date: "08/04",
+      time: "17:15",
+      local: "Lago Azul",
+      type: "Minicampo veteranos"
+    },
+    {
+      homeLogo: "/times/espanha.png",
+      home: "Espanha",
+      awayLogo: "/times/usa.png",
+      away: "Estados Unidos",
+      date: "08/04",
+      time: "20:30",
+      local: "Lago Azul",
+      type: "Minicampo veteranos"
+    },
+    {
+      homeLogo: "/times/uruguai.png",
+      home: "Uruguai",
+      awayLogo: "/times/marrocos.png",
+      away: "Marrocos",
+      date: "09/04",
+      time: "20:30",
+      local: "Lago Azul",
+      type: "Minicampo veteranos"
+    },
+    {
       homeLogo: "/times/mec.png",
       home: "MEC",
       awayLogo: "/times/afirma.png",
@@ -44,7 +84,17 @@ export default function NextChampionships({ matches = [] }: any) {
       time: "08:30",
       local: "Arena ADC",
       type: "Amistoso"
-    }
+    },
+    {
+      homeLogo: "/times/haiti.png",
+      home: "Haiti",
+      awayLogo: "/times/franca.png",
+      away: "França",
+      date: "14/04",
+      time: "19:15",
+      local: "Lago Azul",
+      type: "Minicampo veteranos"
+    },
   ]
 
   const data = matches.length ? matches : fallback
