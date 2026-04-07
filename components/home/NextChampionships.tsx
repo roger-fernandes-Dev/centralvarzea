@@ -22,7 +22,7 @@ export default function NextChampionships({ matches = [] }: any) {
       away: "Nova Zelandias",
       date: "07/04",
       time: "20:30",
-      local: "Lago Azul",
+      local: "Lago Azul - Penápolis",
       type: "Minicampo veteranos"
     },
     {
@@ -32,7 +32,7 @@ export default function NextChampionships({ matches = [] }: any) {
       away: "Colombia",
       date: "08/04",
       time: "17:15",
-      local: "Lago Azul",
+      local: "Lago Azul - Penápolis",
       type: "Minicampo veteranos"
     },
     {
@@ -42,7 +42,7 @@ export default function NextChampionships({ matches = [] }: any) {
       away: "Estados Unidos",
       date: "08/04",
       time: "20:30",
-      local: "Lago Azul",
+      local: "Lago Azul - Penápolis",
       type: "Minicampo veteranos"
     },
     {
@@ -52,7 +52,7 @@ export default function NextChampionships({ matches = [] }: any) {
       away: "Marrocos",
       date: "09/04",
       time: "20:30",
-      local: "Lago Azul",
+      local: "Lago Azul - Penápolis",
       type: "Minicampo veteranos"
     },
     {
@@ -92,7 +92,7 @@ export default function NextChampionships({ matches = [] }: any) {
       away: "França",
       date: "14/04",
       time: "19:15",
-      local: "Lago Azul",
+      local: "Lago Azul - Penápolis",
       type: "Minicampo veteranos"
     },
   ]
