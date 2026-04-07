@@ -32,9 +32,8 @@ export default function VerticalCarousel() {
 
           {[
             "/cegseguros.png",
-            "/pe_direito.png",
+            "/suplementelinsad/promosuplemente.png",
             "/suplementlins.png",
-            "/wideh6.png"
           ].map((src, i) => (
             <div key={i} className="h-full min-h-full relative">
 
