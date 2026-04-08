@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "jogo-cancelado-renuka-boleiros",
     "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
     "amigos-do-futebol-vence-campeonato",
+    "amigos-do-futebol-x-amigos-da-bola-adiado-adc"
     // 👉 adiciona novos slugs aqui
   ]
 
