@@ -74,10 +74,10 @@ const groups: Group[] = [
       { name: "Magos FC", short: "MAG", logo: "/times/magos.png", pts: 0, pj: 0, sg: 0 },
       { name: "Sporting Guaiçara", short: "SGC", logo: "/times/sporting-guaicarafc.png", pts: 0, pj: 0, sg: 0 },
       { name: "The Best", short: "TBT", logo: "/times/the_best.png", pts: 0, pj: 0, sg: 0 },
-      { name: "Raiz Esportiva", short: "RZS", logo: "/times/raiz_esportiva.png", pts: 0, pj: 0, sg: 0 },
+      { name: "Raiz Esportiva", short: "RZS", logo: "/times/raizesportiva.png", pts: 0, pj: 0, sg: 0 },
     ],
     matches: [
-      { home: "MAG", away: "RZC", date: "19/04", time: "08:00" },
+      { home: "MAG", away: "RZS", date: "19/04", time: "08:00" },
       { home: "TBT", away: "SGC", date: "19/04", time: "08:00" },
     ],
   },

@@ -23,6 +23,12 @@ export default function LoopCarousel() {
 
   const slides = [
     {
+      image: "/noticias/amigosdofutebol/jogoadiado.png",
+      title: "Amigos do Futebol x Amigos da Bola é adiado!",
+      description: "Com desfalques, comissão técnica opta pelo adiamento do confronto, que passa a servir como teste e avaliação física visando o campeonato.",
+      link: "/noticias/amigos-do-futebol-x-amigos-da-bola-adiado-adc"
+    },
+    {
       image: "/noticias/renukaadc/renuka_ousadia.png",
       title: "Renuka ADC aposta em aprendizado após amistoso contra o Ousadia",
       description: "Em jogo realizado na Arena ADC, equipe utilizou o amistoso como preparação, reforçando o foco no desenvolvimento e na evolução ao longo da temporada.",

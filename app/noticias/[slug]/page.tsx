@@ -4,6 +4,31 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
 const noticiasData = {
+  "amigos-do-futebol-x-amigos-da-bola-adiado-adc": {
+  title: "Amigos do Futebol x Amigos da Bola é adiado e vira preparação para a ADC",
+  resumo: "Comissão técnica decide adiar confronto por desfalques, e partida passa a ser utilizada como preparação e avaliação física visando o campeonato.",
+  image: "/noticias/amigosdofutebol/jogoadiado.png",
+  team: {
+    name: "Amigos do Futebol Clube",
+    logo: "/times/amigos_do_futebol40.png",
+  },
+  content: `O confronto entre Amigos do Futebol e Amigos da Bola foi adiado e agora será realizado no dia 12 de abril, às 08h20.
+
+A decisão partiu da comissão técnica, que optou pela mudança principalmente por conta de desfalques nos elencos. A ideia é garantir que as equipes tenham mais jogadores disponíveis, evitando um jogo abaixo do esperado neste momento de preparação.
+
+Mesmo sem caráter decisivo, o duelo é considerado importante internamente. As duas equipes seguem em fase de organização para o campeonato, e a partida entra como parte desse processo, ajudando no ajuste tático e no entrosamento entre os atletas.
+
+Além disso, o jogo também deve ser usado como uma avaliação física do elenco. A comissão técnica pretende observar quem está em melhores condições, tanto no ritmo quanto na parte física, pensando já na sequência da competição.
+
+Outro ponto levado em consideração foi justamente o planejamento a médio prazo. Evitar um jogo com muitos desfalques agora pode ajudar a ter um desempenho mais consistente quando o campeonato começar de fato.
+
+Com a nova data definida, o confronto segue no calendário como mais um passo na preparação das equipes, que buscam chegar prontas para a disputa do campeonato.
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
+},
   "renuka-adc-amistoso-ousadia-evolucao": {
   title: "Renuka ADC utiliza amistoso como teste e foca na evolução da equipe",
   resumo: "Em partida realizada na Arena ADC, a equipe enfrentou o Ousadia em um amistoso de preparação e utilizou o confronto para ajustes e ganho de ritmo.",

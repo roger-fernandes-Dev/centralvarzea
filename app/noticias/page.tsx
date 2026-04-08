@@ -38,6 +38,14 @@ export default function Noticias() {
 
   const noticias: Noticia[] = [
     {
+      title: "Amigos do Futebol x Amigos da Bola é adiado!",
+      image: "/noticias/amigosdofutebol/jogoadiado.png",
+      slug: "amigos-do-futebol-x-amigos-da-bola-adiado-adc",
+      resumo: "Comissão técnica decide adiar confronto por desfalques, e partida passa a ser utilizada como preparação e avaliação física visando o campeonato.",
+      categoria: "Notícia",
+      data: new Date("2026-04-07T20:50:00")
+    },
+    {
       title: "Renuka ADC utiliza amistoso como teste e foca na evolução da equipe",
       image: "/noticias/renukaadc/renuka_ousadia.png",
       slug: "renuka-adc-amistoso-ousadia-evolucao",
