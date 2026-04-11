@@ -11,14 +11,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
     "amigos-do-futebol-vence-campeonato",
     "amigos-do-futebol-x-amigos-da-bola-adiado-adc"
-    // 👉 adiciona novos slugs aqui
+  ]
+
+  const pages = [
+    "",
+    "/historiavarzea",
+    "/times",
+    "/jogos",
+    "/noticias",
+    "/contato",
   ]
 
   return [
-    {
-      url: baseUrl,
+    // páginas principais
+    ...pages.map((page) => ({
+      url: `${baseUrl}${page}`,
       lastModified: new Date(),
-    },
+    })),
+
+    // notícias
     ...noticias.map((slug) => ({
       url: `${baseUrl}/noticias/${slug}`,
       lastModified: new Date(),

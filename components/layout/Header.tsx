@@ -10,7 +10,7 @@ export default function Header() {
   return (
     <header className="bg-black text-white shadow-md border-b border-white/10">
 
-      {/* linha superior estilo GE */}
+      {/* linha superior */}
       <div className="w-full bg-neutral-900 text-[11px] text-white/60 py-1 px-4">
         <div className="max-w-7xl mx-auto flex justify-between">
           <span>Central Várzea</span>
@@ -52,6 +52,11 @@ export default function Header() {
             Jogos
           </Link>
 
+          {/* 🔥 NOVO BOTÃO */}
+          <Link href="/historiavarzea" className="hover:text-yellow-400 transition">
+            História da Várzea
+          </Link>
+
           <Link href="/contato" className="hover:text-yellow-400 transition">
             Contato
           </Link>
@@ -78,6 +83,11 @@ export default function Header() {
 
             <Link href="/" onClick={() => setOpen(false)} className="hover:text-yellow-400">
               Início
+            </Link>
+
+            {/* 🔥 NOVO BOTÃO MOBILE */}
+            <Link href="/historiavarzea" onClick={() => setOpen(false)} className="hover:text-yellow-400">
+              História da Várzea
             </Link>
 
             <Link href="/noticias" onClick={() => setOpen(false)} className="hover:text-yellow-400">

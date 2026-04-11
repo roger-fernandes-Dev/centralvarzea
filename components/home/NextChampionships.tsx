@@ -16,14 +16,24 @@ export default function NextChampionships({ matches = [] }: any) {
       type: "Amistoso"
     },
     {
-      homeLogo: "/times/uruguai.png",
-      home: "Uruguai",
-      awayLogo: "/times/marrocos.png",
-      away: "Marrocos",
-      date: "09/04",
-      time: "20:30",
-      local: "Lago Azul - Penápolis",
-      type: "Minicampo veteranos"
+      homeLogo: "/times/amigos_da_bola.png",
+      home: "Amigos da Bola",
+      awayLogo: "/times/amigos_do_futebol40.png",
+      away: "Amigos do Futebol",
+      date: "12/04",
+      time: "08:15",
+      local: "Arena Caju",
+      type: "Amistoso"
+    },
+    {
+      homeLogo: "/times/sporting-guaicarafc.png",
+      home: "Sporting Guaiçara",
+      awayLogo: "/times/bulldogs.png",
+      away: "Bull Dogs",
+      date: "12/04",
+      time: "08:30",
+      local: "Arena Travalão",
+      type: "Amistoso"
     },
     {
       homeLogo: "/times/mec.png",
@@ -34,16 +44,6 @@ export default function NextChampionships({ matches = [] }: any) {
       time: "08:00",
       local: "Arena ADC - Campo A",
       type: "Copa ADC"
-    },
-    {
-      homeLogo: "/times/amigos_da_bola.png",
-      home: "Amigos da Bola",
-      awayLogo: "/times/amigos_do_futebol40.png",
-      away: "Amigos do Futebol",
-      date: "12/04",
-      time: "08:20",
-      local: "Arena ADC",
-      type: "Amistoso"
     },
     {
       homeLogo: "/times/aguias_de_Deus.png",
@@ -138,7 +138,7 @@ export default function NextChampionships({ matches = [] }: any) {
     {
       homeLogo: "/times/magos.png",
       home: "Magos",
-      awayLogo: "/times/raiz_esportiva.png",
+      awayLogo: "/times/raizesportiva.png",
       away: "Raiz Esportiva",
       date: "19/04",
       time: "08:00",
