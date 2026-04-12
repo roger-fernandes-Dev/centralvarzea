@@ -6,16 +6,6 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
-      homeLogo: "/times/juventus.png",
-      home: "Juventus",
-      awayLogo: "/times/claudineimotos.png",
-      away: "Claudinei Motos",
-      date: "11/04",
-      time: "16:00",
-      local: "Arena Del Rey",
-      type: "Amistoso"
-    },
-    {
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da Bola",
       awayLogo: "/times/amigos_do_futebol40.png",

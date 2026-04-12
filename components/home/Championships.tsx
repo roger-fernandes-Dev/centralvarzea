@@ -6,6 +6,17 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/juventus.png",
+      home: "Juventus",
+      awayLogo: "/times/claudineimotos.png",
+      away: "Claudinei Motos",
+      score: "4 x 6",
+      type: "Amistoso",
+      date: "11/04",
+      time: "Arena Del Rey",
+      local: "16:00"
+    },
+    {
       homeLogo: "/times/bemamigos.png",
       home: "Bem Amigos",
       awayLogo: "/times/mec.png",
