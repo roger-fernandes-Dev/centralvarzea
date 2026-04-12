@@ -6,6 +6,17 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/the_best.png",
+      home: "The Best",
+      awayLogo: "/times/os_paraibas.png",
+      away: "Os Paraibas",
+      score: "3 x 5",
+      type: "Amstoso",
+      date: "12/04",
+      time: "Campo São João",
+      local: "08:30"
+    },
+    {
       homeLogo: "/times/casinhafc.png",
       home: "Casinha FC",
       awayLogo: "/times/unidos_sao_joao.png",
