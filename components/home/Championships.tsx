@@ -6,6 +6,72 @@ export default function Championships({ matches }: any) {
 
   const fallback = [
     {
+      homeLogo: "/times/casinhafc.png",
+      home: "Casinha FC",
+      awayLogo: "/times/unidos_sao_joao.png",
+      away: "Unidos São João",
+      score: "3 x 2",
+      type: "Copa ADC",
+      date: "12/04",
+      time: "Arena ADC - Campo B",
+      local: "08:00"
+    },
+    {
+      homeLogo: "/times/renukaadc.png",
+      home: "Renuka ADC",
+      awayLogo: "/times/napoli.png",
+      away: "Napoli",
+      score: "1 x 3",
+      type: "Copa ADC",
+      date: "12/04",
+      time: "Arena ADC - Campo B",
+      local: "08:00"
+    },
+    {
+      homeLogo: "/times/aguias_de_Deus.png",
+      home: "Águias de Deus",
+      awayLogo: "/times/maxelite.png",
+      away: "Max Elite",
+      score: "4 x 3",
+      type: "Copa ADC",
+      date: "12/04",
+      time: "Arena ADC - Campo A",
+      local: "08:00"
+    },
+    {
+      homeLogo: "/times/sporting-guaicarafc.png",
+      home: "Sporting Guaiçara",
+      awayLogo: "/times/bulldogs.png",
+      away: "BullDogs",
+      score: "9 x 4",
+      type: "Amistoso",
+      date: "12/04",
+      time: "Arena Travalão",
+      local: "08:30"
+    },
+    {
+      homeLogo: "/times/mec.png",
+      home: "MEC",
+      awayLogo: "/times/afirma.png",
+      away: "Firma",
+      score: "4 x 2",
+      type: "Copa ADC",
+      date: "12/04",
+      time: "Arena ADC - Campo A",
+      local: "08:00"
+    },
+    {
+      homeLogo: "/times/amigos_da_bola.png",
+      home: "Amigos da bola",
+      awayLogo: "/times/amigos_do_futebol40.png",
+      away: "Amigos do Futebol",
+      score: "6 x 1",
+      type: "Amistoso",
+      date: "12/04",
+      time: "Arena Caju",
+      local: "08:15"
+    },
+    {
       homeLogo: "/times/juventus.png",
       home: "Juventus",
       awayLogo: "/times/claudineimotos.png",
