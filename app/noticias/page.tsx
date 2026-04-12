@@ -38,6 +38,14 @@ export default function Noticias() {
 
   const noticias: Noticia[] = [
     {
+      title: "Amigos da Bola vence amistoso contra Amigos do Futebol na Arena Caju",
+      image: "/noticias/amigosdofutebol/amigosdabolavsamigosdofutebol.png",
+      slug: "amigos-da-bola-x-amigos-do-futebol-amistoso-arena-caju",
+      resumo: "Partida sofreu atraso por bloqueio devido a competição de ciclismo. Mesmo desfalcado e sem reservas, Amigos do Futebol entrou em campo, mas acabou superado por 6 a 1 em amistoso.",
+      categoria: "Notícia",
+      data: new Date("2026-04-12T15:00:00")
+    },
+    {
       title: "Amigos do Futebol x Amigos da Bola é adiado!",
       image: "/noticias/amigosdofutebol/jogoadiado.png",
       slug: "amigos-do-futebol-x-amigos-da-bola-adiado-adc",

@@ -23,6 +23,12 @@ export default function LoopCarousel() {
 
   const slides = [
     {
+      image: "/noticias/amigosdofutebol/amigosdabolavsamigosdofutebol.png",
+      title: "Amigos da Bola vence amistoso contra Amigos do Futebol na Arena Caju",
+      description: "Jogo atrasou após bloqueio da via por competição de ciclismo. Sem reservas, Amigos do Futebol enfrentou dificuldades e foi derrotado por 6 a 1, mas mantém foco no campeonato.",
+      link: "/noticias/amigos-da-bola-x-amigos-do-futebol-amistoso-arena-caju"
+    },
+    {
       image: "/noticias/amigosdofutebol/jogoadiado.png",
       title: "Amigos do Futebol x Amigos da Bola é adiado!",
       description: "Com desfalques, comissão técnica opta pelo adiamento do confronto, que passa a servir como teste e avaliação física visando o campeonato.",

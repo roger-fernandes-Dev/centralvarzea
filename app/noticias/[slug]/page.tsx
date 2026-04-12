@@ -4,6 +4,31 @@ import { notFound } from "next/navigation"
 import { Metadata } from "next"
 
 const noticiasData = {
+  "amigos-da-bola-x-amigos-do-futebol-amistoso-arena-caju": {
+  title: "Amigos da Bola vence amistoso contra Amigos do Futebol na Arena Caju",
+  resumo: "Partida sofreu atraso por bloqueio devido a competição de ciclismo. Mesmo desfalcado e sem reservas, Amigos do Futebol acabou superado por 6 a 1.",
+  image: "/noticias/amigosdofutebol/amigosdabolavsamigosdofutebol.png",
+  team: {
+    name: "Amigos do Futebol Clube",
+    logo: "/times/amigos_do_futebol40.png",
+  },
+  content: `Na manhã deste domingo (12/04), Amigos do Futebol e Amigos da Bola se enfrentaram na Arena Caju em mais um amistoso preparatório.
+
+A partida, que estava marcada para às 08h15, acabou sofrendo atraso por conta do bloqueio da pista realizado pela guarda municipal, devido a uma competição de ciclismo na região. Com isso, o confronto teve início apenas por volta das 09h.
+
+Dentro de campo, o Amigos do Futebol entrou em situação complicada. A equipe estava desfalcada e não contava com jogadores no banco de reservas, o que limitou as opções durante o jogo e aumentou o desgaste físico ao longo da partida.
+
+Aproveitando esse cenário, o Amigos da Bola conseguiu impor seu ritmo e foi eficiente nas oportunidades criadas, construindo o placar com tranquilidade até fechar o confronto em 6 a 1.
+
+Mesmo com o resultado adverso, o clima no elenco do Amigos do Futebol segue firme. O grupo entende que o amistoso faz parte do processo de preparação e que o foco principal está no campeonato.
+
+A expectativa agora é corrigir os erros, recuperar os atletas e chegar mais forte para os próximos desafios oficiais.
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
+},
   "amigos-do-futebol-x-amigos-da-bola-adiado-adc": {
   title: "Amigos do Futebol x Amigos da Bola é adiado e vira preparação para a ADC",
   resumo: "Comissão técnica decide adiar confronto por desfalques, e partida passa a ser utilizada como preparação e avaliação física visando o campeonato.",
