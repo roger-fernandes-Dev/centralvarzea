@@ -2,10 +2,9 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 import NewsCarousel from "@/components/home/NewsCarousel"
 import LoopBanner from "@/components/home/LoopBannerNoticias"
-import { getNoticias } from "@/app/lib/getNoticias"
+import { noticias as dataNoticias } from "@/app/data/noticias"
 
 type Noticia = {
   slug: string
@@ -36,13 +35,7 @@ function timeAgo(date: Date) {
 }
 
 export default function Noticias() {
-  const [noticias, setNoticias] = useState<Noticia[]>([])
-
-  useEffect(() => {
-    getNoticias().then(data => setNoticias(data))
-  }, [])
-
-  const noticiasOrdenadas = [...noticias].sort(
+  const noticiasOrdenadas = [...dataNoticias].sort(
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
   )
 
@@ -51,7 +44,7 @@ export default function Noticias() {
       <main className="max-w-6xl mx-auto px-4 space-y-8">
 
         <section>
-          <NewsCarousel noticias={noticiasOrdenadas} />
+          {/**<NewsCarousel noticias={noticiasOrdenadas} /> */}
         </section>
 
         <section className="space-y-3">
@@ -64,7 +57,12 @@ export default function Noticias() {
             >
 
               <div className="relative w-36 aspect-video overflow-hidden rounded-md flex-shrink-0">
-                <Image src={n.image} alt={n.title} fill className="object-cover group-hover:scale-105 transition" />
+                <Image
+                  src={n.image}
+                  alt={n.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition"
+                />
               </div>
 
               <div className="flex flex-col gap-1">
