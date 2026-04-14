@@ -2,19 +2,20 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useState } from "react"
 import NewsCarousel from "@/components/home/NewsCarousel"
 import LoopBanner from "@/components/home/LoopBannerNoticias"
+import { getNoticias } from "@/app/lib/getNoticias"
 
 type Noticia = {
-  title: string
-  image: string
   slug: string
+  title: string
   resumo: string
-  categoria?: string
-  data?: Date // agora é Date
+  image: string
+  categoria: string
+  data: string
 }
 
-// função para calcular tempo "há x"
 function timeAgo(date: Date) {
   const now = new Date()
   const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)
@@ -35,121 +36,51 @@ function timeAgo(date: Date) {
 }
 
 export default function Noticias() {
+  const [noticias, setNoticias] = useState<Noticia[]>([])
 
-  const noticias: Noticia[] = [
-    {
-      title: "Amigos da Bola vence amistoso contra Amigos do Futebol na Arena Caju",
-      image: "/noticias/amigosdofutebol/amigosdabolavsamigosdofutebol.png",
-      slug: "amigos-da-bola-x-amigos-do-futebol-amistoso-arena-caju",
-      resumo: "Partida sofreu atraso por bloqueio devido a competição de ciclismo. Mesmo desfalcado e sem reservas, Amigos do Futebol entrou em campo, mas acabou superado por 6 a 1 em amistoso.",
-      categoria: "Notícia",
-      data: new Date("2026-04-12T15:00:00")
-    },
-    {
-      title: "Amigos do Futebol x Amigos da Bola é adiado!",
-      image: "/noticias/amigosdofutebol/jogoadiado.png",
-      slug: "amigos-do-futebol-x-amigos-da-bola-adiado-adc",
-      resumo: "Comissão técnica decide adiar confronto por desfalques, e partida passa a ser utilizada como preparação e avaliação física visando o campeonato.",
-      categoria: "Notícia",
-      data: new Date("2026-04-07T20:50:00")
-    },
-    {
-      title: "Renuka ADC utiliza amistoso como teste e foca na evolução da equipe",
-      image: "/noticias/renukaadc/renuka_ousadia.png",
-      slug: "renuka-adc-amistoso-ousadia-evolucao",
-      resumo: "Em partida realizada na Arena ADC, equipe enfrentou o Ousadia em um amistoso de preparação e utilizou o confronto para ajustes e ganho de ritmo.",
-      categoria: "Notícia",
-      data: new Date("2026-04-05T12:00:00")
-    },
-    {
-      title: "Goleiro SAN mantém legado e renova com Amigos do Futebol Clube",
-      image: "/noticias/amigosdofutebol/goleirosan.png",
-      slug: "goleiro-san-renova-amigos-do-futebol",
-      resumo: "Destaque histórico da equipe, SAN seguirá defendendo o clube na próxima temporada, reforçando sua importância no elenco.",
-      categoria: "Notícia",
-      data: new Date("2026-04-04T01:00:00")
-    },
-    {
-      title: "Campeonato de Mini Campo em Promissão abre inscrições",
-      image: "/noticias/campeonatos/minicampopromissao.png",
-      slug: "minicampo-promissao-inscricoes",
-      resumo: "Estão abertas, de 30/03 até 07/04...",
-      categoria: "Campeonato",
-      data: new Date("2026-04-04T06:00:00")
-    },
-    {
-      title: "Jogo entre Renuka ADC e Boleiros é cancelado devido ao Domingo de Páscoa",
-      image: "/noticias/renukaadc/jogo-boleiros-contra-adc-cancelado.png",
-      slug: "jogo-cancelado-renuka-boleiros",
-      resumo: "A partida que seria realizada no dia 05/04...",
-      categoria: "Comunicado",
-      data: new Date("2026-04-03T01:00:00")
-    },
-    {
-      title: "Jogo cancelado por chuva em Avanhandava",
-      image: "/noticias/amigosdofutebol/jogocancelado.png",
-      slug: "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
-      resumo: "O campo ficou sem condições de jogo...",
-      categoria: "Clima",
-      data: new Date("2026-04-01T07:00:00")
-    },
-    {
-      title: "Amigos do Futebol vence campeonato 50+",
-      image: "/noticias/amigosdofutebol/foto_taca.png",
-      slug: "amigos-do-futebol-vence-campeonato",
-      resumo: "Título veio após partida intensa...",
-      categoria: "Título",
-      data: new Date("2026-03-15T10:00:00")
-    }
-  ]
+  useEffect(() => {
+    getNoticias().then(data => setNoticias(data))
+  }, [])
 
+  const noticiasOrdenadas = [...noticias].sort(
+    (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
+  )
 
   return (
     <>
       <main className="max-w-6xl mx-auto px-4 space-y-8">
 
-        {/* 🔥 CAROUSEL PRINCIPAL */}
         <section>
-          <NewsCarousel noticias={noticias} />
+          <NewsCarousel noticias={noticiasOrdenadas} />
         </section>
 
-        {/* 📰 LISTA EDITORIAL */}
         <section className="space-y-3">
 
-          {noticias.map((n, i) => (
+          {noticiasOrdenadas.map((n, i) => (
             <Link
               key={i}
               href={`/noticias/${n.slug}`}
               className="group flex gap-4 py-4 items-start hover:bg-gray-50 px-2 rounded-lg transition"
             >
-              {/* IMAGEM */}
+
               <div className="relative w-36 aspect-video overflow-hidden rounded-md flex-shrink-0">
-                <Image
-                  src={n.image}
-                  alt={n.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
+                <Image src={n.image} alt={n.title} fill className="object-cover group-hover:scale-105 transition" />
               </div>
 
-              {/* TEXTO */}
               <div className="flex flex-col gap-1">
 
-                {/* META (categoria + tempo) */}
                 <div className="flex items-center gap-2 text-xs text-gray-500">
-                  <span className="text-yellow-600 font-semibold uppercase tracking-wide">
+                  <span className="text-yellow-600 font-semibold uppercase">
                     {n.categoria}
                   </span>
                   <span>•</span>
-                  <span>{n.data ? timeAgo(n.data) : ""}</span>
+                  <span>{timeAgo(new Date(n.data))}</span>
                 </div>
 
-                {/* TÍTULO */}
-                <h3 className="font-semibold leading-snug text-base md:text-lg group-hover:text-yellow-600 transition">
+                <h3 className="font-semibold text-base md:text-lg group-hover:text-yellow-600">
                   {n.title}
                 </h3>
 
-                {/* RESUMO */}
                 <p className="text-sm text-gray-600 line-clamp-2">
                   {n.resumo}
                 </p>
