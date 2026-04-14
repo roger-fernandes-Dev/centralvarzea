@@ -4,12 +4,12 @@ import { useEffect, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import Link from "next/link"
-import { getNoticias } from "@/app/lib/getNoticias"
+import { noticias } from "@/app/data/noticias"
 
 export default function LoopCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    align: "center"
+    align: "center",
   })
 
   const [slides, setSlides] = useState<any[]>([])
@@ -25,19 +25,20 @@ export default function LoopCarousel() {
   }, [emblaApi])
 
   useEffect(() => {
-    getNoticias().then((data) => {
-      const filtradas = data
-        .sort((a: any, b: any) => new Date(b.data).getTime() - new Date(a.data).getTime())
-        .slice(0, 8)
-        .map((n: any) => ({
-          image: n.image,
-          title: n.title,
-          description: n.resumo,
-          link: `/noticias/${n.slug}`
-        }))
+    const filtradas = [...noticias] // importante copiar antes de sort
+      .sort(
+        (a, b) =>
+          new Date(b.data).getTime() - new Date(a.data).getTime()
+      )
+      .slice(0, 8)
+      .map((n) => ({
+        image: n.image,
+        title: n.title,
+        description: n.resumo,
+        link: `/noticias/${n.slug}`,
+      }))
 
-      setSlides(filtradas)
-    })
+    setSlides(filtradas)
   }, [])
 
   return (
@@ -46,7 +47,6 @@ export default function LoopCarousel() {
       ref={emblaRef}
     >
       <div className="flex h-full px-2 md:px-6 lg:px-10">
-
         {slides.map((item, i) => (
           <Link
             href={item.link}
@@ -70,7 +70,6 @@ export default function LoopCarousel() {
             <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-b from-black/80 via-black/30 to-transparent" />
 
             <div className="absolute bottom-0 md:top-0 md:bottom-auto left-0 w-full p-3 md:p-5">
-
               <span className="text-[10px] md:text-xs uppercase tracking-wider text-yellow-400 font-semibold">
                 Futebol de Várzea
               </span>
@@ -82,11 +81,9 @@ export default function LoopCarousel() {
               <p className="text-gray-200 text-[11px] md:text-sm mt-2 line-clamp-2">
                 {item.description}
               </p>
-
             </div>
           </Link>
         ))}
-
       </div>
     </div>
   )
