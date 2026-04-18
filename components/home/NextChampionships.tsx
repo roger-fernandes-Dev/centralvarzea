@@ -1,69 +1,38 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Image from "next/image"
 
-export default function NextChampionships({ matches = [] }: any) {
+export default function NextChampionships() {
+  const [matches, setMatches] = useState<any[]>([])
 
-  const fallback = [
-    {
-      homeLogo: "/times/nova_alianca.png",
-      home: "Nova Aliança",
-      awayLogo: "/times/point.png",
-      away: "Point",
-      date: "19/04",
-      time: "08:00",
-      local: "Arena ADC - Campo A",
-      type: "Copa ADC"
-    },
-    {
-      homeLogo: "/times/boleirosfc.png",
-      home: "Boleiros",
-      awayLogo: "/times/os_paraibas.png",
-      away: "Os Paraíbas",
-      date: "19/04",
-      time: "08:00",
-      local: "Arena ADC - Campo A",
-      type: "Copa ADC"
-    },
-    {
-      homeLogo: "/times/sporting-guaicarafc.png",
-      home: "Sporting Guaiçara",
-      awayLogo: "/times/the_best.png",
-      away: "The Best",
-      date: "19/04",
-      time: "08:00",
-      local: "Arena ADC - Campo B",
-      type: "Copa ADC"
-    },
-    {
-      homeLogo: "/times/magos.png",
-      home: "Magos",
-      awayLogo: "/times/raizesportiva.png",
-      away: "Raiz Esportiva",
-      date: "19/04",
-      time: "08:00",
-      local: "Arena ADC - Campo B",
-      type: "Copa ADC"
-    },
-  ]
+  useEffect(() => {
+    async function fetchJogos() {
+      try {
+        const res = await fetch("/api/jogos?tipo=futuros")
+        const data = await res.json()
+        setMatches(data)
+      } catch (error) {
+        console.error("Erro ao buscar jogos:", error)
+      }
+    }
 
-  const data = matches.length ? matches : fallback
+    fetchJogos()
+  }, [])
 
   return (
     <section className="h-full">
-
       <div className="flex flex-col divide-y divide-gray-200 max-h-[420px] overflow-y-auto">
 
-        {data.map((match: any, i: number) => (
+        {matches.map((match: any, i: number) => (
           <div
             key={i}
             className="flex items-center px-3 py-4 hover:bg-yellow-50 transition"
           >
 
-            {/* ESQUERDA FIXA */}
+            {/* ESQUERDA */}
             <div className="w-[140px] min-w-[140px] flex flex-col text-xs text-gray-500">
               
-              {/* 👇 AQUI MUDOU */}
               <span className="font-semibold text-yellow-700 truncate">
                 {match.type}
               </span>
@@ -73,11 +42,14 @@ export default function NextChampionships({ matches = [] }: any) {
               </span>
 
               <span>
-                {match.date} • {match.time}
+                {new Date(match.data).toLocaleDateString("pt-BR", {
+                  day: "2-digit",
+                  month: "2-digit"
+                })} • {match.hora}
               </span>
             </div>
 
-            {/* MEIO FLEX */}
+            {/* MEIO */}
             <div className="flex-1 flex items-center justify-center gap-6">
 
               {/* CASA */}

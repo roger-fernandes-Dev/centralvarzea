@@ -25,12 +25,12 @@ export default function LoopCarousel() {
   }, [emblaApi])
 
   useEffect(() => {
-    const filtradas = [...noticias] // importante copiar antes de sort
+    const filtradas = [...noticias]
       .sort(
         (a, b) =>
           new Date(b.data).getTime() - new Date(a.data).getTime()
       )
-      .slice(0, 8)
+      .slice(0, 5) // 👈 aqui limita para 4 notícias
       .map((n) => ({
         image: n.image,
         title: n.title,
