@@ -5,17 +5,16 @@ import Autoplay from "embla-carousel-autoplay"
 import Image from "next/image"
 
 export default function LoopBanner() {
-
   const autoplay = Autoplay({
     delay: 2000,
     stopOnInteraction: false,
-    stopOnMouseEnter: false
+    stopOnMouseEnter: false,
   })
 
   const [emblaRef] = useEmblaCarousel(
     {
       loop: true,
-      align: "start"
+      align: "start",
     },
     [autoplay]
   )
@@ -28,7 +27,7 @@ export default function LoopBanner() {
     "/wideroma.png",
     "/suplementlins.png",
     "/widealameda.png",
-    "/bormioesilva.png"
+    "/bormioesilva.png",
   ]
 
   return (
@@ -38,14 +37,16 @@ export default function LoopBanner() {
         {banners.map((src, i) => (
           <div
             key={i}
-            className="flex-[0_0_70%] sm:flex-[0_0_40%] md:flex-[0_0_25%] lg:flex-[0_0_20%] 
-                       h-20 md:h-24 relative rounded-xl overflow-hidden md:bg-transparent"
+            className="relative flex-[0_0_70%] sm:flex-[0_0_40%] md:flex-[0_0_25%] lg:flex-[0_0_20%]
+                       h-20 md:h-24 rounded-xl overflow-hidden"
           >
             <Image
               src={src}
               alt={`banner ${i}`}
               fill
-              className="object-cover md:object-cover p-2 md:p-0"
+              sizes="(max-width: 768px) 70vw, (max-width: 1024px) 40vw, 25vw"
+              className="object-cover"
+              priority={i === 0}
             />
           </div>
         ))}

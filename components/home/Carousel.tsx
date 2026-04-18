@@ -5,6 +5,13 @@ import useEmblaCarousel from "embla-carousel-react"
 import { ChevronUp, ChevronDown } from "lucide-react"
 import Image from "next/image"
 
+const banners = [
+  "/cegseguros.png",
+  "/suplementelinsad/promosuplemente.png",
+  "/suplementlins.png",
+  "/wideh6.png"
+]
+
 export default function VerticalCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     axis: "y",
@@ -22,26 +29,20 @@ export default function VerticalCarousel() {
   }, [emblaApi])
 
   return (
-    <div className="
-      relative h-[200px] md:h-[400px]
-      -mx-4 md:mx-0
-    ">
-
+    <div className="relative h-[200px] md:h-[400px] -mx-4 md:mx-0">
+      
       <div className="overflow-hidden h-full" ref={emblaRef}>
         <div className="flex flex-col h-full">
 
-          {[
-            "/cegseguros.png",
-            "/suplementelinsad/promosuplemente.png",
-            "/suplementlins.png",
-            "/wideh6.png"
-          ].map((src, i) => (
-            <div key={i} className="h-full min-h-full relative">
+          {banners.map((src, i) => (
+            <div key={i} className="relative h-full min-h-full">
 
               <Image
                 src={src}
                 alt="banner"
                 fill
+                priority={i === 0}   // só o primeiro como LCP
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
 
@@ -51,7 +52,7 @@ export default function VerticalCarousel() {
         </div>
       </div>
 
-      {/* botões (somem no mobile) */}
+      {/* botões */}
       <div className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 flex-col gap-3">
 
         <button
