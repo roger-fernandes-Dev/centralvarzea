@@ -8,6 +8,7 @@ import AdsRightClubs from "@/components/home/AdsRightClubs"
 import UpcomingChampionships from "@/components/home/UpCommingChampionships"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
 import SEOHead from "@/components/SeoHead"
+import MilestoneBanner from "@/components/home/MilestoneBanner"
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
     <SEOHead />
     
       <div className="max-w-7xl mx-auto px-4 space-y-6">
+        <MilestoneBanner />
 
         {/* topo */}
         <section className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-6">

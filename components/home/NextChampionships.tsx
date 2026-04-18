@@ -6,16 +6,6 @@ export default function NextChampionships({ matches = [] }: any) {
 
   const fallback = [
     {
-      homeLogo: "/times/haiti.png",
-      home: "Haiti",
-      awayLogo: "/times/franca.png",
-      away: "França",
-      date: "14/04",
-      time: "19:15",
-      local: "Lago Azul - Penápolis",
-      type: "Minicampo veteranos"
-    },
-    {
       homeLogo: "/times/nova_alianca.png",
       home: "Nova Aliança",
       awayLogo: "/times/point.png",

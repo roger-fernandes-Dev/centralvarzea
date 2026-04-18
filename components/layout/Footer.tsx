@@ -35,11 +35,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/campeonatos" className="hover:text-white transition">
-                  Campeonatos
-                </a>
-              </li>
-              <li>
                 <a href="/noticias" className="hover:text-white transition">
                   Notícias
                 </a>
