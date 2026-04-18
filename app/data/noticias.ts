@@ -19,6 +19,43 @@ export type Noticia = {
 // base completa (SUA API LOCAL)
 export const noticias: Noticia[] = [
   {
+    
+    slug: "A-varzea-esta-deixando-de-ser-varzea-Custos-altos-geram-revolta",
+    title: "A varzea está deixando de ser várzea? Custos altos geram revolta",
+    resumo: "Inscrições caras, arbitragem pesada e gastos cada vez maiores levantam uma crítica forte: o futebol de várzea está se afastando da sua essência.",
+    image: "/noticias/varzea/varzeacara.png",
+    categoria: "Notícia",
+    data: "2026-04-17T21:30:00",
+    destaque: true,
+
+    team: {
+      name: "central varzea",
+      logo: "/logocentralvarzea.png"
+    },
+
+    content: `O futebol de várzea sempre foi sinônimo de raiz, acesso e comunidade. Mas esse cenário vem mudando — e não é pouca coisa. A cada novo campeonato, cresce a reclamação: jogar na várzea está ficando caro demais.
+
+Taxas de inscrição elevadas, custos de arbitragem cada vez mais altos e despesas com estrutura estão afastando equipes que antes faziam parte do cenário. Para muitos, não se trata mais de competir, e sim de conseguir pagar para entrar.
+
+“Hoje, se não tiver dinheiro, você nem joga. A várzea está virando coisa pra quem pode bancar”, disse um atleta, resumindo o sentimento de muitos.
+
+Do outro lado, organizadores defendem os valores, alegando melhoria na qualidade dos campeonatos, arbitragem mais preparada e melhor estrutura. Mas a pergunta que fica é: essa evolução está sendo inclusiva ou seletiva?
+
+Na prática, o que se vê é time tradicional ficando de fora, jogador desanimando e campeonatos cada vez mais restritos a quem tem condição financeira.
+
+A crítica é pesada, mas está nas ruas, nos campos e nas conversas: a várzea está se elitizando.
+
+E aí entra o ponto mais polêmico — se o futebol de várzea deixa de ser acessível, ele ainda pode ser chamado de várzea?
+
+A discussão está aberta. E cada vez mais quente.
+
+Nos siga agora no instagram: https://instagram.com/centralvarzea.of
+Para mais notícias sobre Promissão e região, siga o jornal nas redes sociais:
+- Instagram: https://www.instagram.com/noticiaspromissao
+- Facebook: https://www.facebook.com/noticiaspromissaoeregiao`
+  },
+  {
+    
     slug: "amigos-da-bola-x-amigos-do-futebol-amistoso-arena-caju",
     title: "Amigos da Bola vence amistoso contra Amigos do Futebol na Arena Caju",
     resumo: "Partida sofreu atraso por bloqueio devido a competição de ciclismo. Mesmo desfalcado e sem reservas, Amigos do Futebol acabou superado por 6 a 1.",

@@ -2,7 +2,6 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import NewsCarousel from "@/components/home/NewsCarousel"
 import LoopBanner from "@/components/home/LoopBannerNoticias"
 import { noticias as dataNoticias } from "@/app/data/noticias"
 
