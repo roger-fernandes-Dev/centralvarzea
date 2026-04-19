@@ -9,10 +9,10 @@ const jogos = [
       home: "Nova Aliança",
       awayLogo: "/times/point.png",
       away: "Point",
+      type: "Copa ADC",
       data: "2026-04-19",
       hora: "08:00",
       local: "Arena ADC - Campo A",
-      type: "Copa ADC"
     },
     {
         id: "2",
@@ -20,10 +20,10 @@ const jogos = [
       home: "Boleiros",
       awayLogo: "/times/os_paraibas.png",
       away: "Os Paraíbas",
+      type: "Copa ADC",
       data: "2026-04-19",
       hora: "08:00",
       local: "Arena ADC - Campo A",
-      type: "Copa ADC"
     },
     {
         id: "3",
@@ -31,10 +31,10 @@ const jogos = [
       home: "Sporting Guaiçara",
       awayLogo: "/times/the_best.png",
       away: "The Best",
+      type: "Copa ADC",
       data: "2026-04-19",
       hora: "08:00",
       local: "Arena ADC - Campo B",
-      type: "Copa ADC"
     },
     {
         id: "4",
@@ -42,10 +42,11 @@ const jogos = [
       home: "Magos",
       awayLogo: "/times/raizesportiva.png",
       away: "Raiz Esportiva",
+      type: "Copa ADC",
       data: "2026-04-19",
       hora: "08:00",
       local: "Arena ADC - Campo B",
-      type: "Copa ADC"
+      
     },
   {
     id: "7",
@@ -54,10 +55,10 @@ const jogos = [
       awayLogo: "/times/os_paraibas.png",
       away: "Os Paraibas",
       score: "3 x 5",
-      type: "Amstoso",
-      data: "12/04",
-      hora: "Campo São João",
-      local: "08:30"
+      type: "Amistoso",
+      data: "2026-04-12",
+      hora: "08:30",
+      local: "Campo São João"
     },
     {
         id: "8",
@@ -67,9 +68,9 @@ const jogos = [
       away: "Unidos São João",
       score: "3 x 2",
       type: "Copa ADC",
-      data: "12/04",
-      hora: "Arena ADC - Campo B",
-      local: "08:00"
+      data: "2026-04-12",
+      hora: "08:00",
+      local: "Arena ADC - Campo B"
     },
     {
         id: "9",
@@ -79,9 +80,9 @@ const jogos = [
       away: "Napoli",
       score: "1 x 3",
       type: "Copa ADC",
-      data: "12/04",
-      hora: "Arena ADC - Campo B",
-      local: "08:00"
+      data: "2026-04-12",
+      hora: "08:00",
+      local: "Arena ADC - Campo B"
     },
     {
         id: "10",
@@ -91,9 +92,9 @@ const jogos = [
       away: "Max Elite",
       score: "4 x 3",
       type: "Copa ADC",
-      data: "12/04",
-      hora: "Arena ADC - Campo A",
-      local: "08:00"
+      data: "2026-04-12",
+      hora: "08:00",
+      local: "Arena ADC - Campo A"
     },
     {
         id: "11",
@@ -103,9 +104,9 @@ const jogos = [
       away: "BullDogs",
       score: "9 x 4",
       type: "Amistoso",
-      data: "12/04",
-      hora: "Arena Travalão",
-      local: "08:30"
+      data: "2026-04-12",
+      hora: "08:30",
+      local: "Arena Travalão"
     },
     {
         id: "12",
@@ -115,9 +116,9 @@ const jogos = [
       away: "Firma",
       score: "4 x 2",
       type: "Copa ADC",
-      data: "12/04",
-      hora: "Arena ADC - Campo A",
-      local: "08:00"
+      data: "2026-04-12",
+      hora: "08:00",
+      local: "Arena ADC - Campo A"
     },
     {
         id: "13",
@@ -127,9 +128,9 @@ const jogos = [
       away: "Amigos do Futebol",
       score: "6 x 1",
       type: "Amistoso",
-      data: "12/04",
-      hora: "Arena Caju",
-      local: "08:15"
+      data: "2026-04-12",
+      hora: "08:15",
+      local: "Arena Caju"
     },
     {
         id: "14",
@@ -139,9 +140,9 @@ const jogos = [
       away: "Claudinei Motos",
       score: "4 x 6",
       type: "Amistoso",
-      data: "11/04",
-      hora: "Arena Del Rey",
-      local: "16:00"
+      data: "2026-04-11",
+      hora: "16:00",
+      local: "Arena Del Rey"
     },
     {
         id: "15",
@@ -151,7 +152,7 @@ const jogos = [
       away: "MEC",
       score: "4 x 8",
       type: "Amistoso",
-      data: "04/04",
+      data: "2026-04-04",
       hora: "16:30",
       local: "Arena ADC"
     },
@@ -163,7 +164,7 @@ const jogos = [
       away: "Águias de Deus",
       score: "7 x 4",
       type: "Amistoso",
-      data: "0/04",
+      data: "2026-04-05",
       hora: "08:30",
       local: "Arena ADC"
     },
@@ -175,7 +176,7 @@ const jogos = [
       away: "Ousadia",
       score: "2 x 8",
       type: "Amistoso",
-      data: "05/04",
+      data: "2026-04-05",
       hora: "08:30",
       local: "Arena ADC"
     },
@@ -187,7 +188,7 @@ const jogos = [
       away: "Quebrada FC",
       score: "9 x 7",
       type: "Amistoso",
-      data: "05/04",
+      data: "2026-04-05",
       hora: "08:00",
       local: "Golden Ball - Guaiçara"
     },
@@ -199,7 +200,7 @@ const jogos = [
       away: "Cruzeiro do Salla",
       score: "15 x 6",
       type: "Amistoso",
-      data: "04/04",
+      data: "2026-04-04",
       hora: "16:00",
       local: "Centro de lazer(barbosa)"
     },
@@ -211,7 +212,7 @@ const jogos = [
       away: "Falcões",
       score: "4 x 3",
       type: "Amistoso",
-      data: "29/03",
+      data: "2026-03-29",
       hora: "08:15",
       local: "Chacara do Danilo"
     },
@@ -223,7 +224,7 @@ const jogos = [
       away: "MEC",
       score: "2 x 2",
       type: "Amistoso",
-      data: "29/03",
+      data: "2026-03-29",
       hora: "08:30",
       local: "Arena ADC"
     },
@@ -235,7 +236,7 @@ const jogos = [
       away: "Águias de Deus",
       score: "4 x 2",
       type: "Amistoso",
-      data: "29/03",
+      data: "2026-03-29",
       hora: "08:30",
       local: "Arena ADC"
     },
@@ -247,7 +248,7 @@ const jogos = [
       away: "Sporting Guaicara",
       score: "3 x 3",
       type: "Amistoso",
-      data: "28/03",
+      data: "2026-03-28",
       hora: "16:00",
       local: "Arena ADC"
     },
@@ -259,7 +260,7 @@ const jogos = [
       away: "Juventude FC",
       score: "4 x 5",
       type: "Amistoso",
-      data: "28/03",
+      data: "2026-03-28",
       hora: "09:30",
       local: "Campo Santa Rita"
     },
@@ -271,7 +272,7 @@ const jogos = [
       away: "Bahea",
       score: "10 x 3",
       type: "Amistoso",
-      data: "22/03",
+      data: "2026-03-22",
       hora: "08:30",
       local: "Avanhandava"
     },
@@ -283,7 +284,7 @@ const jogos = [
       away: "Meninos da Vila",
       score: "3 x 5",
       type: "Amistoso",
-      data: "22/03",
+      data: "2026-03-22",
       hora: "08:30",
       local: "Arena ADC"
     },
@@ -295,7 +296,7 @@ const jogos = [
       away: "the best",
       score: "3 x 5",
       type: "Amistoso",
-      data: "15/03",
+      data: "2026-03-15",
       hora: "08:30",
       local: "Promissão"
     },
@@ -307,7 +308,7 @@ const jogos = [
       away: "Bulldogs",
       score: "9 x 3",
       type: "Amistoso",
-      data: "15/03",
+      data: "2026-03-15",
       hora: "08:30",
       local: "Arena ADC"
     },
@@ -319,7 +320,7 @@ const jogos = [
       away: "The best",
       score: "5 x 2",
       type: "Amistoso",
-      data: "08/03",
+      data: "2026-03-08",
       hora: "08:30",
       local: "Arena ADC"
     }
@@ -331,14 +332,17 @@ export async function GET(request: Request) {
 
   const agora = new Date()
 
-  let resultado = jogos
+  const parseDate = (j: any) =>
+    new Date(`${j.data}T${j.hora || "00:00"}`)
+
+  let resultado = jogos // ← isso aqui é obrigatório
 
   if (tipo === "futuros") {
-    resultado = jogos.filter(j => new Date(j.data) > agora)
+    resultado = jogos.filter(j => parseDate(j) > agora)
   }
 
   if (tipo === "passados") {
-    resultado = jogos.filter(j => new Date(j.data) <= agora)
+    resultado = jogos.filter(j => parseDate(j) <= agora)
   }
 
   return NextResponse.json(resultado)

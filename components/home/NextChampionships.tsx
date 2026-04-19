@@ -9,9 +9,21 @@ export default function NextChampionships() {
   useEffect(() => {
     async function fetchJogos() {
       try {
-        const res = await fetch("/api/jogos?tipo=futuros")
+        const res = await fetch("/api/jogos")
         const data = await res.json()
-        setMatches(data)
+
+        const agora = new Date()
+
+        const futuros = data.filter((jogo: any) => {
+          const dataJogo = new Date(`${jogo.data}T${jogo.hora}:00-03:00`)
+
+          // delay de 6 horas
+          dataJogo.setHours(dataJogo.getHours() + 6)
+
+          return dataJogo > agora
+        })
+
+        setMatches(futuros)
       } catch (error) {
         console.error("Erro ao buscar jogos:", error)
       }
@@ -24,84 +36,103 @@ export default function NextChampionships() {
     <section className="h-full">
       <div className="flex flex-col divide-y divide-gray-200 max-h-[420px] overflow-y-auto">
 
-        {matches.map((match: any, i: number) => (
-          <div
-            key={i}
-            className="flex items-center px-3 py-4 hover:bg-yellow-50 transition"
-          >
+        {matches.map((match: any, i: number) => {
 
-            {/* ESQUERDA */}
-            <div className="w-[140px] min-w-[140px] flex flex-col text-xs text-gray-500">
-              
-              <span className="font-semibold text-yellow-700 truncate">
-                {match.type}
-              </span>
+          const agora = new Date()
+          const inicio = new Date(`${match.data}T${match.hora}:00-03:00`)
+          
+          // usa o mesmo delay de 6h
+          const fim = new Date(inicio)
+          fim.setHours(fim.getHours() + 6)
 
-              <span className="truncate">
-                {match.local}
-              </span>
+          const aoVivo = agora >= inicio && agora <= fim
 
-              <span>
-                {new Date(match.data).toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "2-digit"
-                })} • {match.hora}
-              </span>
-            </div>
+          return (
+            <div
+              key={i}
+              className="flex items-center px-3 py-4 hover:bg-yellow-50 transition"
+            >
 
-            {/* MEIO */}
-            <div className="flex-1 flex items-center justify-center gap-6">
-
-              {/* CASA */}
-              <div className="flex items-center gap-2 group relative">
-                <Image
-                  src={match.homeLogo}
-                  alt={match.home}
-                  width={28}
-                  height={28}
-                  className="rounded-full"
-                />
-
-                <span className="text-sm font-medium">
-                  {match.home.slice(0, 3).toUpperCase()}
+              {/* ESQUERDA */}
+              <div className="w-[140px] min-w-[140px] flex flex-col text-xs text-gray-500">
+                
+                <span className="font-semibold text-yellow-700 truncate">
+                  {match.type}
                 </span>
 
-                <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                  bg-black text-white text-[10px] px-2 py-1 rounded 
-                  opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                  {match.home}
-                </div>
-              </div>
-
-              <span className="text-sm font-semibold text-gray-400">
-                x
-              </span>
-
-              {/* FORA */}
-              <div className="flex items-center gap-2 group relative">
-                <span className="text-sm font-medium">
-                  {match.away.slice(0, 3).toUpperCase()}
+                <span className="truncate">
+                  {match.local}
                 </span>
 
-                <Image
-                  src={match.awayLogo}
-                  alt={match.away}
-                  width={28}
-                  height={28}
-                  className="rounded-full"
-                />
+                <span className="flex items-center">
+                  {new Date(match.data).toLocaleDateString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit"
+                  })} • {match.hora}
 
-                <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                  bg-black text-white text-[10px] px-2 py-1 rounded 
-                  opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                  {match.away}
+                  {aoVivo && (
+                    <span className="ml-2 flex items-center gap-1 text-[10px] text-red-600 font-semibold animate-pulse">
+                      <span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
+                      AO VIVO
+                    </span>
+                  )}
+                </span>
+              </div>
+
+              {/* MEIO */}
+              <div className="flex-1 flex items-center justify-center gap-6">
+
+                {/* CASA */}
+                <div className="flex items-center gap-2 group relative">
+                  <Image
+                    src={match.homeLogo}
+                    alt={match.home}
+                    width={28}
+                    height={28}
+                    className="rounded-full"
+                  />
+
+                  <span className="text-sm font-medium">
+                    {match.home.slice(0, 3).toUpperCase()}
+                  </span>
+
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
+                    bg-black text-white text-[10px] px-2 py-1 rounded 
+                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                    {match.home}
+                  </div>
                 </div>
+
+                <span className="text-sm font-semibold text-gray-400">
+                  x
+                </span>
+
+                {/* FORA */}
+                <div className="flex items-center gap-2 group relative">
+                  <span className="text-sm font-medium">
+                    {match.away.slice(0, 3).toUpperCase()}
+                  </span>
+
+                  <Image
+                    src={match.awayLogo}
+                    alt={match.away}
+                    width={28}
+                    height={28}
+                    className="rounded-full"
+                  />
+
+                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
+                    bg-black text-white text-[10px] px-2 py-1 rounded 
+                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                    {match.away}
+                  </div>
+                </div>
+
               </div>
 
             </div>
-
-          </div>
-        ))}
+          )
+        })}
 
       </div>
     </section>

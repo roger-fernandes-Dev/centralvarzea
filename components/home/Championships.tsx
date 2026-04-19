@@ -8,26 +8,32 @@ export default function Championships() {
   const [matches, setMatches] = useState<any[]>([])
 
   useEffect(() => {
-    async function fetchJogos() {
-      try {
-        const res = await fetch("/api/jogos?tipo=passados")
-        const data = await res.json()
+  async function fetchJogos() {
+    try {
+      const res = await fetch("/api/jogos")
+      const data = await res.json()
 
-        // 👇 pega só os 5 mais recentes
-        const ordenados = data.sort(
+      const agora = new Date()
+
+      const passados = data
+        .filter((jogo: any) => {
+          const dataJogo = new Date(`${jogo.data}T${jogo.hora}`)
+          return dataJogo <= agora
+        })
+        .sort(
           (a: any, b: any) =>
             new Date(`${b.data}T${b.hora}`).getTime() -
             new Date(`${a.data}T${a.hora}`).getTime()
         )
 
-        setMatches(ordenados.slice(0, 5))
-      } catch (error) {
-        console.error("Erro ao buscar jogos:", error)
-      }
+      setMatches(passados.slice(0, 5))
+    } catch (error) {
+      console.error("Erro ao buscar jogos:", error)
     }
+  }
 
-    fetchJogos()
-  }, [])
+  fetchJogos()
+}, [])
 
   return (
     <section className="rounded-xl shadow">
