@@ -15,14 +15,19 @@ export default function NextChampionships() {
         const agora = new Date()
 
         const futuros = data.filter((jogo: any) => {
-          const dataJogo = new Date(`${jogo.data}T${jogo.hora}:00-03:00`)
+        const dataJogo = new Date(`${jogo.data}T${jogo.hora}:00-03:00`)
 
-          // delay de 6 horas
-          dataJogo.setHours(dataJogo.getHours() + 6)
+        // delay de 6 horas
+        const limite = new Date(dataJogo)
+        limite.setHours(limite.getHours() + 6)
 
-          return dataJogo > agora
-        })
+        const temResultado = jogo.score != null
 
+        // ❗ se já tem resultado, NÃO é futuro
+        if (temResultado) return false
+
+        return limite > agora
+      })
         setMatches(futuros)
       } catch (error) {
         console.error("Erro ao buscar jogos:", error)
