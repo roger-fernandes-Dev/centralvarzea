@@ -40,12 +40,15 @@ export default function NextChampionships() {
 
           const agora = new Date()
           const inicio = new Date(`${match.data}T${match.hora}:00-03:00`)
-          
-          // usa o mesmo delay de 6h
-          const fim = new Date(inicio)
-          fim.setHours(fim.getHours() + 6)
 
-          const aoVivo = agora >= inicio && agora <= fim
+          const limiteAoVivo = new Date(inicio)
+          limiteAoVivo.setHours(limiteAoVivo.getHours() + 4)
+
+          const limiteTotal = new Date(inicio)
+          limiteTotal.setHours(limiteTotal.getHours() + 6)
+
+          const aoVivo = !match.score && agora >= inicio && agora <= limiteAoVivo
+          const encerrado = !match.score && agora > limiteAoVivo && agora <= limiteTotal
 
           return (
             <div
