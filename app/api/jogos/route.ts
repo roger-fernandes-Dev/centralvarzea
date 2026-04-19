@@ -4,7 +4,51 @@ import { NextResponse } from "next/server"
 
 const jogos = [
     {
-        id: "1",
+      id: "1",
+      homeLogo: "/times/bengala.png",
+      home: "Bengala",
+      awayLogo: "/times/bahea.png",
+      away: "Bahea",
+      type: "Copa Mini campo Selt",
+      data: "2026-04-25",
+      hora: "17:45",
+      local: "Estádio Municipal",
+    },
+    {
+      id: "2",
+      homeLogo: "/times/falcoes.png",
+      home: "Falcões",
+      awayLogo: "/times/bemamigos.png",
+      away: "Bem Amigos",
+      type: "Copa Mini campo Selt",
+      data: "2026-04-25",
+      hora: "17:45",
+      local: "Estádio Municipal",
+    },
+    {
+      id: "3",
+      homeLogo: "/times/assentamento50.png",
+      home: "assentamento",
+      awayLogo: "/times/amigos_do_futebol40.png",
+      away: "Amigos do Futebol",
+      type: "Copa Mini campo Selt",
+      data: "2026-04-25",
+      hora: "18:30",
+      local: "Estádio Municipal",
+    },
+    {
+      id: "4",
+      homeLogo: "/times/grupodeubom.png",
+      home: "Grupo Deu Bom",
+      awayLogo: "/times/promi_informatica.png",
+      away: "Promi informática",
+      type: "Copa Mini campo Selt",
+      data: "2026-04-25",
+      hora: "18:30",
+      local: "Estádio Municipal",
+    },
+    {
+      id: "5",
       homeLogo: "/times/nova_alianca.png",
       home: "Nova Aliança",
       awayLogo: "/times/point.png",
@@ -16,7 +60,7 @@ const jogos = [
       local: "Arena ADC - Campo A",
     },
     {
-        id: "2",
+        id: "6",
       homeLogo: "/times/boleirosfc.png",
       home: "Boleiros",
       awayLogo: "/times/os_paraibas.png",
@@ -28,7 +72,7 @@ const jogos = [
       local: "Arena ADC - Campo A",
     },
     {
-        id: "3",
+        id: "7",
       homeLogo: "/times/sporting-guaicarafc.png",
       home: "Sporting Guaiçara",
       awayLogo: "/times/the_best.png",
@@ -40,7 +84,7 @@ const jogos = [
       local: "Arena ADC - Campo B",
     },
     {
-        id: "4",
+        id: "8",
       homeLogo: "/times/magos.png",
       home: "Magos",
       awayLogo: "/times/raizesportiva.png",
@@ -53,7 +97,7 @@ const jogos = [
       
     },
   {
-    id: "7",
+    id: "9",
       homeLogo: "/times/the_best.png",
       home: "The Best",
       awayLogo: "/times/os_paraibas.png",
@@ -65,7 +109,7 @@ const jogos = [
       local: "Campo São João"
     },
     {
-        id: "8",
+        id: "10",
       homeLogo: "/times/casinhafc.png",
       home: "Casinha FC",
       awayLogo: "/times/unidos_sao_joao.png",
@@ -77,7 +121,7 @@ const jogos = [
       local: "Arena ADC - Campo B"
     },
     {
-        id: "9",
+        id: "11",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/napoli.png",
@@ -89,7 +133,7 @@ const jogos = [
       local: "Arena ADC - Campo B"
     },
     {
-        id: "10",
+        id: "12",
       homeLogo: "/times/aguias_de_Deus.png",
       home: "Águias de Deus",
       awayLogo: "/times/maxelite.png",
@@ -101,7 +145,7 @@ const jogos = [
       local: "Arena ADC - Campo A"
     },
     {
-        id: "11",
+        id: "13",
       homeLogo: "/times/sporting-guaicarafc.png",
       home: "Sporting Guaiçara",
       awayLogo: "/times/bulldogs.png",
@@ -113,7 +157,7 @@ const jogos = [
       local: "Arena Travalão"
     },
     {
-        id: "12",
+        id: "14",
       homeLogo: "/times/mec.png",
       home: "MEC",
       awayLogo: "/times/afirma.png",
@@ -125,7 +169,7 @@ const jogos = [
       local: "Arena ADC - Campo A"
     },
     {
-        id: "13",
+        id: "15",
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da bola",
       awayLogo: "/times/amigos_do_futebol40.png",
@@ -137,7 +181,7 @@ const jogos = [
       local: "Arena Caju"
     },
     {
-        id: "14",
+        id: "16",
       homeLogo: "/times/juventus.png",
       home: "Juventus",
       awayLogo: "/times/claudineimotos.png",
@@ -149,7 +193,7 @@ const jogos = [
       local: "Arena Del Rey"
     },
     {
-        id: "15",
+        id: "17",
       homeLogo: "/times/bemamigos.png",
       home: "Bem Amigos",
       awayLogo: "/times/mec.png",
@@ -161,7 +205,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "16",
+        id: "18",
       homeLogo: "/times/meninos_da_vila.png",
       home: "meninos da vila",
       awayLogo: "/times/aguias_de_Deus.png",
@@ -173,7 +217,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "17",
+        id: "19",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/ousadiafc.png",
@@ -185,7 +229,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "18",
+        id: "20",
       homeLogo: "/times/the_best.png",
       home: "The best",
       awayLogo: "/times/quebrada_fc.png",
@@ -197,7 +241,7 @@ const jogos = [
       local: "Golden Ball - Guaiçara"
     },
     {
-        id: "19",
+        id: "21",
       homeLogo: "/times/amigosdavila.png",
       home: "Amigos da Vila",
       awayLogo: "/times/cruzeirodosalla.png",
@@ -209,7 +253,7 @@ const jogos = [
       local: "Centro de lazer(barbosa)"
     },
     {
-        id: "20",
+        id: "22",
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da bola",
       awayLogo: "/times/falcoes.png",
@@ -221,7 +265,7 @@ const jogos = [
       local: "Chacara do Danilo"
     },
     {
-        id: "21",
+        id: "23",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/mec.png",
@@ -233,7 +277,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "22",
+        id: "24",
       homeLogo: "/times/the_best.png",
       home: "The Best",
       awayLogo: "/times/aguias_de_Deus.png",
@@ -245,7 +289,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "23",
+        id: "25",
       homeLogo: "/times/magos.png",
       home: "Magos",
       awayLogo: "/times/sporting-guaicarafc.png",
@@ -257,7 +301,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "24",
+        id: "26",
       homeLogo: "/times/unidosanchieta.png",
       home: "Unidos Anchieta",
       awayLogo: "/times/juventudefc.png",
@@ -269,7 +313,7 @@ const jogos = [
       local: "Campo Santa Rita"
     },
     {
-        id: "25",
+        id: "27",
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da bola",
       awayLogo: "/times/bahea.png",
@@ -281,7 +325,7 @@ const jogos = [
       local: "Avanhandava"
     },
     {
-        id: "26",
+        id: "28",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/meninos_da_vila.png",
@@ -293,7 +337,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "27",
+        id: "29",
       homeLogo: "/times/bengala.png",
       home: "Bengala",
       awayLogo: "/times/the_best.png",
@@ -305,7 +349,7 @@ const jogos = [
       local: "Promissão"
     },
     {
-        id: "28",
+        id: "30",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/bulldogs.png",
@@ -317,7 +361,7 @@ const jogos = [
       local: "Arena ADC"
     },
     {
-        id: "29",
+        id: "31",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/the_best.png",
