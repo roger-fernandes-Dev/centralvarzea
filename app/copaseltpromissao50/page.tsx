@@ -122,7 +122,7 @@ export default function GroupsPage() {
                 {calculateTable(group).map((team, index) => (
                   <tr
                     key={team.name}
-                    className={`h-14 border-b border-gray-100 hover:bg-gray-50 transition ${
+                    className={`h-14 border-b border-gray-100 hover:bg-gray-50 ${
                       index === 0 ? "bg-green-50/60" : ""
                     }`}
                   >
@@ -131,7 +131,7 @@ export default function GroupsPage() {
                     </td>
 
                     <td className="py-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 group relative">
                         <Image
                           src={team.logo}
                           alt={team.name}
@@ -139,9 +139,15 @@ export default function GroupsPage() {
                           height={24}
                           className="rounded-full"
                         />
+
                         <span className="font-medium">
                           {team.short}
                         </span>
+
+                        {/* tooltip */}
+                        <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                          {team.name}
+                        </div>
                       </div>
                     </td>
 
@@ -153,7 +159,7 @@ export default function GroupsPage() {
               </tbody>
             </table>
 
-            {/* jogos (NÃO MEXI) */}
+            {/* jogos */}
             <div className="px-4 py-4 bg-gray-50/60">
               <h3 className="text-sm font-semibold text-gray-500 mb-3">
                 Jogos
@@ -168,53 +174,49 @@ export default function GroupsPage() {
                   return (
                     <div
                       key={i}
-                      className={`bg-white rounded-xl px-3 py-2 flex items-center justify-between border border-gray-100 shadow-[0_2px_6px_rgba(0,0,0,0.03)] transition-all hover:bg-gray-50 hover:shadow-md ${
-                        hasResult ? "bg-gray-50/80" : ""
-                      }`}
+                      className="bg-white rounded-xl px-3 py-2 flex items-center justify-between border border-gray-100"
                     >
                       <div className="flex items-center gap-2 text-sm font-medium">
-                        <div className="flex items-center gap-1">
+
+                        {/* HOME */}
+                        <div className="flex items-center gap-1 group relative">
                           {homeTeam && (
                             <Image src={homeTeam.logo} alt={homeTeam.name} width={18} height={18} className="rounded-full" />
                           )}
                           <span>{match.home}</span>
+
+                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                            {homeTeam?.name}
+                          </div>
                         </div>
 
                         <div className="px-2 min-w-[40px] text-center">
-                          {hasResult ? (
-                            <span className="font-semibold text-gray-800">
-                              {match.homeScore} - {match.awayScore}
-                            </span>
-                          ) : (
-                            <span className="text-gray-300 text-xs">vs</span>
-                          )}
+                          {hasResult ? `${match.homeScore} - ${match.awayScore}` : "vs"}
                         </div>
 
-                        <div className="flex items-center gap-1">
+                        {/* AWAY */}
+                        <div className="flex items-center gap-1 group relative">
                           {awayTeam && (
                             <Image src={awayTeam.logo} alt={awayTeam.name} width={18} height={18} className="rounded-full" />
                           )}
                           <span>{match.away}</span>
+
+                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                            {awayTeam?.name}
+                          </div>
                         </div>
+
                       </div>
 
-                      <div className="text-[11px] text-gray-400 text-right leading-tight">
-                        {hasResult ? (
-                          <span className="text-gray-500 font-medium">
-                            Encerrado
-                          </span>
-                        ) : (
-                          <>
-                            <div>{match.date}</div>
-                            <div>{match.time}</div>
-                          </>
-                        )}
+                      <div className="text-[11px] text-gray-400 text-right">
+                        {hasResult ? "Encerrado" : `${match.date} ${match.time}`}
                       </div>
                     </div>
                   )
                 })}
               </div>
             </div>
+
           </div>
         ))}
       </div>

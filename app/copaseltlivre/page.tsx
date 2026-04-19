@@ -131,7 +131,7 @@ export default function Selt40Page() {
                     </td>
 
                     <td className="py-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 group relative">
                         <Image
                           src={team.logo}
                           alt={team.name}
@@ -139,7 +139,15 @@ export default function Selt40Page() {
                           height={24}
                           className="rounded-full"
                         />
-                        <span className="font-medium">{team.short}</span>
+
+                        <span className="font-medium">
+                          {team.short}
+                        </span>
+
+                        {/* TOOLTIP */}
+                        <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                          {team.name}
+                        </div>
                       </div>
                     </td>
 
@@ -178,7 +186,7 @@ export default function Selt40Page() {
                       <div className="flex gap-2 text-sm">
 
                         {/* HOME */}
-                        <div className="flex items-center gap-1" title={homeTeam?.name}>
+                        <div className="flex items-center gap-1 group relative">
                           {homeTeam?.logo && (
                             <Image
                               src={homeTeam.logo}
@@ -189,6 +197,10 @@ export default function Selt40Page() {
                             />
                           )}
                           <span>{match.home}</span>
+
+                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                            {homeTeam?.name}
+                          </div>
                         </div>
 
                         <span className="w-10 text-center">
@@ -197,8 +209,8 @@ export default function Selt40Page() {
                             : "vs"}
                         </span>
 
-                        {/* AWAY (corrigido de forma segura) */}
-                        <div className="flex items-center gap-1" title={awayTeam?.name}>
+                        {/* AWAY */}
+                        <div className="flex items-center gap-1 group relative">
                           {awayTeam?.logo && (
                             <Image
                               src={awayTeam.logo}
@@ -209,6 +221,10 @@ export default function Selt40Page() {
                             />
                           )}
                           <span>{match.away}</span>
+
+                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                            {awayTeam?.name}
+                          </div>
                         </div>
 
                       </div>
