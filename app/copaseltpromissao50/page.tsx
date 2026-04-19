@@ -76,7 +76,8 @@ const groups: Group[] = [
     matches: [
       { home: "ADF", away: "ASS", date: "28/04", time: "19:00", },
       { home: "AMB", away: "BNG", date: "28/04", time: "19:00", },
-      { home: "AMB", away: "ADF", date: "30/04", time: "20:00", },
+      
+      /** { home: "AMB", away: "ADF", date: "30/04", time: "20:00", },
       { home: "BNG", away: "ASS", date: "30/04", time: "20:00", },
       { home: "ADF", away: "BNG", date: "09/05", time: "17:45", },
       { home: "ASS", away: "AMB", date: "09/05", time: "17:45", },
@@ -85,7 +86,7 @@ const groups: Group[] = [
       { home: "ADF", away: "AMB", date: "19/05", time: "21:00", },
       { home: "ASS", away: "BNG", date: "19/05", time: "21:00", },
       { home: "BNG", away: "ADF", date: "28/05", time: "20:00", },
-      { home: "AMB", away: "ASS", date: "28/05", time: "20:00", },
+      { home: "AMB", away: "ASS", date: "28/05", time: "20:00", },*/
     ],
   }
 ]
