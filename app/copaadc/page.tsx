@@ -77,13 +77,22 @@ export default function GroupsPage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`/api/championship/${CHAMP_ID}`)
-      .then(res => res.json())
-      .then(data => {
-        setGroups(data?.groups ?? [])
-        setLoading(false)
-      })
-  }, [])
+  fetch(`/api/championship/${CHAMP_ID}`)
+    .then(res => {
+      if (!res.ok) throw new Error("Erro na API")
+      return res.json()
+    })
+    .then(data => {
+      setGroups(data?.groups ?? [])
+    })
+    .catch(() => {
+      console.error("Erro ao carregar campeonato")
+      setGroups([])
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+}, [])
 
   if (loading) return <div className="p-10">Carregando...</div>
 

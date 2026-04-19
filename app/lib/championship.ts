@@ -42,7 +42,7 @@ export const championship = [
     ],
     matches: [
       { home: "BLS", away: "PRB", date: "19/04", time: "08:00" },
-      { home: "NAL", away: "PIT", date: "19/04", time: "08:00" },
+      { home: "NAL", away: "PIT", date: "19/04", time: "08:00", homeScore: 2, awayScore: 2 },
     ],
   },
   {
@@ -54,8 +54,8 @@ export const championship = [
       { name: "Raiz Esportiva", short: "RZS", logo: "/times/raizesportiva.png", },
     ],
     matches: [
-      { home: "MAG", away: "RZS", date: "19/04", time: "08:00" },
-      { home: "TBT", away: "SGC", date: "19/04", time: "08:00" },
+      { home: "MAG", away: "RZS", date: "19/04", time: "08:00", homeScore: 15, awayScore: 1 },
+      { home: "TBT", away: "SGC", date: "19/04", time: "08:00", homeScore: 4, awayScore: 2 },
     ]
       }
     ]
