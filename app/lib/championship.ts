@@ -106,5 +106,28 @@ export const championship = [
     ]
       }
     ]
+  },
+  {
+    id: "copa-selt-livre-2026",
+    name: "Copa Selt Promissão Livre",
+    season: "2026",
+    current: true,
+    groups: [
+              {
+          name: "Grupo A",
+          teams: [
+            { name: "Nova Campinas FC", short: "BGA", logo: "/times/novacampinas.png", },
+            { name: "Aliança FC", short: "AFC", logo: "/times/aliancafc.png", },
+            { name: "Point FC", short: "PIT", logo: "/times/point.png", },
+            { name: "The Best", short: "TBT", logo: "/times/the_best.png", },
+            { name: "Beco FC", short: "BEC", logo: "/times/becofc.png", },
+            { name: "Bahea", short: "BAE", logo: "/times/bahea.png", },
+          ],
+          matches: [
+            { home: "BAE", away: "PIT", date: "23/04", time: "19:00", },
+            
+          ],
+        },
+    ]
   }
 ]

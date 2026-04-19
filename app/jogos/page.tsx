@@ -62,10 +62,10 @@ export default function JogosPage() {
           {upcoming.map((match: any, i: number) => (
             <div
               key={i}
-              className="grid grid-cols-[140px_1fr_140px] items-center px-3 py-4 hover:bg-yellow-50"
+              className="grid grid-cols-[90px_1fr] sm:grid-cols-[140px_1fr_140px] items-center px-2 py-4 hover:bg-yellow-50"
             >
               {/* ESQUERDA */}
-              <div className="flex flex-col text-xs text-gray-500">
+              <div className="flex flex-col text-[11px] text-gray-500">
                 <span className="font-semibold text-yellow-700 truncate">
                   {match.type}
                 </span>
@@ -81,55 +81,29 @@ export default function JogosPage() {
               </div>
 
               {/* MEIO */}
-              <div className="flex items-center justify-center gap-6">
+              <div className="flex items-center justify-center gap-3 whitespace-nowrap">
 
-                {/* CASA */}
-                <div className="flex items-center gap-2 group relative">
-                  <Image
-                    src={match.homeLogo}
-                    alt={match.home}
-                    width={28}
-                    height={28}
-                  />
-
-                  <span className="text-sm font-medium">
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <Image src={match.homeLogo} alt={match.home} width={24} height={24} />
+                  <span className="text-xs sm:text-sm font-medium">
                     {abreviar(match.home)}
                   </span>
-
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                    bg-black text-white text-[10px] px-2 py-1 rounded 
-                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    {match.home}
-                  </div>
                 </div>
 
-                <span className="text-gray-400 font-semibold min-w-[40px] text-center">
+                <span className="text-gray-400 font-semibold min-w-[35px] text-center">
                   x
                 </span>
 
-                {/* FORA */}
-                <div className="flex items-center gap-2 group relative">
-                  <span className="text-sm font-medium">
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <span className="text-xs sm:text-sm font-medium">
                     {abreviar(match.away)}
                   </span>
-
-                  <Image
-                    src={match.awayLogo}
-                    alt={match.away}
-                    width={28}
-                    height={28}
-                  />
-
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                    bg-black text-white text-[10px] px-2 py-1 rounded 
-                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    {match.away}
-                  </div>
+                  <Image src={match.awayLogo} alt={match.away} width={24} height={24} />
                 </div>
 
               </div>
 
-              <div />
+              <div className="hidden sm:block" />
             </div>
           ))}
         </div>
@@ -143,10 +117,10 @@ export default function JogosPage() {
           {finished.map((match: any, i: number) => (
             <div
               key={i}
-              className="grid grid-cols-[140px_1fr_140px] items-center px-3 py-4 hover:bg-yellow-50"
+              className="grid grid-cols-[90px_1fr] sm:grid-cols-[140px_1fr_140px] items-center px-2 py-4 hover:bg-yellow-50"
             >
               {/* ESQUERDA */}
-              <div className="flex flex-col text-xs text-gray-500">
+              <div className="flex flex-col text-[11px] text-gray-500">
                 <span className="font-semibold text-yellow-700 truncate">
                   {match.type}
                 </span>
@@ -162,55 +136,29 @@ export default function JogosPage() {
               </div>
 
               {/* MEIO */}
-              <div className="flex items-center justify-center gap-6">
+              <div className="flex items-center justify-center gap-3 whitespace-nowrap">
 
-                {/* CASA */}
-                <div className="flex items-center gap-2 group relative">
-                  <Image
-                    src={match.homeLogo}
-                    alt={match.home}
-                    width={28}
-                    height={28}
-                  />
-
-                  <span className="text-sm font-medium">
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <Image src={match.homeLogo} alt={match.home} width={24} height={24} />
+                  <span className="text-xs sm:text-sm font-medium">
                     {abreviar(match.home)}
                   </span>
-
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                    bg-black text-white text-[10px] px-2 py-1 rounded 
-                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    {match.home}
-                  </div>
                 </div>
 
                 <span className="font-bold min-w-[40px] text-center">
                   {match.score ?? "-"}
                 </span>
 
-                {/* FORA */}
-                <div className="flex items-center gap-2 group relative">
-                  <span className="text-sm font-medium">
+                <div className="flex items-center gap-1 flex-shrink-0">
+                  <span className="text-xs sm:text-sm font-medium">
                     {abreviar(match.away)}
                   </span>
-
-                  <Image
-                    src={match.awayLogo}
-                    alt={match.away}
-                    width={28}
-                    height={28}
-                  />
-
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                    bg-black text-white text-[10px] px-2 py-1 rounded 
-                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    {match.away}
-                  </div>
+                  <Image src={match.awayLogo} alt={match.away} width={24} height={24} />
                 </div>
 
               </div>
 
-              <div />
+              <div className="hidden sm:block" />
             </div>
           ))}
         </div>
