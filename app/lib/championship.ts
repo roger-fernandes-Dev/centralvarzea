@@ -119,7 +119,7 @@ export const championship = [
           name: "Grupo A",
           teams: [
             { name: "Nova Campinas FC", short: "NCF", logo: "/times/novacampinas.png", },
-            { name: "Aliança FC", short: "NAL", logo: "/times/aliancafc.png", },
+            { name: "Aliança FC", short: "AFC", logo: "/times/aliancafc.png", },
             { name: "Point FC", short: "PIT", logo: "/times/point.png", },
             { name: "The Best", short: "TBT", logo: "/times/the_best.png", },
             { name: "Beco FC", short: "BEC", logo: "/times/becofc.png", },
@@ -127,9 +127,23 @@ export const championship = [
           ],
           matches: [
             { home: "BAE", away: "PIT", date: "23/04", time: "19:00", },
-            { home: "NAL", away: "BEC", date: "23/04", time: "19:00", },
+            { home: "AFC", away: "BEC", date: "23/04", time: "19:00", },
             { home: "NCF", away: "TBT", date: "28/04", time: "20:00", },
-            /** */
+            
+            
+            /** 
+            { home: "AFC", away: "BAE", date: "05/05", time: "20:00", },
+            { home: "TBT", away: "PIT", date: "28/04", time: "21:00", },
+            { home: "BEC", away: "NCF", date: "05/05", time: "21:00", },
+            { home: "BAE", away: "TBT", date: "12/05", time: "19:00", },
+            { home: "NCF", away: "AFC", date: "12/05", time: "19:00", },
+            { home: "BAE", away: "TBT", date: "16/05", time: "19:30", },
+            { home: "NCF", away: "BAE", date: "16/05", time: "19:30", },
+            { home: "BEC", away: "TBT", date: "21/05", time: "21:00", },
+            { home: "AFC", away: "PIT", date: "21/05", time: "21:00", },
+            { home: "BAE", away: "BEC", date: "26/05", time: "19:00", },
+            { home: "PIT", away: "NCF", date: "21/05", time: "19:00", },
+            { home: "TBT", away: "AFC", date: "30/05", time: "17:15", },*/
             
           ],
         },
@@ -147,7 +161,21 @@ export const championship = [
             { home: "MDV", away: "SJC", date: "23/04", time: "20:00", },
             { home: "CFC", away: "BGA", date: "23/04", time: "20:00", },
             { home: "ADF", away: "BVB", date: "28/04", time: "21:00", },
-            /** */
+            
+            
+            /** 
+            { home: "CFC", away: "MDV", date: "28/04", time: "21:00", },
+            { home: "BVB", away: "SJC", date: "07/05", time: "19:00", },
+            { home: "BAG", away: "ADF", date: "07/05", time: "19:00", },
+            { home: "MDV", away: "BVB", date: "12/05", time: "20:00", },
+            { home: "ADF", away: "CFC", date: "12/05", time: "20:00", },
+            { home: "SJC", away: "BAG", date: "16/05", time: "18:30", },
+            { home: "ADF", away: "MDV", date: "16/05", time: "18:30", },
+            { home: "BAG", away: "BVB", date: "21/05", time: "19:00", },
+            { home: "CFC", away: "SJC", date: "21/05", time: "19:00", },
+            { home: "MDV", away: "BAG", date: "26/05", time: "20:00", },
+            { home: "SJC", away: "ADF", date: "26/05", time: "20:00", },
+            { home: "BVB", away: "CFC", date: "30/05", time: "17:15", },*/
             
           ],
         },
@@ -165,7 +193,21 @@ export const championship = [
             { home: "FAL", away: "ADC", date: "23/04", time: "21:00", },
             { home: "PRB", away: "BFC", date: "23/04", time: "21:00", },
             { home: "RCF", away: "PRO", date: "30/04", time: "19:00", },
-            /** */
+           
+            /**
+             *  { home: "PRB", away: "FAL", date: "30/04", time: "19:00", },
+            { home: "PRO", away: "ADC", date: "07/05", time: "20:00", },
+            { home: "BFC", away: "RCF", date: "07/05", time: "20:00", },
+            { home: "FAL", away: "PRO", date: "12/05", time: "21:00", },
+            { home: "RCF", away: "PRB", date: "12/05", time: "21:00", },
+            { home: "ADC", away: "BFC", date: "16/05", time: "17:15", },
+            { home: "RCF", away: "FAL", date: "16/05", time: "17:15", },
+            { home: "BFC", away: "PRO", date: "21/05", time: "20:00", },
+            { home: "PRB", away: "ADC", date: "21/05", time: "20:00", },
+            { home: "FAL", away: "BFC", date: "26/05", time: "21:00", },
+            { home: "ADC", away: "RCF", date: "26/05", time: "21:00", },
+            { home: "PRO", away: "PRB", date: "30/05", time: "18:30", },
+             */
             
           ],
         },
@@ -174,8 +216,8 @@ export const championship = [
           teams: [
             { name: "Guerreiros FC", short: "GFC", logo: "/times/guerreirosfc.png", },
             { name: "MEC", short: "MEC", logo: "/times/mec.png", },
-            { name: "Athletic", short: "ATL", logo: "/times/athletic.png", },
-            { name: "Leões", short: "LEO", logo: "/times/leoes.png", },
+            { name: "Athletic", short: "ATL", logo: "/times/athleticfc.png", },
+            { name: "Leões", short: "LEO", logo: "/times/leoesfc.png", },
             { name: "União São João", short: "USJ", logo: "/times/unidos_sao_joao.png", },
             { name: "Napoli", short: "NAP", logo: "/times/napoli.png", },
           ],
@@ -183,7 +225,21 @@ export const championship = [
             { home: "NAP", away: "ATL", date: "25/04", time: "19:30", },
             { home: "USJ", away: "GFC", date: "25/04", time: "19:30", },
             { home: "MEC", away: "LEO", date: "30/04", time: "21:00", },
-            /** */
+
+            /**
+            { home: "USJ", away: "NAP", date: "30/04", time: "21:00", },
+            { home: "LEO", away: "ATL", date: "07/05", time: "21:00", },
+            { home: "GFC", away: "MEC", date: "07/05", time: "21:00", },
+            { home: "NAP", away: "LEO", date: "14/05", time: "19:00", },
+            { home: "MEC", away: "USJ", date: "14/05", time: "19:00", },
+            { home: "ATL", away: "GFC", date: "19/05", time: "20:00", },
+            { home: "MEC", away: "NAP", date: "19/05", time: "20:00", },
+            { home: "GFC", away: "LEO", date: "23/05", time: "17:15", },
+            { home: "USJ", away: "ATL", date: "23/05", time: "17:15", },
+            { home: "NAP", away: "GFC", date: "28/05", time: "19:00", },
+            { home: "ATL", away: "MEC", date: "28/05", time: "19:00", },
+            { home: "LEO", away: "USJ", date: "30/05", time: "18:30", },
+             */
             
           ],
         },

@@ -16,6 +16,7 @@ type Championship = {
 export default function UpcomingChampionships() {
   const championships: Championship[] = [
     { name: "Segunda Copa ADC", logo: "/campeonato/campeonatoadc.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "campeonato-adc", status: "running" },
+    { name: "Mini Campo livre Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltlivre", status: "running" },
     { name: "Mini Campo 50+ Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltpromissao50", status: "running" },
     { name: "Mini Campo 40+ Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltpromissao40", status: "running" },
     { name: "Super Copa Taquarituba 2026", logo: "/campeonato/copataquarituba.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-copa-taquarituba", status: "soon" },
@@ -52,11 +53,12 @@ export default function UpcomingChampionships() {
     if (item.name === "Segunda Copa ADC") return "/copaadc"
     if (item.name === "Mini Campo 50+ Promissão 2026") return "/copaseltpromissao50"
     if (item.name === "Mini Campo 40+ Promissão 2026") return "/copaseltpromissao40"
+    if (item.name === "Mini Campo livre Promissão 2026") return "/copaseltlivre"
     return `/campeonatos/${item.slug}`
   }
 
   const isClickable = (item: Championship) => {
-    return item.name === "Segunda Copa ADC" || item.name === "Mini Campo 50+ Promissão 2026" || item.name === "Mini Campo 40+ Promissão 2026"
+    return item.name === "Segunda Copa ADC" || item.name === "Mini Campo 50+ Promissão 2026" || item.name === "Mini Campo 40+ Promissão 2026" || item.name === "Mini Campo livre Promissão 2026"
   }
 
   return (

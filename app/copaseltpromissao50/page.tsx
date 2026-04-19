@@ -94,7 +94,7 @@ const groups: Group[] = [
 export default function GroupsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Fase de Grupos</h1>
+      <h1 className="text-3xl font-bold mb-8">Copa Selt Promissão 50</h1>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
         {groups.map((group) => (
