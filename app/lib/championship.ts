@@ -41,7 +41,7 @@ export const championship = [
       { name: "Point", short: "PIT", logo: "/times/point.png", },
     ],
     matches: [
-      { home: "BLS", away: "PRB", date: "19/04", time: "08:00" },
+      { home: "BLS", away: "PRB", date: "19/04", time: "08:00", homeScore: 1, awayScore: 5 },
       { home: "NAL", away: "PIT", date: "19/04", time: "08:00", homeScore: 2, awayScore: 2 },
     ],
   },
@@ -55,7 +55,7 @@ export const championship = [
     ],
     matches: [
       { home: "MAG", away: "RZS", date: "19/04", time: "08:00", homeScore: 15, awayScore: 1 },
-      { home: "TBT", away: "SGC", date: "19/04", time: "08:00", homeScore: 4, awayScore: 2 },
+      { home: "TBT", away: "SGC", date: "19/04", time: "08:00", homeScore: 2, awayScore: 4 },
     ]
       }
     ]

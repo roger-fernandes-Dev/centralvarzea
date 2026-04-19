@@ -65,7 +65,7 @@ const jogos = [
       home: "Boleiros",
       awayLogo: "/times/os_paraibas.png",
       away: "Os Paraíbas",
-      score: "-- x --",
+      score: "1 x 5",
       type: "Copa ADC",
       data: "2026-04-19",
       hora: "08:00",
