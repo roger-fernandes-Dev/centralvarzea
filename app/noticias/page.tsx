@@ -1,9 +1,7 @@
-"use client"
-
 import Image from "next/image"
 import Link from "next/link"
 import LoopBanner from "@/components/home/LoopBannerNoticias"
-import { noticias as dataNoticias } from "@/app/data/noticias"
+import { getNoticias } from "@/src/db/news-repo"
 
 type Noticia = {
   slug: string
@@ -11,7 +9,7 @@ type Noticia = {
   resumo: string
   image: string
   categoria: string
-  data: string
+  data: Date
 }
 
 function timeAgo(date: Date) {
@@ -33,8 +31,10 @@ function timeAgo(date: Date) {
   return `há ${years} anos`
 }
 
-export default function Noticias() {
-  const noticiasOrdenadas = [...dataNoticias].sort(
+export default async function Noticias() {
+  const dataNoticias = await getNoticias()
+
+  const noticiasOrdenadas: Noticia[] = [...dataNoticias].sort(
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime()
   )
 
@@ -43,14 +43,14 @@ export default function Noticias() {
       <main className="max-w-6xl mx-auto px-4 space-y-8">
 
         <section>
-          {/**<NewsCarousel noticias={noticiasOrdenadas} /> */}
+          {/* futuro: carousel */}
         </section>
 
         <section className="space-y-3">
 
-          {noticiasOrdenadas.map((n, i) => (
+          {noticiasOrdenadas.map((n) => (
             <Link
-              key={i}
+              key={n.slug}
               href={`/noticias/${n.slug}`}
               className="group flex gap-4 py-4 items-start hover:bg-gray-50 px-2 rounded-lg transition"
             >

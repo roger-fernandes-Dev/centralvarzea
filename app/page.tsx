@@ -9,8 +9,21 @@ import UpcomingChampionships from "@/components/home/UpCommingChampionships"
 import FederacoesCTA from "@/components/home/FederacoesCTA"
 import SEOHead from "@/components/SeoHead"
 import MilestoneBanner from "@/components/home/MilestoneBanner"
+import { getNoticias } from "@/src/db/news-repo"
 
-export default function Home() {
+export default async function Home() {
+  const noticias = await getNoticias()
+
+  const slides = noticias
+    .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
+    .slice(0, 5)
+    .map((n) => ({
+      image: n.image,
+      title: n.title,
+      description: n.resumo,
+      link: `/noticias/${n.slug}`,
+    }))
+
   return (
     <>
 
@@ -55,7 +68,7 @@ export default function Home() {
 
         {/* ads */}
         <section>
-          <AdsSidebar />
+          <AdsSidebar slides={slides}  />
         </section>
 
         {/* campeonatos + clubes */}

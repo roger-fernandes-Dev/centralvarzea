@@ -4,15 +4,25 @@ import { useEffect, useState } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import Image from "next/image"
 import Link from "next/link"
-import { noticias } from "@/app/data/noticias"
 
-export default function LoopCarousel() {
+type Slide = {
+  image: string
+  title: string
+  description: string
+  link: string
+}
+
+export default function LoopCarousel({
+  noticias,
+}: {
+  noticias: Slide[]
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
   })
 
-  const [slides, setSlides] = useState<any[]>([])
+  const [slides, setSlides] = useState<Slide[]>([])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -25,21 +35,8 @@ export default function LoopCarousel() {
   }, [emblaApi])
 
   useEffect(() => {
-    const filtradas = [...noticias]
-      .sort(
-        (a, b) =>
-          new Date(b.data).getTime() - new Date(a.data).getTime()
-      )
-      .slice(0, 5) // 👈 aqui limita para 4 notícias
-      .map((n) => ({
-        image: n.image,
-        title: n.title,
-        description: n.resumo,
-        link: `/noticias/${n.slug}`,
-      }))
-
-    setSlides(filtradas)
-  }, [])
+    setSlides(noticias)
+  }, [noticias])
 
   return (
     <div
@@ -47,10 +44,10 @@ export default function LoopCarousel() {
       ref={emblaRef}
     >
       <div className="flex h-full px-2 md:px-6 lg:px-10">
-        {slides.map((item, i) => (
+        {slides.map((item) => (
           <Link
             href={item.link}
-            key={i}
+            key={item.link}
             className="
               relative h-full rounded-xl overflow-hidden group mx-2
               flex-[0_0_85%]
@@ -62,23 +59,14 @@ export default function LoopCarousel() {
               src={item.image}
               alt={item.title}
               fill
-              className="object-cover object-center group-hover:scale-105 transition duration-500"
-              sizes="(max-width: 768px) 85vw, (max-width: 1024px) 70vw, 30vw"
-              priority={i === 0}
+              className="object-cover group-hover:scale-105 transition"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-b from-black/80 via-black/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
 
-            <div className="absolute bottom-0 md:top-0 md:bottom-auto left-0 w-full p-3 md:p-5">
-              <span className="text-[10px] md:text-xs uppercase tracking-wider text-yellow-400 font-semibold">
-                Futebol de Várzea
-              </span>
-
-              <h2 className="text-white text-sm md:text-lg lg:text-base font-extrabold leading-snug mt-1 line-clamp-2">
-                {item.title}
-              </h2>
-
-              <p className="text-gray-200 text-[11px] md:text-sm mt-2 line-clamp-2">
+            <div className="absolute bottom-0 p-3">
+              <h2 className="text-white font-bold">{item.title}</h2>
+              <p className="text-gray-200 text-sm line-clamp-2">
                 {item.description}
               </p>
             </div>

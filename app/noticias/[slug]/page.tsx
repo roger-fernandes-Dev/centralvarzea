@@ -2,18 +2,11 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
-import { noticias } from "@/app/data/noticias"
+import { getNoticia, getNoticias } from "@/src/db/news-repo"
 
-type Slug = typeof noticias[number]["slug"]
-
-function getNoticia(slug: string) {
-  return noticias.find((n) => n.slug === slug) || null
-}
-
-function getNoticias() {
-  return noticias
-}
-
+/* =========================
+   SEO
+========================= */
 export async function generateMetadata({
   params,
 }: {
@@ -21,7 +14,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 
   const { slug } = await params
-  const noticia = getNoticia(slug)
+
+  const noticia = await getNoticia(slug)
 
   if (!noticia) {
     return { title: "Notícia não encontrada" }
@@ -29,7 +23,7 @@ export async function generateMetadata({
 
   const url = `https://www.centralvarzea.com.br/noticias/${slug}`
 
-  const imageUrl = noticia.image.startsWith("http")
+  const imageUrl = noticia.image?.startsWith("http")
     ? noticia.image
     : `https://www.centralvarzea.com.br${noticia.image}`
 
@@ -62,17 +56,22 @@ export async function generateMetadata({
   }
 }
 
+/* =========================
+   PAGE
+========================= */
 export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
+
   const { slug } = await params
 
-  const noticia = getNoticia(slug)
-  const todas = getNoticias()
+  const noticia = await getNoticia(slug)
 
   if (!noticia) return notFound()
+
+  const todas = await getNoticias()
 
   const relacionadas = todas
     .filter((n) => n.slug !== slug)
@@ -97,7 +96,7 @@ export default async function Page({
 
       <div className="relative w-full h-64 md:h-96 mt-6 rounded-lg overflow-hidden">
         <Image
-          src={noticia.image}
+          src={noticia.image || "/placeholder.png"}
           alt={noticia.title}
           fill
           className="object-cover"
@@ -107,20 +106,10 @@ export default async function Page({
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-8 mt-10">
 
-        <aside className="hidden lg:flex flex-col items-center">
-          <div className="sticky top-24 flex flex-col gap-24">
-            <div className="w-[160px] h-[250px] relative">
-              <Image src="/pedireitoad/pedireitoad.png" alt="" fill className="object-cover rounded-md" />
-            </div>
-            <div className="w-[160px] h-[250px] relative">
-              <Image src="/amopad/amopad.png" alt="" fill className="object-cover rounded-md" />
-            </div>
-          </div>
-        </aside>
-
         <article>
           <div className="max-w-2xl mx-auto text-[17px] leading-8 text-gray-800 space-y-6">
-            {noticia.content.split("\n").map((p, i) => {
+
+            {(noticia.content ?? "").split("\n").map((p, i) => {
               const urlMatch = p.match(/https?:\/\/\S+/)
 
               return (
@@ -141,53 +130,29 @@ export default async function Page({
                     <p className="text-justify">{p}</p>
                   )}
 
-                  {i === 1 && (
+                  {i === 1 && noticia.team && (
                     <div className="flex flex-col items-center my-8 gap-4">
 
-                      <div className="flex flex-col items-center gap-2">
-                        <Image
-                          src={noticia.team?.logo || "/logos/default.png"}
-                          alt={noticia.team?.name || ""}
-                          width={120}
-                          height={120}
-                          className="rounded-full shadow-md"
-                        />
-                        <span className="text-sm text-gray-500">
-                          {noticia.team?.name}
-                        </span>
-                      </div>
+                      <Image
+                        src={noticia.team.logo || "/logos/default.png"}
+                        alt={noticia.team.name || ""}
+                        width={120}
+                        height={120}
+                        className="rounded-full shadow-md"
+                      />
 
-                      <div className="grid grid-cols-2 gap-2 w-full max-w-xs lg:hidden">
-                        {[
-                          "/pedireitoad/pedireitoad.png",
-                          "/amopad/amopad.png",
-                          "/cegsegurosad/cegsegurosad.png",
-                          "/suplementelinsad/suplementelinsad.png",
-                        ].map((src, idx) => (
-                          <div key={idx} className="w-full aspect-[160/250] relative bg-white">
-                            <Image src={src} alt="" fill className="object-contain rounded-md" />
-                          </div>
-                        ))}
-                      </div>
+                      <span className="text-sm text-gray-500">
+                        {noticia.team.name}
+                      </span>
 
                     </div>
                   )}
                 </div>
               )
             })}
+
           </div>
         </article>
-
-        <aside className="hidden lg:flex flex-col items-center">
-          <div className="sticky top-24 flex flex-col gap-24">
-            <div className="w-[160px] h-[250px] relative">
-              <Image src="/cegsegurosad/cegsegurosad.png" alt="" fill className="object-cover rounded-md" />
-            </div>
-            <div className="w-[160px] h-[250px] relative">
-              <Image src="/suplementelinsad/suplementelinsad.png" alt="" fill className="object-cover rounded-md" />
-            </div>
-          </div>
-        </aside>
 
       </div>
 
@@ -209,12 +174,11 @@ export default async function Page({
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover object-center transition duration-500 group-hover:scale-105"
+                      className="object-cover transition duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/30 transition duration-500 group-hover:bg-black/0"></div>
                   </div>
 
-                  <h3 className="mt-3 text-sm font-semibold transition-colors duration-300 group-hover:text-yellow-600">
+                  <h3 className="mt-3 text-sm font-semibold group-hover:text-yellow-600">
                     {item.title}
                   </h3>
 
