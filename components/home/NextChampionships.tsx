@@ -73,7 +73,7 @@ export default function NextChampionships() {
                 </span>
 
                 <span className="flex items-center">
-                  {new Date(match.data).toLocaleDateString("pt-BR", {
+                  {new Date(`${match.data}T00:00:00-03:00`).toLocaleDateString("pt-BR", {
                     day: "2-digit",
                     month: "2-digit"
                   })} • {match.hora}
