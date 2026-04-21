@@ -17,6 +17,8 @@ export const championship = [
     matches: [
       { home: "ADS", away: "MXE", date: "12/04", time: "08:00", homeScore: 4, awayScore: 3 },
       { home: "MEC", away: "AFA", date: "12/04", time: "08:00", homeScore: 4, awayScore: 2 },
+      { home: "MEC", away: "MXE", date: "26/04", time: "08:00", },
+      { home: "AFA", away: "ADS", date: "26/04", time: "09:10", },
     ],
   },
   {
@@ -30,6 +32,8 @@ export const championship = [
     matches: [
       { home: "ADC", away: "NPI", date: "12/04", time: "08:00", homeScore: 1, awayScore: 3 },
       { home: "CFC", away: "USJ", date: "12/04", time: "08:00", homeScore: 3, awayScore: 2 },
+      { home: "USJ", away: "ADC", date: "26/04", time: "08:00", },
+      { home: "NPI", away: "CFC", date: "26/04", time: "09:10", },
     ],
   },
   {
@@ -43,6 +47,8 @@ export const championship = [
     matches: [
       { home: "BLS", away: "PRB", date: "19/04", time: "08:00", homeScore: 1, awayScore: 5 },
       { home: "NAL", away: "PIT", date: "19/04", time: "08:00", homeScore: 2, awayScore: 2 },
+      { home: "PRB", away: "NAL", date: "03/05", time: "08:00", },
+      { home: "PIT", away: "BLS", date: "03/05", time: "09:10", },
     ],
   },
   {
@@ -56,6 +62,8 @@ export const championship = [
     matches: [
       { home: "MAG", away: "RZS", date: "19/04", time: "08:00", homeScore: 15, awayScore: 1 },
       { home: "TBT", away: "SGC", date: "19/04", time: "08:00", homeScore: 2, awayScore: 4 },
+      { home: "RZS", away: "TBT", date: "03/05", time: "08:00", },
+      { home: "SGC", away: "MAG", date: "03/05", time: "09:10", },
     ]
       }
     ]

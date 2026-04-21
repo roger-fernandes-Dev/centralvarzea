@@ -49,6 +49,94 @@ const jogos = [
     },
     {
       id: "5",
+      homeLogo: "/times/maxelite.png",
+      home: "Max Elite",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      type: "Copa ADC",
+      data: "2026-04-26",
+      hora: "08:00",
+      local: "Arena ADC",
+    },
+    {
+      id: "6",
+      homeLogo: "/times/unidos_sao_joao.png",
+      home: "São João",
+      awayLogo: "/times/renukaadc.png",
+      away: "ADC Renuka",
+      type: "Copa ADC",
+      data: "2026-04-26",
+      hora: "08:00",
+      local: "Arena ADC",
+    },
+    {
+      id: "7",
+      homeLogo: "/times/afirma.png",
+      home: "A Firma",
+      awayLogo: "/times/aguias_de_Deus.png",
+      away: "Águias de Deus",
+      type: "Copa ADC",
+      data: "2026-04-26",
+      hora: "09:10",
+      local: "Arena ADC",
+    },
+    {
+      id: "8",
+      homeLogo: "/times/napoli.png",
+      home: "Napoli",
+      awayLogo: "/times/casinhafc.png",
+      away: "Casinha FC",
+      type: "Copa ADC",
+      data: "2026-04-26",
+      hora: "09:10",
+      local: "Arena ADC",
+    },
+    {
+      id: "9",
+      homeLogo: "/times/os_paraibas.png",
+      home: "Os Paraibas",
+      awayLogo: "/times/nova_alianca.png",
+      away: "Nova Aliança",
+      type: "Copa ADC",
+      data: "2026-05-03",
+      hora: "08:00",
+      local: "Arena ADC",
+    },
+    {
+      id: "10",
+      homeLogo: "/times/raizesportiva.png",
+      home: "Raiz Esportiva",
+      awayLogo: "/times/the_best.png",
+      away: "The Best",
+      type: "Copa ADC",
+      data: "2026-05-03",
+      hora: "08:00",
+      local: "Arena ADC",
+    },
+    {
+      id: "11",
+      homeLogo: "/times/point.png",
+      home: "Point",
+      awayLogo: "/times/boleirosfc.png",
+      away: "Boleiros",
+      type: "Copa ADC",
+      data: "2026-05-03",
+      hora: "09:10",
+      local: "Arena ADC",
+    },
+    {
+      id: "12",
+      homeLogo: "/times/sporting-guaicarafc.png",
+      home: "Sporting Guaicara",
+      awayLogo: "/times/magos.png",
+      away: "Magos",
+      type: "Copa ADC",
+      data: "2026-05-03",
+      hora: "09:10",
+      local: "Arena ADC",
+    },
+    {
+      id: "13",
       homeLogo: "/times/nova_alianca.png",
       home: "Nova Aliança",
       awayLogo: "/times/point.png",
@@ -60,7 +148,7 @@ const jogos = [
       local: "Arena ADC - Campo A",
     },
     {
-        id: "6",
+        id: "14",
       homeLogo: "/times/boleirosfc.png",
       home: "Boleiros",
       awayLogo: "/times/os_paraibas.png",
@@ -72,7 +160,7 @@ const jogos = [
       local: "Arena ADC - Campo A",
     },
     {
-        id: "7",
+        id: "15",
       homeLogo: "/times/sporting-guaicarafc.png",
       home: "Sporting Guaiçara",
       awayLogo: "/times/the_best.png",
@@ -84,7 +172,7 @@ const jogos = [
       local: "Arena ADC - Campo B",
     },
     {
-        id: "8",
+        id: "16",
       homeLogo: "/times/magos.png",
       home: "Magos",
       awayLogo: "/times/raizesportiva.png",
@@ -97,7 +185,7 @@ const jogos = [
       
     },
   {
-    id: "9",
+    id: "17",
       homeLogo: "/times/the_best.png",
       home: "The Best",
       awayLogo: "/times/os_paraibas.png",
@@ -109,7 +197,7 @@ const jogos = [
       local: "Campo São João"
     },
     {
-        id: "10",
+        id: "18",
       homeLogo: "/times/casinhafc.png",
       home: "Casinha FC",
       awayLogo: "/times/unidos_sao_joao.png",
@@ -121,7 +209,7 @@ const jogos = [
       local: "Arena ADC - Campo B"
     },
     {
-        id: "11",
+        id: "19",
       homeLogo: "/times/renukaadc.png",
       home: "Renuka ADC",
       awayLogo: "/times/napoli.png",
@@ -133,7 +221,7 @@ const jogos = [
       local: "Arena ADC - Campo B"
     },
     {
-        id: "12",
+        id: "20",
       homeLogo: "/times/aguias_de_Deus.png",
       home: "Águias de Deus",
       awayLogo: "/times/maxelite.png",
@@ -145,7 +233,7 @@ const jogos = [
       local: "Arena ADC - Campo A"
     },
     {
-        id: "13",
+        id: "21",
       homeLogo: "/times/sporting-guaicarafc.png",
       home: "Sporting Guaiçara",
       awayLogo: "/times/bulldogs.png",
@@ -157,7 +245,7 @@ const jogos = [
       local: "Arena Travalão"
     },
     {
-        id: "14",
+        id: "22",
       homeLogo: "/times/mec.png",
       home: "MEC",
       awayLogo: "/times/afirma.png",
@@ -168,7 +256,8 @@ const jogos = [
       hora: "08:00",
       local: "Arena ADC - Campo A"
     },
-    {
+    /**
+     {
         id: "15",
       homeLogo: "/times/amigos_da_bola.png",
       home: "Amigos da bola",
@@ -372,6 +461,7 @@ const jogos = [
       hora: "08:30",
       local: "Arena ADC"
     }
+     */
 ]
 
 export async function GET(request: Request) {
