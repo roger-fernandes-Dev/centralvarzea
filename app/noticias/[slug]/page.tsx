@@ -106,8 +106,8 @@ export default async function Page({
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr_1fr] gap-8 mt-10">
 
-        <article>
-          <div className="max-w-2xl mx-auto text-[17px] leading-8 text-gray-800 space-y-6">
+        <article className="lg:col-start-2 lg:col-span-1 flex justify-center">
+          <div className="w-full max-w-2xl text-[17px] leading-8 text-gray-800 space-y-6">
 
             {(noticia.content ?? "").split("\n").map((p, i) => {
               const urlMatch = p.match(/https?:\/\/\S+/)
