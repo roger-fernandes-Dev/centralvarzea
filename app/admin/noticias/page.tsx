@@ -9,45 +9,72 @@ export default function AdminNoticias() {
 
   const [title, setTitle] = useState("")
   const [resumo, setResumo] = useState("")
-  const [image, setImage] = useState("")
   const [content, setContent] = useState("")
+  const [imageFile, setImageFile] = useState<File | null>(null)
 
   async function salvarNoticia() {
-  if (!title || !resumo || !image || !content) {
-    alert("Preencha todos os campos antes de salvar")
-    return
+    if (!title || !resumo || !content || !imageFile) {
+      alert("Preencha todos os campos")
+      return
+    }
+
+    const slug = title
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]/g, "")
+
+    // =========================
+    // UPLOAD DA IMAGEM
+    // =========================
+    const fileName = `${Date.now()}-${imageFile.name}`
+
+    const { error: uploadError } = await supabase.storage
+      .from("noticias")
+      .upload(fileName, imageFile)
+
+    if (uploadError) {
+      console.log(uploadError)
+      alert("Erro ao subir imagem")
+      return
+    }
+
+    const { data } = supabase.storage
+      .from("noticias")
+      .getPublicUrl(fileName)
+
+    const imageUrl = data.publicUrl
+
+    // =========================
+    // SALVAR NO BANCO
+    // =========================
+    const { error } = await supabase.from("News").insert([
+      {
+        id: crypto.randomUUID(),
+        title: title.trim(),
+        resumo: resumo.trim(),
+        image: imageUrl,
+        content: content.trim(),
+        slug,
+        categoria: "geral",
+        data: new Date(),
+      },
+    ])
+
+    if (error) {
+      console.log(error)
+      alert("Erro ao salvar notícia")
+      return
+    }
+
+    alert("Notícia salva com sucesso!")
+
+    setTitle("")
+    setResumo("")
+    setContent("")
+    setImageFile(null)
   }
 
-  const slug = title
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]/g, "")
-
-  const { error } = await supabase.from("News").insert([
-    {
-      title: title.trim(),
-      resumo: resumo.trim(),
-      image: image.trim(),
-      content: content.trim(),
-      slug,
-      data: new Date(),
-    },
-  ])
-
-  if (error) {
-    console.log(error)
-    alert("Erro ao salvar notícia")
-    return
-  }
-
-  alert("Notícia salva com sucesso!")
-
-  setTitle("")
-  setResumo("")
-  setImage("")
-  setContent("")
-}
   async function logout() {
     await supabase.auth.signOut()
     router.push("/")
@@ -73,9 +100,9 @@ export default function AdminNoticias() {
       />
 
       <input
-        placeholder="Imagem (caminho)"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImageFile(e.target.files?.[0] || null)}
         className="w-full border p-2"
       />
 
