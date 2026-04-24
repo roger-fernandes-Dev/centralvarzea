@@ -15,7 +15,7 @@ export default function Clubs() {
     { name: "MEC", logo: "/times/mec.png", slug: "mec" },
     { name: "Sporting Guaicara", logo: "/times/sporting-guaicarafc.png", slug: "sportingguaicara" },
     { name: "Guerreiros FC", logo: "/times/guerreirosfc.png", slug: "guerreirosfc" },
-    { name: "Juventus", logo: "/times/Juventus.png", slug: "juventus" },
+    { name: "Juventus", logo: "/times/juventus.png", slug: "juventus" },
     { name: "Claudinei Motos", logo: "/times/claudineimotos.png", slug: "claudineimotos" },
   ]
 
