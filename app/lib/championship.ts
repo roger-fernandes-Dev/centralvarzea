@@ -201,8 +201,8 @@ export const championship = [
             { name: "Falcões", short: "FAL", logo: "/times/falcoes.png", },
           ],
           matches: [
-            { home: "FAL", away: "ADC", date: "23/04", time: "21:00", },
-            { home: "PRB", away: "BFC", date: "23/04", time: "21:00", },
+            { home: "FAL", away: "ADC", date: "23/04", time: "21:00", homeScore: 7, awayScore: 1 },
+            { home: "PRB", away: "BFC", date: "23/04", time: "21:00", homeScore: 5, awayScore: 1 },
             { home: "RCF", away: "PRO", date: "30/04", time: "19:00", },
             { home: "PRB", away: "FAL", date: "30/04", time: "19:00", },
            
