@@ -172,12 +172,12 @@ export const championship = [
             { home: "MDV", away: "SJC", date: "23/04", time: "20:00",  homeScore: 6, awayScore: 4 },
             { home: "CFC", away: "BGA", date: "23/04", time: "20:00",  homeScore: 0, awayScore: 11 },
             { home: "ADF", away: "BVB", date: "28/04", time: "21:00", },
-            
-            
-            /** 
             { home: "CFC", away: "MDV", date: "28/04", time: "21:00", },
             { home: "BVB", away: "SJC", date: "07/05", time: "19:00", },
             { home: "BAG", away: "ADF", date: "07/05", time: "19:00", },
+            
+            /** 
+            
             { home: "MDV", away: "BVB", date: "12/05", time: "20:00", },
             { home: "ADF", away: "CFC", date: "12/05", time: "20:00", },
             { home: "SJC", away: "BAG", date: "16/05", time: "18:30", },
