@@ -204,9 +204,10 @@ export const championship = [
             { home: "FAL", away: "ADC", date: "23/04", time: "21:00", },
             { home: "PRB", away: "BFC", date: "23/04", time: "21:00", },
             { home: "RCF", away: "PRO", date: "30/04", time: "19:00", },
+            { home: "PRB", away: "FAL", date: "30/04", time: "19:00", },
            
             /**
-             *  { home: "PRB", away: "FAL", date: "30/04", time: "19:00", },
+             *  
             { home: "PRO", away: "ADC", date: "07/05", time: "20:00", },
             { home: "BFC", away: "RCF", date: "07/05", time: "20:00", },
             { home: "FAL", away: "PRO", date: "12/05", time: "21:00", },
@@ -236,9 +237,10 @@ export const championship = [
             { home: "NAP", away: "ATL", date: "25/04", time: "19:30", },
             { home: "USJ", away: "GFC", date: "25/04", time: "19:30", },
             { home: "MEC", away: "LEO", date: "30/04", time: "21:00", },
+            { home: "USJ", away: "NAP", date: "30/04", time: "21:00", },
 
             /**
-            { home: "USJ", away: "NAP", date: "30/04", time: "21:00", },
+            
             { home: "LEO", away: "ATL", date: "07/05", time: "21:00", },
             { home: "GFC", away: "MEC", date: "07/05", time: "21:00", },
             { home: "NAP", away: "LEO", date: "14/05", time: "19:00", },
