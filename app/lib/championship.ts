@@ -169,8 +169,8 @@ export const championship = [
             { name: "Meninos da Vila", short: "MDV", logo: "/times/meninos_da_vila.png", },
           ],
           matches: [
-            { home: "MDV", away: "SJC", date: "23/04", time: "20:00", },
-            { home: "CFC", away: "BGA", date: "23/04", time: "20:00", },
+            { home: "MDV", away: "SJC", date: "23/04", time: "20:00",  homeScore: 6, awayScore: 4 },
+            { home: "CFC", away: "BGA", date: "23/04", time: "20:00",  homeScore: 0, awayScore: 11 },
             { home: "ADF", away: "BVB", date: "28/04", time: "21:00", },
             
             
