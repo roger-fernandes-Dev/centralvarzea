@@ -35,7 +35,7 @@ export const championship = [
       { home: "ADC", away: "NPI", date: "12/04", time: "08:00", homeScore: 1, awayScore: 3 },
       { home: "CFC", away: "USJ", date: "12/04", time: "08:00", homeScore: 3, awayScore: 2 },
       { home: "USJ", away: "ADC", date: "26/04", time: "08:00", homeScore: 3, awayScore: 0 },
-      { home: "NPI", away: "CFC", date: "26/04", time: "09:10", },
+      { home: "NPI", away: "CFC", date: "26/04", time: "09:10", homeScore: 3, awayScore: 4 },
       { home: "CFC", away: "ADC", date: "17/05", time: "08:00", },
       { home: "USJ", away: "NPI", date: "17/05", time: "09:10", },
     ],
@@ -244,8 +244,8 @@ export const championship = [
             { name: "Napoli", short: "NAP", logo: "/times/napoli.png", },
           ],
           matches: [
-            { home: "NAP", away: "ATL", date: "25/04", time: "19:30", },
-            { home: "USJ", away: "GFC", date: "25/04", time: "19:30", },
+            { home: "NAP", away: "ATL", date: "25/04", time: "19:30", homeScore: 3, awayScore: 1},
+            { home: "USJ", away: "GFC", date: "25/04", time: "19:30", homeScore: 3, awayScore: 0},
             { home: "MEC", away: "LEO", date: "30/04", time: "21:00", },
             { home: "USJ", away: "NAP", date: "30/04", time: "21:00", },
 

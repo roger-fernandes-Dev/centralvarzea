@@ -93,6 +93,7 @@ const jogos = [
       home: "Napoli",
       awayLogo: "/times/casinhafc.png",
       away: "Casinha FC",
+      score: "3 x 4",
       type: "Copa ADC",
       data: "2026-04-26",
       hora: "09:10",
