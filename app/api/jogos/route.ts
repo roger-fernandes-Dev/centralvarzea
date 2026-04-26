@@ -79,6 +79,7 @@ const jogos = [
       home: "A Firma",
       awayLogo: "/times/aguias_de_Deus.png",
       away: "Águias de Deus",
+      score: "3 x 1",
       type: "Copa ADC",
       data: "2026-04-26",
       hora: "09:10",
