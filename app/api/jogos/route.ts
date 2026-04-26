@@ -57,6 +57,7 @@ const jogos = [
       home: "Max Elite",
       awayLogo: "/times/mec.png",
       away: "MEC",
+      score: "0 x 2",
       type: "Copa ADC",
       data: "2026-04-26",
       hora: "08:00",
