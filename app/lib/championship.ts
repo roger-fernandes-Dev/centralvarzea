@@ -176,7 +176,7 @@ export const championship = [
             { home: "ADF", away: "BVB", date: "28/04", time: "21:00", },
             { home: "CFC", away: "MDV", date: "28/04", time: "21:00", },
             { home: "BVB", away: "SJC", date: "07/05", time: "19:00", },
-            { home: "BAG", away: "ADF", date: "07/05", time: "19:00", },
+            { home: "BGA", away: "ADF", date: "07/05", time: "19:00", },
             
             /** 
             
