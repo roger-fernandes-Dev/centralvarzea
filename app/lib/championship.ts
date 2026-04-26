@@ -84,11 +84,12 @@ export const championship = [
       { name: "Bem Amigos", short: "BAG", logo: "/times/bemamigos.png", },
     ],
     matches: [
-      { home: "BGA", away: "BAE", date: "25/04", time: "17:45", },
-      { home: "FAC", away: "BAG", date: "25/04", time: "17:45", },
-      /**
-       * { home: "MEC", away: "FAC", date: "05/05", time: "19:00", },
+      { home: "BGA", away: "BAE", date: "25/04", time: "17:45", homeScore: 0, awayScore: 4 },
+      { home: "FAC", away: "BAG", date: "25/04", time: "17:45", homeScore: 13, awayScore: 1 },
+      { home: "MEC", away: "FAC", date: "05/05", time: "19:00", },
       { home: "BAG", away: "BGA", date: "05/05", time: "19:00", },
+      /**
+       * 
       { home: "BAE", away: "BAG", date: "09/05", time: "19:30", },
       { home: "BGA", away: "MEC", date: "09/05", time: "19:30", },
       { home: "FAC", away: "BGA", date: "14/05", time: "21:00", },
@@ -107,10 +108,11 @@ export const championship = [
       { name: "Amigos do Futebol", short: "ADF", logo: "/times/amigosdofutebol50.png", },
     ],
     matches: [
-      { home: "ASS", away: "ADF", date: "25/04", time: "18:30", },
-      { home: "GDB", away: "PRO", date: "25/04", time: "18:30", },
-      /**{ home: "GDB", away: "ASS", date: "05/05", time: "20:00", },
+      { home: "ASS", away: "ADF", date: "25/04", time: "18:30", homeScore: 5, awayScore: 2 },
+      { home: "GDB", away: "PRO", date: "25/04", time: "18:30", homeScore: 3, awayScore: 1 },
+      { home: "GDB", away: "ASS", date: "05/05", time: "20:00", },
       { home: "PRO", away: "ADF", date: "05/05", time: "20:00", },
+      /**
       { home: "ASS", away: "PRO", date: "09/05", time: "18:30", },
       { home: "ADF", away: "GDB", date: "09/05", time: "18:30", }, */
     ]
