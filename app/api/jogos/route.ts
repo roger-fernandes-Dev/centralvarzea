@@ -69,6 +69,7 @@ const jogos = [
       home: "São João",
       awayLogo: "/times/renukaadc.png",
       away: "ADC Renuka",
+      score: "3 x 0",
       type: "Copa ADC",
       data: "2026-04-26",
       hora: "08:00",
