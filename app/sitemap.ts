@@ -10,7 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "jogo-cancelado-renuka-boleiros",
     "jogo-cancelado-amigos-do-futebol-vs-amigos-da-bola",
     "amigos-do-futebol-vence-campeonato",
-    "amigos-do-futebol-x-amigos-da-bola-adiado-adc"
+    "amigos-do-futebol-x-amigos-da-bola-adiado-adc",
+    "A-varzea-esta-deixando-de-ser-varzea-Custos-altos-geram-revolta",
+    "primeira-rodada-do-mini-campo-selt-comea-hoje",
+    "maratona-de-jogos-no-mesmo-gramado-levanta-debate-na-copa-minicampo-vai-aguentar-a-semana-inteira",
+    "o-desafio-real-de-manter-um-time-de-vrzea-vivo",
   ]
 
   const pages = [
