@@ -74,11 +74,12 @@ const groups: Group[] = [
       { name: "Master Assentamento", short: "ASS", logo: "/times/assentamento50.png", pts: 0, pj: 0, sg: 0 },
     ],
     matches: [
-      { home: "ADF", away: "ASS", date: "28/04", time: "19:00", },
-      { home: "AMB", away: "BNG", date: "28/04", time: "19:00", },
-      
-      /** { home: "AMB", away: "ADF", date: "30/04", time: "20:00", },
+      { home: "ADF", away: "ASS", date: "28/04", time: "19:00", homeScore: 1, awayScore: 2 },
+      { home: "AMB", away: "BNG", date: "28/04", time: "19:00", homeScore: 6, awayScore: 4 },
+      { home: "AMB", away: "ADF", date: "30/04", time: "20:00", },
       { home: "BNG", away: "ASS", date: "30/04", time: "20:00", },
+      
+      /** 
       { home: "ADF", away: "BNG", date: "09/05", time: "17:45", },
       { home: "ASS", away: "AMB", date: "09/05", time: "17:45", },
       { home: "ASS", away: "ADF", date: "14/05", time: "20:00", },
