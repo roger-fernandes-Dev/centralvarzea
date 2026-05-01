@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/jogos",
     "/noticias",
     "/contato",
+    "/termos",
+    "/privacidade",
     "/arbitros",
     "/lins",
     "/birigui",
