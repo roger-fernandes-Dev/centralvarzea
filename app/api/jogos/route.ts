@@ -19,7 +19,7 @@ const jogos = [
       id: "2",
       homeLogo: "/times/falcoes.png",
       home: "Falcões",
-      awayLogo: "/times/bemamigos.png",
+      awayLogo: "/times/bemamigosfc.png",
       away: "Bem Amigos",
       score: "13 x 1",
       type: "Copa Mini campo Selt 40+",
@@ -291,7 +291,7 @@ const jogos = [
     },
     {
         id: "17",
-      homeLogo: "/times/bemamigos.png",
+      homeLogo: "/times/bemamigosfc.png",
       home: "Bem Amigos",
       awayLogo: "/times/mec.png",
       away: "MEC",
