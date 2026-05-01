@@ -30,7 +30,7 @@ export default function MatchCard({ jogo }: { jogo: Jogo }) {
       />
 
       {/* overlay escuro */}
-      <div className="absolute inset-0 bg-black/90" />
+      <div className="absolute inset-0 bg-black/80" />
 
       {/* conteúdo */}
       <div className="relative z-10 p-4 flex flex-col justify-between h-full">
