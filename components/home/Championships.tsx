@@ -8,95 +8,116 @@ export default function Championships() {
   const [matches, setMatches] = useState<any[]>([])
 
   useEffect(() => {
-  async function fetchJogos() {
-    try {
-      const res = await fetch("/api/jogos")
-      const data = await res.json()
+    async function fetchJogos() {
+      try {
+        const res = await fetch("/api/jogos")
+        const data = await res.json()
 
-      const agora = new Date()
+        const agora = new Date()
 
-      const passados = data
-        .filter((jogo: any) => {
-          const dataJogo = new Date(`${jogo.data}T${jogo.hora}`)
-          return dataJogo <= agora
-        })
-        .sort(
-          (a: any, b: any) =>
-            new Date(`${b.data}T${b.hora}`).getTime() -
-            new Date(`${a.data}T${a.hora}`).getTime()
-        )
+        const passados = data
+          .filter((jogo: any) => {
+            const dataJogo = new Date(`${jogo.data}T${jogo.hora}`)
+            return dataJogo <= agora
+          })
+          .sort(
+            (a: any, b: any) =>
+              new Date(`${b.data}T${b.hora}`).getTime() -
+              new Date(`${a.data}T${a.hora}`).getTime()
+          )
 
-      setMatches(passados.slice(0, 5))
-    } catch (error) {
-      console.error("Erro ao buscar jogos:", error)
+        setMatches(passados.slice(0, 5))
+      } catch (error) {
+        console.error("Erro ao buscar jogos:", error)
+      }
     }
-  }
 
-  fetchJogos()
-}, [])
+    fetchJogos()
+  }, [])
 
   return (
-    <section className="rounded-xl shadow">
-      <div className="flex flex-col divide-y divide-gray-200 max-h-[420px] overflow-y-auto">
+    <section className="w-full bg-white rounded-lg">
+      <div className="flex flex-col divide-y divide-zinc-200 max-h-[420px] overflow-y-auto">
 
-        {matches.map((match: any, i: number) => (
-          <div
-            key={i}
-            className="flex items-center px-2 py-3 hover:bg-yellow-50 transition"
-          >
+        {matches.map((match: any, i: number) => {
+          const date = new Date(`${match.data}T00:00:00-03:00`).toLocaleDateString(
+            "pt-BR",
+            { day: "2-digit", month: "2-digit" }
+          )
 
-            {/* ESQUERDA */}
-            <div className="w-[95px] min-w-[95px] lg:w-[100px] lg:min-w-[100px] flex flex-col text-[11px] text-gray-500">
-              
-              <span className="font-semibold text-yellow-700 truncate">
-                {match.type}
-              </span>
+          return (
+            <div
+              key={i}
+              className="px-4 py-3 hover:bg-zinc-50 transition"
+            >
 
-              <span className="truncate">
-                {match.local}
-              </span>
+              {/* LINHA 1 - META (estilo GE) */}
+              <div className="flex items-center justify-between text-[11px] text-zinc-500">
 
-              <span>
-                {new Date(match.data).toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "2-digit"
-                })} • {match.hora}
-              </span>
-            </div>
+                <div className="flex items-center gap-2">
+                  <span>{date}</span>
+                  <span>|</span>
+                  <span className="truncate max-w-[180px]">
+                    {match.local}
+                  </span>
+                </div>
 
-            {/* MEIO */}
-            <div className="flex-1 flex items-center justify-center gap-2 lg:gap-3">
-
-              <div className="flex items-center gap-1 group relative">
-                <Image src={match.homeLogo} alt={match.home} width={24} height={24} className="rounded-full" />
-                <span className="text-xs lg:text-sm font-medium text-gray-800">
-                  {match.home.slice(0, 3).toUpperCase()}
+                {/* FINALIZADO */}
+                <span className="text-[10px] font-bold uppercase text-amber-500">
+                  FINALIZADO
                 </span>
+
               </div>
 
-              <span className="text-xs lg:text-sm font-bold text-gray-700 min-w-[45px] text-center">
-                {match.score ?? "-"}
-              </span>
+              {/* LINHA 2 - JOGO */}
+              <div className="flex items-center justify-center gap-6 mt-2">
 
-              <div className="flex items-center gap-1 group relative">
-                <span className="text-xs lg:text-sm font-medium text-gray-800">
-                  {match.away.slice(0, 3).toUpperCase()}
+                {/* HOME */}
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={match.homeLogo}
+                    alt={match.home}
+                    width={28}
+                    height={28}
+                    className="rounded-full"
+                  />
+                  <span className="text-sm font-semibold text-zinc-900">
+                    {match.home.slice(0, 3).toUpperCase()}
+                  </span>
+                </div>
+
+                {/* SCORE */}
+                <span className="text-sm font-bold text-zinc-700 min-w-[40px] text-center">
+                  {match.score ?? "-"}
                 </span>
-                <Image src={match.awayLogo} alt={match.away} width={24} height={24} className="rounded-full" />
+
+                {/* AWAY */}
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-zinc-900">
+                    {match.away.slice(0, 3).toUpperCase()}
+                  </span>
+                  <Image
+                    src={match.awayLogo}
+                    alt={match.away}
+                    width={28}
+                    height={28}
+                    className="rounded-full"
+                  />
+                </div>
+
               </div>
 
             </div>
-
-          </div>
-        ))}
+          )
+        })}
 
       </div>
 
-      {/* 👇 BOTÃO */}
-      <div className="p-3 flex justify-center">
+      {/* BOTÃO */}
+      <div className="p-3 flex justify-center border-t border-zinc-200">
         <Link
           href="/jogos"
-          className="text-sm font-semibold text-yellow-700 hover:underline"
+          className="text-sm font-semibold text-zinc-700 hover:text-zinc-900 transition"
         >
           Ver mais
         </Link>

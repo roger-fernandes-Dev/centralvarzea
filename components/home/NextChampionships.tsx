@@ -15,19 +15,16 @@ export default function NextChampionships() {
         const agora = new Date()
 
         const futuros = data.filter((jogo: any) => {
-        const dataJogo = new Date(`${jogo.data}T${jogo.hora}:00-03:00`)
+          const dataJogo = new Date(`${jogo.data}T${jogo.hora}:00-03:00`)
 
-        // delay de 6 horas
-        const limite = new Date(dataJogo)
-        limite.setHours(limite.getHours() + 6)
+          const limite = new Date(dataJogo)
+          limite.setHours(limite.getHours() + 6)
 
-        const temResultado = jogo.score != null
+          if (jogo.score != null) return false
 
-        // ❗ se já tem resultado, NÃO é futuro
-        if (temResultado) return false
+          return limite > agora
+        })
 
-        return limite > agora
-      })
         setMatches(futuros)
       } catch (error) {
         console.error("Erro ao buscar jogos:", error)
@@ -38,60 +35,59 @@ export default function NextChampionships() {
   }, [])
 
   return (
-    <section className="h-full">
-      <div className="flex flex-col divide-y divide-gray-200 max-h-[420px] overflow-y-auto">
+    <section className="w-full bg-white">
+      <div className="flex flex-col divide-y divide-zinc-200 max-h-[420px] overflow-y-auto">
 
         {matches.map((match: any, i: number) => {
-
           const agora = new Date()
           const inicio = new Date(`${match.data}T${match.hora}:00-03:00`)
 
-          const limiteAoVivo = new Date(inicio)
-          limiteAoVivo.setHours(limiteAoVivo.getHours() + 4)
+          const aoVivo =
+            agora >= inicio &&
+            agora <= new Date(inicio.getTime() + 4 * 60 * 60 * 1000)
 
-          const limiteTotal = new Date(inicio)
-          limiteTotal.setHours(limiteTotal.getHours() + 6)
-
-          const aoVivo = !match.score && agora >= inicio && agora <= limiteAoVivo
-          const encerrado = !match.score && agora > limiteAoVivo && agora <= limiteTotal
+          const date = new Date(`${match.data}T00:00:00-03:00`).toLocaleDateString(
+            "pt-BR",
+            { day: "2-digit", month: "2-digit" }
+          )
 
           return (
-            <div
-              key={i}
-              className="flex items-center px-3 py-4 hover:bg-yellow-50 transition"
-            >
+            <div key={i} className="px-4 py-3 hover:bg-zinc-50 transition">
 
-              {/* ESQUERDA */}
-              <div className="w-[140px] min-w-[140px] flex flex-col text-xs text-gray-500">
-                
-                <span className="font-semibold text-yellow-700 truncate">
-                  {match.type}
-                </span>
+              {/* LINHA 1 - META */}
+              <div className="flex items-center justify-between text-[11px] text-zinc-500">
 
-                <span className="truncate">
-                  {match.local}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span>{date}</span>
+                  <span>|</span>
+                  <span className="truncate max-w-[180px]">
+                    {match.local}
+                  </span>
+                </div>
 
-                <span className="flex items-center">
-                  {new Date(`${match.data}T00:00:00-03:00`).toLocaleDateString("pt-BR", {
-                    day: "2-digit",
-                    month: "2-digit"
-                  })} • {match.hora}
-
+                {/* STATUS (AO VIVO / AGENDADO) */}
+                <span
+                  className={`text-[10px] font-bold uppercase tracking-wide flex items-center gap-1 ${
+                    aoVivo ? "text-red-600" : "text-amber-500"
+                  }`}
+                >
                   {aoVivo && (
-                    <span className="ml-2 flex items-center gap-1 text-[10px] text-red-600 font-semibold animate-pulse">
-                      <span className="w-1.5 h-1.5 bg-red-600 rounded-full"></span>
-                      AO VIVO
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                     </span>
                   )}
+
+                  {aoVivo ? "AO VIVO" : "AGENDADO"}
                 </span>
+
               </div>
 
-              {/* MEIO */}
-              <div className="flex-1 flex items-center justify-center gap-6">
+              {/* LINHA 2 - JOGO */}
+              <div className="flex items-center justify-center gap-6 mt-2">
 
-                {/* CASA */}
-                <div className="flex items-center gap-2 group relative">
+                {/* HOME */}
+                <div className="flex items-center gap-2">
                   <Image
                     src={match.homeLogo}
                     alt={match.home}
@@ -99,28 +95,18 @@ export default function NextChampionships() {
                     height={28}
                     className="rounded-full"
                   />
-
-                  <span className="text-sm font-medium">
+                  <span className="text-sm font-semibold text-zinc-900">
                     {match.home.slice(0, 3).toUpperCase()}
                   </span>
-
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                    bg-black text-white text-[10px] px-2 py-1 rounded 
-                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    {match.home}
-                  </div>
                 </div>
 
-                <span className="text-sm font-semibold text-gray-400">
-                  x
-                </span>
+                <span className="text-zinc-400 font-semibold">X</span>
 
-                {/* FORA */}
-                <div className="flex items-center gap-2 group relative">
-                  <span className="text-sm font-medium">
+                {/* AWAY */}
+                <div className="flex items-center gap-2">
+                  <span className="text-sm font-semibold text-zinc-900">
                     {match.away.slice(0, 3).toUpperCase()}
                   </span>
-
                   <Image
                     src={match.awayLogo}
                     alt={match.away}
@@ -128,12 +114,6 @@ export default function NextChampionships() {
                     height={28}
                     className="rounded-full"
                   />
-
-                  <div className="absolute -top-7 left-1/2 -translate-x-1/2 
-                    bg-black text-white text-[10px] px-2 py-1 rounded 
-                    opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    {match.away}
-                  </div>
                 </div>
 
               </div>
