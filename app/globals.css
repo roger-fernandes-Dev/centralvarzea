@@ -28,3 +28,12 @@ body {
   scrollbar-color: #374151 transparent;
 }
 
+/* esconder scrollbar (carrossel estilo netflix) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

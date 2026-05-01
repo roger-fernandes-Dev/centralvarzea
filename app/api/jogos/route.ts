@@ -474,14 +474,14 @@ const jogos = [
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
-  const tipo = searchParams.get("tipo") // futuros | passados
+  const tipo = searchParams.get("tipo")
 
   const agora = new Date()
 
   const parseDate = (j: any) =>
     new Date(`${j.data}T${j.hora || "00:00"}`)
 
-  let resultado = jogos // ← isso aqui é obrigatório
+  let resultado = jogos
 
   if (tipo === "futuros") {
     resultado = jogos.filter(j => parseDate(j) > agora)
@@ -489,6 +489,14 @@ export async function GET(request: Request) {
 
   if (tipo === "passados") {
     resultado = jogos.filter(j => parseDate(j) <= agora)
+  }
+
+  // 🔥 NOVO: só finalizados + ordena + pega 10
+  if (tipo === "passados") {
+    resultado = resultado
+      .filter(j => j.score) // só quem tem placar
+      .sort((a, b) => parseDate(b).getTime() - parseDate(a).getTime())
+      .slice(0, 10)
   }
 
   return NextResponse.json(resultado)
