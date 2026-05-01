@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "primeira-rodada-do-mini-campo-selt-comea-hoje",
     "maratona-de-jogos-no-mesmo-gramado-levanta-debate-na-copa-minicampo-vai-aguentar-a-semana-inteira",
     "o-desafio-real-de-manter-um-time-de-vrzea-vivo",
+    "clubes-de-vrzea-enfrentam-dilema-entre-valorizar-atletas-locais-e-buscar-reforos-de-fora",
   ]
 
   const pages = [
@@ -24,7 +25,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/jogos",
     "/noticias",
     "/contato",
-  ]
+    "/copaadc",
+    "/copaseltlivre",
+    "/copaseltpromissao50",
+    "/copaseltpromissao40",
+    "/clubs/amigos-do-futebol",
+    "/clubs/bahea",
+    "/clubs/bengala",
+    "/clubs/falcoes",
+    "/clubs/meninos-da-vila",
+    "/clubs/os-paraibas",
+    "/clubs/adc-renuka",
+    "/clubs/point",
+    "/clubs/promi-informatica",
+    "/clubs/unidos-sao-joao",
+    "/clubs/arsenal",
+    "/clubs/mec",
+    "/clubs/bemamigos",
+    "/clubs/sportingguaicara",
+    "/clubs/magos",
+    "/clubs/maxelite",
+    ]
 
   return [
     // páginas principais
