@@ -227,8 +227,8 @@ export const championship = [
           matches: [
             { home: "NAP", away: "ATL", date: "25/04", time: "19:30", homeScore: 3, awayScore: 1},
             { home: "USJ", away: "GFC", date: "25/04", time: "19:30", homeScore: 3, awayScore: 0},
-            { home: "MEC", away: "LEO", date: "30/04", time: "21:00", },
-            { home: "USJ", away: "NAP", date: "30/04", time: "21:00", },
+            { home: "MEC", away: "LEO", date: "30/04", time: "21:00", homeScore: 1, awayScore: 1},
+            { home: "USJ", away: "NAP", date: "30/04", time: "21:00", homeScore: 1, awayScore: 0},
             { home: "LEO", away: "ATL", date: "07/05", time: "21:00", },
             { home: "GFC", away: "MEC", date: "07/05", time: "21:00", },
             { home: "NAP", away: "LEO", date: "14/05", time: "19:00", },
