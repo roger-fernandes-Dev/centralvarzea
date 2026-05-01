@@ -28,7 +28,7 @@ export default function MatchCard({ jogo }: { jogo: Jogo }) {
         className="object-cover"
       />
 
-      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 bg-black/70" />
 
   <div className="relative z-10 p-2.5 flex flex-col gap-1">
 
