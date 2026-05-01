@@ -146,7 +146,7 @@ export const championship = [
           matches: [
             { home: "BAE", away: "PIT", date: "23/04", time: "19:00", homeScore: 2, awayScore: 4 },
             { home: "AFC", away: "BEC", date: "23/04", time: "19:00", homeScore: 1, awayScore: 19 },
-            { home: "NCF", away: "TBT", date: "28/04", time: "20:00", },
+            { home: "NCF", away: "TBT", date: "28/04", time: "20:00", homeScore: 4, awayScore: 1 },
             { home: "AFC", away: "BAE", date: "28/04", time: "20:00", homeScore: 0, awayScore: 15},
             { home: "TBT", away: "PIT", date: "05/05", time: "21:00", },
             { home: "BEC", away: "NCF", date: "05/05", time: "21:00", },
@@ -179,10 +179,10 @@ export const championship = [
             { name: "Meninos da Vila", short: "MDV", logo: "/times/meninos_da_vila.png", },
           ],
           matches: [
-            { home: "MDV", away: "SJC", date: "23/04", time: "20:00",  homeScore: 6, awayScore: 4 },
-            { home: "CFC", away: "BGA", date: "23/04", time: "20:00",  homeScore: 0, awayScore: 11 },
-            { home: "ADF", away: "BVB", date: "28/04", time: "21:00", },
-            { home: "CFC", away: "MDV", date: "28/04", time: "21:00", },
+            { home: "MDV", away: "SJC", date: "23/04", time: "20:00", homeScore: 6, awayScore: 4 },
+            { home: "CFC", away: "BGA", date: "23/04", time: "20:00", homeScore: 0, awayScore: 11 },
+            { home: "ADF", away: "BVB", date: "28/04", time: "21:00", homeScore: 1, awayScore: 1 },
+            { home: "CFC", away: "MDV", date: "28/04", time: "21:00", homeScore: 0, awayScore: 13},
             { home: "BVB", away: "SJC", date: "07/05", time: "19:00", },
             { home: "BGA", away: "ADF", date: "07/05", time: "19:00", },
             
@@ -213,8 +213,8 @@ export const championship = [
           matches: [
             { home: "FAL", away: "ADC", date: "23/04", time: "21:00", homeScore: 7, awayScore: 1 },
             { home: "PRB", away: "BFC", date: "23/04", time: "21:00", homeScore: 5, awayScore: 1 },
-            { home: "RCF", away: "PRO", date: "30/04", time: "19:00", },
-            { home: "PRB", away: "FAL", date: "30/04", time: "19:00", },
+            { home: "RCF", away: "PRO", date: "30/04", time: "19:00", homeScore: 2, awayScore: 0 },
+            { home: "PRB", away: "FAL", date: "30/04", time: "19:00", homeScore: 2, awayScore: 4 },
            
             /**
              *  
