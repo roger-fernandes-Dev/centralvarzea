@@ -96,15 +96,12 @@ export const championship = [
       { home: "FAC", away: "BAG", date: "25/04", time: "17:45", homeScore: 13, awayScore: 1 },
       { home: "MEC", away: "FAC", date: "05/05", time: "19:00", },
       { home: "BAG", away: "BGA", date: "05/05", time: "19:00", },
-      /**
-       * 
       { home: "BAE", away: "BAG", date: "09/05", time: "19:30", },
       { home: "BGA", away: "MEC", date: "09/05", time: "19:30", },
       { home: "FAC", away: "BGA", date: "14/05", time: "21:00", },
       { home: "MEC", away: "BAE", date: "14/05", time: "21:00", },
       { home: "BAG", away: "MEC", date: "19/05", time: "19:00", },
       { home: "BAE", away: "FAC", date: "19/05", time: "19:00", },
-       */
     ],
   },
   {
@@ -120,9 +117,8 @@ export const championship = [
       { home: "GDB", away: "PRO", date: "25/04", time: "18:30", homeScore: 3, awayScore: 1 },
       { home: "GDB", away: "ASS", date: "05/05", time: "20:00", },
       { home: "PRO", away: "ADF", date: "05/05", time: "20:00", },
-      /**
       { home: "ASS", away: "PRO", date: "09/05", time: "18:30", },
-      { home: "ADF", away: "GDB", date: "09/05", time: "18:30", }, */
+      { home: "ADF", away: "GDB", date: "09/05", time: "18:30", },
     ]
       }
     ]
@@ -150,12 +146,6 @@ export const championship = [
             { home: "AFC", away: "BAE", date: "28/04", time: "20:00", homeScore: 0, awayScore: 15},
             { home: "TBT", away: "PIT", date: "05/05", time: "21:00", },
             { home: "BEC", away: "NCF", date: "05/05", time: "21:00", },
-            
-            
-            /** 
-            { home: "AFC", away: "BAE", date: "05/05", time: "20:00", },
-            { home: "TBT", away: "PIT", date: "05/05", time: "21:00", },
-            { home: "BEC", away: "NCF", date: "05/05", time: "21:00", },
             { home: "BAE", away: "TBT", date: "12/05", time: "19:00", },
             { home: "NCF", away: "AFC", date: "12/05", time: "19:00", },
             { home: "BAE", away: "TBT", date: "16/05", time: "19:30", },
@@ -164,7 +154,7 @@ export const championship = [
             { home: "AFC", away: "PIT", date: "21/05", time: "21:00", },
             { home: "BAE", away: "BEC", date: "26/05", time: "19:00", },
             { home: "PIT", away: "NCF", date: "21/05", time: "19:00", },
-            { home: "TBT", away: "AFC", date: "30/05", time: "17:15", },*/
+            { home: "TBT", away: "AFC", date: "30/05", time: "17:15", },
             
           ],
         },
@@ -185,9 +175,6 @@ export const championship = [
             { home: "CFC", away: "MDV", date: "28/04", time: "21:00", homeScore: 0, awayScore: 13},
             { home: "BVB", away: "SJC", date: "07/05", time: "19:00", },
             { home: "BGA", away: "ADF", date: "07/05", time: "19:00", },
-            
-            /** 
-            
             { home: "MDV", away: "BVB", date: "12/05", time: "20:00", },
             { home: "ADF", away: "CFC", date: "12/05", time: "20:00", },
             { home: "SJC", away: "BAG", date: "16/05", time: "18:30", },
@@ -196,8 +183,7 @@ export const championship = [
             { home: "CFC", away: "SJC", date: "21/05", time: "19:00", },
             { home: "MDV", away: "BAG", date: "26/05", time: "20:00", },
             { home: "SJC", away: "ADF", date: "26/05", time: "20:00", },
-            { home: "BVB", away: "CFC", date: "30/05", time: "17:15", },*/
-            
+            { home: "BVB", away: "CFC", date: "30/05", time: "17:15", },
           ],
         },
         {
@@ -215,9 +201,6 @@ export const championship = [
             { home: "PRB", away: "BFC", date: "23/04", time: "21:00", homeScore: 5, awayScore: 1 },
             { home: "RCF", away: "PRO", date: "30/04", time: "19:00", homeScore: 2, awayScore: 0 },
             { home: "PRB", away: "FAL", date: "30/04", time: "19:00", homeScore: 2, awayScore: 4 },
-           
-            /**
-             *  
             { home: "PRO", away: "ADC", date: "07/05", time: "20:00", },
             { home: "BFC", away: "RCF", date: "07/05", time: "20:00", },
             { home: "FAL", away: "PRO", date: "12/05", time: "21:00", },
@@ -229,8 +212,6 @@ export const championship = [
             { home: "FAL", away: "BFC", date: "26/05", time: "21:00", },
             { home: "ADC", away: "RCF", date: "26/05", time: "21:00", },
             { home: "PRO", away: "PRB", date: "30/05", time: "18:30", },
-             */
-            
           ],
         },
         {
@@ -248,9 +229,6 @@ export const championship = [
             { home: "USJ", away: "GFC", date: "25/04", time: "19:30", homeScore: 3, awayScore: 0},
             { home: "MEC", away: "LEO", date: "30/04", time: "21:00", },
             { home: "USJ", away: "NAP", date: "30/04", time: "21:00", },
-
-            /**
-            
             { home: "LEO", away: "ATL", date: "07/05", time: "21:00", },
             { home: "GFC", away: "MEC", date: "07/05", time: "21:00", },
             { home: "NAP", away: "LEO", date: "14/05", time: "19:00", },
@@ -262,8 +240,6 @@ export const championship = [
             { home: "NAP", away: "GFC", date: "28/05", time: "19:00", },
             { home: "ATL", away: "MEC", date: "28/05", time: "19:00", },
             { home: "LEO", away: "USJ", date: "30/05", time: "18:30", },
-             */
-            
           ],
         },
     ]
