@@ -13,11 +13,17 @@ import MatchesCarousel from "@/components/home/MatchesCarousel"
 import { getNoticias } from "@/src/db/news-repo"
 
 async function getJogos() {
-  const res = await fetch("http://localhost:3000/api/jogos?tipo=passados", {
-    cache: "no-store",
-  })
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/jogos?tipo=passados`, {
+      cache: "no-store",
+    })
 
-  return res.json()
+    if (!res.ok) return []
+
+    return res.json()
+  } catch {
+    return []
+  }
 }
 
 export default async function Home() {
