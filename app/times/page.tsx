@@ -18,7 +18,7 @@ export default function TimesPage() {
         { name: "Unidos São João", logo: "/times/unidos_sao_joao.png", slug: "unidos-sao-joao" },
         { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" },
         { name: "MEC", logo: "/times/mec.png", slug: "mec" },
-        { name: "Bem Amigos", logo: "/times/bemamigos.png", slug: "bemamigos" },
+        { name: "Bem Amigos", logo: "/times/bemamigosfc.png", slug: "bemamigos" },
       ]
     },
     {
