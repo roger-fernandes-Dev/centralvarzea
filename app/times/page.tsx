@@ -88,7 +88,7 @@ export default function TimesPage() {
       {
         cidade: "Osasco",
         times: [
-          { name: "Unidos do São Victor", logo: "/times/osasco/unidosdosaovictor.jpg", slug: "unidosdosaovictor" },
+          { name: "Unidos do São Victor", logo: "/times/osasco/unidosdosaovictor.png", slug: "unidosdosaovictor" },
           { name: "vila Izabel", logo: "/times/osasco/vilaizabelosasco.png", slug: "vilaizabelosasco" },
         ]
       },
