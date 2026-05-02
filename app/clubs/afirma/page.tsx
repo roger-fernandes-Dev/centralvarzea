@@ -45,8 +45,8 @@ export default function SportingGuaicaraPage() {
       {/* 🟣 Marca d'água full screen */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/times/sporting_guaicara_logo.png"
-          alt="Logo Sporting Guaicara"
+          src="/times/afirma.png"
+          alt="Logo A firma"
           fill
           className="object-contain opacity-5"
         />
@@ -80,13 +80,13 @@ export default function SportingGuaicaraPage() {
         <div className="md:col-span-2 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Image
-              src="/times/magos.png"
-              alt="Escudo Magos"
+              src="/times/afirma.png"
+              alt="Escudo A Firma"
               width={100}
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Magos
+              A Firma
             </h1>
           </div>
         </div>

@@ -1,33 +1,33 @@
 import Image from "next/image"
 export const metadata = {
-  title: "Unidos São João em Promissão | Futebol de Várzea e Time Amador",
+  title: "Real Central em Promissão | Futebol de Várzea e Time Amador",
   description:
-    "O Unidos São João é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+    "O Real Central é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
   keywords: [
-    "Unidos São João Promissão",
+    "Real Central Promissão",
     "futebol de várzea Promissão",
     "time amador Promissão",
     "campeonatos de várzea",
     "futebol amador SP",
     "times de futebol Promissão",
-    "equipe Unidos São João",
+    "equipe Real Central",
     "futebol local Promissão",
     "tradição no futebol de várzea",
     "time de bairro Promissão",
     "futebol regional interior SP"
   ],
   openGraph: {
-    title: "Unidos São João | Time de Várzea em Promissão",
+    title: "Real Central | Time de Várzea em Promissão",
     description:
-      "Conheça o Unidos São João, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
-    url: "https://www.centralvarzea.com.br/clubs/unidos-sao-joao",
+      "Conheça o Mec, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/realcentral",
     siteName: "Central Varzea",
     images: [
       {
-        url: "/times/unidos_sao_joao.png",
+        url: "/times/realcentral.png",
         width: 1200,
         height: 630,
-        alt: "Time Unidos São João de Promissão"
+        alt: "Time Real Central de Promissão"
       },
     ],
     locale: "pt_BR",
@@ -35,15 +35,15 @@ export const metadata = {
   },
 }
 
-export default function UnidosSaoJoao() {
+export default function Mec() {
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
 
       {/* 🟣 Marca d'água */}
       <div className="absolute inset-0 flex items-center justify-center opacity-5 -z-10">
         <Image
-          src="/times/unidos_sao_joao.png"
-          alt="Logo Unidos São João"
+          src="/times/realcentral.png"
+          alt="Logo Real Central"
           width={800}
           height={800}
           className="object-cover"
@@ -53,11 +53,11 @@ export default function UnidosSaoJoao() {
       {/* 🔳 camada branca */}
       <div className="absolute inset-0 bg-white/90 -z-10" />
 
-      {/* 🔝 Banner topo
+      {/* 🔝 Banner topo 
       <div className="relative w-full h-[250px] md:h-[350px]">
         <Image
-          src="/clubs/unidosaojoao/timeunidosaojoao.png"
-          alt="Time Unidos São João"
+          src="/clubs/mec/timemec.png"
+          alt="Time Mec"
           fill
           className="object-contain"
         />
@@ -83,13 +83,13 @@ export default function UnidosSaoJoao() {
           {/* 🏆 Título com brasão */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <Image
-              src="/times/unidos_sao_joao.png"
-              alt="Escudo Unidos São João"
+              src="/times/realcentral.png"
+              alt="Escudo Real Central"
               width={100}
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Unidos São João
+              Real Central
             </h1>
           </div>
 

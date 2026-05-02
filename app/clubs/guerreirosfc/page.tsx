@@ -1,25 +1,25 @@
 import Image from "next/image"
 export const metadata = {
-  title: "Guerreirosfc em Promissão | Futebol de Várzea e Time Amador",
+  title: "Guerreiros fc em Promissão | Futebol de Várzea e Time Amador",
   description:
-    "O Guerreirosfc é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+    "O Guerreiros fc é um dos times mais tradicionais do futebol de várzea em Promissão, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
   keywords: [
-    "Guerreirosfc Promissão",
+    "Guerreiros fc Promissão",
     "futebol de várzea Promissão",
     "time amador Promissão",
     "campeonatos de várzea",
     "futebol amador SP",
     "times de futebol Promissão",
-    "equipe Guerreirosfc",
+    "equipe Guerreiros fc",
     "futebol local Promissão",
     "tradição no futebol de várzea",
     "time de bairro Promissão",
     "futebol regional interior SP"
   ],
   openGraph: {
-    title: "Guerreirosfc | Time de Várzea em Promissão",
+    title: "Guerreiros fc | Time de Várzea em Promissão",
     description:
-      "Conheça o Guerreirosfc, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
+      "Conheça o Guerreiros fc, equipe tradicional do futebol de várzea em Promissão, com história, união e destaque em campeonatos amadores.",
     url: "https://www.centralvarzea.com.br/clubs/guerreirosfc",
     siteName: "Central Varzea",
     images: [
@@ -27,7 +27,7 @@ export const metadata = {
         url: "/times/guerreirosfc.png",
         width: 1200,
         height: 630,
-        alt: "Time Guerreirosfc de Promissão"
+        alt: "Time Guerreiros fc de Promissão"
       },
     ],
     locale: "pt_BR",
@@ -53,7 +53,7 @@ export default function Guerreirosfc() {
       {/* 🔳 camada branca */}
       <div className="absolute inset-0 bg-white/90 -z-10" />
 
-      {/* 🔝 Banner topo*/}
+      {/* 🔝 Banner topo
       <div className="relative w-full h-[250px] md:h-[350px]">
         <Image
           src="/clubs/guerreirosfc/timeguerreiros.png"
@@ -61,7 +61,8 @@ export default function Guerreirosfc() {
           fill
           className="object-contain"
         />
-      </div>
+      </div>*/}
+      
 
       {/* 📦 Conteúdo */}
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -83,7 +84,7 @@ export default function Guerreirosfc() {
           <div className="flex items-center justify-center gap-3 mb-6">
             <Image
               src="/times/guerreirosfc.png"
-              alt="Escudo Bulldogs"
+              alt="Escudo Guerreiros FC"
               width={100}
               height={100}
             />

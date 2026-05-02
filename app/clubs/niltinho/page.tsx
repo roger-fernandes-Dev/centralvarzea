@@ -54,16 +54,16 @@ export default function Niltinho() {
       <div className="absolute inset-0 bg-white/90 -z-10" />
 
       {/* 🔝 Banner topo
-      
-      <Image
+      <div className="relative w-full h-[250px] md:h-[350px]">
+        <Image
           src="/clubs/falcoes/timefalcoes.png"
           alt="Time Falcões"
           fill
           className="object-contain"
-        />*/}
-      <div className="relative w-full h-[250px] md:h-[350px]">
-        
+        />
       </div>
+      */}
+      
 
       {/* 📦 Conteúdo */}
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">

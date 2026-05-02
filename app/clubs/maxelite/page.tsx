@@ -53,15 +53,16 @@ export default function SportingGuaicaraPage() {
       </div>
 
       {/* 🔝 Banner topo
-      <Image
+       <div className="relative w-full h-[250px] md:h-[350px]">
+        <Image
           src="/times/magos.png"
           alt="Time Sporting Guaicara"
           fill
           className="object-contain"
-        /> */}
-      <div className="relative w-full h-[250px] md:h-[350px]">
-        
+        />
       </div>
+       */}
+      
 
       {/* 📦 Conteúdo */}
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">

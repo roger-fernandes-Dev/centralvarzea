@@ -53,7 +53,7 @@ export default function TheBest() {
       {/* 🔳 camada branca */}
       <div className="absolute inset-0 bg-white/90 -z-10" />
 
-      {/* 🔝 Banner topo*/}
+      {/* 🔝 Banner topo
       <div className="relative w-full h-[250px] md:h-[350px]">
         <Image
           src="/clubs/thebest/timethebest.png"
@@ -61,7 +61,8 @@ export default function TheBest() {
           fill
           className="object-contain"
         />
-      </div>
+      </div>*/}
+      
 
       {/* 📦 Conteúdo */}
       <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">

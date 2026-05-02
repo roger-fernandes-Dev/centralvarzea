@@ -28,6 +28,12 @@ export default function TimesPage() {
           { name: "Arsenal", logo: "/times/arsenal.png", slug: "arsenal" },
           { name: "MEC", logo: "/times/mec.png", slug: "mec" },
           { name: "Bem Amigos", logo: "/times/bemamigosfc.png", slug: "bemamigos" },
+          { name: "Guerreiros FC", logo: "/times/guerreirosfc.png", slug: "guerreirosfc" },
+          { name: "Leões FC", logo: "/times/leoesfc.png", slug: "leoesfc" },
+          { name: "Nova Campinas", logo: "/times/novacampinas.png", slug: "novacampinas" },
+          { name: "Real Central FC", logo: "/times/realcentral.png", slug: "realcentral" },
+          { name: "São José FC", logo: "/times/saojose.png", slug: "saojose" },
+          { name: "Valle do Tietê 44", logo: "/times/valledotiete44.png", slug: "valledotiete44" },
         ]
       },
       {
