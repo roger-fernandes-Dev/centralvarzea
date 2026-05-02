@@ -50,6 +50,7 @@ export default function TimesPage() {
       cidade: "Barbosa",
       times: [
         { name: "Amigos da Vila", logo: "/times/amigosdavila.png", slug: "amigosdavila" },
+        { name: "Mineiros FC", logo: "/times/barbosa/mineirosfc.jpg", slug: "mineirosfc" },
       ]
     }
   ]

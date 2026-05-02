@@ -1,33 +1,33 @@
 import Image from "next/image"
 export const metadata = {
-  title: "amigos da vila em barbosa | Futebol de Várzea e Time Amador",
+  title: "Mineiros FC em barbosa | Futebol de Várzea e Time Amador",
   description:
-    "O amigos da vila é um dos times mais tradicionais do futebol de várzea em barbosa, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+    "O Mineiros FC é um dos times mais tradicionais do futebol de várzea em barbosa, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
   keywords: [
-    "amigos da vila barbosa",
+    "Mineiros FC barbosa",
     "futebol de várzea barbosa",
     "time amador barbosa",
     "campeonatos de várzea",
     "futebol amador SP",
     "times de futebol barbosa",
-    "equipe amigos da vila",
+    "equipe Mineiros FC",
     "futebol local barbosa",
     "tradição no futebol de várzea",
     "time de bairro barbosa",
     "futebol regional interior SP"
   ],
   openGraph: {
-    title: "amigos da vila | Time de Várzea em barbosa",
+    title: "Mineiros FC| Time de Várzea em barbosa",
     description:
-      "Conheça o amigos da vila, equipe tradicional do futebol de várzea em barbosa, com história, união e destaque em campeonatos amadores.",
-    url: "https://www.centralvarzea.com.br/clubs/amigosdavila",
+      "Conheça o Mineiros FC, equipe tradicional do futebol de várzea em barbosa, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/mineirosfc",
     siteName: "Central Varzea",
     images: [
       {
-        url: "/times/amigosdavila.png",
+        url: "/times/barbosa/mineirosfc.jpg",
         width: 1200,
         height: 630,
-        alt: "Time amigos da vila de barbosa"
+        alt: "Time Mineiros FC de barbosa"
       },
     ],
     locale: "pt_BR",
@@ -42,8 +42,8 @@ export default function Bulldogs() {
       {/* 🟣 Marca d'água */}
       <div className="absolute inset-0 flex items-center justify-center opacity-5 -z-10">
         <Image
-          src="/times/amigosdavila.png"
-          alt="Logo amigos da via"
+          src="/times/barbosa/mineirosfc.jpg"
+          alt="Logo Mineiros FC"
           width={800}
           height={800}
           className="object-cover"
@@ -83,13 +83,13 @@ export default function Bulldogs() {
           {/* 🏆 Título com brasão */}
           <div className="flex items-center justify-center gap-3 mb-6">
             <Image
-              src="/times/amigosdavila.png"
-              alt="Escudo amigos da vila"
+              src="/times/barbosa/mineirosfc.jpg"
+              alt="Escudo Mineiros FC"
               width={100}
               height={100}
             />
             <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
-              Amigos da vila
+                Mineiros FC
             </h1>
           </div>
 
