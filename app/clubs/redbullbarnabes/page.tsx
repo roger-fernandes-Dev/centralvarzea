@@ -1,0 +1,131 @@
+import Image from "next/image"
+export const metadata = {
+  title: "Red Bull Barnabés em juquitiba | Futebol de Várzea e Time Amador",
+  description:
+    "O Red Bull Barnabés é um dos times mais tradicionais do futebol de várzea em juquitiba, com destaque em campeonatos amadores, união entre jogadores e forte presença no esporte local.",
+  keywords: [
+    "Red Bull Barnabés de juquitiba",
+    "futebol de várzea juquitiba",
+    "time amador juquitiba",
+    "campeonatos de várzea",
+    "futebol amador SP",
+    "times de futebol juquitiba",
+    "equipe Red Bull Barnabés",
+    "futebol local juquitiba",
+    "tradição no futebol de várzea",
+    "time de bairro juquitiba",
+    "futebol regional interior SP"
+  ],
+  openGraph: {
+    title: "Red Bull Barnabés | Time de Várzea em juquitiba",
+    description:
+      "Conheça o Red Bull Barnabés equipe tradicional do futebol de várzea em juquitiba, com história, união e destaque em campeonatos amadores.",
+    url: "https://www.centralvarzea.com.br/clubs/redbullbarnabes",
+    siteName: "Central Varzea",
+    images: [
+      {
+        url: "/times/juquitiba/redbullbarnabes.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Time Red Bull Barnabés de juquitiba"
+      },
+    ],
+    locale: "pt_BR",
+    type: "website",
+  },
+}
+
+export default function Bulldogs() {
+  return (
+    <div className="relative w-full min-h-screen overflow-hidden">
+
+      {/* 🟣 Marca d'água */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-5 -z-10">
+        <Image
+          src="/times/juquitiba/redbullbarnabes.jpg"
+          alt="Logo Red Bull Barnabés"
+          width={800}
+          height={800}
+          className="object-cover"
+        />
+      </div>
+
+      {/* 🔳 camada branca */}
+      <div className="absolute inset-0 bg-white/90 -z-10" />
+
+      {/* 🔝 Banner topo*
+      <Image
+          src="/clubs/bulldogs/timebulldogs.png"
+          alt="Time Bulldogs"
+          fill
+          className="object-contain"
+        />/}
+      <div className="relative w-full h-[250px] md:h-[350px]">
+        
+      </div>
+
+      {/* 📦 Conteúdo */}
+      <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+
+        {/* 🟡 ESQUERDA (ads/patrocinadores) */}
+        <div className="hidden md:flex flex-col items-center gap-6">
+          <div className="relative w-[160px] h-[250px]">
+            <Image src="/cegsegurosad/cegsegurosad.png" alt="Patrocinador" fill className="object-contain" />
+          </div>
+          <div className="relative w-[160px] h-[250px]">
+            <Image src="/suplementelinsad/suplementelinsad.png" alt="Patrocinador" fill className="object-contain" />
+          </div>
+        </div>
+
+        {/* 🟢 CENTRO */}
+        <div className="md:col-span-2 text-center">
+
+          {/* 🏆 Título com brasão */}
+          <div className="flex items-center justify-center gap-3 mb-6">
+            <Image
+              src="/times/juquitiba/redbullbarnabes.jpg"
+              alt="Escudo Red Bull Barnabés"
+              width={100}
+              height={100}
+            />
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">
+              Red Bull Barnabés
+            </h1>
+          </div>
+
+          {/* 📖 Espaço para texto futuro */}
+          <div className="text-gray-800 leading-relaxed text-[15px] md:text-base max-w-2xl mx-auto text-justify">
+            {/* Texto do time será inserido aqui depois */}
+          </div>
+        </div>
+
+        {/* 🔵 DIREITA (ads/patrocinadores) */}
+        <div className="hidden md:flex flex-col items-center gap-6">
+          <div className="relative w-[160px] h-[250px]">
+            <Image src="/romaad/romaad.png" alt="Patrocinador" fill className="object-contain" />
+          </div>
+          <div className="relative w-[160px] h-[250px]">
+            <Image src="/flmarmitariaad/flmarmitariaad.png" alt="Patrocinador" fill className="object-contain" />
+          </div>
+        </div>
+      </div>
+
+      {/* 📱 Ads mobile (2x2 grid no celular) com proporção */}
+      <div className="md:hidden max-w-4xl mx-auto px-4 py-6 grid grid-cols-2 gap-4">
+        <div className="relative w-full aspect-[160/250]">
+          <Image src="/cegsegurosad/cegsegurosad.png" alt="Patrocinador" fill className="object-contain" />
+        </div>
+        <div className="relative w-full aspect-[160/250]">
+          <Image src="/suplementelinsad/suplementelinsad.png" alt="Patrocinador" fill className="object-contain" />
+        </div>
+        <div className="relative w-full aspect-[160/250]">
+          <Image src="/romaad/romaad.png" alt="Patrocinador" fill className="object-contain" />
+        </div>
+        <div className="relative w-full aspect-[160/250]">
+          <Image src="/flmarmitariaad/flmarmitariaad.png" alt="Patrocinador" fill className="object-contain" />
+        </div>
+      </div>
+
+    </div>
+  )
+}
