@@ -11,7 +11,7 @@
   "dependencies": {
     "@next/font": "^14.2.15",
     "@supabase/ssr": "^0.10.2",
-    "@supabase/supabase-js": "^2.104.0",
+    "@supabase/supabase-js": "^2.105.1",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "embla-carousel-autoplay": "^8.6.0",

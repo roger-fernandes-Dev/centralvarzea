@@ -116,6 +116,7 @@ const jogos = [
       home: "Raiz Esportiva",
       awayLogo: "/times/the_best.png",
       away: "The Best",
+      score: "3 x 8",
       type: "Copa ADC",
       data: "2026-05-03",
       hora: "08:00",

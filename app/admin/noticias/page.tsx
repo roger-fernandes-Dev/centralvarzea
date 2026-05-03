@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/src/lib/supabase"
 
@@ -11,6 +11,20 @@ export default function AdminNoticias() {
   const [resumo, setResumo] = useState("")
   const [content, setContent] = useState("")
   const [imageFile, setImageFile] = useState<File | null>(null)
+  const [loading, setLoading] = useState(false)
+
+  // 🔐 proteção da página (AGORA COM EMAIL)
+  useEffect(() => {
+    async function checkUser() {
+      const { data } = await supabase.auth.getUser()
+
+      if (!data.user || data.user.email !== "seuemail@email.com") {
+        router.push("/admin/login")
+      }
+    }
+
+    checkUser()
+  }, [router])
 
   async function salvarNoticia() {
     if (!title || !resumo || !content || !imageFile) {
@@ -18,61 +32,82 @@ export default function AdminNoticias() {
       return
     }
 
-    const slug = title
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]/g, "")
+    setLoading(true)
 
-    // =========================
-    // UPLOAD DA IMAGEM
-    // =========================
-    const fileName = `${Date.now()}-${imageFile.name}`
-
-    const { error: uploadError } = await supabase.storage
-      .from("noticias")
-      .upload(fileName, imageFile)
-
-    if (uploadError) {
-      console.log(uploadError)
-      alert("Erro ao subir imagem")
+    // 🔒 validação de imagem
+    if (!imageFile.type.startsWith("image/")) {
+      alert("Arquivo inválido")
+      setLoading(false)
       return
     }
 
-    const { data } = supabase.storage
-      .from("noticias")
-      .getPublicUrl(fileName)
-
-    const imageUrl = data.publicUrl
-
-    // =========================
-    // SALVAR NO BANCO
-    // =========================
-    const { error } = await supabase.from("News").insert([
-      {
-        id: crypto.randomUUID(),
-        title: title.trim(),
-        resumo: resumo.trim(),
-        image: imageUrl,
-        content: content.trim(),
-        slug,
-        categoria: "geral",
-        data: new Date(),
-      },
-    ])
-
-    if (error) {
-      console.log(error)
-      alert("Erro ao salvar notícia")
+    if (imageFile.size > 2 * 1024 * 1024) {
+      alert("Imagem muito grande (máx 2MB)")
+      setLoading(false)
       return
     }
 
-    alert("Notícia salva com sucesso!")
+    try {
+      // =========================
+      // UPLOAD
+      // =========================
+      const safeName = imageFile.name.replace(/\s+/g, "-")
+      const fileName = `${Date.now()}-${safeName}`
 
-    setTitle("")
-    setResumo("")
-    setContent("")
-    setImageFile(null)
+      const { error: uploadError } = await supabase.storage
+        .from("noticias")
+        .upload(fileName, imageFile)
+
+      if (uploadError) {
+        console.log(uploadError)
+        alert("Erro ao subir imagem")
+        setLoading(false)
+        return
+      }
+
+      const { data } = supabase.storage
+        .from("noticias")
+        .getPublicUrl(fileName)
+
+      const imageUrl = data.publicUrl
+
+      // =========================
+      // 🔥 API SEGURA
+      // =========================
+      const res = await fetch("/api/admin/news", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // 🔑 importante
+        body: JSON.stringify({
+          title: title.trim(),
+          resumo: resumo.trim(),
+          content: content.trim(),
+          image: imageUrl,
+        }),
+      })
+
+      const result = await res.json()
+
+      if (!res.ok) {
+        alert(result.error || "Erro ao salvar")
+        setLoading(false)
+        return
+      }
+
+      alert("Notícia salva com sucesso!")
+
+      setTitle("")
+      setResumo("")
+      setContent("")
+      setImageFile(null)
+    } catch (err) {
+      console.error(err)
+      alert("Erro inesperado")
+    }
+
+    setLoading(false)
   }
 
   async function logout() {
@@ -116,9 +151,10 @@ export default function AdminNoticias() {
       <div className="flex gap-3">
         <button
           onClick={salvarNoticia}
-          className="bg-green-600 text-white px-4 py-2 rounded"
+          disabled={loading}
+          className="bg-green-600 text-white px-4 py-2 rounded disabled:opacity-50"
         >
-          Salvar
+          {loading ? "Salvando..." : "Salvar"}
         </button>
 
         <button
