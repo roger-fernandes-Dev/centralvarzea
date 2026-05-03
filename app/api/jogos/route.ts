@@ -303,7 +303,7 @@ const jogos = [
     },
     {
         id: "26",
-      homeLogo: "/times/bemamigos.png",
+      homeLogo: "/times/bemamigosfc.png",
       home: "BAG",
       awayLogo: "/times/bengala.png",
       away: "BGA",
