@@ -1,33 +1,45 @@
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import { createServerClient } from "@supabase/ssr"
+import { NextResponse, type NextRequest } from "next/server"
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next()
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll: () => req.cookies.getAll(),
+        setAll: (cookies) => {
+          cookies.forEach(({ name, value, options }) => {
+            res.cookies.set(name, value, options)
+          })
+        },
+      },
+    }
+  )
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser()
+
   const pathname = req.nextUrl.pathname
-
   const isDashboard = pathname.startsWith("/dashboard")
-  const isLogin = pathname.startsWith("/login")
+  const isLogin = pathname === "/login"
 
-  // 🔒 BLOQUEIO TOTAL TEMPORÁRIO
-  const BLOQUEADO = true
-
-  if (BLOQUEADO && (isDashboard || isLogin)) {
+  // 🔒 BLOQUEIA LOGIN (durante desenvolvimento)
+  if (isLogin) {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
-  // 🔽 SEU CÓDIGO ORIGINAL (mantido)
-  if (!isDashboard) return NextResponse.next()
-
-  const access = req.cookies.get("sb-access-token")?.value
-  const refresh = req.cookies.get("sb-refresh-token")?.value
-
-  if (!access && !refresh) {
-    return NextResponse.redirect(new URL("/login", req.url))
+  // 🔐 PROTEGE DASHBOARD
+  if (isDashboard && !user) {
+    return NextResponse.redirect(new URL("/", req.url))
   }
 
-  return NextResponse.next()
+  return res
 }
 
 export const config = {
   matcher: ["/dashboard/:path*", "/login"],
 }
-

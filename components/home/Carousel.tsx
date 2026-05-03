@@ -7,7 +7,7 @@ import Image from "next/image"
 
 const banners = [
   "/cegseguros.png",
-  "/suplementelinsad/promosuplemente.png",
+  "/suplementelinsad/promosuplemente2.jpg",
   "/suplementlins.png",
   "/botinasuniao/botinasuniao.png"
 ]
@@ -23,7 +23,7 @@ export default function VerticalCarousel() {
 
     const interval = setInterval(() => {
       emblaApi.scrollNext()
-    }, 2000)
+    }, 4000)
 
     return () => clearInterval(interval)
   }, [emblaApi])

@@ -38,6 +38,9 @@ function Card({ tipo }: { tipo: "jogador" | "time" }) {
     return
   }
 
+  // 🔴 IMPORTANTE: sincroniza cookies com o server
+  await supabase.auth.getSession()
+
   const profileRes = await fetch("/api/profile/me", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
