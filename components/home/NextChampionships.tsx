@@ -25,7 +25,13 @@ export default function NextChampionships() {
           return limite > agora
         })
 
-        setMatches(futuros)
+        const ordenados = futuros.sort((a: any, b: any) => {
+        const dataA = new Date(`${a.data}T${a.hora}:00-03:00`).getTime()
+        const dataB = new Date(`${b.data}T${b.hora}:00-03:00`).getTime()
+        return dataA - dataB
+      })
+
+setMatches(ordenados)
       } catch (error) {
         console.error("Erro ao buscar jogos:", error)
       }
@@ -59,6 +65,7 @@ export default function NextChampionships() {
 
                 <div className="flex items-center gap-2">
                   <span>{date}</span>
+                  <span>{match.hora}</span>
                   <span>|</span>
                   <span className="truncate max-w-[180px]">
                     {match.local}

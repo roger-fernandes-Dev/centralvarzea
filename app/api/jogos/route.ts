@@ -268,6 +268,160 @@ const jogos = [
       hora: "08:00",
       local: "Arena ADC - Campo A"
     },
+    {
+        id: "23",
+      homeLogo: "/times/amigos_do_futebol40.png",
+      home: "ADF",
+      awayLogo: "/times/bengala.png",
+      away: "BNG",
+      type: "Copa selt 50+",
+      data: "2026-05-09",
+      hora: "17:45",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "24",
+      homeLogo: "/times/assentamento50.png",
+      home: "ASS",
+      awayLogo: "/times/arenamartinez50.png",
+      away: "AMB",
+      type: "Copa selt 50+",
+      data: "2026-05-09",
+      hora: "17:45",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "25",
+      homeLogo: "/times/mec.png",
+      home: "MEC",
+      awayLogo: "/times/falcoes.png",
+      away: "FAC",
+      type: "Copa selt 40+",
+      data: "2026-05-05",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "26",
+      homeLogo: "/times/bemamigos.png",
+      home: "BAG",
+      awayLogo: "/times/bengala.png",
+      away: "BGA",
+      type: "Copa selt 40+",
+      data: "2026-05-05",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "27",
+      homeLogo: "/times/grupodeubom.png",
+      home: "GDB",
+      awayLogo: "/times/assentamento50.png",
+      away: "ASS",
+      type: "Copa selt 40+",
+      data: "2026-05-05",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "28",
+      homeLogo: "/times/promi_informatica.png",
+      home: "PRO",
+      awayLogo: "/times/amigosdofutebol50.png",
+      away: "ADF",
+      type: "Copa selt 40+",
+      data: "2026-05-05",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "29",
+      homeLogo: "/times/the_best.png",
+      home: "TBT",
+      awayLogo: "/times/point.png",
+      away: "PIT",
+      type: "Copa selt livre",
+      data: "2026-05-05",
+      hora: "21:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "30",
+      homeLogo: "/times/becofc.png",
+      home: "BEC",
+      awayLogo: "/times/novacampinas.png",
+      away: "NCF",
+      type: "Copa selt livre",
+      data: "2026-05-05",
+      hora: "21:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "31",
+      homeLogo: "/times/borussia.png",
+      home: "BVB",
+      awayLogo: "/times/saojose.png",
+      away: "sjc",
+      type: "Copa selt livre",
+      data: "2026-05-07",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "32",
+      homeLogo: "/times/bengala.png",
+      home: "BGA",
+      awayLogo: "/times/aguias_de_Deus.png",
+      away: "ADD",
+      type: "Copa selt livre",
+      data: "2026-05-07",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "33",
+      homeLogo: "/times/promi_informatica.png",
+      home: "PRO",
+      awayLogo: "/times/renukaadc.png",
+      away: "ADC",
+      type: "Copa selt livre",
+      data: "2026-05-07",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "34",
+      homeLogo: "/times/bfc.png",
+      home: "BFC",
+      awayLogo: "/times/realcentral.png",
+      away: "RCF",
+      type: "Copa selt livre",
+      data: "2026-05-07",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "35",
+      homeLogo: "/times/leoesfc.png",
+      home: "LEO",
+      awayLogo: "/times/athleticfc.png",
+      away: "ATL",
+      type: "Copa selt livre",
+      data: "2026-05-07",
+      hora: "21:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "36",
+      homeLogo: "/times/guerreirosfc.png",
+      home: "GFC",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      type: "Copa selt livre",
+      data: "2026-05-07",
+      hora: "21:00",
+      local: "Estádio verano Piromalli"
+    },
     /**
      {
         id: "15",
