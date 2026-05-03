@@ -68,7 +68,7 @@ setMatches(ordenados)
                   <span>{match.hora}</span>
                   <span>|</span>
                   <span className="truncate max-w-[180px]">
-                    {match.local}
+                    {match.type}
                   </span>
                 </div>
 
