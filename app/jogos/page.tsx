@@ -73,10 +73,10 @@ export default function JogosPage() {
                 <span className="truncate">{match.local}</span>
 
                 <span>
-                  {new Date(match.data).toLocaleDateString("pt-BR", {
-                    day: "2-digit",
-                    month: "2-digit"
-                  })} • {match.hora}
+                  {(() => {
+                    const [, mes, dia] = match.data.split("-")
+                    return `${dia}/${mes}`
+                  })()}
                 </span>
               </div>
 

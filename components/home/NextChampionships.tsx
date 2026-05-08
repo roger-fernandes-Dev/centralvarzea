@@ -26,12 +26,13 @@ export default function NextChampionships() {
         })
 
         const ordenados = futuros.sort((a: any, b: any) => {
-        const dataA = new Date(`${a.data}T${a.hora}:00-03:00`).getTime()
-        const dataB = new Date(`${b.data}T${b.hora}:00-03:00`).getTime()
-        return dataA - dataB
-      })
+          const dataA = new Date(`${a.data}T${a.hora}:00-03:00`).getTime()
+          const dataB = new Date(`${b.data}T${b.hora}:00-03:00`).getTime()
 
-setMatches(ordenados)
+          return dataA - dataB
+        })
+
+        setMatches(ordenados)
       } catch (error) {
         console.error("Erro ao buscar jogos:", error)
       }
@@ -46,19 +47,24 @@ setMatches(ordenados)
 
         {matches.map((match: any, i: number) => {
           const agora = new Date()
-          const inicio = new Date(`${match.data}T${match.hora}:00-03:00`)
+
+          const inicio = new Date(
+            `${match.data}T${match.hora}:00-03:00`
+          )
 
           const aoVivo =
             agora >= inicio &&
             agora <= new Date(inicio.getTime() + 4 * 60 * 60 * 1000)
 
-          const date = new Date(`${match.data}T00:00:00-03:00`).toLocaleDateString(
-            "pt-BR",
-            { day: "2-digit", month: "2-digit" }
-          )
+          // CORREÇÃO DA DATA
+          const [, mes, dia] = match.data.split("-")
+          const date = `${dia}/${mes}`
 
           return (
-            <div key={i} className="px-4 py-3 hover:bg-zinc-50 transition">
+            <div
+              key={i}
+              className="px-4 py-3 hover:bg-zinc-50 transition"
+            >
 
               {/* LINHA 1 - META */}
               <div className="flex items-center justify-between text-[11px] text-zinc-500">
@@ -67,20 +73,24 @@ setMatches(ordenados)
                   <span>{date}</span>
                   <span>{match.hora}</span>
                   <span>|</span>
+
                   <span className="truncate max-w-[180px]">
                     {match.type}
                   </span>
                 </div>
 
-                {/* STATUS (AO VIVO / AGENDADO) */}
+                {/* STATUS */}
                 <span
                   className={`text-[10px] font-bold uppercase tracking-wide flex items-center gap-1 ${
-                    aoVivo ? "text-red-600" : "text-amber-500"
+                    aoVivo
+                      ? "text-red-600"
+                      : "text-amber-500"
                   }`}
                 >
                   {aoVivo && (
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
                     </span>
                   )}
@@ -102,18 +112,22 @@ setMatches(ordenados)
                     height={28}
                     className="rounded-full"
                   />
+
                   <span className="text-sm font-semibold text-zinc-900">
                     {match.home.slice(0, 3).toUpperCase()}
                   </span>
                 </div>
 
-                <span className="text-zinc-400 font-semibold">X</span>
+                <span className="text-zinc-400 font-semibold">
+                  X
+                </span>
 
                 {/* AWAY */}
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-semibold text-zinc-900">
                     {match.away.slice(0, 3).toUpperCase()}
                   </span>
+
                   <Image
                     src={match.awayLogo}
                     alt={match.away}
