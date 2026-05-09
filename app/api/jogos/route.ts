@@ -277,7 +277,7 @@ const jogos = [
       score: null,
       type: "Copa selt 50+",
       data: "2026-05-09",
-      hora: "17:45",
+      hora: "17:15",
       local: "Estádio verano Piromalli"
     },
     {
@@ -289,7 +289,7 @@ const jogos = [
       score: null,
       type: "Copa selt 50+",
       data: "2026-05-09",
-      hora: "17:45",
+      hora: "17:15",
       local: "Estádio verano Piromalli"
     },
     {
@@ -436,6 +436,54 @@ const jogos = [
       hora: "21:00",
       local: "Estádio verano Piromalli"
     },
+    {
+        id: "37",
+      homeLogo: "/times/bahea.png",
+      home: "BAE",
+      awayLogo: "/times/bemamigosfc.png",
+      away: "BAG",
+      score: null,
+      type: "Copa selt 40+",
+      data: "2026-05-09",
+      hora: "19:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "38",
+      homeLogo: "/times/bengala.png",
+      home: "BGA",
+      awayLogo: "/times/mec.png",
+      away: "BAG",
+      score: null,
+      type: "Copa selt 40+",
+      data: "2026-05-09",
+      hora: "19:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "39",
+      homeLogo: "/times/assentamento50.png",
+      home: "ASS",
+      awayLogo: "/times/promi_informatica.png",
+      away: "PRO",
+      score: null,
+      type: "Copa selt 40+",
+      data: "2026-05-09",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "40",
+      homeLogo: "/times/amigos_do_futebol40.png",
+      home: "ADF",
+      awayLogo: "/times/grupodeubom.png",
+      away: "GDB",
+      score: null,
+      type: "Copa selt 40+",
+      data: "2026-05-09",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    }
     /**
      {
         id: "15",
