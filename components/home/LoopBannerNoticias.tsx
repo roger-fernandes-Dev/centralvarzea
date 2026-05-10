@@ -21,12 +21,16 @@ export default function LoopBanner() {
   )
 
   const banners = [
-    "/wideparaiso.png",
     "/cegseguros.png",
     "/wideamop.png",
     "/wideroma.png",
     "/suplementlins.png",
-    "/wideflmarmitaria.png",
+    "/bormioesilva.png",
+    "/cegseguros.png",
+    "/wideamop.png",
+    "/wideroma.png",
+    "/suplementlins.png",
+    "/bormioesilva.png",
   ]
 
   return (

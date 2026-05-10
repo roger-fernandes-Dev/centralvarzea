@@ -67,7 +67,7 @@ export default async function Home() {
         {/* banner */}
         <section>
           <div className="w-full mb-3">
-            <div className="bg-gray-100 rounded-lg px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 border border-gray-200 shadow-md">
+            <div className="rounded-lg px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-2 border border-gray-200 shadow-md">
               <h1 className="font-bold text-sm md:text-lg tracking-wide text-gray-900">
                 A CASA DO FUTEBOL AMADOR
               </h1>
