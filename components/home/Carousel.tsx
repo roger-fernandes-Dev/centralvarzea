@@ -9,7 +9,6 @@ const banners = [
   "/cegseguros.png",
   "/suplementelinsad/promosuplemente2.jpg",
   "/suplementlins.png",
-  "/botinasuniao/botinasuniao.png"
 ]
 
 export default function VerticalCarousel() {
