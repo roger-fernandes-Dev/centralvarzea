@@ -17,53 +17,100 @@ function Card({ tipo }: { tipo: "jogador" | "time" }) {
   const [loading, setLoading] = useState(false)
 
   // =========================
+  // VALIDAÇÕES
+  // =========================
+  function validarEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  }
+
+  function limparTelefone(valor: string) {
+    return valor.replace(/\D/g, "")
+  }
+
+  // =========================
   // LOGIN
   // =========================
   async function handleLogin() {
-  if (!email || !password) {
-    alert("Preencha os campos")
-    return
-  }
+    const emailSeguro = email.trim().toLowerCase()
 
-  setLoading(true)
+    if (!emailSeguro || !password) {
+      alert("Preencha os campos")
+      return
+    }
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  })
+    if (!validarEmail(emailSeguro)) {
+      alert("Email inválido")
+      return
+    }
 
-  if (error || !data.user) {
+    if (password.length < 6) {
+      alert("Senha inválida")
+      return
+    }
+
+    setLoading(true)
+
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: emailSeguro,
+      password,
+    })
+
+    if (error || !data.user) {
+      setLoading(false)
+      alert("Credenciais inválidas")
+      return
+    }
+
+    // 🔴 IMPORTANTE: sincroniza cookies com o server
+    await supabase.auth.getSession()
+
+    const profileRes = await fetch("/api/profile/me", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId: data.user.id }),
+    })
+
+    const profile = await profileRes.json()
+
     setLoading(false)
-    alert(error?.message || "Erro no login")
-    return
+
+    router.replace(
+      profile.tipo === "jogador"
+        ? "/dashboard/jogador"
+        : "/dashboard/time"
+    )
   }
-
-  // 🔴 IMPORTANTE: sincroniza cookies com o server
-  await supabase.auth.getSession()
-
-  const profileRes = await fetch("/api/profile/me", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ userId: data.user.id }),
-  })
-
-  const profile = await profileRes.json()
-
-  setLoading(false)
-
-  router.replace(
-    profile.tipo === "jogador"
-      ? "/dashboard/jogador"
-      : "/dashboard/time"
-  )
-}
 
   // =========================
   // CADASTRO
   // =========================
   async function handleRegister() {
-    if (!nome || !telefone || !email || !password) {
+    const nomeSeguro = nome.trim()
+    const emailSeguro = email.trim().toLowerCase()
+    const telefoneSeguro = limparTelefone(telefone)
+
+    if (!nomeSeguro || !telefoneSeguro || !emailSeguro || !password) {
       alert("Preencha todos os campos")
+      return
+    }
+
+    if (nomeSeguro.length < 3 || nomeSeguro.length > 60) {
+      alert("Nome inválido")
+      return
+    }
+
+    if (!validarEmail(emailSeguro)) {
+      alert("Email inválido")
+      return
+    }
+
+    if (telefoneSeguro.length < 10 || telefoneSeguro.length > 11) {
+      alert("Telefone inválido")
+      return
+    }
+
+    if (password.length < 6 || password.length > 100) {
+      alert("Senha inválida")
       return
     }
 
@@ -74,9 +121,9 @@ function Card({ tipo }: { tipo: "jogador" | "time" }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         tipo,
-        nome,
-        telefone,
-        email,
+        nome: nomeSeguro,
+        telefone: telefoneSeguro,
+        email: emailSeguro,
         password,
       }),
     })
@@ -95,73 +142,84 @@ function Card({ tipo }: { tipo: "jogador" | "time" }) {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-gray-100 p-8 w-full max-w-xl mx-auto">
+    <div className="relative overflow-hidden rounded-[32px] bg-white border border-gray-100 shadow-[0_20px_60px_rgba(0,0,0,0.06)] p-8 md:p-10 w-full max-w-xl mx-auto">
       
+      {/* glow */}
+      <div className="absolute -top-24 -right-24 w-56 h-56 bg-yellow-400/10 blur-3xl rounded-full" />
+
       {/* Header */}
-      <div className="flex flex-col items-center text-center mb-6">
-        <div className="w-14 h-14 bg-orange-500/10 text-orange-500 rounded-full flex items-center justify-center mb-3 text-xl">
-          {isJogador ? "👤" : "🛡️"}
+      <div className="relative mb-8">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center text-black text-xl shadow-lg shadow-yellow-400/20">
+            {isJogador ? "👤" : "🛡️"}
+          </div>
+
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+              {isJogador ? "Área do Jogador" : "Área do Time"}
+            </h2>
+
+            <p className="text-sm text-gray-500 mt-1">
+              {isJogador
+                ? "Entre para acessar seu perfil"
+                : "Gerencie seu time com facilidade"}
+            </p>
+          </div>
         </div>
 
-        <h2 className="text-xl font-semibold text-gray-900 tracking-tight">
-          {isJogador ? "Acesso do Jogador" : "Acesso do Time"}
-        </h2>
+        {/* Tabs */}
+        <div className="flex bg-gray-100/80 p-1 rounded-2xl">
+          <button
+            onClick={() => setTab("login")}
+            className={`flex-1 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+              tab === "login"
+                ? "bg-white shadow-md text-gray-900"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Login
+          </button>
 
-        <p className="text-gray-500 text-sm mt-1">
-          {isJogador
-            ? "Entre e mostre seu futebol"
-            : "Gerencie seu time com facilidade"}
-        </p>
-      </div>
-
-      {/* TABS */}
-      <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
-        <button
-          onClick={() => setTab("login")}
-          className={`flex-1 py-2 text-sm rounded-md transition ${
-            tab === "login"
-              ? "bg-white shadow-sm text-gray-900 font-medium"
-              : "text-gray-500"
-          }`}
-        >
-          Login
-        </button>
-
-        <button
-          onClick={() => setTab("cadastro")}
-          className={`flex-1 py-2 text-sm rounded-md transition ${
-            tab === "cadastro"
-              ? "bg-white shadow-sm text-gray-900 font-medium"
-              : "text-gray-500"
-          }`}
-        >
-          Cadastro
-        </button>
+          <button
+            onClick={() => setTab("cadastro")}
+            className={`flex-1 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+              tab === "cadastro"
+                ? "bg-white shadow-md text-gray-900"
+                : "text-gray-500 hover:text-gray-700"
+            }`}
+          >
+            Cadastro
+          </button>
+        </div>
       </div>
 
       {/* LOGIN */}
       {tab === "login" && (
-        <div className="space-y-4">
+        <div className="space-y-4 relative">
           <input
-            type="text"
-            placeholder="Email ou telefone"
+            type="email"
+            autoComplete="email"
+            maxLength={100}
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none rounded-lg px-4 py-2.5 text-sm"
+            className="w-full bg-gray-50 border border-gray-100 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 outline-none rounded-2xl px-5 py-4 text-sm transition-all"
           />
 
           <input
             type="password"
+            autoComplete="current-password"
+            maxLength={100}
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none rounded-lg px-4 py-2.5 text-sm"
+            className="w-full bg-gray-50 border border-gray-100 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 outline-none rounded-2xl px-5 py-4 text-sm transition-all"
           />
 
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full bg-black hover:bg-gray-900 text-white py-3 rounded-lg text-sm font-medium transition"
+            className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed text-black py-4 rounded-2xl text-sm font-semibold transition-all shadow-lg shadow-yellow-400/20"
           >
             {loading ? "Entrando..." : "Entrar"}
           </button>
@@ -170,45 +228,54 @@ function Card({ tipo }: { tipo: "jogador" | "time" }) {
 
       {/* CADASTRO */}
       {tab === "cadastro" && (
-        <div className="space-y-4">
+        <div className="space-y-4 relative">
           <input
             type="text"
+            maxLength={60}
             placeholder={isJogador ? "Nome completo" : "Nome do time"}
             value={nome}
             onChange={(e) => setNome(e.target.value)}
-            className="w-full border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none rounded-lg px-4 py-2.5 text-sm"
+            className="w-full bg-gray-50 border border-gray-100 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 outline-none rounded-2xl px-5 py-4 text-sm transition-all"
           />
 
           <input
             type="text"
+            inputMode="numeric"
+            maxLength={15}
             placeholder="Telefone"
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
-            className="w-full border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none rounded-lg px-4 py-2.5 text-sm"
+            className="w-full bg-gray-50 border border-gray-100 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 outline-none rounded-2xl px-5 py-4 text-sm transition-all"
           />
 
           <input
             type="email"
+            autoComplete="email"
+            maxLength={100}
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none rounded-lg px-4 py-2.5 text-sm"
+            className="w-full bg-gray-50 border border-gray-100 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 outline-none rounded-2xl px-5 py-4 text-sm transition-all"
           />
 
           <input
             type="password"
+            autoComplete="new-password"
+            maxLength={100}
             placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none rounded-lg px-4 py-2.5 text-sm"
+            className="w-full bg-gray-50 border border-gray-100 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/10 outline-none rounded-2xl px-5 py-4 text-sm transition-all"
           />
 
           <button
             onClick={handleRegister}
             disabled={loading}
-            className="w-full bg-black hover:bg-gray-900 text-white py-3 rounded-lg text-sm font-medium transition"
+            className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed text-black py-4 rounded-2xl text-sm font-semibold transition-all shadow-lg shadow-yellow-400/20"
           >
-            {loading ? "Criando..." : `Criar conta como ${isJogador ? "jogador" : "time"}`}
+            {loading
+              ? "Criando..."
+              : `Criar conta como ${isJogador ? "jogador" : "time"}`}
           </button>
         </div>
       )}
@@ -218,28 +285,29 @@ function Card({ tipo }: { tipo: "jogador" | "time" }) {
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f5f5f7]">
       
-      <div className="bg-black text-white flex justify-between items-center px-6 py-4 shadow-sm">
-        <span className="font-semibold tracking-wide">
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-200 flex justify-between items-center px-6 py-4">
+        <span className="font-bold tracking-tight text-gray-900">
           Central Várzea
         </span>
 
-        <span className="hidden md:block text-sm text-gray-300">
+        <span className="hidden md:block text-sm text-gray-500">
           Futebol de várzea em destaque
         </span>
       </div>
 
-      <div className="text-center mt-10 px-4">
-        <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
+      <div className="text-center mt-14 px-4">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
           Faça parte da Central Várzea
         </h1>
-        <p className="text-gray-500 text-sm mt-2">
-          Escolha como deseja acessar
+
+        <p className="text-gray-500 text-sm md:text-base mt-3">
+          Escolha como deseja acessar a plataforma
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 mt-4 max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 mt-8 max-w-6xl mx-auto">
         <Card tipo="jogador" />
         <Card tipo="time" />
       </div>
