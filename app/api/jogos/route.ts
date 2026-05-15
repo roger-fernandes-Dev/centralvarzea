@@ -628,6 +628,78 @@ const jogos = [
       hora: "19:00",
       local: "Estádio verano Piromalli"
     },
+    {
+        id: "53",
+      homeLogo: "/times/renukaadc.png",
+      home: "ADC",
+      awayLogo: "/times/bfc.png",
+      away: "BFC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-16",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "54",
+      homeLogo: "/times/realcentral.png",
+      home: "RCF",
+      awayLogo: "/times/falcoes.png",
+      away: "FAL",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-16",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "55",
+      homeLogo: "/times/unidos_sao_joao.png",
+      home: "SJC",
+      awayLogo: "/times/bengala.png",
+      away: "BGA",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-16",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "56",
+      homeLogo: "/times/aguias_de_Deus.png",
+      home: "ADF",
+      awayLogo: "/times/meninos_da_vila.png",
+      away: "MDV",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-16",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "57",
+      homeLogo: "/times/novacampinas.png",
+      home: "NCF",
+      awayLogo: "/times/bahea.png",
+      away: "BAE",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-16",
+      hora: "19:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "58",
+      homeLogo: "/times/point.png",
+      home: "PIT",
+      awayLogo: "/times/becofc.png",
+      away: "BEC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-16",
+      hora: "19:30",
+      local: "Estádio verano Piromalli"
+    },
     /**
      {
         id: "15",
