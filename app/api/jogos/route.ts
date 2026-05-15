@@ -502,7 +502,7 @@ const jogos = [
       home: "BGA",
       awayLogo: "/times/arenamartinez50.png",
       away: "AMB",
-      score: null,
+      score: "0 x 0",
       type: "Copa selt 50+",
       data: "2026-05-14",
       hora: "20:00",
