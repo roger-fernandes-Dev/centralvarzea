@@ -7,27 +7,27 @@ export async function middleware(req: NextRequest) {
   let res = NextResponse.next()
 
   // =========================
-  // BLOQUEAR SOMENTE /login EXATO
+  // BLOQUEAR LOGIN PLAYER/TIME
   // =========================
   if (pathname === "/login") {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
   // =========================
-  // SUPABASE CLIENT (SERVER)
+  // ADMIN LOGIN LIBERADO
   // =========================
+  if (pathname === "/admin/login") {
+    return res
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() {
-          return req.cookies.getAll()
-        },
-
-        setAll(cookiesToSet) {
+        getAll: () => req.cookies.getAll(),
+        setAll: (cookiesToSet) => {
           cookiesToSet.forEach(({ name, value, options }) => {
-            req.cookies.set(name, value)
             res.cookies.set(name, value, options)
           })
         },
@@ -35,16 +35,10 @@ export async function middleware(req: NextRequest) {
     }
   )
 
-  // =========================
-  // SESSION
-  // =========================
   const {
     data: { session },
   } = await supabase.auth.getSession()
 
-  // =========================
-  // PROTEGER ADMIN
-  // =========================
   if (pathname.startsWith("/admin") && !session) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
   }
@@ -53,5 +47,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"] // só admin agora
+  matcher: ["/login", "/admin/:path*"]
 }
