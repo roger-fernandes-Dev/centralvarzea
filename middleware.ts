@@ -2,36 +2,19 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 export async function middleware(req: NextRequest) {
-  let res = NextResponse.next()
-
   const pathname = req.nextUrl.pathname
 
-  // =========================
-  // BLOQUEAR LOGIN PLAYER/TIME
-  // =========================
-  const blockedRoutes = [
-    "/login",
-    "/cadastro",
-    "/dashboard",
-  ]
+  let res = NextResponse.next()
 
-  const isBlocked = blockedRoutes.some((route) =>
-    pathname.startsWith(route)
-  )
-
-  if (isBlocked) {
+  // =========================
+  // BLOQUEAR SOMENTE /login EXATO
+  // =========================
+  if (pathname === "/login") {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
   // =========================
-  // ADMIN LIBERADO
-  // =========================
-  if (pathname.startsWith("/admin/login")) {
-    return res
-  }
-
-  // =========================
-  // SUPABASE
+  // SUPABASE CLIENT (SERVER)
   // =========================
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -45,7 +28,6 @@ export async function middleware(req: NextRequest) {
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) => {
             req.cookies.set(name, value)
-
             res.cookies.set(name, value, options)
           })
         },
@@ -64,19 +46,12 @@ export async function middleware(req: NextRequest) {
   // PROTEGER ADMIN
   // =========================
   if (pathname.startsWith("/admin") && !session) {
-    return NextResponse.redirect(
-      new URL("/admin/login", req.url)
-    )
+    return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
   return res
 }
 
 export const config = {
-  matcher: [
-    "/login/:path*",
-    "/cadastro/:path*",
-    "/dashboard/:path*",
-    "/admin/:path*",
-  ],
+  matcher: ["/admin/:path*"] // só admin agora
 }
