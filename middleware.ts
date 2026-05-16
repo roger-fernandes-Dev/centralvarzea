@@ -7,14 +7,14 @@ export async function middleware(req: NextRequest) {
   let res = NextResponse.next()
 
   // =========================
-  // BLOQUEAR LOGIN PLAYER/TIME
+  // BLOQUEAR /login
   // =========================
   if (pathname === "/login") {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
   // =========================
-  // ADMIN LOGIN LIBERADO
+  // LIBERAR ADMIN LOGIN
   // =========================
   if (pathname === "/admin/login") {
     return res
@@ -28,7 +28,11 @@ export async function middleware(req: NextRequest) {
         getAll: () => req.cookies.getAll(),
         setAll: (cookiesToSet) => {
           cookiesToSet.forEach(({ name, value, options }) => {
-            res.cookies.set(name, value, options)
+            res.cookies.set(name, value, {
+              ...options,
+              sameSite: "lax",
+              secure: true,
+            })
           })
         },
       },
