@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
-import { getNoticia, getNoticias } from "@/src/db/news-repo"
+import { getNoticia, getNoticias, incrementNewsViews } from "@/src/db/news-repo"
 
 /* =========================
    SEO
@@ -66,6 +66,10 @@ export default async function Page({
 }) {
 
   const { slug } = await params
+  
+
+  // 🔥 incrementa view (aqui já soma automaticamente)
+  await incrementNewsViews(slug)
 
   const noticia = await getNoticia(slug)
 
@@ -91,6 +95,10 @@ export default async function Page({
 
         <p className="text-gray-500 mt-3">
           {noticia.resumo}
+        </p>
+
+        <p className="text-xs text-gray-400 mt-2">
+          👁 {Number(noticia.views || 0) + 1} visualizações
         </p>
       </div>
 
@@ -128,24 +136,6 @@ export default async function Page({
                     </p>
                   ) : (
                     <p className="text-justify">{p}</p>
-                  )}
-
-                  {i === 1 && noticia.team && (
-                    <div className="flex flex-col items-center my-8 gap-4">
-
-                      <Image
-                        src={noticia.team.logo || "/logos/default.png"}
-                        alt={noticia.team.name || ""}
-                        width={120}
-                        height={120}
-                        className="rounded-full shadow-md"
-                      />
-
-                      <span className="text-sm text-gray-500">
-                        {noticia.team.name}
-                      </span>
-
-                    </div>
                   )}
                 </div>
               )

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
+import { createServerClient } from "@supabase/ssr"
 import { cookies } from "next/headers"
 import { z } from "zod"
 
@@ -26,55 +27,75 @@ const schema = z.object({
 // =========================
 export async function POST(req: Request) {
   try {
-    // 🔐 pegar cookies corretamente
+    // =========================
+    // AUTH USER
+    // =========================
     const cookieStore = await cookies()
-    const token = cookieStore.get("sb-access-token")?.value
 
-    if (!token) {
-      return NextResponse.json({ error: "Não autorizado" }, { status: 401 })
-    }
-
-    // 🔐 cliente com token do usuário
-    const supabaseAuth = createClient(
+    const supabaseAuth = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
       {
-        global: {
-          headers: {
-            Authorization: `Bearer ${token}`,
+        cookies: {
+          getAll() {
+            return cookieStore.getAll()
           },
+          setAll() {},
         },
       }
     )
+
+    // importante pra sincronizar sessão
+    await supabaseAuth.auth.getSession()
 
     const {
       data: { user },
     } = await supabaseAuth.auth.getUser()
 
     if (!user) {
-      return NextResponse.json({ error: "Não autorizado" }, { status: 401 })
+      return NextResponse.json(
+        { error: "Não autorizado" },
+        { status: 401 }
+      )
     }
 
+    // =========================
+    // ADMIN EMAIL
+    // =========================
     if (user.email !== "seuemail@email.com") {
-      return NextResponse.json({ error: "Acesso negado" }, { status: 403 })
+      return NextResponse.json(
+        { error: "Acesso negado" },
+        { status: 403 }
+      )
     }
 
-    // 🔐 validar dados
+    // =========================
+    // VALIDAR DADOS
+    // =========================
     const body = await req.json()
+
     const parsed = schema.safeParse(body)
 
     if (!parsed.success) {
-      return NextResponse.json({ error: "Dados inválidos" }, { status: 400 })
+      return NextResponse.json(
+        { error: "Dados inválidos" },
+        { status: 400 }
+      )
     }
 
     const { title, resumo, content, image } = parsed.data
 
+    // =========================
+    // SLUG
+    // =========================
     const slug =
       title.toLowerCase().replace(/\s+/g, "-") +
       "-" +
       Date.now()
 
-    // 🔐 insert seguro
+    // =========================
+    // INSERT
+    // =========================
     const { error } = await supabase.from("News").insert([
       {
         id: crypto.randomUUID(),
@@ -90,12 +111,20 @@ export async function POST(req: Request) {
 
     if (error) {
       console.error(error)
-      return NextResponse.json({ error: "Erro ao salvar" }, { status: 500 })
+
+      return NextResponse.json(
+        { error: "Erro ao salvar" },
+        { status: 500 }
+      )
     }
 
     return NextResponse.json({ ok: true })
   } catch (err) {
     console.error(err)
-    return NextResponse.json({ error: "Erro interno" }, { status: 500 })
+
+    return NextResponse.json(
+      { error: "Erro interno" },
+      { status: 500 }
+    )
   }
 }

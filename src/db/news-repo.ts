@@ -1,6 +1,7 @@
 import { db } from "@/src/db"
 import { news, team } from "@/src/db/schema"
 import { eq } from "drizzle-orm"
+import { sql } from "drizzle-orm"
 
 /* =========================
    LISTA DE NOTÍCIAS
@@ -36,4 +37,18 @@ export async function getNoticia(slug: string) {
     ...row.News,
     team: row.Team,
   }
+}
+/* =========================
+   VEWS NO SLUG
+========================= */
+export async function incrementNewsViews(slug: string) {
+  const result = await db
+    .update(news)
+    .set({
+      views: sql`${news.views} + 1`,
+    })
+    .where(eq(news.slug, slug))
+    .returning()
+
+  return result
 }

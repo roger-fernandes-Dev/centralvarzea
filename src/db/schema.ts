@@ -3,6 +3,7 @@ import {
   text,
   boolean,
   timestamp,
+  integer,
 } from "drizzle-orm/pg-core"
 
 /* =========================
@@ -19,15 +20,24 @@ export const team = pgTable("Team", {
 ========================= */
 export const news = pgTable("News", {
   id: text("id").primaryKey(),
+
   slug: text("slug").notNull().unique(),
+
   title: text("title").notNull(),
+
   resumo: text("resumo").notNull(),
+
   image: text("image").notNull(),
+
   categoria: text("categoria").notNull(),
+
   content: text("content").notNull(),
+
   destaque: boolean("destaque").default(false),
 
   data: timestamp("data").notNull(),
+
+  views: integer("views").notNull().default(0),
 
   teamId: text("teamId").references(() => team.id),
 
@@ -43,9 +53,11 @@ export const profiles = pgTable("profiles", {
   tipo: text("tipo").notNull(), // jogador | time
 
   nome: text("nome").notNull(),
+
   telefone: text("telefone"),
 
   cidade: text("cidade"),
+
   estado: text("estado"),
 
   foto: text("foto"),
@@ -64,6 +76,7 @@ export const playerProfiles = pgTable("player_profiles", {
     .references(() => profiles.id),
 
   posicao: text("posicao"),
+
   modalidade: text("modalidade"), // campo | quadra | ambos
 
   timeAtual: text("timeAtual"),
@@ -82,13 +95,17 @@ export const teamProfiles = pgTable("team_profiles", {
     .references(() => profiles.id),
 
   nomeTime: text("nomeTime").notNull(),
+
   idadeTime: text("idadeTime"),
 
   cidade: text("cidade"),
+
   bairro: text("bairro"),
+
   estado: text("estado"),
 
   precisaJogador: boolean("precisaJogador").default(false),
+
   posicaoProcurada: text("posicaoProcurada"),
 
   precisaPatrocinio: boolean("precisaPatrocinio").default(false),
