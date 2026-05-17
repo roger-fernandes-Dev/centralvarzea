@@ -37,7 +37,7 @@ export const championship = [
       { home: "USJ", away: "ADC", date: "26/04", time: "08:00", homeScore: 3, awayScore: 0 },
       { home: "NPI", away: "CFC", date: "26/04", time: "09:10", homeScore: 3, awayScore: 4 },
       { home: "CFC", away: "ADC", date: "17/05", time: "08:00", homeScore: 6, awayScore: 2 },
-      { home: "USJ", away: "NPI", date: "17/05", time: "09:10", homeScore: 4, awayScore: 4 },
+      { home: "USJ", away: "NPI", date: "17/05", time: "09:10", homeScore: 4, awayScore: 5 },
     ],
   },
   {
