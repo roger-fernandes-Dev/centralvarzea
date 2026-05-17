@@ -700,6 +700,78 @@ const jogos = [
       hora: "19:30",
       local: "Estádio verano Piromalli"
     },
+    {
+        id: "59",
+      homeLogo: "/times/amigos_do_futebol40.png",
+      home: "ADF",
+      awayLogo: "/times/arenamartinez50.png",
+      away: "AMB",
+      score: null,
+      type: "Copa selt 50+",
+      data: "2026-05-19",
+      hora: "21:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "60",
+      homeLogo: "/times/assentamento50.png",
+      home: "ASS",
+      awayLogo: "/times/bengala.png",
+      away: "BGA",
+      score: null,
+      type: "Copa selt 50+",
+      data: "2026-05-19",
+      hora: "21:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "61",
+      homeLogo: "/times/mec.png",
+      home: "MEC",
+      awayLogo: "/times/napoli.png",
+      away: "NAP",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-19",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "62",
+      homeLogo: "/times/bemamigosfc.png",
+      home: "BAG",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      score: null,
+      type: "Copa selt 40+",
+      data: "2026-05-19",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "63",
+      homeLogo: "/times/bahea.png",
+      home: "BAE",
+      awayLogo: "/times/falcoes.png",
+      away: "FAC",
+      score: null,
+      type: "Copa selt 40+",
+      data: "2026-05-19",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "64",
+      homeLogo: "/times/athleticfc.png",
+      home: "ATL",
+      awayLogo: "/times/guerreirosfc.png",
+      away: "GFC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-19",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
     /**
      {
         id: "15",
