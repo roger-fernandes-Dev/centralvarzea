@@ -2,37 +2,28 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 export async function middleware(req: NextRequest) {
-  const pathname = req.nextUrl.pathname
-
-  let res = NextResponse.next()
-
-  // =========================
-  // BLOQUEAR /login
-  // =========================
-  if (pathname === "/login") {
-    return NextResponse.redirect(new URL("/", req.url))
-  }
-
-  // =========================
-  // LIBERAR ADMIN LOGIN
-  // =========================
-  if (pathname === "/admin/login") {
-    return res
-  }
+  const res = NextResponse.next()
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll: () => req.cookies.getAll(),
-        setAll: (cookiesToSet) => {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            res.cookies.set(name, value, {
-              ...options,
-              sameSite: "lax",
-              secure: true,
-            })
+        get(name) {
+          return req.cookies.get(name)?.value
+        },
+
+        set(name, value, options) {
+          res.cookies.set(name, value, {
+            ...options,
+            sameSite: "lax",
+          })
+        },
+
+        remove(name, options) {
+          res.cookies.set(name, "", {
+            ...options,
+            maxAge: 0,
           })
         },
       },
@@ -43,13 +34,23 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession()
 
+  const pathname = req.nextUrl.pathname
+
+  // libera login
+  if (pathname === "/admin/login") {
+    return res
+  }
+
+  // protege admin
   if (pathname.startsWith("/admin") && !session) {
-    return NextResponse.redirect(new URL("/admin/login", req.url))
+    return NextResponse.redirect(
+      new URL("/admin/login", req.url)
+    )
   }
 
   return res
 }
 
 export const config = {
-  matcher: ["/login", "/admin/:path*"]
+  matcher: ["/admin/:path*"],
 }

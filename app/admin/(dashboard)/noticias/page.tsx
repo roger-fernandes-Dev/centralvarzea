@@ -3,6 +3,13 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
+import {
+  Eye,
+  Calendar,
+  LogOut,
+  Newspaper,
+} from "lucide-react"
+
 import { supabase } from "@/src/lib/supabase"
 
 type News = {
@@ -25,9 +32,6 @@ export default function AdminNoticias() {
   const [loading, setLoading] = useState(false)
   const [news, setNews] = useState<News[]>([])
 
-  // =========================
-  // BUSCAR NOTÍCIAS
-  // =========================
   async function fetchNews() {
     const { data, error } = await supabase
       .from("News")
@@ -42,9 +46,6 @@ export default function AdminNoticias() {
     setNews(data || [])
   }
 
-  // =========================
-  // REALTIME
-  // =========================
   useEffect(() => {
     fetchNews()
 
@@ -68,9 +69,6 @@ export default function AdminNoticias() {
     }
   }, [])
 
-  // =========================
-  // SALVAR
-  // =========================
   async function salvarNoticia() {
     if (!title || !resumo || !content || !imageFile) {
       alert("Preencha todos os campos")
@@ -86,15 +84,12 @@ export default function AdminNoticias() {
     }
 
     if (imageFile.size > 2 * 1024 * 1024) {
-      alert("Imagem muito grande (máx 2MB)")
+      alert("Imagem muito grande")
       setLoading(false)
       return
     }
 
     try {
-      // =========================
-      // UPLOAD
-      // =========================
       const safeName = imageFile.name.replace(/\s+/g, "-")
 
       const fileName = `${Date.now()}-${safeName}`
@@ -104,7 +99,6 @@ export default function AdminNoticias() {
         .upload(fileName, imageFile)
 
       if (uploadError) {
-        console.log(uploadError)
         alert("Erro ao subir imagem")
         setLoading(false)
         return
@@ -116,9 +110,6 @@ export default function AdminNoticias() {
 
       const imageUrl = data.publicUrl
 
-      // =========================
-      // API
-      // =========================
       const res = await fetch("/api/admin/news", {
         method: "POST",
         headers: {
@@ -157,9 +148,6 @@ export default function AdminNoticias() {
     setLoading(false)
   }
 
-  // =========================
-  // LOGOUT
-  // =========================
   async function logout() {
     await supabase.auth.signOut()
     router.push("/")
@@ -168,43 +156,58 @@ export default function AdminNoticias() {
   return (
     <div className="space-y-8">
       {/* HEADER */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
         <div>
-          <h1 className="text-3xl font-bold">
-            Notícias
-          </h1>
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-black text-white flex items-center justify-center shadow-lg">
+              <Newspaper size={22} />
+            </div>
 
-          <p className="text-zinc-500 mt-1">
-            Gerencie as notícias do portal
-          </p>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
+                Notícias
+              </h1>
+
+              <p className="text-zinc-500 mt-1">
+                Gerencie as notícias do portal
+              </p>
+            </div>
+          </div>
         </div>
 
         <button
           onClick={logout}
-          className="bg-red-600 text-white px-4 py-2 rounded-lg"
+          className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 transition text-white px-5 py-3 rounded-2xl shadow-lg shadow-red-600/20"
         >
+          <LogOut size={18} />
           Sair
         </button>
       </div>
 
       {/* FORM */}
-      <div className="bg-white rounded-2xl shadow p-6 space-y-4">
-        <h2 className="text-xl font-semibold">
-          Nova notícia
-        </h2>
+      <div className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-[32px] shadow-[0_10px_50px_rgba(0,0,0,0.06)] p-6 md:p-8 space-y-5">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">
+            Nova notícia
+          </h2>
+
+          <p className="text-zinc-500 text-sm mt-1">
+            Publique conteúdo para a plataforma
+          </p>
+        </div>
 
         <input
           placeholder="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full border rounded-lg p-3"
+          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-5 py-4 outline-none"
         />
 
         <input
           placeholder="Resumo"
           value={resumo}
           onChange={(e) => setResumo(e.target.value)}
-          className="w-full border rounded-lg p-3"
+          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-5 py-4 outline-none"
         />
 
         <input
@@ -213,20 +216,20 @@ export default function AdminNoticias() {
           onChange={(e) =>
             setImageFile(e.target.files?.[0] || null)
           }
-          className="w-full border rounded-lg p-3"
+          className="w-full bg-zinc-100 rounded-2xl px-5 py-4"
         />
 
         <textarea
           placeholder="Conteúdo"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="w-full border rounded-lg p-3 h-40"
+          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-5 py-4 outline-none h-44 resize-none"
         />
 
         <button
           onClick={salvarNoticia}
           disabled={loading}
-          className="bg-black text-white px-5 py-3 rounded-lg disabled:opacity-50"
+          className="bg-black hover:opacity-90 transition text-white px-6 py-4 rounded-2xl font-medium shadow-xl shadow-black/10 disabled:opacity-50"
         >
           {loading ? "Salvando..." : "Publicar notícia"}
         </button>
@@ -234,24 +237,26 @@ export default function AdminNoticias() {
 
       {/* LISTA */}
       <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-2xl font-bold">
-            Notícias publicadas
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Notícias publicadas
+            </h2>
 
-          <span className="text-zinc-500">
-            {news.length} notícias
-          </span>
+            <p className="text-zinc-500 text-sm mt-1">
+              {news.length} notícias cadastradas
+            </p>
+          </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {news.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-xl shadow p-3 flex items-center gap-4"
+              className="bg-white/90 backdrop-blur-xl border border-white/50 rounded-[28px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-4 md:p-5 flex flex-col md:flex-row gap-5"
             >
-              {/* IMAGEM */}
-              <div className="relative w-32 h-20 rounded-lg overflow-hidden flex-shrink-0">
+              {/* IMAGE */}
+              <div className="relative w-full md:w-48 h-48 md:h-28 rounded-2xl overflow-hidden flex-shrink-0">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -262,35 +267,36 @@ export default function AdminNoticias() {
 
               {/* INFO */}
               <div className="flex-1 min-w-0">
-                <h3 className="font-semibold truncate">
+                <h3 className="text-lg font-semibold text-zinc-900">
                   {item.title}
                 </h3>
 
-                <p className="text-sm text-zinc-500 truncate">
+                <p className="text-zinc-500 mt-2 line-clamp-2">
                   {item.resumo}
                 </p>
 
-                <div className="flex gap-4 mt-2 text-xs text-zinc-400">
-                  <span>
-                    👁 {item.views || 0}
-                  </span>
+                <div className="flex flex-wrap gap-5 mt-4 text-sm text-zinc-400">
+                  <div className="flex items-center gap-2">
+                    <Eye size={15} />
+                    {item.views || 0}
+                  </div>
 
-                  <span>
-                    📅{" "}
+                  <div className="flex items-center gap-2">
+                    <Calendar size={15} />
                     {item.data
                       ? new Date(item.data).toLocaleDateString("pt-BR")
                       : "Sem data"}
-                  </span>
+                  </div>
                 </div>
               </div>
 
-              {/* AÇÕES */}
-              <div className="flex gap-2">
-                <button className="bg-zinc-200 px-3 py-2 rounded-lg text-sm">
+              {/* ACTIONS */}
+              <div className="flex md:flex-col gap-2">
+                <button className="bg-zinc-100 hover:bg-zinc-200 transition px-4 py-3 rounded-2xl text-sm font-medium">
                   Editar
                 </button>
 
-                <button className="bg-red-600 text-white px-3 py-2 rounded-lg text-sm">
+                <button className="bg-red-600 hover:bg-red-700 transition text-white px-4 py-3 rounded-2xl text-sm font-medium">
                   Excluir
                 </button>
               </div>
@@ -298,8 +304,10 @@ export default function AdminNoticias() {
           ))}
 
           {news.length === 0 && (
-            <div className="bg-white rounded-2xl shadow p-10 text-center text-zinc-500">
-              Nenhuma notícia publicada ainda.
+            <div className="bg-white rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-14 text-center">
+              <p className="text-zinc-500">
+                Nenhuma notícia publicada ainda.
+              </p>
             </div>
           )}
         </div>

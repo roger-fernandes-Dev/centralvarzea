@@ -10,6 +10,7 @@ import FederacoesCTA from "@/components/home/FederacoesCTA"
 import SEOHead from "@/components/SeoHead"
 import MilestoneBanner from "@/components/home/MilestoneBanner"
 import MatchesCarousel from "@/components/home/MatchesCarousel"
+import TrackHomeViewWrapper from "@/components/TrackHomeViewWrapper"
 import { getNoticias } from "@/src/db/news-repo"
 
 async function getJogos() {
@@ -43,6 +44,7 @@ export default async function Home() {
   return (
     <>
       <SEOHead />
+      <TrackHomeViewWrapper />
 
       <div className="max-w-7xl mx-auto px-4 space-y-6">
         <MilestoneBanner />
