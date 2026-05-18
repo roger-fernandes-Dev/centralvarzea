@@ -13,31 +13,34 @@ export default function Login() {
   const router = useRouter()
 
   async function handleLogin() {
-    try {
-      setLoading(true)
+  try {
+    setLoading(true)
 
-      const { data, error } =
-        await supabase.auth.signInWithPassword({
-          email: email.trim().toLowerCase(),
-          password,
-        })
+    const { data, error } =
+      await supabase.auth.signInWithPassword({
+        email: email.trim().toLowerCase(),
+        password,
+      })
 
-      if (error || !data.user) {
-        alert("Login inválido")
-        return
-      }
-
-      // sincroniza sessão
-      await supabase.auth.getSession()
-
-      router.replace("/admin/noticias")
-    } catch (err) {
-      console.error(err)
-      alert("Erro ao fazer login")
-    } finally {
-      setLoading(false)
+    if (error || !data.user) {
+      alert("Login inválido")
+      return
     }
+
+    // 🔴 IMPORTANTE: força persistência de sessão
+    await supabase.auth.setSession({
+      access_token: data.session?.access_token!,
+      refresh_token: data.session?.refresh_token!,
+    })
+
+    router.replace("/admin/noticias")
+  } catch (err) {
+    console.error(err)
+    alert("Erro ao fazer login")
+  } finally {
+    setLoading(false)
   }
+}
 
   return (
     <div className="min-h-screen bg-[#f4f4f5] flex items-center justify-center p-4">
