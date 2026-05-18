@@ -9,30 +9,26 @@ export async function middleware(req: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name) {
-          return req.cookies.get(name)?.value
+        getAll() {
+          return req.cookies.getAll()
         },
 
-        set(name, value, options) {
-          res.cookies.set(name, value, {
-            ...options,
-            sameSite: "lax",
-          })
-        },
-
-        remove(name, options) {
-          res.cookies.set(name, "", {
-            ...options,
-            maxAge: 0,
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => {
+            res.cookies.set(name, value, {
+              ...options,
+              sameSite: "lax",
+            })
           })
         },
       },
     }
   )
 
+  // 🔥 forma correta (evita bug de session em produção)
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
   const pathname = req.nextUrl.pathname
 
@@ -42,10 +38,8 @@ export async function middleware(req: NextRequest) {
   }
 
   // protege admin
-  if (pathname.startsWith("/admin") && !session) {
-    return NextResponse.redirect(
-      new URL("/admin/login", req.url)
-    )
+  if (pathname.startsWith("/admin") && !user) {
+    return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
   return res

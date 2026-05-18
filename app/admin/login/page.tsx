@@ -12,34 +12,28 @@ export default function Login() {
 
   const router = useRouter()
 
-  async function handleLogin() {
-  try {
-    setLoading(true)
+async function handleLogin() {
+  setLoading(true)
 
-    const { data, error } =
-      await supabase.auth.signInWithPassword({
-        email: email.trim().toLowerCase(),
-        password,
-      })
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email.trim().toLowerCase(),
+    password,
+  })
 
-    if (error || !data.user) {
-      alert("Login inválido")
-      return
-    }
-
-    // 🔴 IMPORTANTE: força persistência de sessão
-    await supabase.auth.setSession({
-      access_token: data.session?.access_token!,
-      refresh_token: data.session?.refresh_token!,
-    })
-
-    router.replace("/admin/noticias")
-  } catch (err) {
-    console.error(err)
-    alert("Erro ao fazer login")
-  } finally {
+  if (error || !data.user) {
+    alert("Login inválido")
     setLoading(false)
+    return
   }
+
+  // espera a sessão realmente salvar
+  await supabase.auth.getSession()
+
+  setTimeout(() => {
+    router.replace("/admin/noticias")
+  }, 200)
+
+  setLoading(false)
 }
 
   return (
