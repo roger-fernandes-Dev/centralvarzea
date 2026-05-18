@@ -15,6 +15,9 @@ export default function Login() {
 async function handleLogin() {
   setLoading(true)
 
+  // limpa sessão antiga quebrada
+  await supabase.auth.signOut()
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.trim().toLowerCase(),
     password,
@@ -26,14 +29,9 @@ async function handleLogin() {
     return
   }
 
-  // espera a sessão realmente salvar
   await supabase.auth.getSession()
 
-  setTimeout(() => {
-    router.replace("/admin/noticias")
-  }, 200)
-
-  setLoading(false)
+  router.replace("/admin/dashboard") // ou /admin/noticias
 }
 
   return (
