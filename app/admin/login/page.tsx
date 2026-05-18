@@ -15,6 +15,7 @@ export default function Login() {
 async function handleLogin() {
   setLoading(true)
 
+  // limpa sessão quebrada (IMPORTANTE)
   await supabase.auth.signOut()
 
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -28,6 +29,7 @@ async function handleLogin() {
     return
   }
 
+  // força sincronização SSR
   await supabase.auth.getSession()
 
   setLoading(false)
