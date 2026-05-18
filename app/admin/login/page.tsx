@@ -15,7 +15,6 @@ export default function Login() {
 async function handleLogin() {
   setLoading(true)
 
-  // limpa sessão antiga quebrada
   await supabase.auth.signOut()
 
   const { data, error } = await supabase.auth.signInWithPassword({
@@ -31,7 +30,9 @@ async function handleLogin() {
 
   await supabase.auth.getSession()
 
-  router.replace("/admin/dashboard") // ou /admin/noticias
+  setLoading(false)
+
+  router.replace("/admin/dashboard")
 }
 
   return (
