@@ -4,6 +4,18 @@ import { NextResponse, type NextRequest } from "next/server"
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next()
 
+  const pathname = req.nextUrl.pathname
+
+  // 🔓 nunca bloquear login do admin
+  if (pathname.startsWith("/admin/login")) {
+    return res
+  }
+
+  // 🚫 bloqueia login de jogador também (temporário)
+  if (pathname.startsWith("/login")) {
+    return NextResponse.redirect(new URL("/", req.url))
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -12,7 +24,6 @@ export async function middleware(req: NextRequest) {
         getAll() {
           return req.cookies.getAll()
         },
-
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) => {
             res.cookies.set(name, value, {
@@ -25,20 +36,13 @@ export async function middleware(req: NextRequest) {
     }
   )
 
-  // 🔥 forma correta (evita bug de session em produção)
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const pathname = req.nextUrl.pathname
+  const isAdminRoute = pathname.startsWith("/admin")
 
-  // libera login
-  if (pathname === "/admin/login") {
-    return res
-  }
-
-  // protege admin
-  if (pathname.startsWith("/admin") && !user) {
+  if (isAdminRoute && !user) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
@@ -46,5 +50,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/login"],
 }
