@@ -6,9 +6,14 @@ export async function middleware(req: NextRequest) {
 
   const pathname = req.nextUrl.pathname
 
-  // libera login admin
+  // 🔓 libera login do admin
   if (pathname.startsWith("/admin/login")) {
     return res
+  }
+
+  // 🚫 bloqueia login de jogador (temporário)
+  if (pathname === "/login") {
+    return NextResponse.redirect(new URL("/", req.url))
   }
 
   const supabase = createServerClient(
@@ -19,14 +24,11 @@ export async function middleware(req: NextRequest) {
         getAll() {
           return req.cookies.getAll()
         },
-
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) => {
             res.cookies.set(name, value, {
               ...options,
-              path: "/",
               sameSite: "lax",
-              secure: process.env.NODE_ENV === "production",
             })
           })
         },
@@ -34,14 +36,13 @@ export async function middleware(req: NextRequest) {
     }
   )
 
-  // ⚠️ IMPORTANTE: usar getSession no middleware é mais confiável que getUser
   const {
-    data: { session },
-  } = await supabase.auth.getSession()
+    data: { user },
+  } = await supabase.auth.getUser()
 
   const isAdminRoute = pathname.startsWith("/admin")
 
-  if (isAdminRoute && !session) {
+  if (isAdminRoute && !user) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
@@ -49,5 +50,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/login"],
 }

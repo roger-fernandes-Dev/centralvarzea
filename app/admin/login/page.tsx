@@ -12,142 +12,92 @@ export default function Login() {
 
   const router = useRouter()
 
-async function handleLogin() {
-  setLoading(true)
+  async function handleLogin() {
+    try {
+      setLoading(true)
 
-  // limpa sessão quebrada (IMPORTANTE)
-  await supabase.auth.signOut()
+      const emailSafe = email.trim().toLowerCase()
 
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email: email.trim().toLowerCase(),
-    password,
-  })
+      if (!emailSafe || !password) {
+        alert("Preencha os campos")
+        return
+      }
 
-  if (error || !data.user) {
-    alert("Login inválido")
-    setLoading(false)
-    return
+      // 🔥 NÃO forçar signOut aqui (isso quebra refresh token em produção)
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: emailSafe,
+        password,
+      })
+
+      if (error || !data.user) {
+        console.log("LOGIN ERROR:", error)
+        alert("Login inválido")
+        return
+      }
+
+      // garante sessão persistida
+      await supabase.auth.getSession()
+
+      router.replace("/admin/dashboard")
+    } catch (err) {
+      console.error(err)
+      alert("Erro inesperado no login")
+    } finally {
+      setLoading(false)
+    }
   }
-
-  // força sincronização SSR
-  await supabase.auth.getSession()
-
-  setLoading(false)
-
-  router.replace("/admin/dashboard")
-}
 
   return (
     <div className="min-h-screen bg-[#f4f4f5] flex items-center justify-center p-4">
       
-      {/* BG EFFECT */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-[-120px] right-[-120px] w-[320px] h-[320px] bg-yellow-400/10 rounded-full blur-3xl" />
-
         <div className="absolute bottom-[-120px] left-[-120px] w-[320px] h-[320px] bg-black/5 rounded-full blur-3xl" />
       </div>
 
-      {/* CARD */}
       <div className="relative w-full max-w-md bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[36px] shadow-[0_20px_80px_rgba(0,0,0,0.08)] p-8 md:p-10">
         
-        {/* ICON */}
         <div className="w-16 h-16 rounded-3xl bg-black text-white flex items-center justify-center shadow-lg mb-8">
           <ShieldCheck size={30} />
         </div>
 
-        {/* TITLE */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-900">
             Admin
           </h1>
 
-          <p className="text-zinc-500 mt-3 text-sm leading-relaxed">
+          <p className="text-zinc-500 mt-3 text-sm">
             Acesse o painel administrativo da Central Várzea
           </p>
         </div>
 
-        {/* FORM */}
         <div className="space-y-4">
           
-          <div>
-            <label className="text-sm font-medium text-zinc-700 block mb-2">
-              Email
-            </label>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full bg-zinc-50 border border-zinc-200 focus:border-black focus:ring-4 focus:ring-black/5 outline-none rounded-2xl px-5 py-4 text-sm"
+          />
 
-            <input
-              type="email"
-              placeholder="seuemail@email.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="
-                w-full
-                bg-zinc-50
-                border border-zinc-200
-                focus:border-black
-                focus:ring-4
-                focus:ring-black/5
-                outline-none
-                rounded-2xl
-                px-5
-                py-4
-                text-sm
-                transition-all
-              "
-            />
-          </div>
-
-          <div>
-            <label className="text-sm font-medium text-zinc-700 block mb-2">
-              Senha
-            </label>
-
-            <input
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="
-                w-full
-                bg-zinc-50
-                border border-zinc-200
-                focus:border-black
-                focus:ring-4
-                focus:ring-black/5
-                outline-none
-                rounded-2xl
-                px-5
-                py-4
-                text-sm
-                transition-all
-              "
-            />
-          </div>
+          <input
+            type="password"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full bg-zinc-50 border border-zinc-200 focus:border-black focus:ring-4 focus:ring-black/5 outline-none rounded-2xl px-5 py-4 text-sm"
+          />
 
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="
-              w-full
-              bg-black
-              hover:opacity-95
-              disabled:opacity-50
-              disabled:cursor-not-allowed
-              text-white
-              py-4
-              rounded-2xl
-              text-sm
-              font-semibold
-              transition-all
-              shadow-lg
-              shadow-black/10
-              mt-2
-            "
+            className="w-full bg-black text-white py-4 rounded-2xl text-sm font-semibold disabled:opacity-50"
           >
             {loading ? "Entrando..." : "Entrar no painel"}
           </button>
         </div>
 
-        {/* FOOTER */}
         <div className="mt-8 pt-6 border-t border-zinc-200 text-center">
           <p className="text-xs text-zinc-400">
             Central Várzea © 2026
