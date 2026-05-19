@@ -10,7 +10,7 @@ export async function middleware(req: NextRequest) {
 
   const pathname = req.nextUrl.pathname
 
-  // bloqueia login player
+  // bloqueia login jogador
   if (pathname === "/login") {
     return NextResponse.redirect(new URL("/", req.url))
   }
@@ -52,13 +52,17 @@ export async function middleware(req: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // se já estiver logado e entrar no login
+  // se estiver logado e tentar acessar login
   if (pathname === "/admin/login" && user) {
     return NextResponse.redirect(new URL("/admin/dashboard", req.url))
   }
 
-  // protege admin
-  if (pathname.startsWith("/admin") && !user) {
+  // protege admin EXCETO login
+  const isAdminProtected =
+    pathname.startsWith("/admin") &&
+    pathname !== "/admin/login"
+
+  if (isAdminProtected && !user) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
