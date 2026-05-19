@@ -52,6 +52,9 @@ export async function middleware(req: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  console.log("MIDDLEWARE USER:", user)
+console.log("PATH:", pathname)
+
   // se estiver logado e tentar acessar login
   if (pathname === "/admin/login" && user) {
     return NextResponse.redirect(new URL("/admin/dashboard", req.url))
