@@ -65,9 +65,9 @@ console.log("PATH:", pathname)
     pathname.startsWith("/admin") &&
     pathname !== "/admin/login"
 
-  if (isAdminProtected && !user) {
+/** if (isAdminProtected && !user) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
-  }
+  } */
 
   return response
 }
