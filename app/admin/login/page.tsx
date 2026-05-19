@@ -45,6 +45,8 @@ export default function Login() {
         alert("Sessão não criada")
         return
       }
+      // força reload completo do navegador
+      window.location.href = "/admin/dashboard"
 
       // pequeno delay ajuda em produção
       setTimeout(() => {
