@@ -2,16 +2,20 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 export async function middleware(req: NextRequest) {
-  const res = NextResponse.next()
+  let res = NextResponse.next({
+    request: {
+      headers: req.headers,
+    },
+  })
 
   const pathname = req.nextUrl.pathname
 
-  // 🔓 libera login do admin
+  // libera login admin
   if (pathname.startsWith("/admin/login")) {
     return res
   }
 
-  // 🚫 bloqueia login de jogador (temporário)
+  // bloqueia login player
   if (pathname === "/login") {
     return NextResponse.redirect(new URL("/", req.url))
   }
@@ -24,11 +28,14 @@ export async function middleware(req: NextRequest) {
         getAll() {
           return req.cookies.getAll()
         },
+
         setAll(cookiesToSet) {
           cookiesToSet.forEach(({ name, value, options }) => {
             res.cookies.set(name, value, {
               ...options,
+              path: "/",
               sameSite: "lax",
+              secure: true,
             })
           })
         },

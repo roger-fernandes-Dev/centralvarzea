@@ -23,24 +23,36 @@ export default function Login() {
         return
       }
 
-      // 🔥 NÃO forçar signOut aqui (isso quebra refresh token em produção)
       const { data, error } = await supabase.auth.signInWithPassword({
         email: emailSafe,
         password,
       })
 
+      console.log("LOGIN DATA:", data)
+      console.log("LOGIN ERROR:", error)
+
       if (error || !data.user) {
-        console.log("LOGIN ERROR:", error)
         alert("Login inválido")
         return
       }
 
-      // garante sessão persistida
-      await supabase.auth.getSession()
+      // espera sessão persistir
+      const sessionResult = await supabase.auth.getSession()
 
-      router.replace("/admin/dashboard")
+      console.log("SESSION:", sessionResult)
+
+      if (!sessionResult.data.session) {
+        alert("Sessão não criada")
+        return
+      }
+
+      // pequeno delay ajuda em produção
+      setTimeout(() => {
+        router.replace("/admin/dashboard")
+      }, 300)
+
     } catch (err) {
-      console.error(err)
+      console.error("LOGIN CATCH:", err)
       alert("Erro inesperado no login")
     } finally {
       setLoading(false)
@@ -49,14 +61,14 @@ export default function Login() {
 
   return (
     <div className="min-h-screen bg-[#f4f4f5] flex items-center justify-center p-4">
-      
+
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-[-120px] right-[-120px] w-[320px] h-[320px] bg-yellow-400/10 rounded-full blur-3xl" />
         <div className="absolute bottom-[-120px] left-[-120px] w-[320px] h-[320px] bg-black/5 rounded-full blur-3xl" />
       </div>
 
       <div className="relative w-full max-w-md bg-white/80 backdrop-blur-2xl border border-white/60 rounded-[36px] shadow-[0_20px_80px_rgba(0,0,0,0.08)] p-8 md:p-10">
-        
+
         <div className="w-16 h-16 rounded-3xl bg-black text-white flex items-center justify-center shadow-lg mb-8">
           <ShieldCheck size={30} />
         </div>
@@ -72,7 +84,7 @@ export default function Login() {
         </div>
 
         <div className="space-y-4">
-          
+
           <input
             type="email"
             placeholder="Email"
