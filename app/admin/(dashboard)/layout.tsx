@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Sidebar from "../components/Sidebar"
 import { Menu } from "lucide-react"
+import { supabase } from "@/src/lib/supabase"
 
 export default function AdminLayout({
   children,
@@ -10,6 +11,34 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const [open, setOpen] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function checkAuth() {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession()
+
+      if (!session) {
+        window.location.href = "/admin/login"
+        return
+      }
+
+      setLoading(false)
+    }
+
+    checkAuth()
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[#f4f7fb]">
+        <p className="text-zinc-500 text-sm">
+          Carregando...
+        </p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-[#f4f7fb] flex">
