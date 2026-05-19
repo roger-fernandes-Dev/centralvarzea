@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 export async function middleware(req: NextRequest) {
-  let res = NextResponse.next({
+  let response = NextResponse.next({
     request: {
       headers: req.headers,
     },
@@ -12,7 +12,7 @@ export async function middleware(req: NextRequest) {
 
   // libera login admin
   if (pathname.startsWith("/admin/login")) {
-    return res
+    return response
   }
 
   // bloqueia login player
@@ -25,18 +25,28 @@ export async function middleware(req: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() {
-          return req.cookies.getAll()
+        get(name: string) {
+          return req.cookies.get(name)?.value
         },
 
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            res.cookies.set(name, value, {
-              ...options,
-              path: "/",
-              sameSite: "lax",
-              secure: true,
-            })
+        set(name: string, value: string, options) {
+          response.cookies.set({
+            name,
+            value,
+            ...options,
+            path: "/",
+            sameSite: "lax",
+            secure: true,
+          })
+        },
+
+        remove(name: string, options) {
+          response.cookies.set({
+            name,
+            value: "",
+            ...options,
+            path: "/",
+            maxAge: 0,
           })
         },
       },
@@ -53,7 +63,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
-  return res
+  return response
 }
 
 export const config = {
