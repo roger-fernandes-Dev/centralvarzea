@@ -10,11 +10,6 @@ export async function middleware(req: NextRequest) {
 
   const pathname = req.nextUrl.pathname
 
-  // libera login admin
-  if (pathname.startsWith("/admin/login")) {
-    return response
-  }
-
   // bloqueia login player
   if (pathname === "/login") {
     return NextResponse.redirect(new URL("/", req.url))
@@ -57,9 +52,13 @@ export async function middleware(req: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const isAdminRoute = pathname.startsWith("/admin")
+  // se já estiver logado e entrar no login
+  if (pathname === "/admin/login" && user) {
+    return NextResponse.redirect(new URL("/admin/dashboard", req.url))
+  }
 
-  if (isAdminRoute && !user) {
+  // protege admin
+  if (pathname.startsWith("/admin") && !user) {
     return NextResponse.redirect(new URL("/admin/login", req.url))
   }
 
