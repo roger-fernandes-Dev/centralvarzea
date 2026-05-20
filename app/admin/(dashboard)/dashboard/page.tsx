@@ -41,7 +41,7 @@ export default function DashboardPage() {
         }, 0) ?? 0
 
       // ======================
-      // SITE VIEWS (CORRIGIDO)
+      // SITE VIEWS
       // ======================
       const { data, error } = await supabase
         .from("site_views")
@@ -52,6 +52,7 @@ export default function DashboardPage() {
       }
 
       const views = data?.[0]?.views ?? 0
+
       setNewsCount(count ?? 0)
       setViewsTotal(totalViews)
       setSiteViews(views)
@@ -61,83 +62,97 @@ export default function DashboardPage() {
   }, [])
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-5 md:space-y-8">
 
       {/* HEADER */}
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-900">
+        <h1 className="text-2xl md:text-4xl font-bold tracking-tight text-zinc-900">
           Dashboard
         </h1>
 
-        <p className="text-zinc-500 mt-2 text-base">
+        <p className="text-zinc-500 mt-1 md:mt-2 text-sm md:text-base">
           Painel administrativo da Central Várzea
         </p>
       </div>
 
       {/* STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-3 gap-3 md:gap-5">
 
         {/* NOTÍCIAS */}
-        <div className="relative overflow-hidden bg-white/80 backdrop-blur-xl border border-white/50 rounded-[32px] p-6 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+        <div className="relative overflow-hidden bg-white border border-zinc-200 rounded-2xl md:rounded-[32px] p-3 md:p-6 shadow-sm">
 
           <div className="flex items-center justify-between">
-            <div className="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-600 flex items-center justify-center">
-              <Newspaper size={24} />
+            <div className="w-9 h-9 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-blue-500/10 text-blue-600 flex items-center justify-center">
+              <Newspaper size={18} className="md:w-6 md:h-6" />
             </div>
 
-            <div className="flex items-center gap-1 text-emerald-500 text-sm font-medium">
+            <div className="hidden md:flex items-center gap-1 text-emerald-500 text-sm font-medium">
               <ArrowUpRight size={16} />
               Portal
             </div>
           </div>
 
-          <div className="mt-6">
-            <p className="text-zinc-500 text-sm">
-              Notícias publicadas
+          <div className="mt-3 md:mt-6">
+            <p className="text-[11px] md:text-sm text-zinc-500 leading-tight">
+              Notícias
             </p>
 
-            <h2 className="text-4xl font-bold mt-2 tracking-tight">
+            <h2 className="text-xl md:text-4xl font-bold mt-1 md:mt-2 tracking-tight">
               {newsCount.toLocaleString("pt-BR")}
             </h2>
 
-            <h3 className="text-2xl font-bold text-zinc-900 mt-3">
-              {viewsTotal.toLocaleString("pt-BR")}
-            </h3>
+            {/* VISUALIZAÇÕES DAS NOTÍCIAS */}
+            <div className="mt-2 md:mt-3">
+              <p className="text-[10px] md:text-sm text-zinc-400">
+                Views notícias
+              </p>
 
-            <p className="text-sm text-zinc-400 mt-4">
+              <h3 className="text-sm md:text-2xl font-bold text-zinc-900">
+                {viewsTotal.toLocaleString("pt-BR")}
+              </h3>
+            </div>
+
+            <p className="hidden md:block text-sm text-zinc-400 mt-4">
               Total de notícias cadastradas no portal
             </p>
           </div>
         </div>
 
         {/* JOGOS */}
-        <div className="relative overflow-hidden bg-white/80 backdrop-blur-xl border border-white/50 rounded-[32px] p-6">
+        <div className="relative overflow-hidden bg-white border border-zinc-200 rounded-2xl md:rounded-[32px] p-3 md:p-6 shadow-sm">
+
           <div className="flex items-center justify-between">
-            <div className="w-14 h-14 rounded-2xl bg-yellow-500/10 text-yellow-600 flex items-center justify-center">
-              <Trophy size={24} />
+            <div className="w-9 h-9 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-yellow-500/10 text-yellow-600 flex items-center justify-center">
+              <Trophy size={18} className="md:w-6 md:h-6" />
             </div>
           </div>
 
-          <div className="mt-6">
-            <p className="text-zinc-500 text-sm">Jogos</p>
-            <h2 className="text-4xl font-bold mt-2">0</h2>
+          <div className="mt-3 md:mt-6">
+            <p className="text-[11px] md:text-sm text-zinc-500">
+              Jogos
+            </p>
+
+            <h2 className="text-xl md:text-4xl font-bold mt-1 md:mt-2">
+              0
+            </h2>
           </div>
         </div>
 
         {/* VIEWS SITE */}
-        <div className="relative overflow-hidden bg-white/80 backdrop-blur-xl border border-white/50 rounded-[32px] p-6">
+        <div className="relative overflow-hidden bg-white border border-zinc-200 rounded-2xl md:rounded-[32px] p-3 md:p-6 shadow-sm">
+
           <div className="flex items-center justify-between">
-            <div className="w-14 h-14 rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center">
-              <Eye size={24} />
+            <div className="w-9 h-9 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-purple-500/10 text-purple-600 flex items-center justify-center">
+              <Eye size={18} className="md:w-6 md:h-6" />
             </div>
           </div>
 
-          <div className="mt-6">
-            <p className="text-zinc-500 text-sm">
-              Visualizações gerais
+          <div className="mt-3 md:mt-6">
+            <p className="text-[11px] md:text-sm text-zinc-500 leading-tight">
+              Views site
             </p>
 
-            <h2 className="text-4xl font-bold mt-2 tracking-tight">
+            <h2 className="text-xl md:text-4xl font-bold mt-1 md:mt-2 tracking-tight">
               {siteViews.toLocaleString("pt-BR")}
             </h2>
           </div>
@@ -146,22 +161,22 @@ export default function DashboardPage() {
       </div>
 
       {/* ACTIVITY */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-[32px] p-6">
+      <div className="bg-white border border-zinc-200 rounded-[28px] p-4 md:p-6">
 
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 rounded-2xl bg-black text-white flex items-center justify-center">
-            <Activity size={22} />
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-black text-white flex items-center justify-center">
+            <Activity size={20} />
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-lg md:text-2xl font-bold">
               Atividades recentes
             </h2>
           </div>
         </div>
 
-        <div className="border border-dashed p-12 text-center">
-          <p className="text-zinc-500">
+        <div className="border border-dashed rounded-2xl p-8 md:p-12 text-center">
+          <p className="text-sm md:text-base text-zinc-500">
             Nenhuma atividade registrada ainda.
           </p>
         </div>

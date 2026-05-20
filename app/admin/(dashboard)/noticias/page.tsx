@@ -1,12 +1,10 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
 import Image from "next/image"
 import {
   Eye,
   Calendar,
-  LogOut,
   Newspaper,
 } from "lucide-react"
 
@@ -22,8 +20,6 @@ type News = {
 }
 
 export default function AdminNoticias() {
-  const router = useRouter()
-
   const [title, setTitle] = useState("")
   const [resumo, setResumo] = useState("")
   const [content, setContent] = useState("")
@@ -148,46 +144,31 @@ export default function AdminNoticias() {
     setLoading(false)
   }
 
-  async function logout() {
-    await supabase.auth.signOut()
-    router.push("/")
-  }
-
   return (
-    <div className="space-y-8">
+    <div className="space-y-5 md:space-y-8">
+
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5">
-        <div>
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-black text-white flex items-center justify-center shadow-lg">
-              <Newspaper size={22} />
-            </div>
-
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
-                Notícias
-              </h1>
-
-              <p className="text-zinc-500 mt-1">
-                Gerencie as notícias do portal
-              </p>
-            </div>
-          </div>
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-black text-white flex items-center justify-center shadow-lg">
+          <Newspaper size={20} />
         </div>
 
-        <button
-          onClick={logout}
-          className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 transition text-white px-5 py-3 rounded-2xl shadow-lg shadow-red-600/20"
-        >
-          <LogOut size={18} />
-          Sair
-        </button>
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">
+            Notícias
+          </h1>
+
+          <p className="text-zinc-500 text-sm mt-0.5">
+            Gerencie as notícias do portal
+          </p>
+        </div>
       </div>
 
       {/* FORM */}
-      <div className="bg-white/80 backdrop-blur-xl border border-white/50 rounded-[32px] shadow-[0_10px_50px_rgba(0,0,0,0.06)] p-6 md:p-8 space-y-5">
+      <div className="bg-white border border-zinc-200 rounded-[28px] shadow-sm p-4 md:p-8 space-y-4">
+
         <div>
-          <h2 className="text-2xl font-bold tracking-tight">
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight">
             Nova notícia
           </h2>
 
@@ -200,14 +181,14 @@ export default function AdminNoticias() {
           placeholder="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-5 py-4 outline-none"
+          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-4 py-3 outline-none text-sm md:text-base"
         />
 
         <input
           placeholder="Resumo"
           value={resumo}
           onChange={(e) => setResumo(e.target.value)}
-          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-5 py-4 outline-none"
+          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-4 py-3 outline-none text-sm md:text-base"
         />
 
         <input
@@ -216,20 +197,20 @@ export default function AdminNoticias() {
           onChange={(e) =>
             setImageFile(e.target.files?.[0] || null)
           }
-          className="w-full bg-zinc-100 rounded-2xl px-5 py-4"
+          className="w-full bg-zinc-100 rounded-2xl px-4 py-3 text-sm"
         />
 
         <textarea
           placeholder="Conteúdo"
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-5 py-4 outline-none h-44 resize-none"
+          className="w-full bg-zinc-100 border border-transparent focus:border-black focus:bg-white transition rounded-2xl px-4 py-3 outline-none h-36 md:h-44 resize-none text-sm md:text-base"
         />
 
         <button
           onClick={salvarNoticia}
           disabled={loading}
-          className="bg-black hover:opacity-90 transition text-white px-6 py-4 rounded-2xl font-medium shadow-xl shadow-black/10 disabled:opacity-50"
+          className="w-full md:w-auto bg-black hover:opacity-90 transition text-white px-5 py-3 rounded-2xl text-sm md:text-base font-medium disabled:opacity-50"
         >
           {loading ? "Salvando..." : "Publicar notícia"}
         </button>
@@ -237,79 +218,78 @@ export default function AdminNoticias() {
 
       {/* LISTA */}
       <div className="space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight">
-              Notícias publicadas
-            </h2>
 
-            <p className="text-zinc-500 text-sm mt-1">
-              {news.length} notícias cadastradas
-            </p>
-          </div>
+        <div>
+          <h2 className="text-xl md:text-2xl font-bold tracking-tight">
+            Notícias publicadas
+          </h2>
+
+          <p className="text-zinc-500 text-sm mt-1">
+            {news.length} notícias cadastradas
+          </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
+
           {news.map((item) => (
             <div
               key={item.id}
-              className="bg-white/90 backdrop-blur-xl border border-white/50 rounded-[28px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-4 md:p-5 flex flex-col md:flex-row gap-5"
+              className="bg-white border border-zinc-200 rounded-[24px] shadow-sm p-3 md:p-5"
             >
-              {/* IMAGE */}
-              <div className="relative w-full md:w-48 h-48 md:h-28 rounded-2xl overflow-hidden flex-shrink-0">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
 
-              {/* INFO */}
-              <div className="flex-1 min-w-0">
-                <h3 className="text-lg font-semibold text-zinc-900">
-                  {item.title}
-                </h3>
+              <div className="flex gap-3 md:gap-5">
 
-                <p className="text-zinc-500 mt-2 line-clamp-2">
-                  {item.resumo}
-                </p>
+                {/* IMAGE */}
+                <div className="relative w-24 h-24 md:w-48 md:h-28 rounded-2xl overflow-hidden flex-shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
 
-                <div className="flex flex-wrap gap-5 mt-4 text-sm text-zinc-400">
-                  <div className="flex items-center gap-2">
-                    <Eye size={15} />
-                    {item.views || 0}
-                  </div>
+                {/* INFO */}
+                <div className="flex-1 min-w-0">
 
-                  <div className="flex items-center gap-2">
-                    <Calendar size={15} />
-                    {item.data
-                      ? new Date(item.data).toLocaleDateString("pt-BR")
-                      : "Sem data"}
+                  <h3 className="text-sm md:text-lg font-semibold text-zinc-900 line-clamp-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-xs md:text-base text-zinc-500 mt-1 md:mt-2 line-clamp-2">
+                    {item.resumo}
+                  </p>
+
+                  <div className="flex flex-wrap gap-3 md:gap-5 mt-3 text-[11px] md:text-sm text-zinc-400">
+
+                    <div className="flex items-center gap-1.5">
+                      <Eye size={13} />
+                      {item.views || 0}
+                    </div>
+
+                    <div className="flex items-center gap-1.5">
+                      <Calendar size={13} />
+                      {item.data
+                        ? new Date(item.data).toLocaleDateString("pt-BR")
+                        : "Sem data"}
+                    </div>
+
                   </div>
                 </div>
+
               </div>
 
-              {/* ACTIONS */}
-              <div className="flex md:flex-col gap-2">
-                <button className="bg-zinc-100 hover:bg-zinc-200 transition px-4 py-3 rounded-2xl text-sm font-medium">
-                  Editar
-                </button>
-
-                <button className="bg-red-600 hover:bg-red-700 transition text-white px-4 py-3 rounded-2xl text-sm font-medium">
-                  Excluir
-                </button>
-              </div>
             </div>
           ))}
 
           {news.length === 0 && (
-            <div className="bg-white rounded-[32px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-14 text-center">
-              <p className="text-zinc-500">
+            <div className="bg-white border border-zinc-200 rounded-[28px] p-10 text-center">
+              <p className="text-zinc-500 text-sm md:text-base">
                 Nenhuma notícia publicada ainda.
               </p>
             </div>
           )}
+
         </div>
       </div>
     </div>
