@@ -844,6 +844,78 @@ const jogos = [
       hora: "20:00",
       local: "Estádio verano Piromalli"
     },
+    {
+        id: "71",
+      homeLogo: "/times/guerreirosfc.png",
+      home: "GFC",
+      awayLogo: "/times/leoes.png",
+      away: "LEO",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-23",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "72",
+      homeLogo: "/times/unidos_sao_joao.png",
+      home: "USJ",
+      awayLogo: "/times/athleticfc.png",
+      away: "ATL",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-23",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "73",
+      homeLogo: "/times/falcoes.png",
+      home: "FAL",
+      awayLogo: "/times/promi_informatica.png",
+      away: "PRO",
+      score: null,
+      type: "Copa selt 40+ (quartas)",
+      data: "2026-05-23",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "74",
+      homeLogo: "/times/bahea.png",
+      home: "BAE",
+      awayLogo: "/times/grupodeubom.png",
+      away: "GBD",
+      score: null,
+      type: "Copa selt 40+ (quartas)",
+      data: "2026-05-23",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "75",
+      homeLogo: "/times/bengala.png",
+      home: "BAG",
+      awayLogo: "/times/amigos_futebol_clube40.png",
+      away: "AFC",
+      score: null,
+      type: "Copa selt 40+ (quartas)",
+      data: "2026-05-23",
+      hora: "19:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "76",
+      homeLogo: "/times/mec.png",
+      home: "MEC",
+      awayLogo: "/times/assentamento50.png",
+      away: "ASS",
+      score: null,
+      type: "Copa selt 40+ (quartas)",
+      data: "2026-05-23",
+      hora: "19:30",
+      local: "Estádio verano Piromalli"
+    },
     /**
      {
         id: "15",
