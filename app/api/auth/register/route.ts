@@ -24,7 +24,7 @@ const schema = z.object({
   posicao: z.string().optional(),
   modalidade: z.string().optional(),
 
-  nomeTime: z.string().optional(),
+  nometime: z.string().optional(),
 })
 
 export async function POST(req: Request) {
@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       estado,
       posicao,
       modalidade,
-      nomeTime,
+      nometime,
     } = parsed.data
 
     // =========================
@@ -84,7 +84,7 @@ export async function POST(req: Request) {
       )
     }
 
-    const userId = authData.user.id
+    const userid = authData.user.id
 
     // =========================
     // 2. PROFILE
@@ -93,7 +93,7 @@ export async function POST(req: Request) {
       .from("profiles")
       .insert([
         {
-          id: userId,
+          id: userid,
           tipo,
           nome,
           telefone,
@@ -105,6 +105,9 @@ export async function POST(req: Request) {
     if (profileError) {
       console.log("ERRO PROFILE:", profileError)
 
+      // rollback auth user
+      await supabase.auth.admin.deleteUser(userid)
+
       return NextResponse.json(
         { error: "Erro ao criar perfil" },
         { status: 500 }
@@ -112,29 +115,64 @@ export async function POST(req: Request) {
     }
 
     // =========================
-    // 3. PLAYER / TEAM
+    // 3. PLAYER PROFILE
     // =========================
     if (tipo === "jogador") {
-      await supabase.from("player_profiles").insert([
-        {
-          id: crypto.randomUUID(),
-          userId,
-          posicao,
-          modalidade,
-        },
-      ])
+      const { error: playerError } = await supabase
+        .from("player_profiles")
+        .insert([
+          {
+            id: crypto.randomUUID(),
+            userid,
+            posicao,
+            modalidade,
+          },
+        ])
+
+      if (playerError) {
+        console.log("ERRO PLAYER PROFILE:", playerError)
+
+        // rollback
+        await supabase.from("profiles").delete().eq("id", userid)
+
+        await supabase.auth.admin.deleteUser(userid)
+
+        return NextResponse.json(
+          { error: "Erro ao criar perfil do jogador" },
+          { status: 500 }
+        )
+      }
     }
 
+    // =========================
+    // 4. TEAM PROFILE
+    // =========================
     if (tipo === "time") {
-      await supabase.from("team_profiles").insert([
-        {
-          id: crypto.randomUUID(),
-          userId,
-          nomeTime: nomeTime || nome,
-          cidade,
-          estado,
-        },
-      ])
+      const { error: teamError } = await supabase
+        .from("team_profiles")
+        .insert([
+          {
+            id: crypto.randomUUID(),
+            userid,
+            nometime: nometime || nome,
+            cidade,
+            estado,
+          },
+        ])
+
+      if (teamError) {
+        console.log("ERRO TEAM PROFILE:", teamError)
+
+        // rollback
+        await supabase.from("profiles").delete().eq("id", userid)
+
+        await supabase.auth.admin.deleteUser(userid)
+
+        return NextResponse.json(
+          { error: "Erro ao criar perfil do time" },
+          { status: 500 }
+        )
+      }
     }
 
     return NextResponse.json({ ok: true })

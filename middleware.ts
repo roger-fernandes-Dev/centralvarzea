@@ -14,3 +14,9 @@ export async function middleware(req: NextRequest) {
 export const config = {
   matcher: ["/login"],
 }
+/**
+ * // bloqueia login jogador
+  if (pathname === "/login") {
+    return NextResponse.redirect(new URL("/", req.url))
+  }
+ */

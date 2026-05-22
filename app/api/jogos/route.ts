@@ -790,7 +790,7 @@ const jogos = [
       home: "AFC",
       awayLogo: "/times/point.png",
       away: "PIT",
-      score: null,
+      score: "1 x 15",
       type: "Copa selt livre",
       data: "2026-05-21",
       hora: "21:00",
