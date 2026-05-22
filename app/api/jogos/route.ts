@@ -848,7 +848,7 @@ const jogos = [
         id: "71",
       homeLogo: "/times/guerreirosfc.png",
       home: "GFC",
-      awayLogo: "/times/leoes.png",
+      awayLogo: "/times/leoesfc.png",
       away: "LEO",
       score: null,
       type: "Copa selt livre",
