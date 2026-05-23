@@ -27,6 +27,23 @@ type Group = {
   matches: Match[]
 }
 
+type PlayoffMatch = {
+  id: number
+  home: string
+  away: string
+  date: string
+  time: string
+  homeScore?: number
+  awayScore?: number
+}
+
+type Playoffs = {
+  roundOf16?: PlayoffMatch[]
+  quarterFinals?: PlayoffMatch[]
+  semiFinals?: PlayoffMatch[]
+  final?: PlayoffMatch[]
+}
+
 const CHAMP_ID = "copa-selt-livre-2026"
 
 function calculateTable(group: Group): Team[] {
@@ -67,6 +84,8 @@ function calculateTable(group: Group): Team[] {
 
 export default function Selt40Page() {
   const [groups, setGroups] = useState<Group[]>([])
+  const [playoffs, setPlayoffs] = useState<Playoffs>({})
+  const [allTeams, setAllTeams] = useState<Team[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -75,10 +94,17 @@ export default function Selt40Page() {
       try {
         const res = await fetch(`/api/championship/${CHAMP_ID}`)
         const data = await res.json()
+
         setGroups(data?.groups ?? [])
+        setPlayoffs(data?.playoffs ?? {})
+
+        const teams =
+          data?.groups?.flatMap((group: Group) => group.teams) ?? []
+
+        setAllTeams(teams)
       } catch (err) {
         console.log(err)
-        setError("Erro ao carregar Copa Selt 40")
+        setError("Erro ao carregar Copa Selt Livre")
       } finally {
         setLoading(false)
       }
@@ -86,6 +112,93 @@ export default function Selt40Page() {
 
     load()
   }, [])
+
+  function renderMatches(matches: PlayoffMatch[]) {
+    return (
+      <div className="space-y-3">
+        {matches.map((match, i) => {
+          const homeTeam = allTeams.find(
+            t =>
+              t.short?.trim().toUpperCase() ===
+              match.home?.trim().toUpperCase()
+          )
+
+          const awayTeam = allTeams.find(
+            t =>
+              t.short?.trim().toUpperCase() ===
+              match.away?.trim().toUpperCase()
+          )
+
+          const hasResult =
+            match.homeScore != null && match.awayScore != null
+
+          return (
+            <div
+              key={i}
+              className="bg-white rounded-xl px-4 py-3 flex justify-between items-center border border-gray-100"
+            >
+              <div className="flex gap-2 text-sm items-center flex-wrap">
+
+                {/* HOME */}
+                <div className="flex items-center gap-1 group relative">
+                  {homeTeam?.logo && (
+                    <Image
+                      src={homeTeam.logo}
+                      alt={homeTeam.name}
+                      width={20}
+                      height={20}
+                      className="rounded-full"
+                    />
+                  )}
+
+                  <span>{match.home || "---"}</span>
+
+                  {homeTeam?.name && (
+                    <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                      {homeTeam.name}
+                    </div>
+                  )}
+                </div>
+
+                <span className="w-12 text-center font-semibold">
+                  {hasResult
+                    ? `${match.homeScore} - ${match.awayScore}`
+                    : "vs"}
+                </span>
+
+                {/* AWAY */}
+                <div className="flex items-center gap-1 group relative">
+                  {awayTeam?.logo && (
+                    <Image
+                      src={awayTeam.logo}
+                      alt={awayTeam.name}
+                      width={20}
+                      height={20}
+                      className="rounded-full"
+                    />
+                  )}
+
+                  <span>{match.away || "---"}</span>
+
+                  {awayTeam?.name && (
+                    <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                      {awayTeam.name}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="text-[11px] text-gray-400">
+                {hasResult
+                  ? "Encerrado"
+                  : `${match.date} ${match.time}`}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
 
   if (loading) return <div className="p-10">Carregando...</div>
   if (error) return <div className="p-10 text-red-500">{error}</div>
@@ -144,7 +257,6 @@ export default function Selt40Page() {
                           {team.short}
                         </span>
 
-                        {/* TOOLTIP */}
                         <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
                           {team.name}
                         </div>
@@ -168,15 +280,20 @@ export default function Selt40Page() {
               <div className="space-y-2">
                 {group.matches.map((match, i) => {
                   const homeTeam = group.teams.find(
-                    t => t.short?.trim().toUpperCase() === match.home?.trim().toUpperCase()
+                    t =>
+                      t.short?.trim().toUpperCase() ===
+                      match.home?.trim().toUpperCase()
                   )
 
                   const awayTeam = group.teams.find(
-                    t => t.short?.trim().toUpperCase() === match.away?.trim().toUpperCase()
+                    t =>
+                      t.short?.trim().toUpperCase() ===
+                      match.away?.trim().toUpperCase()
                   )
 
                   const hasResult =
-                    match.homeScore != null && match.awayScore != null
+                    match.homeScore != null &&
+                    match.awayScore != null
 
                   return (
                     <div
@@ -196,6 +313,7 @@ export default function Selt40Page() {
                               className="rounded-full"
                             />
                           )}
+
                           <span>{match.home}</span>
 
                           <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
@@ -220,6 +338,7 @@ export default function Selt40Page() {
                               className="rounded-full"
                             />
                           )}
+
                           <span>{match.away}</span>
 
                           <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
@@ -242,6 +361,59 @@ export default function Selt40Page() {
 
           </div>
         ))}
+      </div>
+
+      {/* PLAYOFFS */}
+      <div className="mt-12 space-y-8">
+
+        {/* OITAVAS */}
+        {playoffs.roundOf16 &&
+          playoffs.roundOf16.length > 0 && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+              <h2 className="text-2xl font-bold mb-5">
+                Oitavas de Final
+              </h2>
+
+              {renderMatches(playoffs.roundOf16)}
+            </div>
+          )}
+
+        {/* QUARTAS */}
+        {playoffs.quarterFinals &&
+          playoffs.quarterFinals.length > 0 && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+              <h2 className="text-2xl font-bold mb-5">
+                Quartas de Final
+              </h2>
+
+              {renderMatches(playoffs.quarterFinals)}
+            </div>
+          )}
+
+        {/* SEMI */}
+        {playoffs.semiFinals &&
+          playoffs.semiFinals.length > 0 && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+              <h2 className="text-2xl font-bold mb-5">
+                Semifinais
+              </h2>
+
+              {renderMatches(playoffs.semiFinals)}
+            </div>
+          )}
+
+        {/* FINAL */}
+        {playoffs.final &&
+          playoffs.final.length > 0 && (
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
+              <h2 className="text-2xl font-bold mb-5">
+                Final
+              </h2>
+
+              {renderMatches(playoffs.final)}
+            </div>
+          )}
+
       </div>
     </div>
   )

@@ -303,6 +303,125 @@ export const championship = [
             { home: "LEO", away: "USJ", date: "30/05", time: "18:30", },
           ],
         },
-    ]
+    ],
+    playoffs: {
+    roundOf16: [
+      {
+        id: 1,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 2,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 3,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 4,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 5,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 6,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 7,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 8,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+    ],
+
+    quarterFinals: [
+      {
+        id: 1,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 2,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 3,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 4,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+    ],
+
+    semiFinals: [
+      {
+        id: 1,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 2,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+    ],
+
+    final: [
+      {
+        id: 1,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+    ],
+  },
   }
+  
 ]
