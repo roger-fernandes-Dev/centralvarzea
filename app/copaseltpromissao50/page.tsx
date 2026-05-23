@@ -1,4 +1,3 @@
-
 "use client"
 
 import Image from "next/image"
@@ -25,6 +24,16 @@ type Group = {
   name: string
   teams: Team[]
   matches: Match[]
+}
+
+type PlayoffMatch = {
+  id: number
+  home: string
+  away: string
+  date: string
+  time: string
+  homeScore?: number
+  awayScore?: number
 }
 
 /** CALCULA TABELA AUTOMATICAMENTE */
@@ -64,6 +73,16 @@ function calculateTable(group: Group): Team[] {
   })
 }
 
+const final: PlayoffMatch[] = [
+  {
+    id: 1,
+    home: "",
+    away: "",
+    date: "",
+    time: "",
+  },
+]
+
 const groups: Group[] = [
   {
     name: "Grupo A",
@@ -84,140 +103,262 @@ const groups: Group[] = [
       { home: "BNG", away: "AMB", date: "14/05", time: "20:00", homeScore: 0, awayScore: 0 },
       { home: "ADF", away: "AMB", date: "19/05", time: "21:00", homeScore: 1, awayScore: 1 },
       { home: "ASS", away: "BNG", date: "19/05", time: "21:00", homeScore: 0, awayScore: 4 },
-      { home: "BNG", away: "ADF", date: "28/05", time: "20:00", },
-      { home: "AMB", away: "ASS", date: "28/05", time: "20:00", },
+      { home: "BNG", away: "ADF", date: "28/05", time: "20:00" },
+      { home: "AMB", away: "ASS", date: "28/05", time: "20:00" },
     ],
   }
 ]
 
 export default function GroupsPage() {
+  const allTeams = groups.flatMap(group => group.teams)
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Copa Selt Promissão 50</h1>
+      <h1 className="text-3xl font-bold mb-8">
+        Copa Selt Promissão 50
+      </h1>
 
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {groups.map((group) => (
-          <div
-            key={group.name}
-            className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col"
-          >
+      <div className="grid lg:grid-cols-[1fr_380px] gap-6 items-start">
+
+        {/* GRUPOS */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {groups.map((group) => (
+            <div
+              key={group.name}
+              className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col"
+            >
+              <div className="bg-black text-white px-4 py-3 font-semibold">
+                {group.name}
+              </div>
+
+              {/* tabela */}
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-gray-400 border-b border-gray-100">
+                    <th className="text-left px-3 py-3">#</th>
+                    <th className="text-left">Time</th>
+                    <th>P</th>
+                    <th>J</th>
+                    <th>SG</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {calculateTable(group).map((team, index) => (
+                    <tr
+                      key={team.name}
+                      className={`h-14 border-b border-gray-100 hover:bg-gray-50 ${
+                        index === 0 ? "bg-green-50/60" : ""
+                      }`}
+                    >
+                      <td className="px-3 font-semibold text-center">
+                        {index + 1}
+                      </td>
+
+                      <td className="py-3">
+                        <div className="flex items-center gap-2 group relative">
+                          <Image
+                            src={team.logo}
+                            alt={team.name}
+                            width={24}
+                            height={24}
+                            className="rounded-full"
+                          />
+
+                          <span className="font-medium">
+                            {team.short}
+                          </span>
+
+                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                            {team.name}
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="text-center">{team.pts}</td>
+                      <td className="text-center">{team.pj}</td>
+                      <td className="text-center">{team.sg}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              {/* jogos */}
+              <div className="px-4 py-4 bg-gray-50/60">
+                <h3 className="text-sm font-semibold text-gray-500 mb-3">
+                  Jogos
+                </h3>
+
+                <div className="space-y-2">
+                  {group.matches.map((match, i) => {
+                    const homeTeam = group.teams.find(
+                      t => t.short === match.home
+                    )
+
+                    const awayTeam = group.teams.find(
+                      t => t.short === match.away
+                    )
+
+                    const hasResult =
+                      match.homeScore !== undefined &&
+                      match.awayScore !== undefined
+
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white rounded-xl px-3 py-2 flex items-center justify-between border border-gray-100"
+                      >
+                        <div className="flex items-center gap-2 text-sm font-medium">
+
+                          {/* HOME */}
+                          <div className="flex items-center gap-1 group relative">
+                            {homeTeam && (
+                              <Image
+                                src={homeTeam.logo}
+                                alt={homeTeam.name}
+                                width={18}
+                                height={18}
+                                className="rounded-full"
+                              />
+                            )}
+
+                            <span>{match.home}</span>
+
+                            <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                              {homeTeam?.name}
+                            </div>
+                          </div>
+
+                          <div className="px-2 min-w-[40px] text-center">
+                            {hasResult
+                              ? `${match.homeScore} - ${match.awayScore}`
+                              : "vs"}
+                          </div>
+
+                          {/* AWAY */}
+                          <div className="flex items-center gap-1 group relative">
+                            {awayTeam && (
+                              <Image
+                                src={awayTeam.logo}
+                                alt={awayTeam.name}
+                                width={18}
+                                height={18}
+                                className="rounded-full"
+                              />
+                            )}
+
+                            <span>{match.away}</span>
+
+                            <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                              {awayTeam?.name}
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <div className="text-[11px] text-gray-400 text-right">
+                          {hasResult
+                            ? "Encerrado"
+                            : `${match.date} ${match.time}`}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+        {/* FINAL */}
+        <div className="sticky top-6">
+          <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+
             <div className="bg-black text-white px-4 py-3 font-semibold">
-              {group.name}
+              Final
             </div>
 
-            {/* tabela */}
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="text-gray-400 border-b border-gray-100">
-                  <th className="text-left px-3 py-3">#</th>
-                  <th className="text-left">Time</th>
-                  <th>P</th>
-                  <th>J</th>
-                  <th>SG</th>
-                </tr>
-              </thead>
+            <div className="p-4 bg-gray-50/60 space-y-3">
+              {final.map((match) => {
+                const homeTeam = allTeams.find(
+                  t => t.short === match.home
+                )
 
-              <tbody>
-                {calculateTable(group).map((team, index) => (
-                  <tr
-                    key={team.name}
-                    className={`h-14 border-b border-gray-100 hover:bg-gray-50 ${
-                      index === 0 ? "bg-green-50/60" : ""
-                    }`}
+                const awayTeam = allTeams.find(
+                  t => t.short === match.away
+                )
+
+                const hasResult =
+                  match.homeScore !== undefined &&
+                  match.awayScore !== undefined
+
+                return (
+                  <div
+                    key={match.id}
+                    className="bg-white rounded-xl px-3 py-3 flex items-center justify-between border border-gray-100"
                   >
-                    <td className="px-3 font-semibold text-center">
-                      {index + 1}
-                    </td>
+                    <div className="flex items-center gap-2 text-sm font-medium">
 
-                    <td className="py-3">
-                      <div className="flex items-center gap-2 group relative">
-                        <Image
-                          src={team.logo}
-                          alt={team.name}
-                          width={24}
-                          height={24}
-                          className="rounded-full"
-                        />
+                      {/* HOME */}
+                      <div className="flex items-center gap-1 group relative">
+                        {homeTeam && (
+                          <Image
+                            src={homeTeam.logo}
+                            alt={homeTeam.name}
+                            width={18}
+                            height={18}
+                            className="rounded-full"
+                          />
+                        )}
 
-                        <span className="font-medium">
-                          {team.short}
-                        </span>
+                        <span>{match.home || "---"}</span>
 
-                        {/* tooltip */}
                         <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                          {team.name}
+                          {homeTeam?.name}
                         </div>
                       </div>
-                    </td>
 
-                    <td className="text-center">{team.pts}</td>
-                    <td className="text-center">{team.pj}</td>
-                    <td className="text-center">{team.sg}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {/* jogos */}
-            <div className="px-4 py-4 bg-gray-50/60">
-              <h3 className="text-sm font-semibold text-gray-500 mb-3">
-                Jogos
-              </h3>
-
-              <div className="space-y-2">
-                {group.matches.map((match, i) => {
-                  const homeTeam = group.teams.find(t => t.short === match.home)
-                  const awayTeam = group.teams.find(t => t.short === match.away)
-                  const hasResult = match.homeScore !== undefined && match.awayScore !== undefined
-
-                  return (
-                    <div
-                      key={i}
-                      className="bg-white rounded-xl px-3 py-2 flex items-center justify-between border border-gray-100"
-                    >
-                      <div className="flex items-center gap-2 text-sm font-medium">
-
-                        {/* HOME */}
-                        <div className="flex items-center gap-1 group relative">
-                          {homeTeam && (
-                            <Image src={homeTeam.logo} alt={homeTeam.name} width={18} height={18} className="rounded-full" />
-                          )}
-                          <span>{match.home}</span>
-
-                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                            {homeTeam?.name}
-                          </div>
-                        </div>
-
-                        <div className="px-2 min-w-[40px] text-center">
-                          {hasResult ? `${match.homeScore} - ${match.awayScore}` : "vs"}
-                        </div>
-
-                        {/* AWAY */}
-                        <div className="flex items-center gap-1 group relative">
-                          {awayTeam && (
-                            <Image src={awayTeam.logo} alt={awayTeam.name} width={18} height={18} className="rounded-full" />
-                          )}
-                          <span>{match.away}</span>
-
-                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                            {awayTeam?.name}
-                          </div>
-                        </div>
-
+                      <div className="px-2 min-w-[40px] text-center">
+                        {hasResult
+                          ? `${match.homeScore} - ${match.awayScore}`
+                          : "vs"}
                       </div>
 
-                      <div className="text-[11px] text-gray-400 text-right">
-                        {hasResult ? "Encerrado" : `${match.date} ${match.time}`}
+                      {/* AWAY */}
+                      <div className="flex items-center gap-1 group relative">
+                        {awayTeam && (
+                          <Image
+                            src={awayTeam.logo}
+                            alt={awayTeam.name}
+                            width={18}
+                            height={18}
+                            className="rounded-full"
+                          />
+                        )}
+
+                        <span>{match.away || "---"}</span>
+
+                        <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                          {awayTeam?.name}
+                        </div>
                       </div>
+
                     </div>
-                  )
-                })}
-              </div>
+
+                    <div className="text-[11px] text-gray-400 text-right">
+                      {hasResult
+                        ? "Encerrado"
+                        : `${match.date} ${match.time}`}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
 
           </div>
-        ))}
+        </div>
+
       </div>
     </div>
   )

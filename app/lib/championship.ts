@@ -77,52 +77,113 @@ export const championship = [
     ]
   },
  {
-    id: "copa-selt40-2026",
-    name: "Copa Selt Promissão 40",
-    season: "2026",
-    current: true,
-    groups: [
-        {
-    name: "Grupo A",
-    teams: [
-      { name: "Bengala", short: "BGA", logo: "/times/bengala.png", },
-      { name: "Bahea", short: "BAE", logo: "/times/bahea.png", },
-      { name: "Falcões", short: "FAC", logo: "/times/falcoes.png", },
-      { name: "Mec", short: "MEC", logo: "/times/mec.png", },
-      { name: "Bem Amigos", short: "BAG", logo: "/times/bemamigosfc.png", },
+  id: "copa-selt40-2026",
+  name: "Copa Selt Promissão 40",
+  season: "2026",
+  current: true,
+
+  groups: [
+    {
+      name: "Grupo A",
+      teams: [
+        { name: "Bengala", short: "BGA", logo: "/times/bengala.png" },
+        { name: "Bahea", short: "BAE", logo: "/times/bahea.png" },
+        { name: "Falcões", short: "FAC", logo: "/times/falcoes.png" },
+        { name: "Mec", short: "MEC", logo: "/times/mec.png" },
+        { name: "Bem Amigos", short: "BAG", logo: "/times/bemamigosfc.png" },
+      ],
+      matches: [
+        { home: "BGA", away: "BAE", date: "25/04", time: "17:45", homeScore: 0, awayScore: 4 },
+        { home: "FAC", away: "BAG", date: "25/04", time: "17:45", homeScore: 13, awayScore: 1 },
+        { home: "MEC", away: "FAC", date: "05/05", time: "19:00", homeScore: 0, awayScore: 8 },
+        { home: "BAG", away: "BGA", date: "05/05", time: "19:00", homeScore: 0, awayScore: 8 },
+        { home: "BAE", away: "BAG", date: "09/05", time: "19:30", homeScore: 5, awayScore: 2 },
+        { home: "BGA", away: "MEC", date: "09/05", time: "19:30", homeScore: 2, awayScore: 0 },
+        { home: "FAC", away: "BGA", date: "14/05", time: "21:00", homeScore: 1, awayScore: 0 },
+        { home: "MEC", away: "BAE", date: "14/05", time: "21:00", homeScore: 0, awayScore: 1 },
+        { home: "BAG", away: "MEC", date: "19/05", time: "19:00", homeScore: 0, awayScore: 3 },
+        { home: "BAE", away: "FAC", date: "19/05", time: "19:00", homeScore: 0, awayScore: 4 },
+      ],
+    },
+    {
+      name: "Grupo B",
+      teams: [
+        { name: "Assentamento", short: "ASS", logo: "/times/assentamento50.png" },
+        { name: "Promi Informatica", short: "PRO", logo: "/times/promi_informatica.png" },
+        { name: "Grupo Deu Bom", short: "GDB", logo: "/times/grupodeubom.png" },
+        { name: "Amigos do Futebol", short: "ADF", logo: "/times/amigosdofutebol50.png" },
+      ],
+      matches: [
+        { home: "ASS", away: "ADF", date: "25/04", time: "18:30", homeScore: 5, awayScore: 2 },
+        { home: "GDB", away: "PRO", date: "25/04", time: "18:30", homeScore: 3, awayScore: 1 },
+        { home: "GDB", away: "ASS", date: "05/05", time: "20:00", homeScore: 0, awayScore: 5 },
+        { home: "PRO", away: "ADF", date: "05/05", time: "20:00", homeScore: 1, awayScore: 1 },
+        { home: "ASS", away: "PRO", date: "09/05", time: "18:30", homeScore: 3, awayScore: 2 },
+        { home: "ADF", away: "GDB", date: "09/05", time: "18:30", homeScore: 3, awayScore: 2 },
+      ],
+    },
+  ],
+
+  playoffs: {
+    quarterFinals: [
+      {
+        id: 1,
+        home: "FAC",
+        away: "PRO",
+        date: "23/06",
+        time: "18:30",
+      },
+      {
+        id: 2,
+        home: "BAE",
+        away: "GDB",
+        date: "23/06",
+        time: "18:30",
+      },
+      {
+        id: 3,
+        home: "BAG",
+        away: "ADF",
+        date: "23/06",
+        time: "19:30",
+      },
+      {
+        id: 4,
+        home: "MEC",
+        away: "ASS",
+        date: "23/06",
+        time: "19:30",
+      },
     ],
-    matches: [
-      { home: "BGA", away: "BAE", date: "25/04", time: "17:45", homeScore: 0, awayScore: 4 },
-      { home: "FAC", away: "BAG", date: "25/04", time: "17:45", homeScore: 13,awayScore: 1 },
-      { home: "MEC", away: "FAC", date: "05/05", time: "19:00", homeScore: 0, awayScore: 8 },
-      { home: "BAG", away: "BGA", date: "05/05", time: "19:00", homeScore: 0, awayScore: 8 },
-      { home: "BAE", away: "BAG", date: "09/05", time: "19:30", homeScore: 5, awayScore: 2 },
-      { home: "BGA", away: "MEC", date: "09/05", time: "19:30", homeScore: 2, awayScore: 0 },
-      { home: "FAC", away: "BGA", date: "14/05", time: "21:00", homeScore: 1, awayScore: 0 },
-      { home: "MEC", away: "BAE", date: "14/05", time: "21:00", homeScore: 0, awayScore: 1 },
-      { home: "BAG", away: "MEC", date: "19/05", time: "19:00", homeScore: 0, awayScore: 3 },
-      { home: "BAE", away: "FAC", date: "19/05", time: "19:00", homeScore: 0, awayScore: 4 },
+
+    semiFinals: [
+      {
+        id: 1,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+      {
+        id: 2,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
+    ],
+
+    final: [
+      {
+        id: 1,
+        home: "",
+        away: "",
+        date: "",
+        time: "",
+      },
     ],
   },
-  {
-    name: "Grupo B",
-    teams: [
-      { name: "Assentamento", short: "ASS", logo: "/times/assentamento50.png", },
-      { name: "Promi Informatica", short: "PRO", logo: "/times/promi_informatica.png", },
-      { name: "Grupo Deu Bom", short: "GDB", logo: "/times/grupodeubom.png", },
-      { name: "Amigos do Futebol", short: "ADF", logo: "/times/amigosdofutebol50.png", },
-    ],
-    matches: [
-      { home: "ASS", away: "ADF", date: "25/04", time: "18:30", homeScore: 5, awayScore: 2 },
-      { home: "GDB", away: "PRO", date: "25/04", time: "18:30", homeScore: 3, awayScore: 1 },
-      { home: "GDB", away: "ASS", date: "05/05", time: "20:00", homeScore: 0, awayScore: 5 },
-      { home: "PRO", away: "ADF", date: "05/05", time: "20:00", homeScore: 1, awayScore: 1 },
-      { home: "ASS", away: "PRO", date: "09/05", time: "18:30", homeScore: 3, awayScore: 2 },
-      { home: "ADF", away: "GDB", date: "09/05", time: "18:30", homeScore: 3, awayScore: 2 },
-    ]
-      }
-    ]
-  },
+},
   {
     id: "copa-selt-livre-2026",
     name: "Copa Selt Promissão Livre",
