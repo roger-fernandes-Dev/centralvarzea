@@ -74,7 +74,66 @@ export const championship = [
       { home: "TBT", away: "MAG", date: "24/05", time: "09:10", homeScore: 1, awayScore: 2},
     ]
       }
-    ]
+    ],
+    playoffs: {
+  quarterFinals: [
+    {
+      id: 1,
+      home: "ADS",
+      away: "NPI",
+      date: "31/05",
+      time: "08:00",
+    },
+    {
+      id: 2,
+      home: "MAG",
+      away: "PRB",
+      date: "31/05",
+      time: "08:00",
+    },
+    {
+      id: 3,
+      home: "CFC",
+      away: "MEC",
+      date: "31/05",
+      time: "09:10",
+    },
+    {
+      id: 4,
+      home: "PIT",
+      away: "SGC",
+      date: "31/05",
+      time: "09:10",
+    },
+  ],
+
+  semiFinals: [
+    {
+      id: 1,
+      home: "",
+      away: "",
+      date: "",
+      time: "",
+    },
+    {
+      id: 2,
+      home: "",
+      away: "",
+      date: "",
+      time: "",
+    },
+  ],
+
+  final: [
+    {
+      id: 1,
+      home: "",
+      away: "",
+      date: "",
+      time: "",
+    },
+  ],
+},
   },
  {
   id: "copa-selt40-2026",
@@ -146,7 +205,7 @@ export const championship = [
       },
       {
         id: 3,
-        home: "BAG",
+        home: "BGA",
         away: "ADF",
         date: "23/06",
         time: "19:30",
@@ -167,17 +226,17 @@ export const championship = [
     semiFinals: [
       {
         id: 1,
-        home: "",
-        away: "",
-        date: "",
-        time: "",
+        home: "FAC",
+        away: "GDB",
+        date: "02/06",
+        time: "19:00",
       },
       {
         id: 2,
-        home: "",
-        away: "",
-        date: "",
-        time: "",
+        home: "BGA",
+        away: "ASS",
+        date: "09/06",
+        time: "19:00",
       },
     ],
 

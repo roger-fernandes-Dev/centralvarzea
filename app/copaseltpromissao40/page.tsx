@@ -38,6 +38,7 @@ type PlayoffMatch = {
 }
 
 type Playoffs = {
+  roundOf16?: PlayoffMatch[]
   quarterFinals?: PlayoffMatch[]
   semiFinals?: PlayoffMatch[]
   final?: PlayoffMatch[]
@@ -204,212 +205,226 @@ export default function Selt40Page() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
-  <h1 className="text-3xl font-bold mb-8">
-    Copa Selt Promissão 40
-  </h1>
+      <h1 className="text-3xl font-bold mb-8">
+        Copa Selt Promissão 40
+      </h1>
 
-  <div className="grid lg:grid-cols-[1fr_380px] gap-6 items-start">
+      <div className="grid gap-6">
 
-    {/* GRUPOS */}
-    <div className="grid md:grid-cols-2 gap-6">
-      {groups.map(group => (
-        <div
-          key={group.name}
-          className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col"
-        >
-          <div className="bg-black text-white px-4 py-3 font-semibold">
-            {group.name}
-          </div>
+        {/* GRUPOS */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {groups.map(group => (
+            <div
+              key={group.name}
+              className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col"
+            >
+              <div className="bg-black text-white px-4 py-3 font-semibold">
+                {group.name}
+              </div>
 
-          {/* TABELA */}
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-gray-400 border-b border-gray-100">
-                <th className="text-left px-3 py-3">#</th>
-                <th className="text-left">Time</th>
-                <th>P</th>
-                <th>J</th>
-                <th>SG</th>
-              </tr>
-            </thead>
+              {/* TABELA */}
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="text-gray-400 border-b border-gray-100">
+                    <th className="text-left px-3 py-3">#</th>
+                    <th className="text-left">Time</th>
+                    <th>P</th>
+                    <th>J</th>
+                    <th>SG</th>
+                  </tr>
+                </thead>
 
-            <tbody>
-              {calculateTable(group).map((team, index) => (
-                <tr
-                  key={team.short}
-                  className={`h-14 border-b border-gray-100 hover:bg-gray-50 ${
-                    index === 0 ? "bg-green-50/60" : ""
-                  }`}
-                >
-                  <td className="px-3 text-center font-semibold">
-                    {index + 1}
-                  </td>
+                <tbody>
+                  {calculateTable(group).map((team, index) => (
+                    <tr
+                      key={team.short}
+                      className={`h-14 border-b border-gray-100 hover:bg-gray-50 ${
+                        index === 0 ? "bg-green-50/60" : ""
+                      }`}
+                    >
+                      <td className="px-3 text-center font-semibold">
+                        {index + 1}
+                      </td>
 
-                  <td className="py-3">
-                    <div className="flex items-center gap-2 group relative">
-                      <Image
-                        src={team.logo}
-                        alt={team.name}
-                        width={24}
-                        height={24}
-                        className="rounded-full"
-                      />
-
-                      <span className="font-medium">
-                        {team.short}
-                      </span>
-
-                      <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                        {team.name}
-                      </div>
-                    </div>
-                  </td>
-
-                  <td className="text-center">{team.pts}</td>
-                  <td className="text-center">{team.pj}</td>
-                  <td className="text-center">{team.sg}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* JOGOS */}
-          <div className="px-4 py-4 bg-gray-50/60">
-            <h3 className="text-sm font-semibold text-gray-500 mb-3">
-              Jogos
-            </h3>
-
-            <div className="space-y-2">
-              {group.matches.map((match, i) => {
-                const homeTeam = group.teams.find(
-                  t =>
-                    t.short?.trim().toUpperCase() ===
-                    match.home?.trim().toUpperCase()
-                )
-
-                const awayTeam = group.teams.find(
-                  t =>
-                    t.short?.trim().toUpperCase() ===
-                    match.away?.trim().toUpperCase()
-                )
-
-                const hasResult =
-                  match.homeScore != null &&
-                  match.awayScore != null
-
-                return (
-                  <div
-                    key={i}
-                    className="bg-white rounded-xl px-3 py-2 flex justify-between border border-gray-100"
-                  >
-                    <div className="flex gap-2 text-sm">
-
-                      {/* HOME */}
-                      <div className="flex items-center gap-1 group relative">
-                        {homeTeam?.logo && (
+                      <td className="py-3">
+                        <div className="flex items-center gap-2 group relative">
                           <Image
-                            src={homeTeam.logo}
-                            alt={homeTeam.name}
-                            width={18}
-                            height={18}
+                            src={team.logo}
+                            alt={team.name}
+                            width={24}
+                            height={24}
                             className="rounded-full"
                           />
-                        )}
 
-                        <span>{match.home}</span>
+                          <span className="font-medium">
+                            {team.short}
+                          </span>
 
-                        <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                          {homeTeam?.name}
+                          <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                            {team.name}
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="text-center">{team.pts}</td>
+                      <td className="text-center">{team.pj}</td>
+                      <td className="text-center">{team.sg}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              {/* JOGOS */}
+              <div className="px-4 py-4 bg-gray-50/60">
+                <h3 className="text-sm font-semibold text-gray-500 mb-3">
+                  Jogos
+                </h3>
+
+                <div className="space-y-2">
+                  {group.matches.map((match, i) => {
+                    const homeTeam = group.teams.find(
+                      t =>
+                        t.short?.trim().toUpperCase() ===
+                        match.home?.trim().toUpperCase()
+                    )
+
+                    const awayTeam = group.teams.find(
+                      t =>
+                        t.short?.trim().toUpperCase() ===
+                        match.away?.trim().toUpperCase()
+                    )
+
+                    const hasResult =
+                      match.homeScore != null &&
+                      match.awayScore != null
+
+                    return (
+                      <div
+                        key={i}
+                        className="bg-white rounded-xl px-3 py-2 flex justify-between border border-gray-100"
+                      >
+                        <div className="flex gap-2 text-sm">
+
+                          {/* HOME */}
+                          <div className="flex items-center gap-1 group relative">
+                            {homeTeam?.logo && (
+                              <Image
+                                src={homeTeam.logo}
+                                alt={homeTeam.name}
+                                width={18}
+                                height={18}
+                                className="rounded-full"
+                              />
+                            )}
+
+                            <span>{match.home}</span>
+
+                            <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                              {homeTeam?.name}
+                            </div>
+                          </div>
+
+                          <span className="w-10 text-center">
+                            {hasResult
+                              ? `${match.homeScore} - ${match.awayScore}`
+                              : "vs"}
+                          </span>
+
+                          {/* AWAY */}
+                          <div className="flex items-center gap-1 group relative">
+                            {awayTeam?.logo && (
+                              <Image
+                                src={awayTeam.logo}
+                                alt={awayTeam.name}
+                                width={18}
+                                height={18}
+                                className="rounded-full"
+                              />
+                            )}
+
+                            <span>{match.away}</span>
+
+                            <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
+                              {awayTeam?.name}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="text-[11px] text-gray-400">
+                          {hasResult
+                            ? "Encerrado"
+                            : `${match.date} ${match.time}`}
                         </div>
                       </div>
-
-                      <span className="w-10 text-center">
-                        {hasResult
-                          ? `${match.homeScore} - ${match.awayScore}`
-                          : "vs"}
-                      </span>
-
-                      {/* AWAY */}
-                      <div className="flex items-center gap-1 group relative">
-                        {awayTeam?.logo && (
-                          <Image
-                            src={awayTeam.logo}
-                            alt={awayTeam.name}
-                            width={18}
-                            height={18}
-                            className="rounded-full"
-                          />
-                        )}
-
-                        <span>{match.away}</span>
-
-                        <div className="absolute hidden group-hover:block bg-black text-white text-xs px-2 py-1 rounded -top-7 left-1/2 -translate-x-1/2 whitespace-nowrap z-10">
-                          {awayTeam?.name}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="text-[11px] text-gray-400">
-                      {hasResult
-                        ? "Encerrado"
-                        : `${match.date} ${match.time}`}
-                    </div>
-                  </div>
-                )
-              })}
+                    )
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
-      ))}
+
+        {/* PLAYOFFS */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 items-start">
+
+          {/* OITAVAS */}
+          {playoffs.roundOf16 &&
+            playoffs.roundOf16.length > 0 && (
+              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+                <div className="bg-black text-white px-4 py-3 font-semibold">
+                  Oitavas de Final
+                </div>
+
+                <div className="p-4 bg-gray-50/60">
+                  {renderMatches(playoffs.roundOf16)}
+                </div>
+              </div>
+            )}
+
+          {/* QUARTAS */}
+          {playoffs.quarterFinals &&
+            playoffs.quarterFinals.length > 0 && (
+              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+                <div className="bg-black text-white px-4 py-3 font-semibold">
+                  Quartas de Final
+                </div>
+
+                <div className="p-4 bg-gray-50/60">
+                  {renderMatches(playoffs.quarterFinals)}
+                </div>
+              </div>
+            )}
+
+          {/* SEMIFINAIS */}
+          {playoffs.semiFinals &&
+            playoffs.semiFinals.length > 0 && (
+              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+                <div className="bg-black text-white px-4 py-3 font-semibold">
+                  Semifinais
+                </div>
+
+                <div className="p-4 bg-gray-50/60">
+                  {renderMatches(playoffs.semiFinals)}
+                </div>
+              </div>
+            )}
+
+          {/* FINAL */}
+          {playoffs.final &&
+            playoffs.final.length > 0 && (
+              <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
+                <div className="bg-black text-white px-4 py-3 font-semibold">
+                  Final
+                </div>
+
+                <div className="p-4 bg-gray-50/60">
+                  {renderMatches(playoffs.final)}
+                </div>
+              </div>
+            )}
+
+        </div>
+      </div>
     </div>
-
-    {/* PLAYOFFS */}
-    <div className="space-y-6 sticky top-6">
-
-      {/* QUARTAS */}
-      {playoffs.quarterFinals &&
-        playoffs.quarterFinals.length > 0 && (
-          <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
-            <div className="bg-black text-white px-4 py-3 font-semibold">
-              Quartas de Final
-            </div>
-
-            <div className="p-4 bg-gray-50/60">
-              {renderMatches(playoffs.quarterFinals)}
-            </div>
-          </div>
-        )}
-
-      {/* SEMI */}
-      {playoffs.semiFinals &&
-        playoffs.semiFinals.length > 0 && (
-          <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
-            <div className="bg-black text-white px-4 py-3 font-semibold">
-              Semifinais
-            </div>
-
-            <div className="p-4 bg-gray-50/60">
-              {renderMatches(playoffs.semiFinals)}
-            </div>
-          </div>
-        )}
-
-      {/* FINAL */}
-      {playoffs.final &&
-        playoffs.final.length > 0 && (
-          <div className="bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm">
-            <div className="bg-black text-white px-4 py-3 font-semibold">
-              Final
-            </div>
-
-            <div className="p-4 bg-gray-50/60">
-              {renderMatches(playoffs.final)}
-            </div>
-          </div>
-        )}
-
-    </div>
-  </div>
-</div>
   )
 }

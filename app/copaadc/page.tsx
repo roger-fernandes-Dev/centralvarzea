@@ -24,6 +24,22 @@ type Match = {
   awayScore?: number
 }
 
+type PlayoffMatch = {
+  id: number
+  home: string
+  away: string
+  date: string
+  time: string
+  homeScore?: number
+  awayScore?: number
+}
+
+type Playoffs = {
+  quarterFinals?: PlayoffMatch[]
+  semiFinals?: PlayoffMatch[]
+  final?: PlayoffMatch[]
+}
+
 type Group = {
   name: string
   teams: Team[]
@@ -74,31 +90,109 @@ function calculateTable(group: Group): TableTeam[] {
 
 export default function GroupsPage() {
   const [groups, setGroups] = useState<Group[]>([])
+  const [playoffs, setPlayoffs] = useState<Playoffs>({})
+  const [allTeams, setAllTeams] = useState<Team[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-  fetch(`/api/championship/${CHAMP_ID}`)
-    .then(res => {
-      if (!res.ok) throw new Error("Erro na API")
-      return res.json()
-    })
-    .then(data => {
-      setGroups(data?.groups ?? [])
-    })
-    .catch(() => {
-      console.error("Erro ao carregar campeonato")
-      setGroups([])
-    })
-    .finally(() => {
-      setLoading(false)
-    })
-}, [])
+    fetch(`/api/championship/${CHAMP_ID}`)
+      .then(res => {
+        if (!res.ok) throw new Error("Erro na API")
+        return res.json()
+      })
+      .then(data => {
+        setGroups(data?.groups ?? [])
+        setPlayoffs(data?.playoffs ?? {})
+
+        const teams =
+          data?.groups?.flatMap((group: Group) => group.teams) ?? []
+
+        setAllTeams(teams)
+      })
+      .catch(() => {
+        console.error("Erro ao carregar campeonato")
+        setGroups([])
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
+
+  function renderMatches(matches: PlayoffMatch[]) {
+    return (
+      <div className="space-y-3">
+        {matches.map((match, i) => {
+          const homeTeam = allTeams.find(
+            t => normalize(t.short) === normalize(match.home)
+          )
+
+          const awayTeam = allTeams.find(
+            t => normalize(t.short) === normalize(match.away)
+          )
+
+          const hasResult =
+            match.homeScore != null && match.awayScore != null
+
+          return (
+            <div
+              key={i}
+              className="bg-gray-50 rounded-xl px-3 py-3 border border-gray-100"
+            >
+              <div className="flex items-center justify-between text-sm font-medium">
+
+                {/* HOME */}
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={homeTeam?.logo || "/placeholder.png"}
+                    alt={homeTeam?.name || ""}
+                    width={20}
+                    height={20}
+                    className="rounded-full"
+                  />
+
+                  <span>{match.home || "---"}</span>
+                </div>
+
+                {/* SCORE */}
+                <div className="font-bold min-w-[50px] text-center">
+                  {hasResult
+                    ? `${match.homeScore} - ${match.awayScore}`
+                    : "vs"}
+                </div>
+
+                {/* AWAY */}
+                <div className="flex items-center gap-2">
+                  <span>{match.away || "---"}</span>
+
+                  <Image
+                    src={awayTeam?.logo || "/placeholder.png"}
+                    alt={awayTeam?.name || ""}
+                    width={20}
+                    height={20}
+                    className="rounded-full"
+                  />
+                </div>
+              </div>
+
+              <div className="text-[11px] text-gray-400 mt-2 text-center">
+                {hasResult
+                  ? "Encerrado"
+                  : `${match.date} ${match.time}`}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    )
+  }
 
   if (loading) return <div className="p-10">Carregando...</div>
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 min-h-screen">
-      <h1 className="text-3xl font-bold mb-8">Fase de Grupos</h1>
+      <h1 className="text-3xl font-bold mb-8">
+        Fase de Grupos
+      </h1>
 
       <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
         {groups.map(group => (
@@ -143,7 +237,10 @@ export default function GroupsPage() {
                           height={24}
                           className="rounded-full"
                         />
-                        <span className="font-medium">{team.short}</span>
+
+                        <span className="font-medium">
+                          {team.short}
+                        </span>
                       </div>
                     </td>
 
@@ -172,7 +269,8 @@ export default function GroupsPage() {
                   )
 
                   const hasResult =
-                    match.homeScore != null && match.awayScore != null
+                    match.homeScore != null &&
+                    match.awayScore != null
 
                   return (
                     <div
@@ -188,6 +286,7 @@ export default function GroupsPage() {
                             height={20}
                             className="rounded-full"
                           />
+
                           <span>{match.home}</span>
                         </div>
 
@@ -205,6 +304,7 @@ export default function GroupsPage() {
                             height={20}
                             className="rounded-full"
                           />
+
                           <span>{match.away}</span>
                         </div>
                       </div>
@@ -219,9 +319,46 @@ export default function GroupsPage() {
                 })}
               </div>
             </div>
-
           </div>
         ))}
+      </div>
+
+      {/* PLAYOFFS */}
+      <div className="mt-12 grid lg:grid-cols-3 gap-6">
+
+        {/* QUARTAS */}
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <h2 className="text-xl font-bold mb-4">
+            Quartas de Final
+          </h2>
+
+          {playoffs.quarterFinals &&
+            playoffs.quarterFinals.length > 0 &&
+            renderMatches(playoffs.quarterFinals)}
+        </div>
+
+        {/* SEMIS */}
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <h2 className="text-xl font-bold mb-4">
+            Semifinais
+          </h2>
+
+          {playoffs.semiFinals &&
+            playoffs.semiFinals.length > 0 &&
+            renderMatches(playoffs.semiFinals)}
+        </div>
+
+        {/* FINAL */}
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <h2 className="text-xl font-bold mb-4">
+            Final
+          </h2>
+
+          {playoffs.final &&
+            playoffs.final.length > 0 &&
+            renderMatches(playoffs.final)}
+        </div>
+
       </div>
     </div>
   )

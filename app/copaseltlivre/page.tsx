@@ -364,57 +364,59 @@ export default function Selt40Page() {
       </div>
 
       {/* PLAYOFFS */}
-      <div className="mt-12 space-y-8">
+<div className="mt-12">
+  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-        {/* OITAVAS */}
-        {playoffs.roundOf16 &&
-          playoffs.roundOf16.length > 0 && (
-            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-              <h2 className="text-2xl font-bold mb-5">
-                Oitavas de Final
-              </h2>
+    {/* OITAVAS */}
+    {playoffs.roundOf16 &&
+      playoffs.roundOf16.length > 0 && (
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-fit">
+          <h2 className="text-2xl font-bold mb-5">
+            Oitavas de Final
+          </h2>
 
-              {renderMatches(playoffs.roundOf16)}
-            </div>
-          )}
+          {renderMatches(playoffs.roundOf16)}
+        </div>
+      )}
 
-        {/* QUARTAS */}
-        {playoffs.quarterFinals &&
-          playoffs.quarterFinals.length > 0 && (
-            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-              <h2 className="text-2xl font-bold mb-5">
-                Quartas de Final
-              </h2>
+    {/* QUARTAS */}
+    {playoffs.quarterFinals &&
+      playoffs.quarterFinals.length > 0 && (
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-fit">
+          <h2 className="text-2xl font-bold mb-5">
+            Quartas de Final
+          </h2>
 
-              {renderMatches(playoffs.quarterFinals)}
-            </div>
-          )}
+          {renderMatches(playoffs.quarterFinals)}
+        </div>
+      )}
 
-        {/* SEMI */}
-        {playoffs.semiFinals &&
-          playoffs.semiFinals.length > 0 && (
-            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-              <h2 className="text-2xl font-bold mb-5">
-                Semifinais
-              </h2>
+    {/* SEMI */}
+    {playoffs.semiFinals &&
+      playoffs.semiFinals.length > 0 && (
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-fit">
+          <h2 className="text-2xl font-bold mb-5">
+            Semifinais
+          </h2>
 
-              {renderMatches(playoffs.semiFinals)}
-            </div>
-          )}
+          {renderMatches(playoffs.semiFinals)}
+        </div>
+      )}
 
-        {/* FINAL */}
-        {playoffs.final &&
-          playoffs.final.length > 0 && (
-            <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm">
-              <h2 className="text-2xl font-bold mb-5">
-                Final
-              </h2>
+    {/* FINAL */}
+    {playoffs.final &&
+      playoffs.final.length > 0 && (
+        <div className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm h-fit">
+          <h2 className="text-2xl font-bold mb-5">
+            Final
+          </h2>
 
-              {renderMatches(playoffs.final)}
-            </div>
-          )}
+          {renderMatches(playoffs.final)}
+        </div>
+      )}
 
-      </div>
+  </div>
+</div>
     </div>
   )
 }
