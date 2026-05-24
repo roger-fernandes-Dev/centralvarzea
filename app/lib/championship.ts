@@ -54,7 +54,7 @@ export const championship = [
       { home: "PRB", away: "NAL", date: "03/05", time: "08:00", homeScore: 7, awayScore: 4 },
       { home: "PIT", away: "BLS", date: "03/05", time: "09:10", homeScore: 4, awayScore: 2 },
       { home: "PIT", away: "PRB", date: "24/05", time: "08:00", homeScore: 7, awayScore: 5 },
-      { home: "NAL", away: "BLS", date: "24/05", time: "09:10", },
+      { home: "NAL", away: "BLS", date: "24/05", time: "09:10", homeScore: 5, awayScore: 1 },
     ],
   },
   {
@@ -70,8 +70,8 @@ export const championship = [
       { home: "TBT", away: "SGC", date: "19/04", time: "08:00", homeScore: 2, awayScore: 4 },
       { home: "RZS", away: "TBT", date: "03/05", time: "08:00", homeScore: 3, awayScore: 8 },
       { home: "SGC", away: "MAG", date: "03/05", time: "09:10", homeScore: 2, awayScore: 2 },
-      { home: "SGC", away: "RZS", date: "24/05", time: "08:00", },
-      { home: "TBT", away: "MAG", date: "24/05", time: "09:10", },
+      { home: "SGC", away: "RZS", date: "24/05", time: "08:00", homeScore: 12, awayScore: 1},
+      { home: "TBT", away: "MAG", date: "24/05", time: "09:10", homeScore: 1, awayScore: 2},
     ]
       }
     ]
