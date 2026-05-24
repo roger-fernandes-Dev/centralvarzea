@@ -112,7 +112,7 @@ export default function SidebarTime() {
       </aside>
 
       {/* MOBILE */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-[#f5f7f9] p-3">
+      <div className="lg:hidden relative z-20 bg-[#f5f7f9] p-3">
         <div className="flex items-center justify-between">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
