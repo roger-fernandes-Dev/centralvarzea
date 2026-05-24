@@ -922,7 +922,7 @@ const jogos = [
       home: "PIT",
       awayLogo: "/times/os_paraibas.png",
       away: "PRB",
-      score: null,
+      score: "7 x 5",
       type: "Copa ADC",
       data: "2026-05-24",
       hora: "08:00",
