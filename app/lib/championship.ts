@@ -132,6 +132,8 @@ export const championship = [
         away: "PRO",
         date: "23/06",
         time: "18:30",
+        homeScore: 3,
+        awayScore: 1,
       },
       {
         id: 2,
@@ -139,6 +141,8 @@ export const championship = [
         away: "GDB",
         date: "23/06",
         time: "18:30",
+        homeScore: 0,
+        awayScore: 3,
       },
       {
         id: 3,
@@ -146,6 +150,8 @@ export const championship = [
         away: "ADF",
         date: "23/06",
         time: "19:30",
+        homeScore: 5,
+        awayScore: 4,
       },
       {
         id: 4,
@@ -153,6 +159,8 @@ export const championship = [
         away: "ASS",
         date: "23/06",
         time: "19:30",
+        homeScore: 0,
+        awayScore: 8,
       },
     ],
 
