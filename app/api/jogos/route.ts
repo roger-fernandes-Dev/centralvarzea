@@ -946,7 +946,7 @@ const jogos = [
       home: "SGC",
       awayLogo: "/times/raizesportiva.png",
       away: "RZS",
-      score: "12 x 1",
+      score: "13 x 1",
       type: "Copa ADC",
       data: "2026-05-24",
       hora: "08:00",
