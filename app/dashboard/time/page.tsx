@@ -25,16 +25,7 @@ export default function DashboardTime() {
           </p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="w-[370px] h-12 bg-white rounded-2xl border border-zinc-200 px-4 flex items-center gap-3">
-            <Search className="text-zinc-400" size={18} />
-
-            <input
-              placeholder="Buscar..."
-              className="bg-transparent outline-none flex-1 text-sm"
-            />
-          </div>
-        </div>
+        
       </div>
 
       {/* MOBILE SEARCH */}

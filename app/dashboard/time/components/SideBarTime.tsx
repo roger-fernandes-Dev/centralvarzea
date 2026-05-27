@@ -47,21 +47,16 @@ export default function SidebarTime() {
       path: "/dashboard/time/agenda",
     },
     {
-      icon: MessageCircle,
-      label: "Mensagens",
-      path: "/dashboard/time/mensagens",
-    },
-    {
       icon: Settings,
       label: "Editar Time",
       path: "/dashboard/time/editartime",
     },
   ]
 
-  return (
-    <>
-      {/* SIDEBAR */}
-      <aside className="hidden lg:flex w-[250px] bg-white border-r border-zinc-200 flex-col justify-between">
+ return (
+  <>
+    {/* DESKTOP */}
+    <aside className="hidden lg:flex w-[250px] h-screen bg-white border-r border-zinc-200 flex-col justify-between">
         <div>
           <div className="h-20 flex items-center justify-between px-6 border-b border-zinc-100">
             <div className="flex items-center gap-3">
@@ -112,11 +107,11 @@ export default function SidebarTime() {
       </aside>
 
       {/* MOBILE */}
-      <div className="lg:hidden relative z-20 bg-[#f5f7f9] p-3">
+      <div className="lg:hidden relative top-0 left-0 right-0 z-50 bg-[#f5f7f9] p-3">
         <div className="flex items-center justify-between">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="w-10 h-10 rounded-xl bg-white border border-zinc-200 flex items-center justify-center"
+            className="mt-3 bg-white border border-zinc-200 rounded-3xl p-3 space-y-2 relative z-40"
           >
             <Menu size={18} />
           </button>
