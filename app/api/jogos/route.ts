@@ -964,6 +964,30 @@ const jogos = [
       hora: "09:10",
       local: "Arena ADC"
     },
+    {
+        id: "81",
+      homeLogo: "/times/napoli.png",
+      home: "NAP",
+      awayLogo: "/times/guerreirosfc.png",
+      away: "GFC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-28",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "82",
+      homeLogo: "/times/athleticfc.png",
+      home: "ATL",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-28",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
 
     /**
      {
