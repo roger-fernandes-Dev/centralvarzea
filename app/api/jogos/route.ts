@@ -1021,7 +1021,7 @@ const jogos = [
       score: null,
       type: "Copa selt livre",
       data: "2026-05-30",
-      hora: "17:15",
+      hora: "18:30",
       local: "Estádio verano Piromalli"
     },
     {
