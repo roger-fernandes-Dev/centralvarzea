@@ -988,6 +988,54 @@ const jogos = [
       hora: "19:00",
       local: "Estádio verano Piromalli"
     },
+    {
+        id: "83",
+      homeLogo: "/times/leoesfc.png",
+      home: "LEO",
+      awayLogo: "/times/unidos_sao_joao.png",
+      away: "USJ",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-30",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "84",
+      homeLogo: "/times/the_best.png",
+      home: "TBT",
+      awayLogo: "/times/aliancafc.png",
+      away: "AFC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-30",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "85",
+      homeLogo: "/times/borussia.png",
+      home: "BVB",
+      awayLogo: "/times/conexaofc.png",
+      away: "CFC",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-30",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "86",
+      homeLogo: "/times/promi_informatica.png",
+      home: "PRO",
+      awayLogo: "/times/os_paraibas.png",
+      away: "pRB",
+      score: null,
+      type: "Copa selt livre",
+      data: "2026-05-30",
+      hora: "17:15",
+      local: "Estádio verano Piromalli"
+    },
 
     /**
      {

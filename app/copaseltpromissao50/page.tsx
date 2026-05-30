@@ -103,8 +103,8 @@ const groups: Group[] = [
       { home: "BNG", away: "AMB", date: "14/05", time: "20:00", homeScore: 0, awayScore: 0 },
       { home: "ADF", away: "AMB", date: "19/05", time: "21:00", homeScore: 1, awayScore: 1 },
       { home: "ASS", away: "BNG", date: "19/05", time: "21:00", homeScore: 0, awayScore: 4 },
-      { home: "BNG", away: "ADF", date: "28/05", time: "20:00" },
-      { home: "AMB", away: "ASS", date: "28/05", time: "20:00" },
+      { home: "BNG", away: "ADF", date: "28/05", time: "20:00", homeScore: 2, awayScore: 0 },
+      { home: "AMB", away: "ASS", date: "28/05", time: "20:00", homeScore: 9, awayScore: 0 },
     ],
   }
 ]
