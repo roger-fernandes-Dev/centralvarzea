@@ -424,7 +424,7 @@ export const championship = [
       },
       {
         id: 8,
-        home: "FAC",
+        home: "FAL",
         away: "NCF",
         date: "11/06",
         time: "20:00",
