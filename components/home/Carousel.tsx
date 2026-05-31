@@ -7,7 +7,6 @@ import Image from "next/image"
 
 const banners = [
   "/cegseguros.png",
-  "/suplementelinsad/promosuplemente2.jpg",
   "/suplementlins.png",
   "/health/health.jpg"
 ]
