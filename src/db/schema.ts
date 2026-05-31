@@ -104,6 +104,21 @@ export const teamProfiles = pgTable("team_profiles", {
 
   estado: text("estado"),
 
+  // NOVOS CAMPOS
+  sigla: text("sigla"),
+
+  logo: text("logo"),
+
+  fundacao: text("fundacao"),
+
+  categoria: text("categoria"),
+
+  descricao: text("descricao"),
+
+  whatsapp: text("whatsapp"),
+
+  instagram: text("instagram"),
+
   precisaJogador: boolean("precisaJogador").default(false),
 
   posicaoProcurada: text("posicaoProcurada"),
@@ -111,6 +126,8 @@ export const teamProfiles = pgTable("team_profiles", {
   precisaPatrocinio: boolean("precisaPatrocinio").default(false),
 
   premium: boolean("premium").default(false),
+
+  createdAt: timestamp("createdAt").defaultNow(),
 })
 
 /* =========================
