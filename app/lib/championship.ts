@@ -88,7 +88,7 @@ export const championship = [
     {
       id: 2,
       home: "MAG",
-      away: "PRB",
+      away: "PIT",
       date: "31/05",
       time: "08:00",
       homeScore: 0, awayScore: 2
@@ -103,8 +103,8 @@ export const championship = [
     },
     {
       id: 4,
-      home: "PIT",
-      away: "SGC",
+      home: "SGC",
+      away: "PRB",
       date: "31/05",
       time: "09:10",
       homeScore: 1, awayScore: 2
