@@ -114,17 +114,17 @@ export const championship = [
   semiFinals: [
     {
       id: 1,
-      home: "",
-      away: "",
-      date: "",
-      time: "",
+      home: "NPI",
+      away: "PRB",
+      date: "07/06",
+      time: "08:00",
     },
     {
       id: 2,
-      home: "",
-      away: "",
-      date: "",
-      time: "",
+      home: "CFC",
+      away: "MAG",
+      date: "07/06",
+      time: "08:00",
     },
   ],
 
