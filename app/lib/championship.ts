@@ -234,6 +234,7 @@ export const championship = [
         away: "GDB",
         date: "02/06",
         time: "19:00",
+        
       },
       {
         id: 2,

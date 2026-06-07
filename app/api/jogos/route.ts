@@ -1029,13 +1029,62 @@ const jogos = [
       homeLogo: "/times/promi_informatica.png",
       home: "PRO",
       awayLogo: "/times/os_paraibas.png",
-      away: "pRB",
+      away: "PRB",
       score: "5 x 6",
       type: "Copa selt livre",
       data: "2026-05-30",
       hora: "17:15",
       local: "Estádio verano Piromalli"
     },
+    {
+        id: "87",
+      homeLogo: "/times/saojose.png",
+      home: "SJC",
+      awayLogo: "/times/renukaadc.png",
+      away: "ADC",
+      score:null,
+      type: "Copa selt livre - oitavas de final",
+      data: "2026-06-09",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "88",
+      homeLogo: "/times/mec.png",
+      home: "MEC",
+      awayLogo: "/times/borussia.png",
+      away: "BVB",
+      score: null,
+      type: "Copa selt livre - oitavas de final",
+      data: "2026-06-09",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "89",
+      homeLogo: "/times/napoli.png",
+      home: "NPI",
+      awayLogo: "/times/os_paraibas.png",
+      away: "PRB",
+      score: null,
+      type: "Copa ADC - semifinal",
+      data: "2026-06-07",
+      hora: "08:00",
+      local: "Arena ADC"
+    },
+    {
+        id: "90",
+      homeLogo: "/times/casinhafc.png",
+      home: "CFC",
+      awayLogo: "/times/magos.png",
+      away: "MAG",
+      score: null,
+      type: "Copa ADC - semifinal",
+      data: "2026-06-07",
+      hora: "08:00",
+      local: "Arena ADC"
+    },
+      
 
     /**
      {

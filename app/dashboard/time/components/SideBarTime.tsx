@@ -27,11 +27,6 @@ export default function SidebarTime() {
       path: "/dashboard/time",
     },
     {
-      icon: Search,
-      label: "Buscar Times",
-      path: "/dashboard/time/buscar",
-    },
-    {
       icon: Users,
       label: "Amistosos",
       path: "/dashboard/time/amistosos",
