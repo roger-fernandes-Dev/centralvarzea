@@ -1069,7 +1069,7 @@ const jogos = [
       score: null,
       type: "Copa ADC - semifinal",
       data: "2026-06-07",
-      hora: "08:00",
+      hora: "08:30",
       local: "Arena ADC"
     },
     {
@@ -1081,7 +1081,7 @@ const jogos = [
       score: null,
       type: "Copa ADC - semifinal",
       data: "2026-06-07",
-      hora: "08:00",
+      hora: "09:30",
       local: "Arena ADC"
     },
       
