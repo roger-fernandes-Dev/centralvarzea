@@ -1066,7 +1066,7 @@ const jogos = [
       home: "NPI",
       awayLogo: "/times/os_paraibas.png",
       away: "PRB",
-      score: "4 x 3",
+      score: "3 x 4",
       type: "Copa ADC - semifinal",
       data: "2026-06-07",
       hora: "08:30",
