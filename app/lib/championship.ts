@@ -117,7 +117,7 @@ export const championship = [
       home: "NPI",
       away: "PRB",
       date: "07/06",
-      time: "08:00",
+      time: "08:30",
       homeScore: 3, awayScore: 4
     },
     {
@@ -125,7 +125,8 @@ export const championship = [
       home: "CFC",
       away: "MAG",
       date: "07/06",
-      time: "08:00",
+      time: "09:30",
+      homeScore: 2, awayScore: 1
     },
   ],
 
@@ -133,7 +134,7 @@ export const championship = [
     {
       id: 1,
       home: "PRB",
-      away: "",
+      away: "CFC",
       date: "14/06",
       time: "09:00",
     },

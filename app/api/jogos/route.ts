@@ -1078,7 +1078,7 @@ const jogos = [
       home: "CFC",
       awayLogo: "/times/magos.png",
       away: "MAG",
-      score: null,
+      score: "2 x 1",
       type: "Copa ADC - semifinal",
       data: "2026-06-07",
       hora: "09:30",
