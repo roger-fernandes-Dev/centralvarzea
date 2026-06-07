@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server"
 import { createClient } from "@supabase/supabase-js"
-import { createServerClient } from "@supabase/ssr"
-import { cookies } from "next/headers"
 import { z } from "zod"
 
 // =========================
-// CLIENT (service role - DB)
+// SUPABASE
 // =========================
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -28,38 +26,30 @@ const schema = z.object({
 export async function POST(req: Request) {
   try {
     // =========================
+    // TOKEN
+    // =========================
+    const token = req.headers
+      .get("authorization")
+      ?.replace("Bearer ", "")
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Token não enviado" },
+        { status: 401 }
+      )
+    }
+
+    // =========================
     // AUTH USER
     // =========================
-    const cookieStore = await cookies()
-
-    console.log("COOKIES:", cookieStore.getAll())
-
-    const supabaseAuth = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll()
-          },
-          setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) => {
-              cookieStore.set(name, value, options)
-            })
-          },
-        },
-      }
-    )
-
     const {
       data: { user },
       error: userError,
-    } = await supabaseAuth.auth.getUser()
+    } = await supabase.auth.getUser(token)
 
-    console.log("USER:", user)
-    console.log("USER ERROR:", userError)
+    if (userError || !user) {
+      console.error(userError)
 
-    if (!user) {
       return NextResponse.json(
         { error: "Não autorizado" },
         { status: 401 }
@@ -69,7 +59,10 @@ export async function POST(req: Request) {
     // =========================
     // ADMIN EMAIL
     // =========================
-    if (user.email !== "seuemail@email.com") {
+    if (
+      user.email !==
+      "rogerfernandes.adm@centralvarzea.com.br"
+    ) {
       return NextResponse.json(
         { error: "Acesso negado" },
         { status: 403 }
@@ -96,9 +89,15 @@ export async function POST(req: Request) {
     // SLUG
     // =========================
     const slug =
-      title.toLowerCase().replace(/\s+/g, "-") +
-      "-" +
-      Date.now()
+  title
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-") +
+  "-" +
+  Date.now()
 
     // =========================
     // INSERT

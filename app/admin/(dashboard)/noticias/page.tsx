@@ -106,19 +106,23 @@ export default function AdminNoticias() {
 
       const imageUrl = data.publicUrl
 
-      const res = await fetch("/api/admin/news", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          title: title.trim(),
-          resumo: resumo.trim(),
-          content: content.trim(),
-          image: imageUrl,
-        }),
-      })
+      const {
+  data: { session },
+} = await supabase.auth.getSession()
+
+const res = await fetch("/api/admin/news", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${session?.access_token}`,
+  },
+  body: JSON.stringify({
+    title: title.trim(),
+    resumo: resumo.trim(),
+    content: content.trim(),
+    image: imageUrl,
+  }),
+})
 
       const result = await res.json()
 
