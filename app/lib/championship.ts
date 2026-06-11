@@ -236,7 +236,8 @@ export const championship = [
         away: "GDB",
         date: "02/06",
         time: "19:00",
-        
+        homeScore: 1,
+        awayScore: 3,
       },
       {
         id: 2,
@@ -244,16 +245,18 @@ export const championship = [
         away: "ASS",
         date: "09/06",
         time: "19:00",
+        homeScore: 2,
+        awayScore: 1,
       },
     ],
 
     final: [
       {
         id: 1,
-        home: "",
-        away: "",
-        date: "",
-        time: "",
+        home: "GDB",
+        away: "BGA",
+        date: "20/06",
+        time: "18:30",
       },
     ],
   },
@@ -386,6 +389,8 @@ export const championship = [
         away: "BFC",
         date: "02/06",
         time: "20:00",
+        homeScore: 10,
+        awayScore: 0,
       },
       {
         id: 2,
@@ -393,6 +398,8 @@ export const championship = [
         away: "BGA",
         date: "02/06",
         time: "20:00",
+        homeScore: 6,
+        awayScore: 2,
       },
       {
         id: 3,
@@ -400,6 +407,8 @@ export const championship = [
         away: "ADC",
         date: "09/06",
         time: "20:00",
+        homeScore: 2,
+        awayScore: 3,
       },
       {
         id: 4,
@@ -407,6 +416,8 @@ export const championship = [
         away: "BVB",
         date: "09/06",
         time: "20:00",
+        homeScore: 7,
+        awayScore: 5,
       },
       {
         id: 5,
@@ -441,10 +452,10 @@ export const championship = [
     quarterFinals: [
       {
         id: 1,
-        home: "",
-        away: "",
-        date: "",
-        time: "",
+        home: "BAE",
+        away: "PRB",
+        date: "16/06",
+        time: "19:00",
       },
       {
         id: 2,

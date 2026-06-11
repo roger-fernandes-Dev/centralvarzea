@@ -76,10 +76,10 @@ function calculateTable(group: Group): Team[] {
 const final: PlayoffMatch[] = [
   {
     id: 1,
-    home: "",
-    away: "",
-    date: "",
-    time: "",
+    home: "AMB",
+    away: "BNG",
+    date: "20/06",
+    time: "17:15",
   },
 ]
 
