@@ -1084,6 +1084,54 @@ const jogos = [
       hora: "09:30",
       local: "Arena ADC"
     },
+    {
+        id: "91",
+      homeLogo: "/times/bahea.png",
+      home: "BAE",
+      awayLogo: "/times/os_paraibas.png",
+      away: "PRB",
+      score: null,
+      type: "Copa selt livre - quartas de final",
+      data: "2026-06-16",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "92",
+      homeLogo: "/times/renukaadc.png",
+      home: "ADC",
+      awayLogo: "/times/mec.png",
+      away: "MEC",
+      score: null,
+      type: "Copa selt livre - quartas de final",
+      data: "2026-06-16",
+      hora: "19:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "93",
+      homeLogo: "/times/meninos_da_vila.png",
+      home: "MDV",
+      awayLogo: "/times/guerreirosfc.png",
+      away: "GFC",
+      score: null,
+      type: "Copa selt livre - quartas de final",
+      data: "2026-06-16",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "94",
+      homeLogo: "/times/becofc.png",
+      home: "BEC",
+      awayLogo: "/times/falcoes.png",
+      away: "FAL",
+      score: null,
+      type: "Copa selt livre - quartas de final",
+      data: "2026-06-16",
+      hora: "20:00",
+      local: "Estádio verano Piromalli"
+    },
       
 
     /**
