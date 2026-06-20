@@ -1090,7 +1090,7 @@ const jogos = [
       home: "BAE",
       awayLogo: "/times/os_paraibas.png",
       away: "PRB",
-      score: null,
+      score: "6 x 2",
       type: "Copa selt livre - quartas de final",
       data: "2026-06-16",
       hora: "19:00",
@@ -1102,7 +1102,7 @@ const jogos = [
       home: "ADC",
       awayLogo: "/times/mec.png",
       away: "MEC",
-      score: null,
+      score: "6 x 4",
       type: "Copa selt livre - quartas de final",
       data: "2026-06-16",
       hora: "19:00",
@@ -1114,7 +1114,7 @@ const jogos = [
       home: "MDV",
       awayLogo: "/times/guerreirosfc.png",
       away: "GFC",
-      score: null,
+      score: "5 x 1",
       type: "Copa selt livre - quartas de final",
       data: "2026-06-16",
       hora: "20:00",
@@ -1126,13 +1126,48 @@ const jogos = [
       home: "BEC",
       awayLogo: "/times/falcoes.png",
       away: "FAL",
-      score: null,
+      score: "1 x 3",
       type: "Copa selt livre - quartas de final",
       data: "2026-06-16",
       hora: "20:00",
       local: "Estádio verano Piromalli"
     },
-      
+    {
+        id: "95",
+      homeLogo: "/times/bahea.png",
+      home: "BAE",
+      awayLogo: "/times/falcoes.png",
+      away: "FAL",
+      score: null,
+      type: "Copa selt livre - final",
+      data: "2026-06-20",
+      hora: "19:45",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "96",
+      homeLogo: "/times/grupodeubom.png",
+      home: "GDB",
+      awayLogo: "/times/bengala.png",
+      away: "BGA",
+      score: null,
+      type: "Copa selt 40+ - final",
+      data: "2026-06-20",
+      hora: "18:30",
+      local: "Estádio verano Piromalli"
+    },
+    {
+        id: "97",
+      homeLogo: "/times/arenamartinez50.png",
+      home: "AMB",
+      awayLogo: "/times/bengala.png",
+      away: "BGA",
+      score: null,
+      type: "Copa selt 50+ - final",
+      data: "2026-06-20",
+      hora: "17:45",
+      local: "Estádio verano Piromalli"
+    },
 
     /**
      {
