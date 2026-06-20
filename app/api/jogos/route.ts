@@ -1165,7 +1165,7 @@ const jogos = [
       score: null,
       type: "Copa selt 50+ - final",
       data: "2026-06-20",
-      hora: "17:15",
+      hora: "17:45",
       local: "Estádio verano Piromalli"
     },
 
