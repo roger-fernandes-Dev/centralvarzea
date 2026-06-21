@@ -137,6 +137,7 @@ export const championship = [
       away: "CFC",
       date: "14/06",
       time: "09:00",
+      
     },
   ],
 },
@@ -257,6 +258,8 @@ export const championship = [
         away: "BGA",
         date: "20/06",
         time: "18:30",
+        homeScore: 2,
+        awayScore: 1
       },
     ],
   },
@@ -524,6 +527,8 @@ export const championship = [
         away: "FAL",
         date: "20/06",
         time: "19:45",
+        homeScore: 4,
+        awayScore: 5
       },
     ],
   },
