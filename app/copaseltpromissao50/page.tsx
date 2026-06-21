@@ -80,6 +80,8 @@ const final: PlayoffMatch[] = [
     away: "BNG",
     date: "20/06",
     time: "17:15",
+    homeScore: 4,
+    awayScore: 2
   },
 ]
 
