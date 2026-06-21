@@ -15,16 +15,16 @@ type Championship = {
 
 export default function UpcomingChampionships() {
   const championships: Championship[] = [
-    { name: "Segunda Copa ADC", logo: "/campeonato/campeonatoadc.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "campeonato-adc", status: "running" },
-    { name: "Mini Campo livre Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltlivre", status: "running" },
-    { name: "Mini Campo 50+ Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltpromissao50", status: "running" },
-    { name: "Mini Campo 40+ Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltpromissao40", status: "running" },
+    { name: "Segunda Copa ADC", logo: "/campeonato/campeonatoadc.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "campeonato-adc", status: "closed" },
+    { name: "Mini Campo livre Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltlivre", status: "closed" },
+    { name: "Mini Campo 50+ Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltpromissao50", status: "closed" },
+    { name: "Mini Campo 40+ Promissão 2026", logo: "/campeonato/selt-minicampo.png", registrationEnd: "30/03/2026", startDate: "07/04/2026", slug: "copaseltpromissao40", status: "closed" },
     { name: "Super Copa Taquarituba 2026", logo: "/campeonato/copataquarituba.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-copa-taquarituba", status: "soon" },
-    { name: "Copa Talentos Lins 2026", logo: "/campeonato/copatalentoslins.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-copa-taquarituba", status: "running" },
-    { name: "Mini Campo Master-B Penápolis 2026", logo: "/campeonato/copalagoazul-penapolis.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "master-b-penapolis", status: "running" },
+    { name: "Copa Talentos Lins 2026", logo: "/campeonato/copatalentoslins.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-copa-taquarituba", status: "closed" },
+    { name: "Mini Campo Master-B Penápolis 2026", logo: "/campeonato/copalagoazul-penapolis.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "master-b-penapolis", status: "closed" },
     { name: "Copa futsal Bariri 2026", logo: "/campeonato/copabariri.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "super-bariri", status: "running" },
     { name: "Copa Ferradura 2026", logo: "/campeonato/copaferradura.png", registrationEnd: "18/07/2026", startDate: "24/07/2026", slug: "copa-ferradura", status: "running" },
-    { name: "Super Master Guaiçara", logo: "/campeonato/supermaster-guaicara.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "supermaster-guaicara", status: "running" },
+    { name: "Super Master Guaiçara", logo: "/campeonato/supermaster-guaicara.png", registrationEnd: "15/04/2026", startDate: "25/04/2026", slug: "supermaster-guaicara", status: "closed" },
     { name: "Copa Guararapes", logo: "/campeonato/copa-guararapes.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "soon" },
     { name: "Copa Futsal infantil ourinhos", logo: "/campeonato/copafutsalinfantilourinhos.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-guararapes", status: "running" },
     { name: "Copa Bá", logo: "/campeonato/copaba.png", registrationEnd: "14/07/2026", startDate: "20/07/2026", slug: "copa-ba", status: "running" },

@@ -11,20 +11,118 @@ import {
   Shield,
   Users,
   Calendar,
-  ChevronRight,
   Pencil,
+  Bell,
+  Check,
+  X,
+  Eye,
 } from "lucide-react"
+import {
+  TeamProfileModal,
+  type TeamProfile,
+} from "./components/TeamProfileModal"
 
+type FriendlyInvitation = {
+  id: string
+  playerid?: string | null
+  teamid?: string | null
+  status?: string | null
+  createdat?: string | null
+  sender?: TeamProfile | null
+}
 
 export default function DashboardTime() {
   const router = useRouter()
 
   const [loading, setLoading] = useState(true)
-  const [team, setTeam] = useState<any>(null)
+  const [team, setTeam] = useState<TeamProfile | null>(null)
+  const [convitesRecebidos, setConvitesRecebidos] = useState<
+    FriendlyInvitation[]
+  >([])
+  const [conviteSelecionado, setConviteSelecionado] =
+    useState<FriendlyInvitation | null>(null)
+  const [perfilSelecionado, setPerfilSelecionado] =
+    useState<TeamProfile | null>(null)
+  const [atualizandoConvite, setAtualizandoConvite] = useState<string | null>(
+    null
+  )
 
   const [openBannerModal, setOpenBannerModal] = useState(false)
 const [bannerFile, setBannerFile] = useState<File | null>(null)
 const [savingBanner, setSavingBanner] = useState(false)
+
+async function loadConvitesRecebidos(userId: string) {
+  const response = await fetch(
+    `/api/team/invitations?direction=received&userId=${userId}`
+  )
+
+  if (!response.ok) {
+    console.log("ERRO AO BUSCAR CONVITES")
+    return
+  }
+
+  const { invitations } = await response.json()
+  const data = invitations || []
+
+  const senderIds = Array.from(
+    new Set(
+      (data || [])
+        .map((convite: FriendlyInvitation) => convite.playerid)
+        .filter(Boolean)
+    )
+  )
+
+  const { data: senders } = senderIds.length
+    ? await supabase.from("team_profiles").select("*").in("userid", senderIds)
+    : { data: [] }
+
+  const senderByUserId = (senders || []).reduce(
+    (acc: Record<string, TeamProfile>, sender: TeamProfile) => {
+      if (sender.userid) {
+        acc[sender.userid] = sender
+      }
+
+      return acc
+    },
+    {}
+  )
+
+  setConvitesRecebidos(
+    (data || []).map((convite: FriendlyInvitation) => ({
+      ...convite,
+      sender: convite.playerid ? senderByUserId[convite.playerid] : null,
+    }))
+  )
+}
+
+async function responderConvite(convite: FriendlyInvitation, status: string) {
+  setAtualizandoConvite(status)
+
+  const response = await fetch("/api/team/invitations", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      id: convite.id,
+      status,
+    }),
+  })
+
+  setAtualizandoConvite(null)
+
+  if (!response.ok) {
+    alert("Nao foi possivel responder o convite agora.")
+    return
+  }
+
+  setConvitesRecebidos((current) =>
+    current.map((item) => (item.id === convite.id ? { ...item, status } : item))
+  )
+  setConviteSelecionado((current) =>
+    current?.id === convite.id ? { ...current, status } : current
+  )
+}
 
 async function handleBannerUpload() {
   if (!bannerFile || !team?.userid) return
@@ -138,6 +236,7 @@ async function handleBannerUpload() {
         .maybeSingle()
 
       setTeam(data)
+      await loadConvitesRecebidos(user.id)
       setLoading(false)
     }
 
@@ -249,7 +348,7 @@ async function handleBannerUpload() {
       {team.logo ? (
         <img
           src={team.logo}
-          alt={team.nometime}
+          alt={team.nometime || "Logo do time"}
           className="w-full h-full object-cover"
         />
       ) : (
@@ -352,7 +451,126 @@ async function handleBannerUpload() {
 </div>
 
 </section>
+      <section className="bg-white rounded-[32px] p-5 md:p-6 border border-zinc-200 shadow-sm mb-6">
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-3">
+            <span className="w-11 h-11 rounded-full bg-[#edf3ef] text-[#0f3b2e] flex items-center justify-center">
+              <Bell size={18} />
+            </span>
+
+            <div>
+              <h2 className="text-xl font-black text-zinc-900">
+                Notificacoes
+              </h2>
+              <p className="text-sm text-zinc-500">
+                Convites de amistosos recebidos
+              </p>
+            </div>
+          </div>
+
+          <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-sm font-bold">
+            {
+              convitesRecebidos.filter(
+                (convite) => (convite.status || "pendente") === "pendente"
+              ).length
+            }
+          </span>
+        </div>
+
+        {convitesRecebidos.length === 0 ? (
+          <div className="rounded-[24px] bg-[#f7f8fa] p-5 text-sm text-zinc-500">
+            Nenhum convite recebido por enquanto.
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {convitesRecebidos.slice(0, 5).map((convite) => {
+              const sender = convite.sender
+              const status = convite.status || "pendente"
+
+              return (
+                <div
+                  key={convite.id}
+                  className="rounded-[24px] border border-zinc-200 p-4 flex flex-col md:flex-row md:items-center gap-4"
+                >
+                  <div className="flex items-center gap-3 flex-1">
+                    <div className="w-12 h-12 rounded-full bg-[#edf3ef] text-[#0f3b2e] flex items-center justify-center font-black overflow-hidden">
+                      {sender?.logo ? (
+                        <span
+                          aria-label={`Logo do ${sender.nometime}`}
+                          role="img"
+                          className="w-full h-full bg-cover bg-center"
+                          style={{ backgroundImage: `url(${sender.logo})` }}
+                        />
+                      ) : (
+                        sender?.nometime?.charAt(0) || "C"
+                      )}
+                    </div>
+
+                    <div>
+                      <h3 className="font-bold text-zinc-900">
+                        {sender?.nometime || "Time convidante"}
+                      </h3>
+                      <p className="text-sm text-zinc-500">
+                        Enviou um convite para amistoso
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                        status === "aceito"
+                          ? "bg-green-100 text-green-700"
+                          : status === "recusado"
+                            ? "bg-red-100 text-red-700"
+                            : "bg-amber-100 text-amber-700"
+                      }`}
+                    >
+                      {status === "aceito"
+                        ? "Aceito"
+                        : status === "recusado"
+                          ? "Recusado"
+                          : "Pendente"}
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => setConviteSelecionado(convite)}
+                      className="h-9 px-4 rounded-full bg-[#0f3b2e] text-white text-sm font-semibold hover:opacity-90 transition"
+                    >
+                      Abrir
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </section>
+
       {/* resto do dashboard continua igual */}
+
+      {conviteSelecionado && (
+        <ConviteModal
+          convite={conviteSelecionado}
+          updating={atualizandoConvite}
+          onClose={() => setConviteSelecionado(null)}
+          onAccept={() => responderConvite(conviteSelecionado, "aceito")}
+          onReject={() => responderConvite(conviteSelecionado, "recusado")}
+          onViewProfile={() => {
+            if (conviteSelecionado.sender) {
+              setPerfilSelecionado(conviteSelecionado.sender)
+            }
+          }}
+        />
+      )}
+
+      {perfilSelecionado && (
+        <TeamProfileModal
+          time={perfilSelecionado}
+          onClose={() => setPerfilSelecionado(null)}
+        />
+      )}
 
       {openBannerModal && (
   <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
@@ -419,5 +637,130 @@ async function handleBannerUpload() {
   </div>
 )}
     </main>
+  )
+}
+
+function ConviteModal({
+  convite,
+  updating,
+  onClose,
+  onAccept,
+  onReject,
+  onViewProfile,
+}: {
+  convite: FriendlyInvitation
+  updating: string | null
+  onClose: () => void
+  onAccept: () => void
+  onReject: () => void
+  onViewProfile: () => void
+}) {
+  const sender = convite.sender
+  const status = convite.status || "pendente"
+  const localizacao = [sender?.cidade, sender?.estado].filter(Boolean).join("/")
+  const canRespond = status === "pendente"
+
+  return (
+    <div
+      className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Convite de amistoso"
+    >
+      <div className="bg-white w-full max-w-lg rounded-[32px] p-6 shadow-2xl">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-16 h-16 rounded-full bg-[#edf3ef] text-[#0f3b2e] flex items-center justify-center font-black text-2xl overflow-hidden">
+              {sender?.logo ? (
+                <span
+                  aria-label={`Logo do ${sender.nometime}`}
+                  role="img"
+                  className="w-full h-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${sender.logo})` }}
+                />
+              ) : (
+                sender?.nometime?.charAt(0) || "C"
+              )}
+            </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-[2px] text-[#0f3b2e] font-bold">
+                Convite
+              </p>
+              <h2 className="text-xl font-black text-zinc-900">
+                {sender?.nometime || "Time convidante"}
+              </h2>
+              <p className="text-sm text-zinc-500">
+                {localizacao || "Localizacao nao informada"}
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fechar convite"
+            className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="mt-6 rounded-[24px] bg-[#f7f8fa] p-5">
+          <p className="text-zinc-700 leading-relaxed">
+            Esse time enviou um convite para marcar um amistoso com voce.
+            Analise o perfil antes de aceitar ou recusar.
+          </p>
+
+          <span
+            className={`inline-flex mt-4 px-3 py-1 rounded-full text-xs font-semibold ${
+              status === "aceito"
+                ? "bg-green-100 text-green-700"
+                : status === "recusado"
+                  ? "bg-red-100 text-red-700"
+                  : "bg-amber-100 text-amber-700"
+            }`}
+          >
+            {status === "aceito"
+              ? "Convite aceito"
+              : status === "recusado"
+                ? "Convite recusado"
+                : "Aguardando resposta"}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6">
+          <button
+            type="button"
+            onClick={onViewProfile}
+            disabled={!sender}
+            className="h-12 rounded-2xl border border-zinc-200 font-semibold flex items-center justify-center gap-2 hover:bg-zinc-50 transition disabled:opacity-50"
+          >
+            <Eye size={16} />
+            Ver perfil
+          </button>
+
+          <button
+            type="button"
+            onClick={onReject}
+            disabled={!canRespond || updating === "recusado"}
+            className="h-12 rounded-2xl border border-red-200 text-red-700 font-semibold flex items-center justify-center gap-2 hover:bg-red-50 transition disabled:opacity-50"
+          >
+            <X size={16} />
+            {updating === "recusado" ? "..." : "Rejeitar"}
+          </button>
+
+          <button
+            type="button"
+            onClick={onAccept}
+            disabled={!canRespond || updating === "aceito"}
+            className="h-12 rounded-2xl bg-[#0f3b2e] text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition disabled:opacity-50"
+          >
+            <Check size={16} />
+            {updating === "aceito" ? "..." : "Aceitar"}
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
