@@ -1168,6 +1168,18 @@ const jogos = [
       hora: "17:45",
       local: "Estádio verano Piromalli"
     },
+     {
+      id: "98",
+      homeLogo: "/times/renukaadc.png",
+      home: "ADC",
+      awayLogo: "/times/bengala.png",
+      away: "BGA",
+      score: null,
+      type: "Amistoso",
+      data: "2026-06-28",
+      hora: "08:30",
+      local: "Arena ADC"
+    },
 
     /**
      {

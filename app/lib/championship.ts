@@ -137,6 +137,7 @@ export const championship = [
       away: "CFC",
       date: "14/06",
       time: "09:00",
+      homeScore: 3, awayScore: 3
       
     },
   ],
