@@ -1,6 +1,6 @@
 "use client"
 
-import type { ReactNode } from "react"
+import { useEffect, useState, type ReactNode } from "react"
 import {
   Calendar,
   HandHeart,
@@ -11,6 +11,7 @@ import {
   Users,
   X,
   Send,
+  UserRound,
 } from "lucide-react"
 
 export type TeamProfile = {
@@ -31,12 +32,29 @@ export type TeamProfile = {
   precisapatrocinio?: boolean | null
 }
 
+type InviteStatus = "pending" | "accepted" | "rejected" | "cancelled" | string
+
 type TeamProfileModalProps = {
   time: TeamProfile
   onClose: () => void
   onInvite?: (time: TeamProfile) => void
-  inviteStatus?: string | null
+  inviteStatus?: InviteStatus | null
   inviteLoading?: boolean
+}
+
+type TeamCategoryDetail = {
+  id: string
+  category_id: string
+  category_name: string
+  needs_players: boolean
+  wanted_positions: string[]
+  staff: {
+    id: string
+    name: string
+    role: "coach" | "staff" | string
+    phone?: string | null
+    notes?: string | null
+  }[]
 }
 
 export function TeamProfileModal({
@@ -46,8 +64,14 @@ export function TeamProfileModal({
   inviteStatus,
   inviteLoading,
 }: TeamProfileModalProps) {
+  const [detailsLoading, setDetailsLoading] = useState(true)
+  const [teamCategories, setTeamCategories] = useState<TeamCategoryDetail[]>(
+    []
+  )
+
   const nomeTime = time.nometime || "Time sem nome"
   const localizacao = [time.cidade, time.estado].filter(Boolean).join("/")
+
   const iniciais = nomeTime
     .split(" ")
     .filter(Boolean)
@@ -55,10 +79,40 @@ export function TeamProfileModal({
     .map((parte) => parte[0])
     .join("")
     .toUpperCase()
+
   const whatsappUrl = time.whatsapp
     ? `https://wa.me/${time.whatsapp.replace(/\D/g, "")}`
     : null
+
   const conviteRespondido = Boolean(inviteStatus)
+
+  useEffect(() => {
+    async function loadProfileDetails() {
+      if (!time.id) return
+
+      setDetailsLoading(true)
+
+      const response = await fetch(`/api/team/profile-details?teamId=${time.id}`)
+      const result = response.ok ? await response.json() : { categories: [] }
+
+      setTeamCategories(result.categories || [])
+      setDetailsLoading(false)
+    }
+
+    loadProfileDetails()
+  }, [time.id])
+
+  function getInviteButtonText() {
+    if (inviteLoading) return "Enviando..."
+
+    if (!inviteStatus) return "Convite"
+
+    if (inviteStatus === "accepted") return "Convite aceito"
+    if (inviteStatus === "rejected") return "Convite recusado"
+    if (inviteStatus === "cancelled") return "Convite cancelado"
+
+    return "Convite enviado"
+  }
 
   return (
     <div
@@ -67,7 +121,7 @@ export function TeamProfileModal({
       aria-modal="true"
       aria-label={`Perfil do ${nomeTime}`}
     >
-      <div className="bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-[32px] shadow-2xl">
+      <div className="bg-white w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-[32px] shadow-2xl">
         <div
           className="relative h-48 md:h-64 bg-gradient-to-r from-[#0f3b2e] to-[#1d6b52] bg-cover bg-center"
           style={
@@ -105,9 +159,20 @@ export function TeamProfileModal({
 
             <div className="flex-1 md:pb-3">
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-semibold">
-                  {time.categoria || "Amador"}
-                </span>
+                {teamCategories.length > 0 ? (
+                  teamCategories.slice(0, 4).map((category) => (
+                    <span
+                      key={category.id}
+                      className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-semibold"
+                    >
+                      {category.category_name}
+                    </span>
+                  ))
+                ) : (
+                  <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-semibold">
+                    Sem categoria
+                  </span>
+                )}
 
                 {time.precisajogador && (
                   <span className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-700 text-xs font-semibold">
@@ -117,7 +182,7 @@ export function TeamProfileModal({
 
                 {time.precisapatrocinio && (
                   <span className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-700 text-xs font-semibold">
-                    Busca patrocinio
+                    Busca patrocínio
                   </span>
                 )}
               </div>
@@ -128,7 +193,7 @@ export function TeamProfileModal({
 
               <p className="mt-2 text-zinc-500 flex items-center gap-2">
                 <MapPin size={16} />
-                {localizacao || "Localizacao nao informada"}
+                {localizacao || "Localização não informada"}
               </p>
             </div>
           </div>
@@ -141,13 +206,13 @@ export function TeamProfileModal({
 
               <p className="mt-3 text-sm md:text-base text-zinc-600 leading-relaxed">
                 {time.descricao ||
-                  "Este time ainda nao adicionou uma descricao completa ao perfil."}
+                  "Este time ainda não adicionou uma descrição completa ao perfil."}
               </p>
             </section>
 
             <section className="rounded-[28px] border border-zinc-200 p-5 md:p-6">
               <h3 className="text-lg font-black text-zinc-900">
-                Informacoes
+                Informações
               </h3>
 
               <div className="mt-4 space-y-3">
@@ -156,29 +221,148 @@ export function TeamProfileModal({
                   label="Bairro"
                   value={time.bairro || "-"}
                 />
+
                 <InfoLinha
                   icon={<Trophy size={16} />}
-                  label="Categoria"
-                  value={time.categoria || "Amador"}
+                  label="Categorias"
+                  value={
+                    teamCategories.length > 0
+                      ? `${teamCategories.length} cadastrada(s)`
+                      : "Não informadas"
+                  }
                 />
+
                 <InfoLinha
                   icon={<Users size={16} />}
                   label="Status"
                   value={time.precisajogador ? "Recrutando" : "Ativo"}
                 />
+
                 <InfoLinha
                   icon={<HandHeart size={16} />}
-                  label="Patrocinio"
+                  label="Patrocínio"
                   value={time.precisapatrocinio ? "Procurando" : "-"}
                 />
               </div>
             </section>
           </div>
 
+          <section className="mt-5 rounded-[28px] border border-zinc-200 p-5 md:p-6">
+            <div className="flex items-start justify-between gap-4 mb-5">
+              <div>
+                <h3 className="text-lg font-black text-zinc-900">
+                  Categorias e responsáveis
+                </h3>
+
+                <p className="text-sm text-zinc-500 mt-1">
+                  Veja as categorias do time, posições procuradas e quem cuida
+                  de cada uma.
+                </p>
+              </div>
+
+              <span className="hidden md:inline-flex px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-bold">
+                {teamCategories.length} categoria(s)
+              </span>
+            </div>
+
+            {detailsLoading && (
+              <div className="rounded-2xl bg-[#f7f8fa] p-4 text-sm text-zinc-500">
+                Carregando categorias...
+              </div>
+            )}
+
+            {!detailsLoading && teamCategories.length === 0 && (
+              <div className="rounded-2xl bg-[#f7f8fa] p-4 text-sm text-zinc-500">
+                Este time ainda não informou categorias.
+              </div>
+            )}
+
+            {!detailsLoading && teamCategories.length > 0 && (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {teamCategories.map((category) => {
+                  const coaches = category.staff.filter(
+                    (person) => person.role === "coach"
+                  )
+
+                  const staff = category.staff.filter(
+                    (person) => person.role !== "coach"
+                  )
+
+                  return (
+                    <article
+                      key={category.id}
+                      className="rounded-[24px] bg-[#f7f8fa] border border-zinc-100 p-5"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-xs uppercase tracking-[2px] text-[#0f3b2e] font-bold">
+                            Categoria
+                          </p>
+
+                          <h4 className="text-2xl font-black text-zinc-900 mt-1">
+                            {category.category_name}
+                          </h4>
+                        </div>
+
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-bold ${
+                            category.needs_players
+                              ? "bg-[#edf3ef] text-[#0f3b2e]"
+                              : "bg-white text-zinc-500"
+                          }`}
+                        >
+                          {category.needs_players
+                            ? "Recrutando"
+                            : "Elenco ativo"}
+                        </span>
+                      </div>
+
+                      {category.needs_players &&
+                        category.wanted_positions.length > 0 && (
+                          <div className="mt-4">
+                            <p className="text-xs text-zinc-500 mb-2">
+                              Posições procuradas
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                              {category.wanted_positions.map((position) => (
+                                <span
+                                  key={position}
+                                  className="px-3 py-1 rounded-full bg-white text-zinc-700 text-xs font-semibold border border-zinc-200"
+                                >
+                                  {position}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                      <div className="mt-5 space-y-4">
+                        <PeopleBlock
+                          title="Técnico"
+                          emptyText="Técnico não informado"
+                          people={coaches}
+                          icon="coach"
+                        />
+
+                        <PeopleBlock
+                          title="Comissão técnica"
+                          emptyText="Comissão não informada"
+                          people={staff}
+                          icon="staff"
+                        />
+                      </div>
+                    </article>
+                  )
+                })}
+              </div>
+            )}
+          </section>
+
           <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="rounded-[24px] bg-[#f7f8fa] p-5">
               <Calendar className="text-[#0f3b2e]" size={20} />
-              <p className="text-xs text-zinc-500 mt-3">Disponivel para</p>
+              <p className="text-xs text-zinc-500 mt-3">Disponível para</p>
               <h4 className="font-bold mt-1">Amistosos</h4>
             </div>
 
@@ -194,7 +378,7 @@ export function TeamProfileModal({
               <MessageCircle className="text-[#0f3b2e]" size={20} />
               <p className="text-xs text-zinc-500 mt-3">Contato</p>
               <h4 className="font-bold mt-1">
-                {time.whatsapp ? "WhatsApp disponivel" : "Nao informado"}
+                {time.whatsapp ? "WhatsApp disponível" : "Não informado"}
               </h4>
             </div>
           </div>
@@ -216,15 +400,7 @@ export function TeamProfileModal({
                 className="h-12 px-6 rounded-2xl border border-[#0f3b2e] text-[#0f3b2e] font-medium flex items-center justify-center gap-2 hover:bg-[#edf3ef] transition disabled:opacity-50 disabled:hover:bg-transparent"
               >
                 <Send size={16} />
-                {inviteLoading
-                  ? "Enviando..."
-                  : conviteRespondido
-                    ? inviteStatus === "aceito"
-                      ? "Convite aceito"
-                      : inviteStatus === "recusado"
-                        ? "Convite recusado"
-                        : "Convite enviado"
-                    : "Convite"}
+                {getInviteButtonText()}
               </button>
             )}
 
@@ -234,7 +410,9 @@ export function TeamProfileModal({
               rel={whatsappUrl ? "noreferrer" : undefined}
               aria-disabled={!whatsappUrl}
               className={`h-12 px-6 rounded-2xl bg-[#0f3b2e] text-white font-medium flex items-center justify-center gap-2 transition ${
-                whatsappUrl ? "hover:opacity-90" : "opacity-50 pointer-events-none"
+                whatsappUrl
+                  ? "hover:opacity-90"
+                  : "opacity-50 pointer-events-none"
               }`}
             >
               <MessageCircle size={16} />
@@ -243,6 +421,57 @@ export function TeamProfileModal({
           </div>
         </div>
       </div>
+    </div>
+  )
+}
+
+function PeopleBlock({
+  title,
+  emptyText,
+  people,
+  icon,
+}: {
+  title: string
+  emptyText: string
+  people: TeamCategoryDetail["staff"]
+  icon: "coach" | "staff"
+}) {
+  return (
+    <div>
+      <p className="text-xs text-zinc-500 mb-2">{title}</p>
+
+      {people.length === 0 ? (
+        <p className="rounded-2xl bg-white p-3 text-sm text-zinc-400">
+          {emptyText}
+        </p>
+      ) : (
+        <div className="space-y-2">
+          {people.map((person) => (
+            <div
+              key={person.id}
+              className="rounded-2xl bg-white border border-zinc-100 p-3 flex items-center gap-3"
+            >
+              <span className="w-10 h-10 rounded-full bg-[#edf3ef] text-[#0f3b2e] flex items-center justify-center">
+                {icon === "coach" ? (
+                  <UserRound size={16} />
+                ) : (
+                  <Users size={16} />
+                )}
+              </span>
+
+              <div>
+                <p className="text-sm font-bold text-zinc-900">
+                  {person.name}
+                </p>
+
+                {person.phone && (
+                  <p className="text-xs text-zinc-500">{person.phone}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

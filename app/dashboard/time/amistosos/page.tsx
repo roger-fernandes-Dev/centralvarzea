@@ -8,6 +8,9 @@ import {
   Shield,
   Users,
   Send,
+  CalendarDays,
+  Clock3,
+  X,
 } from "lucide-react"
 import { supabase } from "@/src/lib/supabase/client"
 import {
@@ -16,21 +19,48 @@ import {
 } from "../components/TeamProfileModal"
 
 type FriendlyInvitation = {
-  teamid?: string | null
+  receiver_team_id?: string | null
   status?: string | null
+}
+
+type Category = {
+  id: string
+  name: string
+}
+
+type TeamCategoryRef = {
+  team_id: string
+  category_id: string
+}
+
+type InviteFormData = {
+  categoryId: string
+  proposedDate: string
+  proposedTime: string
+  location: string
+  message: string
 }
 
 export default function BuscarTimesPage() {
   const [times, setTimes] = useState<TeamProfile[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [teamCategoryRefs, setTeamCategoryRefs] = useState<TeamCategoryRef[]>(
+    []
+  )
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [nomeBusca, setNomeBusca] = useState("")
   const [cidadeBusca, setCidadeBusca] = useState("")
   const [categoriaBusca, setCategoriaBusca] = useState("Todas categorias")
+
   const [timeSelecionado, setTimeSelecionado] = useState<TeamProfile | null>(
     null
   )
+  const [timeConvite, setTimeConvite] = useState<TeamProfile | null>(null)
+
   const [currentUserId, setCurrentUserId] = useState<string | null>(null)
+  const [currentTeamId, setCurrentTeamId] = useState<string | null>(null)
+
   const [convites, setConvites] = useState<Record<string, string>>({})
   const [enviandoConvite, setEnviandoConvite] = useState<string | null>(null)
 
@@ -45,30 +75,59 @@ export default function BuscarTimesPage() {
 
       setCurrentUserId(user?.id || null)
 
-      const { data, error } = await supabase
+      let loggedTeamId: string | null = null
+
+      if (user) {
+        const { data: myTeam, error: myTeamError } = await supabase
+          .from("team_profiles")
+          .select("id")
+          .eq("userid", user.id)
+          .maybeSingle()
+
+        if (myTeamError) {
+          console.log("ERRO AO BUSCAR TIME LOGADO:", myTeamError)
+          setError("Nao foi possivel identificar seu time.")
+          setLoading(false)
+          return
+        }
+
+        loggedTeamId = myTeam?.id || null
+        setCurrentTeamId(loggedTeamId)
+      }
+
+      const { data: teamsData, error: teamsError } = await supabase
         .from("team_profiles")
         .select("*")
         .order("nometime", { ascending: true })
 
-      if (error) {
-        console.log("ERRO AO BUSCAR TIMES:", error)
+      if (teamsError) {
+        console.log("ERRO AO BUSCAR TIMES:", teamsError)
         setError("Nao foi possivel carregar os times agora.")
         setLoading(false)
         return
       }
 
-      setTimes(data || [])
+      setTimes(teamsData || [])
 
-      if (user) {
+      const metaResponse = await fetch("/api/team/search-meta")
+      const metaResult = metaResponse.ok
+        ? await metaResponse.json()
+        : { categories: [], teamCategories: [] }
+
+      setCategories(metaResult.categories || [])
+      setTeamCategoryRefs(metaResult.teamCategories || [])
+
+      if (loggedTeamId) {
         const response = await fetch(
-          `/api/team/invitations?direction=sent&userId=${user.id}`
+          `/api/team/invitations?direction=sent&teamId=${loggedTeamId}`
         )
+
         const result = response.ok ? await response.json() : { invitations: [] }
 
         const statusPorTime = (result.invitations || []).reduce(
           (acc: Record<string, string>, convite: FriendlyInvitation) => {
-            if (convite.teamid) {
-              acc[convite.teamid] = convite.status || "pendente"
+            if (convite.receiver_team_id) {
+              acc[convite.receiver_team_id] = convite.status || "pending"
             }
 
             return acc
@@ -85,25 +144,91 @@ export default function BuscarTimesPage() {
     loadTimes()
   }, [])
 
-  async function enviarConvite(time: TeamProfile) {
+  const teamCategoriesMap = useMemo(() => {
+    const map: Record<string, string[]> = {}
+
+    teamCategoryRefs.forEach((item) => {
+      if (!map[item.team_id]) {
+        map[item.team_id] = []
+      }
+
+      map[item.team_id].push(item.category_id)
+    })
+
+    return map
+  }, [teamCategoryRefs])
+
+  const currentTeamInviteCategories = useMemo(() => {
+    if (!currentTeamId) return []
+
+    const currentCategoryIds = teamCategoriesMap[currentTeamId] || []
+
+    return categories.filter((category) =>
+      currentCategoryIds.includes(category.id)
+    )
+  }, [categories, currentTeamId, teamCategoriesMap])
+
+  function getTeamCategories(teamId?: string | null) {
+    if (!teamId) return []
+
+    const categoryIds = teamCategoriesMap[teamId] || []
+
+    return categories.filter((category) => categoryIds.includes(category.id))
+  }
+
+  function abrirModalConvite(time: TeamProfile) {
     if (!currentUserId) {
       alert("Entre na sua conta de time para enviar convites.")
       return
     }
 
-    if (!time.userid) {
+    if (!currentTeamId) {
+      alert("Nao foi possivel identificar o seu time.")
+      return
+    }
+
+    if (!time.id) {
       alert("Este time ainda nao pode receber convites.")
       return
     }
 
-    if (time.userid === currentUserId) {
+    if (time.id === currentTeamId) {
       alert("Voce nao pode enviar convite para o proprio time.")
       return
     }
 
-    if (convites[time.userid]) return
+    if (convites[time.id]) return
 
-    setEnviandoConvite(time.userid)
+    if (currentTeamInviteCategories.length === 0) {
+      alert("Cadastre pelo menos uma categoria no seu time antes de enviar convite.")
+      return
+    }
+
+    setTimeConvite(time)
+  }
+
+  async function enviarConvite(time: TeamProfile, form: InviteFormData) {
+    if (!currentTeamId) {
+      alert("Nao foi possivel identificar o seu time.")
+      return
+    }
+
+    if (!time.id) {
+      alert("Este time ainda nao pode receber convites.")
+      return
+    }
+
+    if (
+      !form.categoryId ||
+      !form.proposedDate ||
+      !form.proposedTime ||
+      !form.location.trim()
+    ) {
+      alert("Preencha categoria, data, horario e local.")
+      return
+    }
+
+    setEnviandoConvite(time.id)
 
     const response = await fetch("/api/team/invitations", {
       method: "POST",
@@ -111,8 +236,13 @@ export default function BuscarTimesPage() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        senderId: currentUserId,
-        targetId: time.userid,
+        senderTeamId: currentTeamId,
+        receiverTeamId: time.id,
+        categoryId: form.categoryId,
+        proposedDate: form.proposedDate,
+        proposedTime: form.proposedTime,
+        location: form.location.trim(),
+        message: form.message.trim() || null,
       }),
     })
 
@@ -125,8 +255,10 @@ export default function BuscarTimesPage() {
 
     setConvites((current) => ({
       ...current,
-      [time.userid as string]: "pendente",
+      [time.id as string]: "pending",
     }))
+
+    setTimeConvite(null)
   }
 
   const timesFiltrados = useMemo(() => {
@@ -137,17 +269,18 @@ export default function BuscarTimesPage() {
       const nomeTime = item.nometime?.toLowerCase() || ""
       const cidadeTime = item.cidade?.toLowerCase() || ""
       const estadoTime = item.estado?.toLowerCase() || ""
-      const categoriaTime = item.categoria || "Amador"
+      const categoryIds = item.id ? teamCategoriesMap[item.id] || [] : []
 
       const matchNome = !nome || nomeTime.includes(nome)
       const matchCidade =
         !cidade || cidadeTime.includes(cidade) || estadoTime.includes(cidade)
       const matchCategoria =
-        categoriaBusca === "Todas categorias" || categoriaTime === categoriaBusca
+        categoriaBusca === "Todas categorias" ||
+        categoryIds.includes(categoriaBusca)
 
       return matchNome && matchCidade && matchCategoria
     })
-  }, [categoriaBusca, cidadeBusca, nomeBusca, times])
+  }, [categoriaBusca, cidadeBusca, nomeBusca, teamCategoriesMap, times])
 
   return (
     <main className="flex-1 p-3 md:p-6">
@@ -161,7 +294,7 @@ export default function BuscarTimesPage() {
         </h1>
 
         <p className="mt-3 text-green-100 max-w-2xl">
-          Descubra clubes, visualize perfis completos e entre em contato para
+          Descubra clubes, visualize perfis completos e envie convites para
           marcar amistosos.
         </p>
       </section>
@@ -195,10 +328,13 @@ export default function BuscarTimesPage() {
             onChange={(e) => setCategoriaBusca(e.target.value)}
             className="h-14 bg-[#f5f7f9] rounded-2xl px-4 outline-none"
           >
-            <option>Todas categorias</option>
-            <option>Amador</option>
-            <option>Semi-pro</option>
-            <option>Profissional</option>
+            <option value="Todas categorias">Todas categorias</option>
+
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
           </select>
 
           <button
@@ -252,13 +388,25 @@ export default function BuscarTimesPage() {
               ? `https://wa.me/${item.whatsapp.replace(/\D/g, "")}`
               : null
 
+            const conviteStatus = convites[item.id || ""]
+            const conviteEnviando = enviandoConvite === item.id
+            const categoriasDoTime = getTeamCategories(item.id)
+
             return (
               <div
                 key={item.id}
                 className="bg-white rounded-[32px] border border-zinc-200 overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all"
               >
-                <div className="h-28 bg-gradient-to-r from-[#0f3b2e] to-[#1d6b52]" />
-
+<div
+  className="relative h-32 bg-gradient-to-r from-[#0f3b2e] to-[#1d6b52] bg-cover bg-center"
+  style={
+    item.fototime
+      ? { backgroundImage: `url(${item.fototime})` }
+      : undefined
+  }
+>
+  <div className="absolute inset-0 bg-black/25" />
+</div>
                 <div className="px-6 pb-6 relative">
                   <div className="w-24 h-24 rounded-full bg-white border-4 border-white shadow-xl -mt-12 flex items-center justify-center text-[#0f3b2e] font-black text-2xl overflow-hidden">
                     {item.logo ? (
@@ -285,9 +433,26 @@ export default function BuscarTimesPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-2 mt-4">
-                    <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-semibold">
-                      {item.categoria || "Amador"}
-                    </span>
+                    {categoriasDoTime.length > 0 ? (
+                      categoriasDoTime.slice(0, 3).map((category) => (
+                        <span
+                          key={category.id}
+                          className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-semibold"
+                        >
+                          {category.name}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-semibold">
+                        Sem categoria
+                      </span>
+                    )}
+
+                    {categoriasDoTime.length > 3 && (
+                      <span className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 text-xs font-semibold">
+                        +{categoriasDoTime.length - 3}
+                      </span>
+                    )}
 
                     <span className="px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 text-xs font-medium flex items-center gap-1">
                       <Users size={12} />
@@ -311,19 +476,19 @@ export default function BuscarTimesPage() {
 
                     <button
                       type="button"
-                      onClick={() => enviarConvite(item)}
+                      onClick={() => abrirModalConvite(item)}
                       disabled={
-                        !item.userid ||
-                        item.userid === currentUserId ||
-                        !!convites[item.userid] ||
-                        enviandoConvite === item.userid
+                        !item.id ||
+                        item.id === currentTeamId ||
+                        !!conviteStatus ||
+                        conviteEnviando
                       }
                       className="h-12 rounded-2xl border border-[#0f3b2e] text-[#0f3b2e] text-sm font-medium flex items-center justify-center gap-2 hover:bg-[#edf3ef] transition disabled:opacity-50 disabled:hover:bg-white"
                     >
                       <Send size={15} />
-                      {enviandoConvite === item.userid
+                      {conviteEnviando
                         ? "..."
-                        : convites[item.userid || ""]
+                        : conviteStatus
                           ? "Enviado"
                           : "Convite"}
                     </button>
@@ -377,13 +542,200 @@ export default function BuscarTimesPage() {
         <TeamProfileModal
           time={timeSelecionado}
           onClose={() => setTimeSelecionado(null)}
-          onInvite={enviarConvite}
+          onInvite={abrirModalConvite}
           inviteStatus={
-            timeSelecionado.userid ? convites[timeSelecionado.userid] : null
+            timeSelecionado.id ? convites[timeSelecionado.id] : null
           }
-          inviteLoading={enviandoConvite === timeSelecionado.userid}
+          inviteLoading={enviandoConvite === timeSelecionado.id}
+        />
+      )}
+
+      {timeConvite && (
+        <InviteModal
+          time={timeConvite}
+          categories={currentTeamInviteCategories}
+          loading={enviandoConvite === timeConvite.id}
+          onClose={() => setTimeConvite(null)}
+          onSubmit={(form) => enviarConvite(timeConvite, form)}
         />
       )}
     </main>
+  )
+}
+
+function InviteModal({
+  time,
+  categories,
+  loading,
+  onClose,
+  onSubmit,
+}: {
+  time: TeamProfile
+  categories: Category[]
+  loading: boolean
+  onClose: () => void
+  onSubmit: (form: InviteFormData) => void
+}) {
+  const [categoryId, setCategoryId] = useState("")
+  const [proposedDate, setProposedDate] = useState("")
+  const [proposedTime, setProposedTime] = useState("")
+  const [location, setLocation] = useState("")
+  const [message, setMessage] = useState("")
+
+  const nomeTime = time.nometime || "Time sem nome"
+
+  useEffect(() => {
+    setCategoryId(categories[0]?.id || "")
+  }, [categories])
+
+  return (
+    <div className="fixed inset-0 z-50 bg-black/60 p-3 md:p-6 flex items-center justify-center">
+      <div className="bg-white w-full max-w-xl rounded-[32px] p-6 shadow-2xl">
+        <div className="flex items-start justify-between gap-4 mb-5">
+          <div>
+            <p className="text-xs uppercase tracking-[2px] text-[#0f3b2e] font-bold">
+              Convite de amistoso
+            </p>
+
+            <h2 className="text-2xl font-black text-zinc-900 mt-1">
+              {nomeTime}
+            </h2>
+
+            <p className="text-sm text-zinc-500 mt-1">
+              A categoria abaixo vem do seu próprio time.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <label className="text-sm font-semibold text-zinc-700">
+              Categoria do seu time
+            </label>
+
+            <select
+              value={categoryId}
+              onChange={(e) => setCategoryId(e.target.value)}
+              className="mt-2 h-12 w-full rounded-2xl bg-[#f5f7f9] px-4 outline-none border border-transparent focus:border-[#0f3b2e]"
+            >
+              <option value="">Selecione uma categoria</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+
+            {categories.length === 0 && (
+              <p className="mt-2 text-sm text-red-600">
+                Seu time ainda não tem categorias cadastradas.
+              </p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label className="text-sm font-semibold text-zinc-700">
+                Data
+              </label>
+
+              <div className="mt-2 h-12 rounded-2xl bg-[#f5f7f9] px-4 flex items-center gap-3">
+                <CalendarDays size={17} className="text-zinc-400" />
+
+                <input
+                  type="date"
+                  value={proposedDate}
+                  onChange={(e) => setProposedDate(e.target.value)}
+                  className="bg-transparent outline-none flex-1"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label className="text-sm font-semibold text-zinc-700">
+                Horário
+              </label>
+
+              <div className="mt-2 h-12 rounded-2xl bg-[#f5f7f9] px-4 flex items-center gap-3">
+                <Clock3 size={17} className="text-zinc-400" />
+
+                <input
+                  type="time"
+                  value={proposedTime}
+                  onChange={(e) => setProposedTime(e.target.value)}
+                  className="bg-transparent outline-none flex-1"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="text-sm font-semibold text-zinc-700">
+              Local
+            </label>
+
+            <div className="mt-2 h-12 rounded-2xl bg-[#f5f7f9] px-4 flex items-center gap-3">
+              <MapPin size={17} className="text-zinc-400" />
+
+              <input
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="Ex: Campo Municipal"
+                className="bg-transparent outline-none flex-1"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="text-sm font-semibold text-zinc-700">
+              Mensagem opcional
+            </label>
+
+            <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Ex: Temos campo reservado e arbitragem combinada."
+              className="mt-2 min-h-[100px] w-full rounded-2xl bg-[#f5f7f9] p-4 outline-none border border-transparent focus:border-[#0f3b2e] resize-none"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-3 mt-6">
+          <button
+            type="button"
+            onClick={onClose}
+            className="h-12 flex-1 rounded-2xl border border-zinc-200 font-semibold hover:bg-zinc-50 transition"
+          >
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            disabled={loading || categories.length === 0}
+            onClick={() =>
+              onSubmit({
+                categoryId,
+                proposedDate,
+                proposedTime,
+                location,
+                message,
+              })
+            }
+            className="h-12 flex-1 rounded-2xl bg-[#0f3b2e] text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition disabled:opacity-50"
+          >
+            <Send size={16} />
+            {loading ? "Enviando..." : "Enviar convite"}
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }

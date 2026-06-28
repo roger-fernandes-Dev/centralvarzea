@@ -17,18 +17,50 @@ import {
   X,
   Eye,
 } from "lucide-react"
+
 import {
   TeamProfileModal,
   type TeamProfile,
 } from "./components/TeamProfileModal"
 
+type InvitationStatus = "pending" | "accepted" | "rejected" | "cancelled"
+
 type FriendlyInvitation = {
   id: string
-  playerid?: string | null
-  teamid?: string | null
-  status?: string | null
-  createdat?: string | null
+  sender_team_id: string
+  receiver_team_id: string
+  category_id?: string | null
+  status?: InvitationStatus | null
+  message?: string | null
+  proposed_date?: string | null
+  proposed_time?: string | null
+  location?: string | null
+  created_at?: string | null
+  sender_team?: TeamProfile | null
+  receiver_team?: TeamProfile | null
+  category?: {
+    id: string
+    name: string
+  } | null
+
   sender?: TeamProfile | null
+}
+
+type TeamStaffDashboard = {
+  id: string
+  name: string
+  role: "coach" | "staff"
+  phone?: string | null
+  notes?: string | null
+}
+
+type TeamCategoryDashboard = {
+  id: string
+  category_id: string
+  categoryName: string
+  needs_players?: boolean | null
+  wanted_positions?: string | null
+  staff: TeamStaffDashboard[]
 }
 
 export default function DashboardTime() {
@@ -39,184 +71,161 @@ export default function DashboardTime() {
   const [convitesRecebidos, setConvitesRecebidos] = useState<
     FriendlyInvitation[]
   >([])
+  const [categoriasDoTime, setCategoriasDoTime] = useState<
+    TeamCategoryDashboard[]
+  >([])
   const [conviteSelecionado, setConviteSelecionado] =
     useState<FriendlyInvitation | null>(null)
   const [perfilSelecionado, setPerfilSelecionado] =
     useState<TeamProfile | null>(null)
-  const [atualizandoConvite, setAtualizandoConvite] = useState<string | null>(
-    null
-  )
+  const [atualizandoConvite, setAtualizandoConvite] =
+    useState<InvitationStatus | null>(null)
 
   const [openBannerModal, setOpenBannerModal] = useState(false)
-const [bannerFile, setBannerFile] = useState<File | null>(null)
-const [savingBanner, setSavingBanner] = useState(false)
+  const [bannerFile, setBannerFile] = useState<File | null>(null)
+  const [savingBanner, setSavingBanner] = useState(false)
 
-async function loadConvitesRecebidos(userId: string) {
-  const response = await fetch(
-    `/api/team/invitations?direction=received&userId=${userId}`
-  )
+  async function loadCategoriasDoTime(teamId: string) {
+    const response = await fetch(`/api/team/categories-detail?teamId=${teamId}`)
 
-  if (!response.ok) {
-    console.log("ERRO AO BUSCAR CONVITES")
-    return
-  }
-
-  const { invitations } = await response.json()
-  const data = invitations || []
-
-  const senderIds = Array.from(
-    new Set(
-      (data || [])
-        .map((convite: FriendlyInvitation) => convite.playerid)
-        .filter(Boolean)
-    )
-  )
-
-  const { data: senders } = senderIds.length
-    ? await supabase.from("team_profiles").select("*").in("userid", senderIds)
-    : { data: [] }
-
-  const senderByUserId = (senders || []).reduce(
-    (acc: Record<string, TeamProfile>, sender: TeamProfile) => {
-      if (sender.userid) {
-        acc[sender.userid] = sender
-      }
-
-      return acc
-    },
-    {}
-  )
-
-  setConvitesRecebidos(
-    (data || []).map((convite: FriendlyInvitation) => ({
-      ...convite,
-      sender: convite.playerid ? senderByUserId[convite.playerid] : null,
-    }))
-  )
-}
-
-async function responderConvite(convite: FriendlyInvitation, status: string) {
-  setAtualizandoConvite(status)
-
-  const response = await fetch("/api/team/invitations", {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      id: convite.id,
-      status,
-    }),
-  })
-
-  setAtualizandoConvite(null)
-
-  if (!response.ok) {
-    alert("Nao foi possivel responder o convite agora.")
-    return
-  }
-
-  setConvitesRecebidos((current) =>
-    current.map((item) => (item.id === convite.id ? { ...item, status } : item))
-  )
-  setConviteSelecionado((current) =>
-    current?.id === convite.id ? { ...current, status } : current
-  )
-}
-
-async function handleBannerUpload() {
-  if (!bannerFile || !team?.userid) return
-
-  try {
-    setSavingBanner(true)
-
-    const img = document.createElement("img")
-    img.src = URL.createObjectURL(bannerFile)
-
-    await new Promise((resolve) => {
-      img.onload = resolve
-    })
-
-    const canvas = document.createElement("canvas")
-
-    const maxWidth = 1600
-
-    const scale =
-      img.width > maxWidth
-        ? maxWidth / img.width
-        : 1
-
-    canvas.width = img.width * scale
-    canvas.height = img.height * scale
-
-    const ctx = canvas.getContext("2d")
-
-    ctx?.drawImage(
-      img,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    )
-
-    const blob = await new Promise<Blob | null>((resolve) =>
-      canvas.toBlob(
-        resolve,
-        "image/webp",
-        0.8
-      )
-    )
-
-    if (!blob) return
-
-    const file = new File(
-      [blob],
-      "banner.webp",
-      {
-        type: "image/webp",
-      }
-    )
-
-    const filePath =
-      `${team.userid}/banner.webp`
-
-    const { error } = await supabase.storage
-      .from("team-banners")
-      .upload(filePath, file, {
-        upsert: true,
-      })
-
-    if (error) {
-      alert(error.message)
+    if (!response.ok) {
+      const error = await response.json().catch(() => null)
+      console.log("ERRO AO BUSCAR CATEGORIAS DO TIME:", error)
       return
     }
 
-    const { data } = supabase.storage
-      .from("team-banners")
-      .getPublicUrl(filePath)
+    const data = await response.json()
+    setCategoriasDoTime(data.categories || [])
+  }
 
-    const bannerUrl =
-      `${data.publicUrl}?t=${Date.now()}`
+  async function loadConvitesRecebidos(teamId: string) {
+    const response = await fetch(
+      `/api/team/invitations?direction=received&teamId=${teamId}`
+    )
 
-    await supabase
-      .from("team_profiles")
-      .update({
-        fototime: bannerUrl,
-      })
-      .eq("userid", team.userid)
+    if (!response.ok) {
+      console.log("ERRO AO BUSCAR CONVITES")
+      return
+    }
 
-    setTeam({
-      ...team,
-      fototime: bannerUrl,
+    const { invitations } = await response.json()
+    const data = invitations || []
+
+    setConvitesRecebidos(
+      data.map((convite: FriendlyInvitation) => ({
+        ...convite,
+        sender: convite.sender_team || null,
+      }))
+    )
+  }
+
+  async function responderConvite(
+    convite: FriendlyInvitation,
+    status: "accepted" | "rejected"
+  ) {
+    setAtualizandoConvite(status)
+
+    const response = await fetch("/api/team/invitations", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: convite.id,
+        status,
+      }),
     })
 
-    setOpenBannerModal(false)
-    setBannerFile(null)
+    setAtualizandoConvite(null)
 
-  } finally {
-    setSavingBanner(false)
+    if (!response.ok) {
+      alert("Nao foi possivel responder o convite agora.")
+      return
+    }
+
+    setConvitesRecebidos((current) =>
+      current.map((item) =>
+        item.id === convite.id ? { ...item, status } : item
+      )
+    )
+
+    setConviteSelecionado((current) =>
+      current?.id === convite.id ? { ...current, status } : current
+    )
   }
-}
+
+  async function handleBannerUpload() {
+    if (!bannerFile || !team?.userid) return
+
+    try {
+      setSavingBanner(true)
+
+      const img = document.createElement("img")
+      img.src = URL.createObjectURL(bannerFile)
+
+      await new Promise((resolve) => {
+        img.onload = resolve
+      })
+
+      const canvas = document.createElement("canvas")
+      const maxWidth = 1600
+
+      const scale = img.width > maxWidth ? maxWidth / img.width : 1
+
+      canvas.width = img.width * scale
+      canvas.height = img.height * scale
+
+      const ctx = canvas.getContext("2d")
+
+      ctx?.drawImage(img, 0, 0, canvas.width, canvas.height)
+
+      const blob = await new Promise<Blob | null>((resolve) =>
+        canvas.toBlob(resolve, "image/webp", 0.8)
+      )
+
+      if (!blob) return
+
+      const file = new File([blob], "banner.webp", {
+        type: "image/webp",
+      })
+
+      const filePath = `${team.userid}/banner.webp`
+
+      const { error } = await supabase.storage
+        .from("team-banners")
+        .upload(filePath, file, {
+          upsert: true,
+        })
+
+      if (error) {
+        alert(error.message)
+        return
+      }
+
+      const { data } = supabase.storage
+        .from("team-banners")
+        .getPublicUrl(filePath)
+
+      const bannerUrl = `${data.publicUrl}?t=${Date.now()}`
+
+      await supabase
+        .from("team_profiles")
+        .update({
+          fototime: bannerUrl,
+        })
+        .eq("userid", team.userid)
+
+      setTeam({
+        ...team,
+        fototime: bannerUrl,
+      })
+
+      setOpenBannerModal(false)
+      setBannerFile(null)
+    } finally {
+      setSavingBanner(false)
+    }
+  }
 
   useEffect(() => {
     async function loadTeam() {
@@ -229,14 +238,25 @@ async function handleBannerUpload() {
         return
       }
 
-      const { data } = await supabase
+      const { data, error } = await supabase
         .from("team_profiles")
         .select("*")
         .eq("userid", user.id)
         .maybeSingle()
 
+      if (error) {
+        console.log("ERRO AO BUSCAR TIME:", error)
+        setLoading(false)
+        return
+      }
+
       setTeam(data)
-      await loadConvitesRecebidos(user.id)
+
+      if (data?.id) {
+        await loadConvitesRecebidos(data.id)
+        await loadCategoriasDoTime(data.id)
+      }
+
       setLoading(false)
     }
 
@@ -253,7 +273,7 @@ async function handleBannerUpload() {
 
   const hasTeam = !!team
 
-    if (!hasTeam) {
+  if (!hasTeam) {
     return (
       <main className="flex-1 p-3 md:p-6">
         <section className="bg-white rounded-[32px] p-8 md:p-12 text-center shadow-sm">
@@ -283,7 +303,6 @@ async function handleBannerUpload() {
 
   return (
     <main className="flex-1 p-3 md:p-6">
-      {/* DESKTOP HEADER */}
       <div className="hidden lg:flex items-center justify-between gap-6 mb-8">
         <div>
           <h1 className="text-[30px] font-bold text-zinc-900">
@@ -296,7 +315,6 @@ async function handleBannerUpload() {
         </div>
       </div>
 
-      {/* MOBILE SEARCH */}
       <div className="lg:hidden mb-4">
         <div className="h-11 bg-white rounded-2xl border border-zinc-200 px-4 flex items-center gap-3">
           <Search className="text-zinc-400" size={16} />
@@ -308,149 +326,306 @@ async function handleBannerUpload() {
         </div>
       </div>
 
-      {/* CARD PRINCIPAL */}
       <section className="relative overflow-hidden bg-white rounded-[36px] p-6 md:p-10 shadow-[0_10px_40px_rgba(0,0,0,0.05)] mb-6">
+        <div className="absolute top-0 left-0 right-0 h-[320px] overflow-hidden">
+          <button
+            onClick={() => setOpenBannerModal(true)}
+            className="absolute top-4 right-4 z-30 w-11 h-11 rounded-full bg-white text-zinc-900 shadow-lg flex items-center justify-center hover:scale-105 transition"
+          >
+            <Pencil size={18} />
+          </button>
 
-   {/** foto elenco */}
+          {team.fototime ? (
+            <img
+              src={team.fototime}
+              alt="Foto do time"
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-r from-[#0f3b2e] to-[#1a5b46]" />
+          )}
 
-   <div className="absolute top-0 left-0 right-0 h-[320px] overflow-hidden">
-    <button
-  onClick={() => {
-    console.log("clicou")
-    setOpenBannerModal(true)
-  }}
-  className="absolute top-4 right-4 z-30 w-11 h-11 rounded-full bg-white text-zinc-900 shadow-lg flex items-center justify-center hover:scale-105 transition"
->
-  <Pencil size={18} />
-</button>
-
-  {team.fototime ? (
-  <img
-    src={team.fototime}
-    alt="Foto do time"
-    className="w-full h-full object-cover"
-  />
-) : (
-  <div className="w-full h-full bg-gradient-to-r from-[#0f3b2e] to-[#1a5b46]" />
-)}
-
-  <div className="absolute inset-0 bg-black/40" />
-
-</div>
-
-  <div className="relative">
-
-  {/* LOGO */}
-  <div className="flex flex-col items-center">
-
-    <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-white shadow-xl overflow-hidden border-4 border-white">
-
-      {team.logo ? (
-        <img
-          src={team.logo}
-          alt={team.nometime || "Logo do time"}
-          className="w-full h-full object-cover"
-        />
-      ) : (
-        <div className="w-full h-full flex items-center justify-center text-[#0f3b2e] text-5xl font-black">
-          {team.nometime?.charAt(0)}
+          <div className="absolute inset-0 bg-black/40" />
         </div>
-      )}
 
-    </div>
+        <div className="relative">
+          <div className="flex flex-col items-center">
+            <div className="w-32 h-32 md:w-44 md:h-44 rounded-full bg-white shadow-xl overflow-hidden border-4 border-white">
+              {team.logo ? (
+                <img
+                  src={team.logo}
+                  alt={team.nometime || "Logo do time"}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-[#0f3b2e] text-5xl font-black">
+                  {team.nometime?.charAt(0)}
+                </div>
+              )}
+            </div>
 
-    <h1 className="mt-5 text-3xl md:text-5xl font-black text-white text-center">
-      {team.nometime}
-    </h1>
+            <h1 className="mt-5 text-3xl md:text-5xl font-black text-white text-center">
+              {team.nometime}
+            </h1>
 
-    <p className="mt-2 text-white flex items-center gap-2 justify-center">
-      <MapPin size={16} />
-      {team.cidade} - {team.estado}
-    </p>
+            <p className="mt-2 text-white flex items-center gap-2 justify-center">
+              <MapPin size={16} />
+              {team.cidade} - {team.estado}
+            </p>
 
-    <button
-      onClick={() => router.push("/dashboard/time/editartime")}
-      className="mt-5 h-11 px-5 rounded-2xl bg-[#0f3b2e] text-white flex items-center gap-2"
-    >
-      <Pencil size={15} />
-      Editar perfil
-    </button>
-
-  </div>
-
-  {/* CARDS */}
-  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
-
-    <div className="bg-[#f7f8fa] rounded-3xl p-5">
-      <Shield className="text-[#0f3b2e]" />
-      <p className="text-xs text-zinc-500 mt-3">
-        Bairro
-      </p>
-      <h3 className="font-bold mt-1">
-        {team.bairro || "-"}
-      </h3>
-    </div>
-
-    <div className="bg-[#f7f8fa] rounded-3xl p-5">
-      <Users className="text-[#0f3b2e]" />
-      <p className="text-xs text-zinc-500 mt-3">
-        Recrutando
-      </p>
-      <h3 className="font-bold mt-1">
-        {team.precisajogador ? "Sim" : "Não"}
-      </h3>
-    </div>
-
-    <div className="bg-[#f7f8fa] rounded-3xl p-5">
-      <Trophy className="text-[#0f3b2e]" />
-      <p className="text-xs text-zinc-500 mt-3">
-        Patrocínio
-      </p>
-      <h3 className="font-bold mt-1">
-        {team.precisapatrocinio ? "Procurando" : "Não"}
-      </h3>
-    </div>
-
-    <div className="bg-[#f7f8fa] rounded-3xl p-5">
-      <Calendar className="text-[#0f3b2e]" />
-      <p className="text-xs text-zinc-500 mt-3">
-        Fundação
-      </p>
-      <h3 className="font-bold mt-1">
-        {team.fundacao || "-"}
-      </h3>
-    </div>
-
-  </div>
-
-  {team.posicaoprocurada && (
-    <div className="mt-10">
-
-      <h3 className="font-bold text-zinc-900 mb-4 text-center">
-        Posições procuradas
-      </h3>
-
-      <div className="flex flex-wrap justify-center gap-2">
-
-        {team.posicaoprocurada
-          .split(",")
-          .map((posicao: string) => (
-            <span
-              key={posicao}
-              className="px-4 py-2 rounded-full bg-[#edf3ef] text-[#0f3b2e] font-medium text-sm"
+            <button
+              onClick={() => router.push("/dashboard/time/editartime")}
+              className="mt-5 h-11 px-5 rounded-2xl bg-[#0f3b2e] text-white flex items-center gap-2"
             >
-              {posicao.trim()}
+              <Pencil size={15} />
+              Editar perfil
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+            <div className="bg-[#f7f8fa] rounded-3xl p-5">
+              <Shield className="text-[#0f3b2e]" />
+              <p className="text-xs text-zinc-500 mt-3">Bairro</p>
+              <h3 className="font-bold mt-1">{team.bairro || "-"}</h3>
+            </div>
+
+            <div className="bg-[#f7f8fa] rounded-3xl p-5">
+              <Users className="text-[#0f3b2e]" />
+              <p className="text-xs text-zinc-500 mt-3">Recrutando</p>
+              <h3 className="font-bold mt-1">
+                {team.precisajogador ? "Sim" : "Não"}
+              </h3>
+            </div>
+
+            <div className="bg-[#f7f8fa] rounded-3xl p-5">
+              <Trophy className="text-[#0f3b2e]" />
+              <p className="text-xs text-zinc-500 mt-3">Patrocínio</p>
+              <h3 className="font-bold mt-1">
+                {team.precisapatrocinio ? "Procurando" : "Não"}
+              </h3>
+            </div>
+
+            <div className="bg-[#f7f8fa] rounded-3xl p-5">
+              <Calendar className="text-[#0f3b2e]" />
+              <p className="text-xs text-zinc-500 mt-3">Fundação</p>
+              <h3 className="font-bold mt-1">{team.fundacao || "-"}</h3>
+            </div>
+          </div>
+
+          {team.posicaoprocurada && (
+            <div className="mt-10">
+              <h3 className="font-bold text-zinc-900 mb-4 text-center">
+                Posições procuradas
+              </h3>
+
+              <div className="flex flex-wrap justify-center gap-2">
+                {team.posicaoprocurada.split(",").map((posicao: string) => (
+                  <span
+                    key={posicao}
+                    className="px-4 py-2 rounded-full bg-[#edf3ef] text-[#0f3b2e] font-medium text-sm"
+                  >
+                    {posicao.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="bg-white rounded-[32px] p-5 md:p-6 border border-zinc-200 shadow-sm mb-6">
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-3">
+            <span className="w-11 h-11 rounded-full bg-[#edf3ef] text-[#0f3b2e] flex items-center justify-center">
+              <Trophy size={18} />
             </span>
-          ))}
 
-      </div>
+            <div>
+              <h2 className="text-xl font-black text-zinc-900">
+                Categorias do time
+              </h2>
+              <p className="text-sm text-zinc-500">
+                Categorias, recrutamento e responsáveis técnicos
+              </p>
+            </div>
+          </div>
 
-    </div>
-  )}
+          <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-sm font-bold">
+            {categoriasDoTime.length}
+          </span>
+        </div>
 
-</div>
+        {categoriasDoTime.length === 0 ? (
+          <div className="rounded-[24px] bg-[#f7f8fa] p-5 text-sm text-zinc-500">
+            Nenhuma categoria cadastrada ainda. Edite o perfil do time para
+            adicionar as categorias em que ele atua.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {categoriasDoTime.map((categoria) => {
+              const posicoes = categoria.wanted_positions
+                ? categoria.wanted_positions.split(",").map((item) => item.trim()).filter(Boolean)
+                : []
 
-</section>
+              const tecnicos = categoria.staff.filter(
+                (person) => person.role === "coach"
+              )
+
+              const comissao = categoria.staff.filter(
+                (person) => person.role !== "coach"
+              )
+
+              return (
+                <article
+                  key={categoria.id}
+                  className="rounded-[28px] border border-zinc-200 bg-[#f7f8fa] p-5 overflow-hidden"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-[2px] text-[#0f3b2e] font-black">
+                        Categoria
+                      </p>
+
+                      <h3 className="text-2xl font-black text-zinc-900 mt-1">
+                        {categoria.categoryName}
+                      </h3>
+                    </div>
+
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap ${
+                        categoria.needs_players
+                          ? "bg-green-100 text-green-700"
+                          : "bg-zinc-200 text-zinc-600"
+                      }`}
+                    >
+                      {categoria.needs_players ? "Recrutando" : "Fechado"}
+                    </span>
+                  </div>
+
+                  <div className="mt-5 rounded-3xl bg-white p-4 border border-zinc-100">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Users size={16} className="text-[#0f3b2e]" />
+                      <h4 className="font-bold text-zinc-900">
+                        Posições procuradas
+                      </h4>
+                    </div>
+
+                    {categoria.needs_players && posicoes.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {posicoes.map((posicao) => (
+                          <span
+                            key={`${categoria.id}-${posicao}`}
+                            className="px-3 py-1.5 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-xs font-bold"
+                          >
+                            {posicao}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-zinc-500">
+                        Esta categoria não está procurando jogadores agora.
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="mt-4 grid grid-cols-1 gap-3">
+                    <div className="rounded-3xl bg-white p-4 border border-zinc-100">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Shield size={16} className="text-[#0f3b2e]" />
+                        <h4 className="font-bold text-zinc-900">Técnico</h4>
+                      </div>
+
+                      {tecnicos.length > 0 ? (
+                        <div className="space-y-3">
+                          {tecnicos.map((person) => (
+                            <div
+                              key={person.id}
+                              className="flex items-start gap-3 rounded-2xl bg-[#f7f8fa] p-3"
+                            >
+                              <div className="w-10 h-10 rounded-full bg-[#0f3b2e] text-white flex items-center justify-center font-black">
+                                {person.name.charAt(0).toUpperCase()}
+                              </div>
+
+                              <div className="min-w-0">
+                                <p className="font-bold text-zinc-900">
+                                  {person.name}
+                                </p>
+
+                                {person.phone && (
+                                  <p className="text-xs text-zinc-500 mt-0.5">
+                                    {person.phone}
+                                  </p>
+                                )}
+
+                                {person.notes && (
+                                  <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+                                    {person.notes}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-zinc-500">
+                          Nenhum técnico vinculado a esta categoria.
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="rounded-3xl bg-white p-4 border border-zinc-100">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Users size={16} className="text-[#0f3b2e]" />
+                        <h4 className="font-bold text-zinc-900">
+                          Comissão técnica
+                        </h4>
+                      </div>
+
+                      {comissao.length > 0 ? (
+                        <div className="space-y-3">
+                          {comissao.map((person) => (
+                            <div
+                              key={person.id}
+                              className="flex items-start gap-3 rounded-2xl bg-[#f7f8fa] p-3"
+                            >
+                              <div className="w-10 h-10 rounded-full bg-zinc-900 text-white flex items-center justify-center font-black">
+                                {person.name.charAt(0).toUpperCase()}
+                              </div>
+
+                              <div className="min-w-0">
+                                <p className="font-bold text-zinc-900">
+                                  {person.name}
+                                </p>
+
+                                {person.phone && (
+                                  <p className="text-xs text-zinc-500 mt-0.5">
+                                    {person.phone}
+                                  </p>
+                                )}
+
+                                {person.notes && (
+                                  <p className="text-xs text-zinc-500 mt-1 leading-relaxed">
+                                    {person.notes}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <p className="text-sm text-zinc-500">
+                          Nenhum membro da comissão vinculado a esta categoria.
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+        )}
+      </section>
+
       <section className="bg-white rounded-[32px] p-5 md:p-6 border border-zinc-200 shadow-sm mb-6">
         <div className="flex items-center justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
@@ -460,7 +635,7 @@ async function handleBannerUpload() {
 
             <div>
               <h2 className="text-xl font-black text-zinc-900">
-                Notificacoes
+                Notificações
               </h2>
               <p className="text-sm text-zinc-500">
                 Convites de amistosos recebidos
@@ -471,7 +646,7 @@ async function handleBannerUpload() {
           <span className="px-3 py-1 rounded-full bg-[#edf3ef] text-[#0f3b2e] text-sm font-bold">
             {
               convitesRecebidos.filter(
-                (convite) => (convite.status || "pendente") === "pendente"
+                (convite) => (convite.status || "pending") === "pending"
               ).length
             }
           </span>
@@ -485,7 +660,7 @@ async function handleBannerUpload() {
           <div className="space-y-3">
             {convitesRecebidos.slice(0, 5).map((convite) => {
               const sender = convite.sender
-              const status = convite.status || "pendente"
+              const status = convite.status || "pending"
 
               return (
                 <div
@@ -519,16 +694,16 @@ async function handleBannerUpload() {
                   <div className="flex items-center gap-2">
                     <span
                       className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        status === "aceito"
+                        status === "accepted"
                           ? "bg-green-100 text-green-700"
-                          : status === "recusado"
+                          : status === "rejected"
                             ? "bg-red-100 text-red-700"
                             : "bg-amber-100 text-amber-700"
                       }`}
                     >
-                      {status === "aceito"
+                      {status === "accepted"
                         ? "Aceito"
-                        : status === "recusado"
+                        : status === "rejected"
                           ? "Recusado"
                           : "Pendente"}
                     </span>
@@ -548,15 +723,13 @@ async function handleBannerUpload() {
         )}
       </section>
 
-      {/* resto do dashboard continua igual */}
-
       {conviteSelecionado && (
         <ConviteModal
           convite={conviteSelecionado}
           updating={atualizandoConvite}
           onClose={() => setConviteSelecionado(null)}
-          onAccept={() => responderConvite(conviteSelecionado, "aceito")}
-          onReject={() => responderConvite(conviteSelecionado, "recusado")}
+          onAccept={() => responderConvite(conviteSelecionado, "accepted")}
+          onReject={() => responderConvite(conviteSelecionado, "rejected")}
           onViewProfile={() => {
             if (conviteSelecionado.sender) {
               setPerfilSelecionado(conviteSelecionado.sender)
@@ -573,69 +746,57 @@ async function handleBannerUpload() {
       )}
 
       {openBannerModal && (
-  <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-md rounded-[32px] p-6">
+            <h2 className="text-xl font-bold mb-5">Foto do Time</h2>
 
-    <div className="bg-white w-full max-w-md rounded-[32px] p-6">
+            <label className="w-full h-40 border-2 border-dashed border-zinc-300 rounded-3xl flex flex-col items-center justify-center cursor-pointer hover:border-[#0f3b2e] transition">
+              <Pencil size={28} className="mb-3 text-zinc-500" />
 
-  <h2 className="text-xl font-bold mb-5">
-    Foto do Time
-  </h2>
+              <span className="font-medium text-zinc-700">
+                Selecionar imagem
+              </span>
 
-  <label className="w-full h-40 border-2 border-dashed border-zinc-300 rounded-3xl flex flex-col items-center justify-center cursor-pointer hover:border-[#0f3b2e] transition">
+              <span className="text-sm text-zinc-500 mt-1">
+                JPG, PNG ou WEBP
+              </span>
 
-    <Pencil size={28} className="mb-3 text-zinc-500" />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => setBannerFile(e.target.files?.[0] || null)}
+              />
+            </label>
 
-    <span className="font-medium text-zinc-700">
-      Selecionar imagem
-    </span>
+            {bannerFile && (
+              <p className="mt-4 text-sm text-green-600 font-medium">
+                ✓ {bannerFile.name}
+              </p>
+            )}
 
-    <span className="text-sm text-zinc-500 mt-1">
-      JPG, PNG ou WEBP
-    </span>
+            <div className="flex gap-3 mt-6">
+              <button
+                onClick={() => {
+                  setOpenBannerModal(false)
+                  setBannerFile(null)
+                }}
+                className="flex-1 h-12 rounded-2xl border"
+              >
+                Cancelar
+              </button>
 
-    <input
-      type="file"
-      accept="image/*"
-      className="hidden"
-      onChange={(e) =>
-        setBannerFile(e.target.files?.[0] || null)
-      }
-    />
-
-  </label>
-
-  {bannerFile && (
-    <p className="mt-4 text-sm text-green-600 font-medium">
-      ✓ {bannerFile.name}
-    </p>
-  )}
-
-  <div className="flex gap-3 mt-6">
-
-    <button
-      onClick={() => {
-        setOpenBannerModal(false)
-        setBannerFile(null)
-      }}
-      className="flex-1 h-12 rounded-2xl border"
-    >
-      Cancelar
-    </button>
-
-    <button
-      onClick={handleBannerUpload}
-      disabled={!bannerFile || savingBanner}
-      className="flex-1 h-12 rounded-2xl bg-[#0f3b2e] text-white disabled:opacity-50"
-    >
-      {savingBanner ? "Salvando..." : "Salvar"}
-    </button>
-
-  </div>
-
-</div>
-
-  </div>
-)}
+              <button
+                onClick={handleBannerUpload}
+                disabled={!bannerFile || savingBanner}
+                className="flex-1 h-12 rounded-2xl bg-[#0f3b2e] text-white disabled:opacity-50"
+              >
+                {savingBanner ? "Salvando..." : "Salvar"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
@@ -649,16 +810,16 @@ function ConviteModal({
   onViewProfile,
 }: {
   convite: FriendlyInvitation
-  updating: string | null
+  updating: InvitationStatus | null
   onClose: () => void
   onAccept: () => void
   onReject: () => void
   onViewProfile: () => void
 }) {
   const sender = convite.sender
-  const status = convite.status || "pendente"
+  const status = convite.status || "pending"
   const localizacao = [sender?.cidade, sender?.estado].filter(Boolean).join("/")
-  const canRespond = status === "pendente"
+  const canRespond = status === "pending"
 
   return (
     <div
@@ -691,7 +852,7 @@ function ConviteModal({
                 {sender?.nometime || "Time convidante"}
               </h2>
               <p className="text-sm text-zinc-500">
-                {localizacao || "Localizacao nao informada"}
+                {localizacao || "Localização não informada"}
               </p>
             </div>
           </div>
@@ -708,22 +869,47 @@ function ConviteModal({
 
         <div className="mt-6 rounded-[24px] bg-[#f7f8fa] p-5">
           <p className="text-zinc-700 leading-relaxed">
-            Esse time enviou um convite para marcar um amistoso com voce.
+            Esse time enviou um convite para marcar um amistoso com você.
             Analise o perfil antes de aceitar ou recusar.
           </p>
 
+          {convite.category?.name && (
+            <p className="text-sm text-zinc-500 mt-3">
+              Categoria: <strong>{convite.category.name}</strong>
+            </p>
+          )}
+
+          {convite.proposed_date && (
+            <p className="text-sm text-zinc-500 mt-2">
+              Data sugerida: <strong>{convite.proposed_date}</strong>
+            </p>
+          )}
+
+          {convite.proposed_time && (
+            <p className="text-sm text-zinc-500 mt-2">
+              Horário sugerido:{" "}
+              <strong>{convite.proposed_time.slice(0, 5)}</strong>
+            </p>
+          )}
+
+          {convite.location && (
+            <p className="text-sm text-zinc-500 mt-2">
+              Local: <strong>{convite.location}</strong>
+            </p>
+          )}
+
           <span
             className={`inline-flex mt-4 px-3 py-1 rounded-full text-xs font-semibold ${
-              status === "aceito"
+              status === "accepted"
                 ? "bg-green-100 text-green-700"
-                : status === "recusado"
+                : status === "rejected"
                   ? "bg-red-100 text-red-700"
                   : "bg-amber-100 text-amber-700"
             }`}
           >
-            {status === "aceito"
+            {status === "accepted"
               ? "Convite aceito"
-              : status === "recusado"
+              : status === "rejected"
                 ? "Convite recusado"
                 : "Aguardando resposta"}
           </span>
@@ -743,21 +929,21 @@ function ConviteModal({
           <button
             type="button"
             onClick={onReject}
-            disabled={!canRespond || updating === "recusado"}
+            disabled={!canRespond || updating === "rejected"}
             className="h-12 rounded-2xl border border-red-200 text-red-700 font-semibold flex items-center justify-center gap-2 hover:bg-red-50 transition disabled:opacity-50"
           >
             <X size={16} />
-            {updating === "recusado" ? "..." : "Rejeitar"}
+            {updating === "rejected" ? "..." : "Rejeitar"}
           </button>
 
           <button
             type="button"
             onClick={onAccept}
-            disabled={!canRespond || updating === "aceito"}
+            disabled={!canRespond || updating === "accepted"}
             className="h-12 rounded-2xl bg-[#0f3b2e] text-white font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition disabled:opacity-50"
           >
             <Check size={16} />
-            {updating === "aceito" ? "..." : "Aceitar"}
+            {updating === "accepted" ? "..." : "Aceitar"}
           </button>
         </div>
       </div>
