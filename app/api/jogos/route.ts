@@ -1174,7 +1174,7 @@ const jogos = [
       home: "ADC",
       awayLogo: "/times/bengala.png",
       away: "BGA",
-      score: "4 x 0",
+      score: "4 x 6",
       type: "Amistoso",
       data: "2026-06-28",
       hora: "08:30",
